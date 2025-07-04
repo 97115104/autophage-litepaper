@@ -1,0 +1,96 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background -->
+  <rect width="600" height="400" fill="white"/>
+  
+  <!-- Define patterns for subtle grid -->
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Grid background -->
+  <rect width="600" height="400" fill="url(#grid)"/>
+  
+  <!-- Axes -->
+  <g stroke="#000" stroke-width="1.5" fill="none">
+    <path d="M 80 340 L 520 340"/>
+    <path d="M 80 340 L 80 60"/>
+    
+    <!-- Axis arrows -->
+    <path d="M 520 340 L 515 335 M 520 340 L 515 345"/>
+    <path d="M 80 60 L 75 65 M 80 60 L 85 65"/>
+  </g>
+  
+  <!-- Tick marks -->
+  <g stroke="#000" stroke-width="1">
+    <!-- Y-axis ticks -->
+    <path d="M 80 340 L 75 340 M 80 284 L 75 284 M 80 228 L 75 228 M 80 172 L 75 172 M 80 116 L 75 116 M 80 60 L 75 60"/>
+    <!-- X-axis ticks -->
+    <path d="M 80 340 L 80 345 M 170 340 L 170 345 M 260 340 L 260 345 M 350 340 L 350 345 M 440 340 L 440 345 M 520 340 L 520 345"/>
+  </g>
+  
+  <!-- Y-axis labels -->
+  <g font-family="Times, serif" font-size="12" fill="#000">
+    <text x="65" y="343" text-anchor="end">0</text>
+    <text x="65" y="287" text-anchor="end">200</text>
+    <text x="65" y="231" text-anchor="end">400</text>
+    <text x="65" y="175" text-anchor="end">600</text>
+    <text x="65" y="119" text-anchor="end">800</text>
+    <text x="65" y="63" text-anchor="end">1000</text>
+  </g>
+  
+  <!-- X-axis labels -->
+  <g font-family="Times, serif" font-size="12" fill="#000">
+    <text x="80" y="358" text-anchor="middle">0</text>
+    <text x="170" y="358" text-anchor="middle">15</text>
+    <text x="260" y="358" text-anchor="middle">30</text>
+    <text x="350" y="358" text-anchor="middle">45</text>
+    <text x="440" y="358" text-anchor="middle">60</text>
+    <text x="520" y="358" text-anchor="middle">75</text>
+  </g>
+  
+  <!-- Axis labels -->
+  <g font-family="Times, serif" font-size="14" fill="#000">
+    <text x="300" y="385" text-anchor="middle">Time (days)</text>
+    <text x="25" y="200" text-anchor="middle" transform="rotate(-90 25 200)">Token Balance</text>
+  </g>
+  
+  <!-- Half-life line -->
+  <line x1="152.4" y1="60" x2="152.4" y2="340" stroke="#000" stroke-width="0.75" stroke-dasharray="3,3" opacity="0.5"/>
+  
+  <!-- Half-life annotation -->
+  <g font-family="Times, serif" font-size="11" fill="#000">
+    <text x="155" y="55" font-style="italic">t₁/₂ = 13.51 days</text>
+  </g>
+  
+  <!-- Exponential decay curve -->
+  <path d="M 80,60 
+           C 90,75 100,92 110,110
+           C 120,129 130,149 140,170
+           C 150,192 160,215 170,238
+           C 180,261 190,284 200,306
+           C 210,327 220,345 230,361
+           C 240,375 250,387 260,397
+           C 270,405 280,412 290,417
+           C 300,421 310,424 320,426
+           C 330,428 340,429 350,430
+           C 360,430 370,431 380,431
+           C 390,431 400,431 410,431
+           C 420,431 430,431 440,431
+           C 450,431 460,431 470,431
+           C 480,431 490,431 500,431
+           C 510,431 520,431 520,431"
+        fill="none" 
+        stroke="#000" 
+        stroke-width="2"/>
+  
+  <!-- Mathematical annotation -->
+  <g font-family="Times, serif" font-size="12" fill="#000">
+    <text x="380" y="100" font-style="italic">V(t) = V₀ · (1 - δ)ᵗ</text>
+    <text x="380" y="115" font-style="italic">δ = 0.05</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Times, serif" font-size="16" fill="#000" text-anchor="middle">Rhythm Token Decay Function</text>
+</svg>
