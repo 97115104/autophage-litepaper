@@ -16,13 +16,21 @@
 
 ## Abstract
 
-This paper formalizes Autophage Protocol, a living economic system where all digital value decays according to explicit metabolic dynamics. The protocol implements multi-species tokenomics with parameterized decay, endogenous price discovery linked to real-world health effort, cryptographically enforced privacy, and empirical, experiment-driven governance. All economic flows, privacy properties, and governance upgrades are mathematically specified and validated. The paper demonstrates by construction that continuous engagement is required for economic persistence, that wealth cannot be indefinitely accumulated, and that protocol evolution is empirically verifiable on-chain.
+For millennia, economics modeled value as permanence but living systems operate on decay and renewal. This paper presents the Autophage Protocol, an experimental economic system where digital tokens decay at rates modeled on biological metabolism. The protocol implements four token species earned exclusively through verified health activities that decay daily, with expired tokens flowing to The Reservoir for regeneration and redistribution. Core components include cryptographic separation of health data from identity, endogenous pricing based on health effort rather than market speculation, The Reservoir's dual-chamber system managing both token regeneration and USDC reserves for healthcare settlements, and biological scaling laws encoded into token dynamics. The protocol enables proof marketplaces where users monetize health verifications through consumer-to-consumer exchanges, business-to-business integrations, and business-to-business-to-consumer enterprise wellness programs. Mathematical analysis shows that decay bounds wealth accumulation, requires continuous user engagement for value persistence, and enables empirically verifiable parameter evolution. Additional features including wellness vaults, genetic traits, and privacy tiers extend the core system and are detailed in the appendix. The protocol explores whether aligning economic mechanics with biological principles affects wealth distribution and healthcare funding sustainability.
 
 ---
 
 ## 1. Introduction
 
-Most decentralized incentive systems fail for structural reasons: value accumulates indefinitely, speculation overtakes use, and privacy is sacrificed for verification. Autophage Protocol is an explicit attempt to encode the mathematical properties of biological life into digital economics. Every token decays as a function of time, requiring continuous, verified health activity for regeneration. All economic parameters are mapped to biological timescales and enforced in smart contracts. Privacy is enforced by cryptographic separation of identity and behavior, and protocol upgrades are determined by on-chain, randomized experiments. This paper formalizes these mechanisms, provides explicit earning and decay formulas, and demonstrates, with worked user examples, the core consequences and limits of the system.
+Most incentive systems designed for health, whether decentralized or not, fail because their underlying economics assume value can be accumulated indefinitely. This approach leads to predictable failure modes: speculation overtakes use, user engagement becomes episodic, and verification processes either compromise privacy or degrade into bureaucratic hurdles. 
+
+The Autophage Protocol takes a different approach. It models economic value as metabolic defined by its need for renewal and its exposure to decay. The system issues four species of digital tokens, each earned exclusively through verifiable health activities and each subject to continuous, mathematically enforced decay. Tokens that expire are not removed from circulation, their value is reintroduced into the system through a central mechanism called The Reservoir which both manages redistribution and supports real-world healthcare settlements.
+
+The protocol’s architecture is defined by several constraints. First, it separates health data from user identity using cryptographic tools, making it possible to verify actions without revealing personal information. Second, it ties token pricing to the measurable cost and frequency of actual health activities, ensuring that value emerges from effort, not from market dynamics or speculative trading. Third, it enforces biological scaling laws at every level, from token decay to treasury management, and makes all system upgrades subject to on-chain randomized trials with measurable outcomes.
+
+In addition to enabling users to earn and exchange value through verified health behaviors, the protocol supports privacy-preserving marketplaces, dynamic governance, and mechanisms for parameter evolution based on empirical results. Throughout this paper, each element of the system is formalized mathematically, demonstrated with explicit user journeys and worked examples, and analyzed for both practical impact and theoretical limits. The aim is not to present a finished product, but to define and test a new class of economic infrastructure, grounded in the principles of living systems.
+
+![Multi-Species Token Ecosystem](token-ecosystem-diagram.svg)
 
 ---
 
@@ -53,22 +61,7 @@ Decay rates and health mappings:
 
 The half-life is given by $t_{1/2,i} = \frac{\log 0.5}{\log(1 - \delta_i)}$.
 
-```
-Token Balance Over Time (Example: Rhythm Tokens)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-1000 ┤ Initial balance
-     │
- 800 ┤     ╲
-     │      ╲_____ Half-life: 13.51 days
- 600 ┤         ╲
-     │          ╲___
- 400 ┤             ╲___
-     │                 ╲___
- 200 ┤                     ╲______
-     │                            ╲________
-   0 └┬────┬────┬────┬────┬────┬────┬────┬──
-      0    10   20   30   40   50   60   70  Days
-```
+![Token Balance Over Time](token-decay-diagram.svg)
 
 ---
 
@@ -254,19 +247,7 @@ $$
 
 So at least $24,000 must be held in the USDC chamber for health claims.
 
-```
-Reservoir Flow Dynamics
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-         Users                    Reservoir               Healthcare
-    ┌─────────────┐         ┌─────────────────┐       ┌─────────────┐
-    │   Tokens    │ Decay   │  Token Chamber  │       │   Claims    │
-    │ ╲╲╲╲╲╲╲╲╲╲ │ ───────>│ ████████████░░░ │       │             │
-    │ ╲╲╲╲╲╲╲╲╲╲ │         └─────────────────┘       │  Payments   │
-    │ ╲╲╲╲╲╲╲╲╲╲ │         ┌─────────────────┐       │     <<<     │
-    └─────────────┘  Fees   │  USDC Chamber   │ ─────>│     $$$     │
-                    ───────>│ $$$$$$$$$$$$$$$ │       └─────────────┘
-                            └─────────────────┘
-```
+![Reservoir Flow Dynamics](reservoir-flow-diagram.svg)
 
 ---
 
@@ -312,6 +293,8 @@ $$
 
 Thus, each token is worth $0.078 under these system conditions.
 
+![Price Discovery Model](price-discovery-diagram.svg)
+
 ---
 
 ## 5. Privacy Architecture
@@ -343,6 +326,8 @@ Marketplace listings have three privacy tiers: Anonymous (only type, timestamp),
 ### 5.2 Example
 
 Suppose user Diego submits a sexual health verification. The app submits a zk-SNARK proof that validates activity, without revealing Diego's identity, date, or result specifics. Diego lists the proof as "anonymous." If Diego chooses, he can reveal ProfileID or trait ("frequent tester") for higher marketplace pricing.
+
+![Privacy Architecture](privacy-architecture-diagram.svg)
 
 ---
 
@@ -389,6 +374,8 @@ with significance $p < 0.05$.
 **Example:**  
 Sarah proposes a new therapy verification protocol, stakes 100 tokens, and runs an experiment with 1,000 users. If her proposal achieves a 7% improvement with $p = 0.03$, her stake is returned with USDC bonus.
 
+![Governance Voting Power](governance-voting-diagram.svg)
+
 ---
 
 ## 7. Limitations and Edge Cases
@@ -410,15 +397,44 @@ Autophage Protocol demonstrates that metabolic, decaying value systems can be ri
 
 ## References
 
-[1] Graeber, D. "Debt: The First 5,000 Years." Melville House, 2011.  
-[2] West, G. B., Brown, J. H., & Enquist, B. J. "A general model for the origin of allometric scaling laws in biology." Science, 1997.  
-[3] Math Appendix, v11.  
-[4] Technical Implementation Appendix.  
-[5] Governance Parameters Appendix.  
-[6] Limitations and Risks Appendix.  
-[7] Core Concepts Appendix.  
-[8] StepN collapse case study.  
-[9] Relevant Zero Knowledge and cryptography literature.
+References
+[1] Graeber, D. Debt: The First 5,000 Years. Melville House, 2011.
+
+[2] Credit Suisse Research Institute. Global Wealth Report 2023. 2023.
+
+[3] Suarez, K. J. "Hummingbird flight: Sustaining the highest mass-specific metabolic rates among vertebrates." Experientia, 52(6), 583-590, 1996.
+
+[4] West, G. B., Brown, J. H., & Enquist, B. J. "A general model for the origin of allometric scaling laws in biology." Science, 276(5309), 122-126, 1997.
+
+[5] Stephens, P. A., Sutherland, W. J., & Freckleton, R. P. "What is the Allee effect?" Oikos, 87(1), 185-190, 1999.
+
+[6] Wilser, J. "Stepn was a runaway success during COVID but can it keep moving forward?" CoinDesk, March 13, 2023. https://www.coindesk.com/consensus-magazine/2023/03/13/web3-exercise-app-stepn-crypto-rewards
+
+[7] DellaVigna, S., & Malmendier, U. "Paying not to go to the gym." American Economic Review, 96(3), 694-719, 2006. https://doi.org/10.1257/aer.96.3.694
+
+[8] Jones, D., Molitor, D., & Reif, J. "What do workplace wellness programs do? Evidence from the Illinois workplace wellness study." Quarterly Journal of Economics, 134(4), 1747-1791, 2019. https://doi.org/10.1093/qje/qjz023
+
+[9] Hendricks-Sturrup, R. M., Cerminara, K. L., & Lu, C. Y. "A qualitative study to develop a privacy and nondiscrimination best practice framework for personalized wellness programs." Journal of Personalized Medicine, 10(4), 264, 2020. https://doi.org/10.3390/jpm10040264
+
+[10] Spalding, K. L., et al. "Dynamics of cell generation and turnover in the human body." Cell, 153(7), 1219-1227, 2013. https://doi.org/10.1016/j.cell.2013.05.014
+
+[11] Harshberger, A. "Privacy-Preserving Health Verification System with Incentive Mechanism for Regular Testing" U.S. Patent Application No. 19/200,691, filed May 7, 2025. Pending. Available at: https://drive.google.com/file/d/1_4DmuODdSGVrdFsH3eMu758Moij-I_vp/view
+
+[12] NIST. Secure Hash Standard (SHS). Federal Information Processing Standards Publication 180-4, 2015. https://doi.org/10.6028/NIST.FIPS.180-4
+
+[13] Hanson, R. "Shall we vote on values, but bet on beliefs?" Journal of Political Philosophy, 21(2), 151-178, 2013. https://doi.org/10.1111/jopp.12008
+
+[14] Kleiber, M. "Body size and metabolism." Hilgardia, 6(11), 315-353, 1932. https://doi.org/10.3733/hilg.v06n11p315
+
+[15] von Liebig, J. Die organische Chemie in ihrer Anwendung auf Agricultur und Physiologie. Friedrich Vieweg und Sohn, 1840.
+
+[16] Allee, W. C., Emerson, A. E., Park, O., Park, T., & Schmidt, K. P. Principles of Animal Ecology. W.B. Saunders Company, 1949.
+
+[17] Czeisler, C. A., et al. "Stability, precision, and near-24-hour period of the human circadian pacemaker." Science, 284(5423), 2177-2181, 1999. https://doi.org/10.1126/science.284.5423.2177
+
+[18] Bergmann, C. "Über die Verhältnisse der Wärmeökonomie der Thiere zu ihrer Grösse." Göttinger Studien, 3(1), 595-708, 1847.
+
+[19] MacArthur, R. H., & Wilson, E. O. The Theory of Island Biogeography. Princeton University Press, 1967.
 
 ---
 

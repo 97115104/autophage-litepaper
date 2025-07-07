@@ -1,0 +1,173 @@
+<svg width="900" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients for different token types -->
+    <linearGradient id="rhythmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="healingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27AE60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="foundationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980B9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="catalystGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="usdcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2775CA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E5FA8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Arrow markers -->
+    <marker id="arrowDecay" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#666" />
+    </marker>
+    <marker id="arrowFees" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2775CA" />
+    </marker>
+    <marker id="arrowPayments" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2775CA" />
+    </marker>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="#FFFFFF"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#333333" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold">
+    Reservoir Flow Dynamics
+  </text>
+  
+  <!-- Users Section -->
+  <g id="users">
+    <rect x="50" y="100" width="200" height="250" fill="#F8F8F8" stroke="#CCCCCC" stroke-width="2" rx="10" filter="url(#shadow)"/>
+    <text x="150" y="130" text-anchor="middle" fill="#333333" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold">
+      Users
+    </text>
+    
+    <!-- Token representation -->
+    <rect x="70" y="150" width="160" height="30" fill="url(#rhythmGrad)" opacity="0.8" rx="5"/>
+    <rect x="70" y="190" width="160" height="30" fill="url(#healingGrad)" opacity="0.8" rx="5"/>
+    <rect x="70" y="230" width="160" height="30" fill="url(#foundationGrad)" opacity="0.8" rx="5"/>
+    <rect x="70" y="270" width="160" height="30" fill="url(#catalystGrad)" opacity="0.8" rx="5"/>
+    
+    <text x="150" y="169" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">
+      Rhythm
+    </text>
+    <text x="150" y="209" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">
+      Healing
+    </text>
+    <text x="150" y="249" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">
+      Foundation
+    </text>
+    <text x="150" y="289" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">
+      Catalyst
+    </text>
+  </g>
+  
+  <!-- Reservoir Section -->
+  <g id="reservoir">
+    <!-- Token Chamber -->
+    <rect x="375" y="100" width="250" height="120" fill="#F8F8F8" stroke="#CCCCCC" stroke-width="2" rx="10" filter="url(#shadow)"/>
+    <text x="500" y="130" text-anchor="middle" fill="#333333" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">
+      Token Chamber
+    </text>
+    
+    <!-- Token fill visualization -->
+    <rect x="395" y="150" width="210" height="50" fill="#E8E8E8" rx="5"/>
+    <rect x="395" y="150" width="160" height="50" fill="url(#rhythmGrad)" opacity="0.3" rx="5"/>
+    <rect x="395" y="170" width="120" height="30" fill="url(#healingGrad)" opacity="0.3" rx="5"/>
+    <rect x="415" y="180" width="80" height="20" fill="url(#foundationGrad)" opacity="0.3" rx="5"/>
+    <rect x="435" y="185" width="40" height="15" fill="url(#catalystGrad)" opacity="0.3" rx="5"/>
+    
+    <!-- USDC Chamber -->
+    <rect x="375" y="240" width="250" height="120" fill="#F8F8F8" stroke="#CCCCCC" stroke-width="2" rx="10" filter="url(#shadow)"/>
+    <text x="500" y="270" text-anchor="middle" fill="#333333" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold">
+      USDC Chamber
+    </text>
+    
+    <!-- USDC representation -->
+    <g>
+      <rect x="395" y="290" width="210" height="50" fill="#E8E8E8" rx="5"/>
+      <rect x="395" y="290" width="170" height="50" fill="url(#usdcGrad)" opacity="0.5" rx="5"/>
+      <text x="500" y="320" text-anchor="middle" fill="#FFFFFF" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="bold">
+        USDC Reserve
+      </text>
+    </g>
+  </g>
+  
+  <!-- Healthcare Section -->
+  <g id="healthcare">
+    <rect x="650" y="100" width="200" height="250" fill="#F8F8F8" stroke="#CCCCCC" stroke-width="2" rx="10" filter="url(#shadow)"/>
+    <text x="750" y="130" text-anchor="middle" fill="#333333" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="bold">
+      Healthcare
+    </text>
+    
+    <rect x="670" y="150" width="160" height="60" fill="#FFFFFF" stroke="#999999" stroke-width="1.5" rx="5"/>
+    <text x="750" y="185" text-anchor="middle" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="14">
+      Claims Processing
+    </text>
+    
+    <rect x="670" y="230" width="160" height="80" fill="#FFFFFF" stroke="#2775CA" stroke-width="2" rx="5"/>
+    <text x="750" y="260" text-anchor="middle" fill="#2775CA" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="bold">
+      Payments
+    </text>
+    
+    <!-- Dollar symbols -->
+    <text x="750" y="290" text-anchor="middle" fill="#2775CA" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="bold">
+      $$$
+    </text>
+  </g>
+  
+  <!-- Arrows and Labels -->
+  <!-- Decay arrow -->
+  <path d="M 250,200 Q 310,180 375,180" stroke="#666666" stroke-width="3" fill="none" marker-end="url(#arrowDecay)"/>
+  <text x="312" y="175" text-anchor="middle" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="14">
+    Token Decay
+  </text>
+  
+  <!-- Fees arrow -->
+  <path d="M 250,300 Q 310,310 375,305" stroke="#2775CA" stroke-width="3" fill="none" marker-end="url(#arrowFees)"/>
+  <text x="312" y="330" text-anchor="middle" fill="#2775CA" font-family="Helvetica, Arial, sans-serif" font-size="14">
+    Market Fees
+  </text>
+  
+  <!-- Healthcare payments arrow -->
+  <path d="M 625,300 L 650,270" stroke="#2775CA" stroke-width="3" fill="none" marker-end="url(#arrowPayments)"/>
+  
+  <!-- Legend -->
+  <g id="legend" transform="translate(50, 420)">
+    <text x="0" y="0" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="bold">Token Types:</text>
+    <rect x="90" y="-12" width="20" height="12" fill="url(#rhythmGrad)" opacity="0.8"/>
+    <text x="115" y="0" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="12">Rhythm</text>
+    
+    <rect x="170" y="-12" width="20" height="12" fill="url(#healingGrad)" opacity="0.8"/>
+    <text x="195" y="0" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="12">Healing</text>
+    
+    <rect x="250" y="-12" width="20" height="12" fill="url(#foundationGrad)" opacity="0.8"/>
+    <text x="275" y="0" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="12">Foundation</text>
+    
+    <rect x="350" y="-12" width="20" height="12" fill="url(#catalystGrad)" opacity="0.8"/>
+    <text x="375" y="0" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="12">Catalyst</text>
+    
+    <rect x="450" y="-12" width="20" height="12" fill="url(#usdcGrad)" opacity="0.8"/>
+    <text x="475" y="0" fill="#666666" font-family="Helvetica, Arial, sans-serif" font-size="12">USDC</text>
+  </g>
+  
+  <!-- Key insight -->
+  <g id="keyInsight" transform="translate(450, 390)">
+    <rect x="-200" y="-20" width="400" height="40" fill="#F0F8FF" stroke="#3498DB" stroke-width="1.5" rx="20" filter="url(#shadow)"/>
+    <text x="0" y="5" text-anchor="middle" fill="#3498DB" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="bold">
+      Dual-chamber design ensures healthcare liquidity
+    </text>
+  </g>
+</svg>
