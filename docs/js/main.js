@@ -60,6 +60,29 @@ function runGiniSimulation() {
     document.getElementById('numAgentsValue').textContent = numAgents;
     document.getElementById('simDaysValue').textContent = simDays;
     
+    // Show loading indicator
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Running...';
+    button.disabled = true;
+    
+    // Clear existing chart
+    const ctx = document.getElementById('giniChart').getContext('2d');
+    if (giniChart) {
+        giniChart.destroy();
+        giniChart = null;
+    }
+    
+    // Show loading on canvas
+    ctx.fillStyle = getChartColors().text;
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillText('Running simulation...', ctx.canvas.width/2, ctx.canvas.height/2);
+    
+    // Run simulation asynchronously
+    setTimeout(() => {
+    
     // Initialize wealth arrays
     const traditionalWealth = new Array(numAgents).fill(1000);
     const autophageWealth = new Array(numAgents).fill(1000);
@@ -76,22 +99,25 @@ function runGiniSimulation() {
     for (let day = 0; day <= simDays; day += 5) {
         labels.push(day);
         
-        // Traditional economy - rich get richer
+        // Traditional economy - rich get richer with compound interest
         for (let i = 0; i < numAgents; i++) {
             if (Math.random() < activityRate) {
-                const gain = traditionalWealth[i] * 0.001 * (1 + Math.random());
+                // Wealth accumulation favors those who already have more
+                const gain = traditionalWealth[i] * 0.005 * (1 + Math.random());
                 traditionalWealth[i] += gain;
             }
+            // Add small random investment returns that favor the wealthy
+            traditionalWealth[i] += traditionalWealth[i] * 0.0001 * Math.random();
         }
         
-        // Autophage economy - with decay
+        // Autophage economy - with decay and activity rewards
         for (let i = 0; i < numAgents; i++) {
             // Apply decay
             autophageWealth[i] *= (1 - decayRate);
             
-            // Activity-based rewards
+            // Activity-based rewards (fixed amount regardless of wealth)
             if (Math.random() < activityRate) {
-                const baseReward = 20 + Math.random() * 10;
+                const baseReward = 25 + Math.random() * 15;
                 autophageWealth[i] += baseReward;
             }
         }
@@ -100,13 +126,8 @@ function runGiniSimulation() {
         autophageGini.push(calculateGini(autophageWealth));
     }
     
-    // Update or create chart
-    const ctx = document.getElementById('giniChart').getContext('2d');
+    // Create chart
     const colors = getChartColors();
-    
-    if (giniChart) {
-        giniChart.destroy();
-    }
     
     giniChart = new Chart(ctx, {
         type: 'line',
@@ -175,6 +196,12 @@ function runGiniSimulation() {
     });
     
     window.giniChart = giniChart;
+    
+    // Re-enable button
+    button.textContent = originalText;
+    button.disabled = false;
+    
+    }, 100); // Small delay to show loading
 }
 
 // Token decay simulation
@@ -187,6 +214,28 @@ function runDecaySimulation() {
     // Update display values
     document.getElementById('initialBalanceValue').textContent = initialBalance;
     document.getElementById('decayDaysValue').textContent = decayDays;
+    
+    // Show loading
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Running...';
+    button.disabled = true;
+    
+    // Clear existing chart
+    const ctx = document.getElementById('decayChart').getContext('2d');
+    if (decayChart) {
+        decayChart.destroy();
+        decayChart = null;
+    }
+    
+    // Show loading on canvas
+    ctx.fillStyle = getChartColors().text;
+    ctx.font = '16px Arial';
+    ctx.textAlign = 'center';
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillText('Running simulation...', ctx.canvas.width/2, ctx.canvas.height/2);
+    
+    setTimeout(() => {
     
     // Token species decay rates
     const species = {
@@ -217,13 +266,8 @@ function runDecaySimulation() {
         });
     }
     
-    // Update or create chart
-    const ctx = document.getElementById('decayChart').getContext('2d');
+    // Create chart
     const colors = getChartColors();
-    
-    if (decayChart) {
-        decayChart.destroy();
-    }
     
     decayChart = new Chart(ctx, {
         type: 'line',
@@ -279,6 +323,12 @@ function runDecaySimulation() {
     });
     
     window.decayChart = decayChart;
+    
+    // Re-enable button
+    button.textContent = originalText;
+    button.disabled = false;
+    
+    }, 100); // Small delay
 }
 
 function getSpeciesColor(species) {
@@ -300,19 +350,31 @@ function runMonteCarloSimulation() {
     document.getElementById('monteCarloRunsValue').textContent = numRuns;
     document.getElementById('activityVarianceValue').textContent = (variance * 100) + '%';
     
+    // Show loading
+    const button = event.target;
+    const originalText = button.textContent;
+    button.textContent = 'Running...';
+    button.disabled = true;
+    
     const results = document.getElementById('monteCarloResults');
-    results.innerHTML = 'Running simulation...\n';
+    results.innerHTML = 'Initializing Monte Carlo simulation...\n';
     
-    // Run simulations
-    const giniResults = [];
-    const wealthResults = [];
-    const activityResults = [];
-    
-    for (let run = 0; run < numRuns; run++) {
-        // Simulate one economy
-        const numAgents = 1000;
-        const wealth = new Array(numAgents).fill(1000);
-        const activityLevels = [];
+    // Run simulations asynchronously with progress updates
+    setTimeout(() => {
+        const giniResults = [];
+        const wealthResults = [];
+        const activityResults = [];
+        
+        for (let run = 0; run < numRuns; run++) {
+            // Update progress every 100 runs
+            if (run % 100 === 0) {
+                results.innerHTML = `Running simulation... ${run}/${numRuns} (${Math.round(run/numRuns*100)}%)\n`;
+            }
+            
+            // Simulate one economy
+            const numAgents = 1000;
+            const wealth = new Array(numAgents).fill(1000);
+            const activityLevels = [];
         
         // Run for 180 days
         for (let day = 0; day < 180; day++) {
@@ -335,12 +397,12 @@ function runMonteCarloSimulation() {
             activityLevels.push(dailyActivity / numAgents);
         }
         
-        giniResults.push(calculateGini(wealth));
-        wealthResults.push(wealth.reduce((a, b) => a + b, 0) / numAgents);
-        activityResults.push(activityLevels.reduce((a, b) => a + b, 0) / activityLevels.length);
-    }
-    
-    // Calculate statistics
+            giniResults.push(calculateGini(wealth));
+            wealthResults.push(wealth.reduce((a, b) => a + b, 0) / numAgents);
+            activityResults.push(activityLevels.reduce((a, b) => a + b, 0) / activityLevels.length);
+        }
+        
+        // Calculate statistics
     const giniMean = mean(giniResults);
     const giniStd = std(giniResults);
     const wealthMean = mean(wealthResults);
@@ -367,6 +429,12 @@ Activity Rate:
   Std Dev: ${(activityStd * 100).toFixed(1)}%
 
 Convergence: ${giniMean >= 0.32 && giniMean <= 0.38 ? '✓ Within target range (0.32-0.38)' : '✗ Outside target range'}`;
+
+        // Re-enable button
+        button.textContent = originalText;
+        button.disabled = false;
+        
+    }, 100); // Small delay
 }
 
 // Biological scaling simulation
