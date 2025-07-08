@@ -1,85 +1,154 @@
 # The Autophage Protocol Litepaper
 
-This repository contains the litepaper for the Autophage Protocol, a decentralized health incentive system that implements metabolic economics.
+This repository contains the complete litepaper for the Autophage Protocol, a decentralized health incentive system that implements metabolic economics through value decay and biological scaling laws.
 
 ## Overview
 
-The Autophage Protocol introduces a revolutionary economic model where digital value decays over time, requiring continuous health activity for regeneration. Unlike traditional cryptocurrencies that can be hoarded indefinitely, Autophage tokens embody the fundamental patterns of biological life - they must be continuously earned through verified healthy behaviors.
+The Autophage Protocol introduces a revolutionary economic model where digital value decays over time, requiring continuous health activity for regeneration. Unlike traditional cryptocurrencies that can be hoarded indefinitely, Autophage tokens embody the fundamental patterns of biological life - they must be continuously earned through verified healthy behaviors. Traditional money persists indefinitely, creating economies where wealth concentrates among those who already possess it. The Autophage Protocol introduces money that decays, transforming economics from a system of accumulation to one of circulation.
 
 ## Key Features
 
-- **Four Token Species**: Rhythm, Healing, Foundation, and Catalyst - each with different decay rates matching activity persistence
-- **Metabolic Token Dynamics**: All tokens decay exponentially, preventing infinite accumulation
-- **Privacy-First Architecture**: Zero-knowledge proofs separate identity from health data
-- **Endogenous Price Discovery**: Value emerges from actual health activity energy costs
-- **Empirical Governance**: Protocol upgrades require on-chain A/B testing with measurable results
+- **Four Token Species**: Rhythm (exercise), Healing (therapy), Foundation (preventive care), and Catalyst (ecosystem balance) - each with different decay rates matching activity persistence
+- **Metabolic Token Dynamics**: All tokens decay exponentially at biologically-calibrated rates, preventing infinite accumulation
+- **Privacy-First Architecture**: Zero-knowledge proofs separate identity from health data while enabling verification
+- **Biological Scaling Laws**: Network effects follow Kleiber's Law, bottlenecks trigger Liebig's Law rebalancing, small communities benefit from Allee Effect multipliers
+- **Genetic Traits System**: Users evolve permanent earning multipliers by burning Foundation tokens
+- **Wellness Vaults**: Targeted saving with reduced decay rates for locked tokens
+- **Empirical Governance**: Protocol upgrades require on-chain A/B testing with measurable health improvements
 
 ## Repository Structure
 
 ### 📄 Core Documents
-- `paper/litepaper.pdf` - The complete Autophage Protocol litepaper (PDF)
-- `paper/litepaper.md` - Litepaper in Markdown format
-- `paper/LaTeX/litepaper.tex` - LaTeX source file
-- `paper/LaTeX/references.bib` - Bibliography
+- [`paper/litepaper.pdf`](paper/litepaper.pdf) - The complete Autophage Protocol litepaper (PDF)
+- [`paper/litepaper.md`](paper/litepaper.md) - Litepaper in Markdown format
+- [`paper/LaTeX/litepaper.tex`](paper/LaTeX/litepaper.tex) - LaTeX source file
+- [`paper/LaTeX/references.bib`](paper/LaTeX/references.bib) - Complete bibliography
 
-### 🌐 Interactive Website
-The `docs/` directory contains an interactive website hosted on GitHub Pages:
+### 🌐 Interactive Documentation Website
+The [`docs/`](docs/) directory contains a comprehensive interactive website with dark/light mode:
 
-- `docs/index.html` - Homepage with protocol overview
-- `docs/simulations.html` - Interactive simulations (Gini coefficient, token decay, etc.)
-- `docs/math.html` - Mathematical reference with all formulas
-- `docs/plain-language.html` - Plain English summary for non-technical readers
-- `docs/author-note.html` - Author's philosophical perspective
-- `docs/about.html` - About the project and research group
-- `docs/versions.html` - Version history and changelog
-- `docs/references.html` - Complete bibliography
-- `docs/features.html` - Comprehensive feature set and roadmap
-- `docs/extended-math.html` - Extended mathematical appendix
+**Main Pages:**
+- [`docs/index.html`](docs/index.html) - Homepage with protocol overview and key concepts
+- [`docs/plain-language.html`](docs/plain-language.html) - Plain English summary for non-technical readers
+- [`docs/about.html`](docs/about.html) - About the project, research group, and contact information
+- [`docs/author-note.html`](docs/author-note.html) - Author's philosophical perspective with personalized greeting
 
-### 📊 Supporting Materials
-- `extras/math-appendix.md` - Complete mathematical formulas from the litepaper
-- `extras/extended-math.md` - Additional mathematical proofs and derivations
-- `extras/gini-simulation.py` - Python script for Gini coefficient simulations
+**Technical Documentation:**
+- [`docs/math.html`](docs/math.html) - Mathematical reference with all core formulas
+- [`docs/extended-math.html`](docs/extended-math.html) - Extended mathematical appendix with proofs
+- [`docs/features.html`](docs/features.html) - Complete feature set, implementation roadmap, and technical specifications
+- [`docs/simulations.html`](docs/simulations.html) - Interactive simulations (Gini coefficient, token decay, network effects)
 
-### 🛠 Development Tools
-- `cli/` - Command-line tools for simulations
-  - `cli/simulations/tokenDecay.js` - Token decay simulation
-  - `cli/simulations/reservoir.js` - Reservoir dynamics simulation
+**Reference Materials:**
+- [`docs/references.html`](docs/references.html) - Complete bibliography with links
+- [`docs/versions.html`](docs/versions.html) - Version history and detailed changelog
+- [`docs/use-cases.html`](docs/use-cases.html) - Detailed use cases and character stories
+
+### 📊 Research & Analysis Tools
+- [`extras/math-appendix.md`](extras/math-appendix.md) - Complete mathematical formulas from the litepaper
+- [`extras/extended-math.md`](extras/extended-math.md) - Additional mathematical proofs and derivations
+- [`extras/gini-simulation.py`](extras/gini-simulation.py) - **Python script for Gini coefficient simulations** with wealth distribution analysis
+
+### 🛠 Development Tools & Simulations
+- [`cli/`](cli/) - Command-line tools and Node.js simulations
+  - [`cli/simulations/tokenDecay.js`](cli/simulations/tokenDecay.js) - Token decay simulation engine
+  - [`cli/simulations/reservoir.js`](cli/simulations/reservoir.js) - Reservoir dynamics and flow simulation
+  - [`cli/package.json`](cli/package.json) - Node.js dependencies and scripts
+
+### 🎨 Assets & Configuration
+- [`docs/assets/logo.svg`](docs/assets/logo.svg) - Protocol logo and branding
+- [`docs/js/`](docs/js/) - Interactive website JavaScript (theme management, components, simulations)
+- [`docs/css/`](docs/css/) - Stylesheets with LaTeX-inspired typography and responsive design
 
 ## Viewing the Documentation
 
 ### Online (Recommended)
-Visit the interactive website at: [https://[username].github.io/litepaper/](https://[username].github.io/litepaper/)
+Visit the live interactive website at: **[https://autophage.xyz](https://autophage.xyz)**
 
 ### Local Development
-1. Clone the repository
-2. Open `docs/index.html` in a web browser
-3. Or serve locally: `python -m http.server 8000` in the `docs/` directory
+1. Clone the repository: `git clone https://github.com/statusdothealth/litepaper.git`
+2. Navigate to docs: `cd litepaper/docs`
+3. Serve locally: 
+   - Python: `python -m http.server 8000`
+   - Node.js: `npx serve .`
+   - Or open `docs/index.html` directly in a web browser
 
-## Document Structure Guide
+### Running Simulations
+**Gini Coefficient Analysis:**
+```bash
+cd extras
+python gini-simulation.py
+```
 
-The litepaper is organized for different audiences:
+**Token Decay Simulations:**
+```bash
+cd cli
+npm install
+npm run simulate:decay
+npm run simulate:reservoir
+```
 
-- **Non-technical readers**: Start with Plain Language Summary (`docs/plain-language.html`)
-- **Technical readers**: Mathematical Reference (`docs/math.html`) and Extended Mathematics (`docs/extended-math.html`)
-- **Developers**: Interactive Simulations (`docs/simulations.html`) and Feature Set (`docs/features.html`)
-- **Researchers**: Full PDF (`paper/litepaper.pdf`) and References (`docs/references.html`)
+## Document Navigation Guide
 
-## About
+The documentation is organized for different audiences:
 
-**Organization**: 0x42 Research (Entropy Farms LLC)  
+- **🚀 Quick Start**: [Plain Language Summary](docs/plain-language.html) - Understand the protocol in 5 minutes
+- **👥 Non-technical**: [Use Cases](docs/use-cases.html) and [Features](docs/features.html) - Real-world applications
+- **🔬 Technical**: [Mathematical Reference](docs/math.html) and [Extended Math](docs/extended-math.html) - Complete formulas and proofs
+- **💻 Developers**: [Interactive Simulations](docs/simulations.html) and [CLI Tools](cli/) - Implementation tools
+- **📚 Researchers**: [Full PDF](paper/litepaper.pdf), [References](docs/references.html), and [Gini Simulation](extras/gini-simulation.py)
+
+## Key Links & Resources
+
+**Protocol Resources:**
+- 📄 [Complete Litepaper PDF](paper/litepaper.pdf)
+- 🌐 [Interactive Website](https://autophage.xyz)
+- 🧮 [Mathematical Appendix](https://autophage.xyz/math)
+- 📊 [Live Simulations](docs/simulations.html)
+
+**Research & Analysis:**
+- 📈 [Gini Coefficient Simulation Script](extras/gini-simulation.py)
+- 🔬 [Extended Mathematical Proofs](docs/extended-math.html)
+- 📝 [Patent Application](https://0x42.farm/patents/1) - System and Method for Privacy-Preserving Health Incentives
+
+**Development:**
+- 💻 [GitHub Repository](https://github.com/statusdothealth/litepaper)
+- 🛠 [CLI Simulation Tools](cli/)
+- ⚙️ [Technical Specifications](docs/features.html)
+
+## About the Research
+
+**Organization**: 0x42 Research (0x42 Farm LLC)  
 **Website**: [0x42.farm](https://0x42.farm)  
-**Email**: research@0x42.farm
+**Protocol Website**: [autophage.xyz](https://autophage.xyz)  
+**Email**: research@0x42.farm  
+**Author**: Austin Harshberger
+
+The Autophage Protocol represents a fundamental reimagining of economic systems, applying biological principles to create sustainable, health-focused value networks. The research combines cryptographic privacy preservation, mathematical modeling of biological systems, and empirical governance mechanisms to create an economy that rewards activity over accumulation.
 
 ## Contributing
 
-This is an active research project. For contributions, issues, or questions:
-- Open an issue on GitHub
-- Email research@0x42.farm
-- Join our research community (coming soon)
+This is an active research project welcoming collaboration:
+
+- 🐛 **Issues**: Open GitHub issues for bugs, suggestions, or questions
+- 📧 **Research**: Email research@0x42.farm for academic collaboration
+- 💡 **Ideas**: Join discussions about protocol improvements and implementations
+- 🔬 **Simulations**: Contribute analysis tools and mathematical models
+
+## Citation
+
+```bibtex
+@misc{harshberger2025autophage,
+  author = {Harshberger, Austin},
+  title = {The Autophage Protocol: Metabolic Economics Through Value Decay},
+  year = {2025},
+  howpublished = {\url{https://autophage.xyz}},
+  note = {0x42 Research}
+}
+```
 
 ## License
 
 © 2025 0x42 Farm LLC. All rights reserved.
 
-The Autophage Protocol is currently in the research phase. Implementation details and specifications may change as the protocol evolves.
+The Autophage Protocol is currently in the research and development phase. Implementation details and specifications may evolve as the protocol matures toward production deployment.
