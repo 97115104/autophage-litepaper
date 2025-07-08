@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found — Autophage Protocol</title>
+  
+  <!-- Prevent dark mode flash -->
+  <script src="js/theme-init.js"></script>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/main.css" as="style">
+  <link rel="preload" href="js/config.js" as="script">
+  <link rel="preload" href="js/components.js" as="script">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.ico">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+  
+  <!-- Configuration and Components -->
+  <script src="js/config.js"></script>
+  <script src="js/components.js"></script>
+  
+  <style>
+    /* 404-specific styles */
+    .error-container {
+      text-align: center;
+      max-width: 600px;
+      margin: 4em auto;
+      padding: 2em;
+    }
+    
+    .error-code {
+      font-size: 6em;
+      font-weight: bold;
+      color: var(--caption-color);
+      margin-bottom: 0.2em;
+      line-height: 1;
+    }
+    
+    .error-title {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      color: var(--text-color);
+    }
+    
+    .error-message {
+      font-size: 1.1em;
+      margin-bottom: 2em;
+      color: var(--caption-color);
+    }
+    
+    .suggestions {
+      text-align: left;
+      margin: 2em 0;
+      padding: 1.5em;
+      border: 1px solid var(--rule-color);
+      background: var(--paper-bg);
+    }
+    
+    .suggestions h3 {
+      margin-top: 0;
+      margin-bottom: 1em;
+      font-size: 1.2em;
+    }
+    
+    .suggestions ul {
+      margin-left: 1.5em;
+    }
+    
+    .suggestions li {
+      margin-bottom: 0.5em;
+    }
+    
+    .suggestions a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    
+    .suggestions a:hover {
+      text-decoration: underline;
+    }
+    
+    .contact {
+      margin-top: 2em;
+      padding-top: 1em;
+      border-top: 1px solid var(--rule-color);
+      font-style: italic;
+      color: var(--caption-color);
+    }
+    
+    .contact a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    
+    .contact a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Components will add mode toggle and back to top -->
+
+  <div class="latex-document">
+    <!-- Header placeholder -->
+    <div id="header"></div>
+
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <div class="error-title">Page Not Found</div>
+      <div class="error-message">
+        The page you're looking for doesn't exist or may have been moved.
+      </div>
+      
+      <div class="suggestions">
+        <h3>Were you looking for:</h3>
+        <ul>
+          <li><a href="index.html">Home</a> - Protocol overview and introduction</li>
+          <li><a href="plain-language.html">Plain Language Summary</a> - Understanding the protocol</li>
+          <li><a href="simulations.html">Interactive Simulations</a> - Explore the mathematics</li>
+          <li><a href="math.html">Mathematical Reference</a> - Technical formulas</li>
+          <li><a href="features.html">Complete Feature Set</a> - Implementation details</li>
+          <li><a href="paper/litepaper.pdf">Litepaper PDF</a> - Complete research paper</li>
+          <li><a href="about.html">About</a> - Research group and contact</li>
+        </ul>
+      </div>
+      
+      <div class="contact">
+        Still can't find what you need?<br>
+        Contact us: <a href="mailto:research@0x42.farm">research@0x42.farm</a>
+      </div>
+    </div>
+
+    <!-- Footer placeholder -->
+    <div id="footer"></div>
+  </div>
+
+  <!-- Core functionality -->
+  <script>
+    // Initialize components
+    Components.init({
+      title: '404 - Page Not Found',
+      version: '1.0'
+    });
+  </script>
+</body>
+</html>
