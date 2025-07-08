@@ -34,7 +34,7 @@ const CONFIG = {
     siteName: 'Autophage Protocol Research',
     orgName: '0x42 Research',
     orgLink: 'about#research',
-    copyright: '0x42r LLC'
+    copyright: '0x42 Research LLC'
 };
 
 // Helper to get base path for current page

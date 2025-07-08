@@ -316,25 +316,35 @@ code {
     border-bottom: 0.4pt solid var(--rule-color);
     text-align: left;
     display: flex;
-    align-items: center;
-    gap: 0.5em;
+    align-items: baseline;
+    gap: 0;
     flex-wrap: wrap;
 }
 
 .latex-nav > a,
-.latex-nav > .dropdown {
+.latex-nav > .dropdown,
+.latex-nav > .nav-separator {
     font-size: 9pt;
     white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle;
 }
 
 .latex-nav > a {
     text-decoration: none;
 }
 
+/* Nav separator alignment */
+.nav-separator {
+    display: inline-block;
+    margin: 0 0.25em;
+}
+
 /* Dropdown styles */
 .dropdown {
     position: relative;
     display: inline-block;
+    vertical-align: baseline;
 }
 
 .dropdown-toggle {
@@ -345,6 +355,10 @@ code {
     cursor: pointer;
     font: inherit;
     padding: 0;
+    line-height: 1;
+    vertical-align: baseline;
+    display: inline;
+    font-size: 9pt;
 }
 
 .dropdown-toggle:hover {

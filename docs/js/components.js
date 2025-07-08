@@ -58,7 +58,7 @@ const Components = {
         
         // Main navigation items
         CONFIG.nav.main.forEach((item, index) => {
-            if (index > 0) navHTML += ' • ';
+            if (index > 0) navHTML += '<span class="nav-separator"> • </span>';
             let href = item.href;
             
             // Handle production URLs for external items
@@ -73,7 +73,7 @@ const Components = {
         });
         
         // Tools dropdown
-        navHTML += ' • ';
+        navHTML += '<span class="nav-separator"> • </span>';
         navHTML += '<div class="dropdown">';
         navHTML += `<button class="dropdown-toggle" onclick="toggleDropdown(event)">${CONFIG.nav.tools.label} ▼</button>`;
         navHTML += '<div class="dropdown-content">';
@@ -83,7 +83,7 @@ const Components = {
         navHTML += '</div></div>';
         
         // Extras dropdown
-        navHTML += ' • ';
+        navHTML += '<span class="nav-separator"> • </span>';
         navHTML += '<div class="dropdown">';
         navHTML += `<button class="dropdown-toggle" onclick="toggleDropdown(event)">${CONFIG.nav.extras.label} ▼</button>`;
         navHTML += '<div class="dropdown-content">';
