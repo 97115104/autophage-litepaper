@@ -1,0 +1,18 @@
+# GitHub Pages configuration for clean URLs
+plugins:
+  - jekyll-redirect-from
+
+# Remove .html extensions from URLs
+permalink: pretty
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - LICENSE
+  - serve
+  - serve.py
+  - test-local.sh
+
+# Include dotfiles
+include:
+  - .htaccess

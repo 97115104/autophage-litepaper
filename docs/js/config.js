@@ -5,34 +5,34 @@ const CONFIG = {
     
     nav: {
         main: [
-            { label: 'Home', href: 'index.html' },
-            { label: 'About', href: 'about.html' },
+            { label: 'Home', href: '' },
+            { label: 'About', href: 'about' },
             { label: 'Litepaper', href: 'paper/litepaper.pdf', external: true, production: 'https://github.com/statusdothealth/litepaper/blob/main/paper/litepaper.pdf' }
         ],
         tools: {
             label: 'Tools',
             items: [
-                { label: 'Interactive Simulations', href: 'simulations.html' },
-                { label: 'Mathematical Reference', href: 'math.html' }
+                { label: 'Interactive Simulations', href: 'simulations' },
+                { label: 'Mathematical Reference', href: 'math' }
             ]
         },
         extras: {
             label: 'Extras',
             items: [
-                { label: 'Plain Language Summary', href: 'plain-language.html' },
-                { label: 'Use Cases', href: 'use-cases.html' },
-                { label: 'Complete Feature Set', href: 'features.html' },
-                { label: 'Extended Mathematics', href: 'extended-math.html' },
-                { label: 'References', href: 'references.html' },
-                { label: 'Version History', href: 'versions.html' },
-                { label: 'Note from the Author', href: 'author-note.html' },
+                { label: 'Plain Language Summary', href: 'plain-language' },
+                { label: 'Use Cases', href: 'use-cases' },
+                { label: 'Complete Feature Set', href: 'features' },
+                { label: 'Extended Mathematics', href: 'extended-math' },
+                { label: 'References', href: 'references' },
+                { label: 'Version History', href: 'versions' },
+                { label: 'Note from the Author', href: 'author-note' },
                 { label: 'GitHub', href: 'https://github.com/statusdothealth/litepaper', external: true }
             ]
         }
     },
     siteName: 'Autophage Protocol Research',
     orgName: '0x42 Research',
-    orgLink: 'about.html#research',
+    orgLink: 'about#research',
     copyright: '0x42 Farm LLC'
 };
 
