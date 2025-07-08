@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Kill any existing Python processes running serve.py
+pkill -f "python.*serve.py" 2>/dev/null
+
+# Kill any process using port 8000
+lsof -ti:8000 | xargs kill -9 2>/dev/null
+
+# Wait a moment for the port to be released
+sleep 1
+
+# Start the server
+python3 serve.py

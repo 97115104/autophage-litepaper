@@ -1,0 +1,21 @@
+{
+    "name": "Autophage Protocol Documentation",
+    "short_name": "Autophage",
+    "description": "A biological approach to economic systems. Stay healthy to keep your money fresh.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "favicon.ico",
+            "sizes": "16x16 32x32 48x48",
+            "type": "image/x-icon"
+        }
+    ]
+}

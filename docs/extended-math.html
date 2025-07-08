@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Mathematics — Autophage Protocol</title>
+    <meta name="description" content="Complete mathematical appendix for the Autophage Protocol">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Title -->
+        <div class="latex-title">
+            <h1>Extended Mathematics</h1>
+            <div class="latex-author"><a href="about.html#research">0x42 Research</a></div>
+            <div class="latex-date">Version 1.0 — \today</div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="latex-nav">
+            <a href="index.html">Home</a> •
+            <a href="about.html">About</a> •
+            <a href="paper/litepaper.pdf" target="_blank">Litepaper</a> •
+            <div class="dropdown">
+                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Tools ▼</button>
+                <div class="dropdown-content">
+                    <a href="simulations.html">Interactive Simulations</a>
+                    <a href="math.html">Mathematical Reference</a>
+                </div>
+            </div>
+            •
+            <div class="dropdown">
+                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Extras ▼</button>
+                <div class="dropdown-content">
+                    <a href="plain-language.html">Plain Language Summary</a>
+                    <a href="author-note.html">Note from the Author</a>
+                    <a href="versions.html">Version History</a>
+                    <a href="references.html">References</a>
+                    <a href="features.html">Complete Feature Set</a>
+                    <a href="extended-math.html">Extended Mathematics</a>
+                    <a href="https://github.com/statusdothealth/litepaper" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="latex-abstract">
+            <h2>About this page</h2>
+            <p>
+            This document contains the complete mathematical framework underlying the Autophage Protocol, including advanced formulas, proofs, and implementation details not covered in the main mathematical reference.
+            </p>
+        </div>
+
+        <h1>Advanced Token Decay Mathematics</h1>
+
+        <h2>Continuous Decay Differential Equation</h2>
+
+        <div class="latex-equation">
+            $$\frac{dV}{dt} = -\lambda V$$
+            <span class="equation-number">(A.1)</span>
+        </div>
+
+        <p>
+        This fundamental equation describes how token value decreases over time, creating the metabolic property that makes tokens "alive." Unlike traditional currencies that maintain value indefinitely, Autophage tokens must be continuously regenerated through health activities.
+        </p>
+
+        <h2>Soft Cap Acceleration</h2>
+
+        <p>
+        Progressive decay acceleration prevents extreme wealth concentration while allowing success:
+        </p>
+
+        <div class="latex-equation">
+            $$\lambda_{effective} = \begin{cases}
+            \lambda_{base} \times 1.05 & \text{if } V > 10,000 \\
+            \lambda_{base} \times 1.10 & \text{if } V > 20,000 \\
+            \lambda_{base} \times 1.25 & \text{if } V > 50,000 \\
+            \lambda_{base} \times 1.50 & \text{if } V > 100,000
+            \end{cases}$$
+            <span class="equation-number">(A.2)</span>
+        </div>
+
+        <p>
+        Someone with 100,000 Rhythm tokens experiences 7.5% daily decay instead of 5%, creating natural redistribution.
+        </p>
+
+        <h2>Reservoir Inflow Dynamics</h2>
+
+        <div class="latex-equation">
+            $$R_{inflow}(t) = \sum_{i \in \{R,H,F,C\}} \lambda_i \times V_i(t)$$
+            <span class="equation-number">(A.3)</span>
+        </div>
+
+        <p>
+        All decayed tokens flow to the Reservoir for redistribution. This creates a community wealth pool that grows with system activity, funding public health initiatives and rewards.
+        </p>
+
+        <h1>Complete Token Generation Formula</h1>
+
+        <div class="latex-equation">
+            $$T_{gen} = B \times M \times S \times G \times N \times Sy \times Ge \times V \times A \times \eta(N) \times C(h) \times P(N) \times F_{strategy}$$
+            <span class="equation-number">(A.4)</span>
+        </div>
+
+        <p>
+        Subject to constraints: $T_{gen} \in [0.3B, 20B]$ where $B$ is base reward. Each multiplier component serves a specific behavioral incentive:
+        </p>
+
+        <h2>Multiplier Components</h2>
+
+        <h3>Consistency Multiplier</h3>
+        <div class="latex-equation">
+            $$M_{consistency} = 1 + \log_{10}(\text{consecutive\_days})$$
+            <span class="equation-number">(A.5)</span>
+        </div>
+
+        <h3>Group Activity Multiplier</h3>
+        <div class="latex-equation">
+            $$M_{group} = 1 + 0.75 \times \min\left(\frac{\text{participants} - 1}{10}, 1\right)$$
+            <span class="equation-number">(A.6)</span>
+        </div>
+
+        <h3>Synergy Bonus</h3>
+        <div class="latex-equation">
+            $$Sy = \begin{cases}
+            1.0 & \text{if activities} = 1 \\
+            1.1 & \text{if activities} = 2 \\
+            1.2 & \text{if activities} = 3 \\
+            1.25 & \text{if activities} \geq 4
+            \end{cases}$$
+            <span class="equation-number">(A.7)</span>
+        </div>
+
+        <h1>Metabolic Pricing Dynamics</h1>
+
+        <h2>Complete Price Discovery Formula</h2>
+
+        <div class="latex-equation">
+            $$P(t) = \frac{E_{health}(t) \times (1 + \gamma C_{ratio}(t)) + V_{market}(t) \times (1 - C_{ratio}(t))}{S_{active}(t) \times V(t) \times (1 + M_{activity}(t))}$$
+            <span class="equation-number">(A.8)</span>
+        </div>
+
+        <p>
+        Where:
+        </p>
+        <ul>
+            <li>$E_{health}(t) = 0.80$ USD average health activity energy cost</li>
+            <li>$\gamma \in [1.2, 3.0]$ energy gradient based on system health</li>
+            <li>$C_{ratio}(t)$ proportion of price from creation vs market</li>
+            <li>$S_{active}(t)$ active token supply</li>
+            <li>$V(t)$ velocity of token circulation</li>
+            <li>$M_{activity}(t)$ activity level multiplier</li>
+        </ul>
+
+        <h2>Energy Gradient Calculation</h2>
+
+        <div class="latex-equation">
+            $$\gamma = 1.2 + 1.8 \times \left(1 - \frac{H_{system}}{100}\right)$$
+            <span class="equation-number">(A.9)</span>
+        </div>
+
+        <p>
+        System health $H_{system}$ ranges from 0-100%, with lower health triggering higher energy gradients to incentivize participation during low activity periods.
+        </p>
+
+        <h1>Biological Scaling Laws</h1>
+
+        <h2>Inverted Kleiber's Law for Networks</h2>
+
+        <div class="latex-equation">
+            $$C_{individual}(N) = C_{base} \times \left(\frac{N}{N_0}\right)^{-1/4}$$
+            <span class="equation-number">(A.10)</span>
+        </div>
+
+        <p>
+        Individual metabolic capacity decreases with network size, but total network capacity increases. This creates sustainable growth where early adopters have higher individual capacity (64× at N=1) while maintaining system stability at scale (1.002× at N=1B).
+        </p>
+
+        <h2>Liebig's Law Implementation</h2>
+
+        <div class="latex-equation">
+            $$H_{system} = \min(H_{users}, H_{apps}, H_{reserves}, H_{velocity}, H_{geographic})$$
+            <span class="equation-number">(A.11)</span>
+        </div>
+
+        <p>
+        System health equals its weakest component. If any dimension falls below 50%, targeted multipliers double to restore balance.
+        </p>
+
+        <h1>Marketplace Dynamics</h1>
+
+        <h2>Catalyst Token Generation</h2>
+
+        <div class="latex-equation">
+            $$T_{catalyst} = Q \times R \times P_{tier} \times V_{market}$$
+            <span class="equation-number">(A.12)</span>
+        </div>
+
+        <p>
+        Where:
+        </p>
+        <ul>
+            <li>$Q$ = Quality score (0-1) from verification richness</li>
+            <li>$R$ = Rarity multiplier based on activity uniqueness</li>
+            <li>$P_{tier}$ = Privacy tier multiplier (1.0, 1.75, 3.5)</li>
+            <li>$V_{market}$ = Market velocity factor</li>
+        </ul>
+
+        <h2>Privacy Tier Pricing</h2>
+
+        <div class="latex-equation">
+            $$P_{proof} = P_{base} \times \begin{cases}
+            1.0 & \text{Anonymous} \\
+            1.75 & \text{ProfileID revealed} \\
+            3.5 & \text{Genetic traits displayed}
+            \end{cases}$$
+            <span class="equation-number">(A.13)</span>
+        </div>
+
+        <h1>Governance Mathematics</h1>
+
+        <h2>Contribution Score</h2>
+
+        <div class="latex-equation">
+            $$S_{contribution} = \sum_{t=0}^{T} D_t \times (0.95)^{T-t} + R_{reputation}$$
+            <span class="equation-number">(A.14)</span>
+        </div>
+
+        <p>
+        Lifetime Reservoir contributions decay at 5% annually to weight recent participation while acknowledging history. Reputation score adds non-monetary contributions like successful proposals and community service.
+        </p>
+
+        <h2>Proposal Success Probability</h2>
+
+        <div class="latex-equation">
+            $$P_{success} = \frac{1}{1 + e^{-k(I-I_0)}}$$
+            <span class="equation-number">(A.15)</span>
+        </div>
+
+        <p>
+        Sigmoid function where $I$ is health improvement percentage, $I_0 = 5\%$ threshold, and $k = 0.5$ steepness. Proposals achieving 5%+ health improvement have >50% chance of stake return plus bonus.
+        </p>
+
+        <h1>Statistical Validation</h1>
+
+        <h2>Gini Coefficient Convergence</h2>
+
+        <div class="latex-equation">
+            $$G(t) = G^* + (G_0 - G^*) \times e^{-\alpha t}$$
+            <span class="equation-number">(A.16)</span>
+        </div>
+
+        <p>
+        Where $G^* \in [0.32, 0.38]$ is target equilibrium, $G_0$ is initial inequality, and $\alpha = 0.02$ is convergence rate. System reaches stable wealth distribution within 180 days.
+        </p>
+
+        <h2>Monte Carlo Confidence Intervals</h2>
+
+        <div class="latex-equation">
+            $$CI_{95\%} = \bar{X} \pm 1.96 \times \frac{\sigma}{\sqrt{n}}$$
+            <span class="equation-number">(A.17)</span>
+        </div>
+
+        <p>
+        With $n = 10,000$ simulation runs, confidence intervals validate theoretical predictions. All key metrics converge within 2% of mathematical expectations.
+        </p>
+
+        <!-- Footer -->
+        <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">
+            <p>© <span id="copyright-year">2025</span> 0x42 Farm LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'Extended Mathematics',
+            version: '1.0'
+        });
+
+        // Set date
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateElement = document.querySelector('.latex-date');
+            if (dateElement) {
+                const today = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                dateElement.innerHTML = dateElement.innerHTML.replace('\\today', today);
+            }
+            
+            // Update copyright year
+            const yearElement = document.getElementById('copyright-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        });
+        
+        // Dropdown toggle
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // Close all other open dropdowns first
+            document.querySelectorAll('.dropdown.show').forEach(d => {
+                if (d !== event.target.closest('.dropdown')) {
+                    d.classList.remove('show');
+                }
+            });
+            
+            // Toggle the clicked dropdown
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown.show').forEach(d => {
+                    d.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

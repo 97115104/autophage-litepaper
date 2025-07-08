@@ -1,0 +1,27 @@
+{
+  "name": "autophage-protocol-simulator",
+  "version": "1.0.0",
+  "description": "Comprehensive CLI simulator for the Autophage Protocol litepaper",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "autophage": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12",
+    "plotly.js-dist": "^2.27.1",
+    "open": "^10.0.0",
+    "ora": "^8.0.1",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0"
+  },
+  "keywords": ["autophage", "protocol", "simulation", "health", "economics"],
+  "author": "Austin Harshberger",
+  "license": "MIT"
+}

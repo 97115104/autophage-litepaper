@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autophage Protocol — Money that expires like milk</title>
+    <meta name="description" content="A biological approach to economic systems. Stay healthy to keep your money fresh.">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <!-- Loading reveal animation (only on homepage) -->
+    <script src="js/loading-reveal.js"></script>
+    
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <!-- Explore Section -->
+        <h1>Explore the Protocol</h1>
+
+        <p>
+        This website offers three ways to understand the Autophage Protocol:
+        </p>
+
+        <ol>
+            <li><a href="simulations.html"><strong>Interactive Simulations</strong></a> — See the math in action with real-time visualizations</li>
+            <li><a href="math.html"><strong>Mathematical Reference</strong></a> — Complete proofs and equations for researchers</li>
+            <li><a href="paper/litepaper.pdf" target="_blank" id="litepaper-link"><strong>Litepaper</strong></a> — The complete 30-page academic treatment</li>
+        </ol>
+
+        <p>
+        The result: Money that rewards doing, not having. Math ensures fairness. Privacy stays protected. Healthcare gets funded. The experiment asks: <em>can money that dies create economies that live?</em>
+        </p>
+
+        <div class="explore-section">
+            <p class="explore-label">Begin Exploring →</p>
+            <div class="explore-buttons">
+                <button onclick="window.location.href='simulations.html'" class="explore-button">
+                    <span class="button-number">1.</span>
+                    <span class="button-label">Simulations</span>
+                </button>
+                <button onclick="window.location.href='math.html'" class="explore-button">
+                    <span class="button-number">2.</span>
+                    <span class="button-label">Mathematics</span>
+                </button>
+                <button onclick="openLitepaper()" class="explore-button">
+                    <span class="button-number">3.</span>
+                    <span class="button-label">Litepaper</span>
+                </button>
+                <button onclick="goToRandom()" class="explore-button">
+                    <span class="button-label">Random</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Core functionality -->
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'Autophage Protocol Research',
+            version: '1.0'
+        });
+        
+
+        // Open litepaper with proper URL
+        function openLitepaper() {
+            const url = CONFIG.isProduction && CONFIG.nav.main[2].production 
+                ? CONFIG.nav.main[2].production 
+                : 'paper/litepaper.pdf';
+            window.open(url, '_blank');
+        }
+        
+        // Update litepaper link
+        document.addEventListener('DOMContentLoaded', () => {
+            const litePaperLink = document.getElementById('litepaper-link');
+            if (litePaperLink && CONFIG.isProduction && CONFIG.nav.main[2].production) {
+                litePaperLink.href = CONFIG.nav.main[2].production;
+            }
+        });
+        
+        // Random navigation
+        function goToRandom() {
+            // Collect all possible pages from config
+            const pages = [];
+            
+            // Add main nav pages (except external links)
+            CONFIG.nav.main.forEach(item => {
+                if (!item.external) {
+                    pages.push(item.href);
+                }
+            });
+            
+            // Add tools pages
+            CONFIG.nav.tools.items.forEach(item => {
+                pages.push(item.href);
+            });
+            
+            // Add extras pages (except external GitHub)
+            CONFIG.nav.extras.items.forEach(item => {
+                if (!item.external) {
+                    pages.push(item.href);
+                }
+            });
+            
+            // 10% chance for litepaper
+            if (Math.random() < 0.1) {
+                openLitepaper();
+                return;
+            }
+            
+            // 5% chance for GitHub
+            if (Math.random() < 0.05) {
+                window.open('https://github.com/statusdothealth/litepaper', '_blank');
+                return;
+            }
+            
+            // Remove duplicates and pick random
+            const uniquePages = [...new Set(pages)];
+            const randomIndex = Math.floor(Math.random() * uniquePages.length);
+            window.location.href = uniquePages[randomIndex];
+        }
+    </script>
+</body>
+</html>

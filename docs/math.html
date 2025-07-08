@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Reference — Autophage Protocol</title>
+    <meta name="description" content="Complete mathematical formulation of the Autophage Protocol">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <!-- Abstract -->
+        <div class="latex-abstract">
+            <h2>About this page</h2>
+            <p>
+            This document provides a comprehensive mathematical reference for all equations, formulas, and theoretical foundations of the Autophage Protocol. Each equation is presented with rigorous notation, followed by intuitive explanations and practical examples.
+            </p>
+        </div>
+
+        <!-- Section 1: Token Dynamics -->
+        <h1><span class="section-number">1</span>Fundamental Token Dynamics</h1>
+
+        <h2><span class="section-number">1.1</span>Balance Evolution Equation</h2>
+
+        <div class="latex-equation">
+            $$V_i^{(u)}(t+1) = V_i^{(u)}(t)(1 - \delta_i) + G_i^{(u)}(t)$$
+            <span class="equation-number">(1)</span>
+        </div>
+
+        <div class="definition">
+            <span class="definition-header">Definition 1.1.</span> The balance $V_i^{(u)}(t)$ represents the quantity of token species $i \in \{$Rhythm, Healing, Foundation, Catalyst$\}$ held by user $u$ at discrete time $t$.
+        </div>
+
+        <p>
+        This fundamental equation governs token balance evolution. The balance at time $t+1$ equals the previous balance reduced by decay factor $(1-\delta_i)$ plus newly generated tokens $G_i^{(u)}(t)$.
+        </p>
+
+        <div class="example">
+            <span class="example-header">Example 1.1.</span> Consider a user with 1000 Rhythm tokens ($\delta_{Rhythm} = 0.05$) who earns 50 new tokens. Their balance evolves as:
+            $$V_{Rhythm}^{(u)}(t+1) = 1000(1 - 0.05) + 50 = 950 + 50 = 1000$$
+            The decay exactly balances generation, achieving equilibrium.
+        </div>
+
+        <h2><span class="section-number">1.2</span>Continuous-Time Formulation</h2>
+
+        <p>
+        For theoretical analysis, the continuous-time differential equation is employed:
+        </p>
+
+        <div class="latex-equation">
+            $$\frac{dV}{dt} = -\lambda V + g(t)$$
+            <span class="equation-number">(2)</span>
+        </div>
+
+        <p>
+        where $\lambda = -\ln(1-\delta)$ transforms the discrete decay rate to a continuous decay constant.
+        </p>
+
+        <div class="theorem">
+            <span class="theorem-header">Theorem 1.1.</span> The solution to equation (2) with initial condition $V(0) = V_0$ and constant generation rate $g$ is:
+            $$V(t) = V_0 e^{-\lambda t} + \frac{g}{\lambda}(1 - e^{-\lambda t})$$
+        </div>
+
+        <div class="proof">
+            <span class="theorem-header">Proof.</span> Using the integrating factor method with $\mu(t) = e^{\lambda t}$, the general solution is obtained. As $t \to \infty$, $V(t) \to g/\lambda$, confirming the equilibrium balance.
+        </div>
+
+        <h2><span class="section-number">1.3</span>Half-Life Analysis</h2>
+
+        <p>
+        The half-life $t_{1/2}$ determines the time required for tokens to decay to half their initial value in absence of generation:
+        </p>
+
+        <div class="latex-equation">
+            $$t_{1/2} = \frac{\ln(2)}{\lambda} = \frac{\ln(2)}{-\ln(1-\delta)}$$
+            <span class="equation-number">(3)</span>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Token Species</th>
+                    <th>Daily Decay $\delta$</th>
+                    <th>Half-life $t_{1/2}$</th>
+                    <th>Economic Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rhythm</td>
+                    <td>0.05</td>
+                    <td>13.51 days</td>
+                    <td>Daily activity incentive</td>
+                </tr>
+                <tr>
+                    <td>Healing</td>
+                    <td>0.0075</td>
+                    <td>92.42 days</td>
+                    <td>Quarterly health cycles</td>
+                </tr>
+                <tr>
+                    <td>Foundation</td>
+                    <td>0.001</td>
+                    <td>693.15 days</td>
+                    <td>Long-term value storage</td>
+                </tr>
+                <tr>
+                    <td>Catalyst</td>
+                    <td>0.02–0.10</td>
+                    <td>34.66–6.93 days</td>
+                    <td>Dynamic stabilization</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-caption">Table 1: Token species decay parameters and economic functions</div>
+
+        <!-- Section 2: Token Generation -->
+        <h1><span class="section-number">2</span>Token Generation Mechanics</h1>
+
+        <h2><span class="section-number">2.1</span>Multi-Factor Reward System</h2>
+
+        <p>
+        Token generation incorporates multiple factors to incentivize sustained healthy behavior:
+        </p>
+
+        <div class="latex-equation">
+            $$G_i^{(u)}(t) = \sum_{j \in A_i} B_{i,j} \times M_{total}^{(u,j)}(t) \times \mathbb{1}[\text{activity } j \text{ verified}]$$
+            <span class="equation-number">(4)</span>
+        </div>
+
+        <p>
+        where $A_i$ denotes activities generating token species $i$, $B_{i,j}$ represents base rewards, and $\mathbb{1}[\cdot]$ is the indicator function ensuring verification.
+        </p>
+
+        <h2><span class="section-number">2.2</span>Multiplier Composition</h2>
+
+        <div class="latex-equation">
+            $$M_{total} = M_{streak} \times M_{group} \times M_{time} \times M_{genetic} \times M_{synergy} \times M_{quality}$$
+            <span class="equation-number">(5)</span>
+        </div>
+
+        <p>
+        Subject to the constraint: $M_{total} \in [0.3, 20]$ to prevent exploitation while rewarding excellence.
+        </p>
+
+        <h3><span class="section-number">2.2.1</span>Streak Multiplier</h3>
+
+        <div class="latex-equation">
+            $$M_{streak} = 1 + \log_{10}(\text{consecutive days})$$
+            <span class="equation-number">(6)</span>
+        </div>
+
+        <div class="example">
+            <span class="example-header">Example 2.1.</span> Streak progression:
+            <ul>
+                <li>Day 1: $M_{streak} = 1 + \log_{10}(1) = 1.0$</li>
+                <li>Day 10: $M_{streak} = 1 + \log_{10}(10) = 2.0$</li>
+                <li>Day 100: $M_{streak} = 1 + \log_{10}(100) = 3.0$</li>
+                <li>Day 1000: $M_{streak} = 1 + \log_{10}(1000) = 4.0$</li>
+            </ul>
+        </div>
+
+        <h3><span class="section-number">2.2.2</span>Circadian Rhythm Multiplier</h3>
+
+        <div class="latex-equation">
+            $$M_{time} = 1 + 0.3\sin\left(\frac{2\pi(h - 6)}{24}\right)$$
+            <span class="equation-number">(7)</span>
+        </div>
+
+        <p>
+        This models natural biological rhythms, with peak rewards at 12:00 (noon) and minimum at 00:00 (midnight).
+        </p>
+
+        <!-- Section 3: Advanced Decay -->
+        <h1><span class="section-number">3</span>Advanced Decay Mechanics</h1>
+
+        <h2><span class="section-number">3.1</span>Progressive Decay for Large Balances</h2>
+
+        <p>
+        To prevent excessive accumulation, decay rates increase progressively with balance:
+        </p>
+
+        <div class="latex-equation">
+            $$\delta_i^{eff}(V) = \delta_i \times \left(1 + \beta \times \max\left(0, \frac{V - \tau}{\tau}\right)^\gamma\right)$$
+            <span class="equation-number">(8)</span>
+        </div>
+
+        <p>
+        where $\tau$ is the soft cap threshold, $\beta \in [0.5, 2.0]$ controls sensitivity, and $\gamma \in [1.0, 1.5]$ shapes the curve.
+        </p>
+
+        <div class="example">
+            <span class="example-header">Example 3.1.</span> For Foundation tokens with $\tau = 10,000$, $\beta = 1$, $\gamma = 1$:
+            <ul>
+                <li>Balance 5,000: $\delta^{eff} = 0.001 \times (1 + 0) = 0.001$ (no increase)</li>
+                <li>Balance 20,000: $\delta^{eff} = 0.001 \times (1 + 1) = 0.002$ (doubled)</li>
+                <li>Balance 50,000: $\delta^{eff} = 0.001 \times (1 + 4) = 0.005$ (5× increase)</li>
+            </ul>
+        </div>
+
+        <h2><span class="section-number">3.2</span>Catalyst Token Dynamic Decay</h2>
+
+        <p>
+        Catalyst tokens uniquely adjust their decay rate to maintain system equilibrium:
+        </p>
+
+        <div class="latex-equation">
+            $$\delta_{catalyst}(t) = \delta_{base} \times \left(1 + \beta \times \left|\frac{V_{catalyst}(t)}{\sum_{i\in S} V_i(t)} - \rho_{target}\right|^\gamma\right)$$
+            <span class="equation-number">(9)</span>
+        </div>
+
+        <p>
+        This mechanism targets $\rho_{target} = 0.25$ (25% of total supply), increasing decay when the ratio deviates.
+        </p>
+
+        <!-- Section 4: System Economics -->
+        <h1><span class="section-number">4</span>System Economics and Equilibrium</h1>
+
+        <h2><span class="section-number">4.1</span>Gini Coefficient</h2>
+
+        <p>
+        The Gini coefficient measures wealth inequality:
+        </p>
+
+        <div class="latex-equation">
+            $$G = \frac{\sum_{i=1}^n \sum_{j=1}^n |x_i - x_j|}{2n^2\bar{x}}$$
+            <span class="equation-number">(10)</span>
+        </div>
+
+        <p>
+        Equivalently, for sorted wealth $x_1 \leq x_2 \leq ... \leq x_n$:
+        </p>
+
+        <div class="latex-equation">
+            $$G = \frac{2\sum_{i=1}^n i \cdot x_i}{n\sum_{i=1}^n x_i} - \frac{n+1}{n}$$
+            <span class="equation-number">(11)</span>
+        </div>
+
+        <div class="theorem">
+            <span class="theorem-header">Theorem 4.1.</span> Under the Autophage Protocol with parameters specified in Table 1, the Gini coefficient converges to $G^* \in [0.32, 0.38]$ for populations $n \geq 100$.
+        </div>
+
+        <h2><span class="section-number">4.2</span>Metabolic Price Discovery</h2>
+
+        <p>
+        Token prices emerge from energy costs and market dynamics:
+        </p>
+
+        <div class="latex-equation">
+            $$P(t) = \frac{E_{health}(t) \times (1 + \gamma C_{ratio}(t)) + V_{market}(t) \times (1 - C_{ratio}(t))}{S_{active}(t) \times V(t) \times (1 + M_{activity}(t))}$$
+            <span class="equation-number">(12)</span>
+        </div>
+
+        <p>
+        This endogenous pricing mechanism ensures tokens reflect both creation effort and market valuation.
+        </p>
+
+        <!-- Section 5: Biological Scaling -->
+        <h1><span class="section-number">5</span>Biological Scaling Laws</h1>
+
+        <h2><span class="section-number">5.1</span>Kleiber's Law for Networks</h2>
+
+        <p>
+        System efficiency scales with network size following biological principles:
+        </p>
+
+        <div class="latex-equation">
+            $$\eta(N) = 1 + \alpha \times \left(\frac{N}{N_0}\right)^{1/4}$$
+            <span class="equation-number">(13)</span>
+        </div>
+
+        <p>
+        where $\alpha = 0.3$ and $N_0 = 1000$ normalize the scaling relationship.
+        </p>
+
+        <div class="remark">
+            <span class="theorem-header">Remark.</span> The $1/4$ power law derives from fractal distribution networks in biological systems, optimizing resource distribution while minimizing transport costs.
+        </div>
+
+        <h2><span class="section-number">5.2</span>Liebig's Law of the Minimum</h2>
+
+        <p>
+        System health equals its weakest component:
+        </p>
+
+        <div class="latex-equation">
+            $$H_{system} = \min(H_{users}, H_{reserves}, H_{apps}, H_{geographic}, H_{velocity})$$
+            <span class="equation-number">(14)</span>
+        </div>
+
+        <p>
+        This ensures balanced growth across all system dimensions, preventing unsustainable expansion in any single area.
+        </p>
+
+        <hr>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize components and theme
+        Components.init({
+            title: 'Mathematical Reference',
+            version: '1.0'
+        });
+    </script>
+</body>
+</html>

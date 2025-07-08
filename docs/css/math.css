@@ -1,0 +1,86 @@
+/* Math Page Styles */
+
+.math-section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.math-section:last-child {
+    border-bottom: none;
+}
+
+.math-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.equation-container {
+    margin-bottom: 3rem;
+}
+
+.equation {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.explanation {
+    padding-left: 1rem;
+}
+
+.explanation h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--accent-dark);
+}
+
+.explanation p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.explanation ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.explanation li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+.explanation li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+/* MathJax styling */
+.MathJax {
+    font-size: 1.1em !important;
+}
+
+.MathJax_Display {
+    margin: 0 !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .equation {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .explanation {
+        padding-left: 0;
+    }
+}

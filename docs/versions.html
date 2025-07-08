@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version History — Autophage Protocol</title>
+    <meta name="description" content="Version history and changelog for the Autophage Protocol">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Title -->
+        <div class="latex-title">
+            <h1>Version History</h1>
+            <div class="latex-author"><a href="about.html#research">0x42 Research</a></div>
+            <div class="latex-date">Last Updated — \today</div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="latex-nav">
+            <a href="index.html">Home</a> •
+            <a href="about.html">About</a> •
+            <a href="paper/litepaper.pdf" target="_blank">Litepaper</a> •
+            <div class="dropdown">
+                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Tools ▼</button>
+                <div class="dropdown-content">
+                    <a href="simulations.html">Interactive Simulations</a>
+                    <a href="math.html">Mathematical Reference</a>
+                </div>
+            </div>
+            •
+            <div class="dropdown">
+                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Extras ▼</button>
+                <div class="dropdown-content">
+                    <a href="plain-language.html">Plain Language Summary</a>
+                    <a href="author-note.html">Note from the Author</a>
+                    <a href="versions.html">Version History</a>
+                    <a href="references.html">References</a>
+                    <a href="features.html">Complete Feature Set</a>
+                    <a href="extended-math.html">Extended Mathematics</a>
+                    <a href="https://github.com/statusdothealth/litepaper" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="latex-abstract">
+            <h2>About this page</h2>
+            <p>
+            The evolution of an idea from concept to living implementation. This page documents the complete development history of the Autophage Protocol from its initial vision to the current mathematical framework.
+            </p>
+        </div>
+
+        <h1>v1.1 — Governance & Implementation Clarity</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">June 22, 2025</p>
+        
+        <h2>Major Corrections</h2>
+        <p>
+        Fixed Rhythm token decay from 2% to correct 5% daily throughout all documentation. Replaced fixed 1.78 energy gradient with dynamic 1.2-3.0 range based on system health. Removed fictional oracle network—apps ARE the verification layer. Apps stake USDC and reputation, not ephemeral tokens.
+        </p>
+        
+        <h2>New Governance Model</h2>
+        <p>
+        Proof of Contribution replaces token-weighted voting (tokens decay!). Contribution Score from lifetime Reservoir contributions plus reputation. Marketplace proposals: stake tokens on improvements, get USDC rewards. Governance by results: 5%+ health improvement equals stake returned plus USDC bonus. Failed proposals lose stake to Reservoir. Natural selection: unused features sunset after 180 days with less than 1% usage.
+        </p>
+        
+        <h2>Technical Architecture Clarified</h2>
+        <p>
+        Best mode implementation without chain-specific details. Core contracts: HealthToken, Reservoir, VerificationEngine, ContributionGovernance. Apps handle all verification—no separate oracle infrastructure. Privacy through ZK proofs remains client-side.
+        </p>
+
+        <hr>
+
+        <h1>v1.0 — Dynamic Individual Metabolic Capacity</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">June 21, 2025</p>
+        
+        <p>
+        Revolutionary shift from shared supply to individual metabolic limits. Each person maintains 8,000 base capacity adapting to environment. Inverted Kleiber's Law: capacity scales as $W^{-1/4}$ with network size. Network scaling from 64× (pioneer) to 1.002× (global scale). Geographic equity through local density modifiers.
+        </p>
+        
+        <p>
+        Genetic specialization system with meaningful strategic tradeoffs. Specialists gain 26-50% domain bonus for 17-20% capacity reduction. True scale invariance from 1 to 7 billion users. Local price discovery replaces global supply manipulation. Daily generation capped at 5% of personal capacity. Population diversity emerges through 75% group bonus.
+        </p>
+
+        <hr>
+
+        <h1>v0.9 — Biological Quaternary Complete</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">June 19, 2025</p>
+        
+        <p>
+        Added Catalyst tokens as fourth species with dynamic decay. Implemented three-sided Health Data Marketplace (C2C, B2B, B2B2C). Enhanced metabolic pricing formula with marketplace dynamics. Catalyst tokens self-regulate to 25% ecosystem equilibrium. All marketplace fees collected exclusively in USDC.
+        </p>
+
+        <hr>
+
+        <h1>v0.8 — Mathematical Precision</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">June 18, 2025</p>
+        
+        <p>
+        Aligned all formulas with testable specifications. Standardized Healing token decay to 0.75% daily. Implemented layered multiplier system with 15.0 hard cap. Updated governance coefficients and maturity scoring. Created comprehensive test suite validating 69 functions.
+        </p>
+
+        <hr>
+
+        <h1>v0.5 — The Living Economy</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">June 16, 2025</p>
+        
+        <p>
+        Complete paradigm shift: creating digital organisms. Rhythm, Healing, Foundation token taxonomy. The Reservoir as community wealth system. Synergy mechanics and 100% user access. Economics as biology, not geology.
+        </p>
+
+        <hr>
+
+        <h1>v0.3 — Temporal Persistence</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">June 2025</p>
+        
+        <p>
+        Introduced Proof of Temporal Persistence (PoTP). Mandatory decay at ~1% daily. Wellness Vaults and Health Reserves. Fluid Participation model.
+        </p>
+
+        <hr>
+
+        <h1>v0.1 — Original Vision</h1>
+        <p style="color: var(--caption-color); font-size: 10pt; margin-bottom: 1em;">May 2025</p>
+        
+        <p>
+        Initial concept: Health verification with privacy. Traditional token model with halving emissions. Focus on incentivizing health behaviors.
+        </p>
+
+        <!-- Footer -->
+        <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">
+            <p>© <span id="copyright-year">2025</span> 0x42 Farm LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'Version History',
+            version: '1.0'
+        });
+        
+        // Set date
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateElement = document.querySelector('.latex-date');
+            if (dateElement) {
+                const today = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                dateElement.innerHTML = dateElement.innerHTML.replace('\\today', today);
+            }
+            
+            // Update copyright year
+            const yearElement = document.getElementById('copyright-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        });
+        
+        // Dropdown toggle
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // Close all other open dropdowns first
+            document.querySelectorAll('.dropdown.show').forEach(d => {
+                if (d !== event.target.closest('.dropdown')) {
+                    d.classList.remove('show');
+                }
+            });
+            
+            // Toggle the clicked dropdown
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown.show').forEach(d => {
+                    d.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,834 @@
+/* LaTeX-style CSS */
+
+/* Modern typewriter fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* Better font for headers and bold text */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables */
+:root {
+    /* Light mode (default LaTeX) */
+    --paper-bg: #f5f5f5;
+    --text-color: #1a1a1a;
+    --link-color: #1a1a1a;
+    --link-visited: #1a1a1a;
+    --rule-color: #333333;
+    --caption-color: #666666;
+    --math-color: #1a1a1a;
+    
+    /* LaTeX dimensions */
+    --page-width: 8.5in;
+    --margin-top: 1in;
+    --margin-bottom: 1in;
+    --line-height: 1.4;
+    --par-indent: 0;
+    --par-skip: 0.5em;
+}
+
+/* Dark mode initialization - prevent flash */
+html.dark-mode-init {
+    background: #0a0a0a;
+}
+
+/* Dark mode */
+body.dark-mode,
+html.dark-mode-init body {
+    --paper-bg: #0a0a0a;
+    --text-color: #cccccc;
+    --link-color: #cccccc;
+    --link-visited: #999999;
+    --rule-color: #333333;
+    --caption-color: #999999;
+    --math-color: #cccccc;
+}
+
+/* Dark mode button fixes */
+body.dark-mode button {
+    background: #1a1a1a;
+    color: #cccccc;
+    border-color: #666;
+}
+
+body.dark-mode button:hover {
+    background: #cccccc;
+    color: #0a0a0a;
+    border-color: #cccccc;
+}
+
+body.dark-mode .small-button {
+    background: #1a1a1a;
+    color: #cccccc;
+    border-color: #666;
+}
+
+body.dark-mode .small-button:hover {
+    background: #cccccc;
+    color: #0a0a0a;
+}
+
+
+/* Base styles */
+body {
+    font-family: 'JetBrains Mono', 'Source Code Pro', 'Courier New', Courier, monospace;
+    font-size: 10pt;
+    line-height: var(--line-height);
+    color: var(--text-color);
+    background: var(--paper-bg);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page layout */
+.latex-document {
+    max-width: var(--page-width);
+    margin: var(--margin-top) auto var(--margin-bottom) auto;
+    padding: 0 1in;
+    background: var(--paper-bg);
+}
+
+/* Title and metadata */
+.latex-title {
+    text-align: left;
+    margin-bottom: 2em;
+}
+
+.latex-title h1 {
+    font-size: 17pt;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+
+.latex-author {
+    font-size: 12pt;
+    margin-bottom: 0.3em;
+    text-align: left;
+}
+
+.latex-date {
+    font-size: 10pt;
+    margin-bottom: 2em;
+    text-align: left;
+}
+
+/* Abstract */
+.latex-abstract {
+    margin: 2em 0;
+    font-size: 11pt;
+}
+
+.latex-abstract h2 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-align: left;
+    font-size: 12pt;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+/* Sections */
+h1, h2, h3, h4 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    text-align: left;
+}
+
+h1 { font-size: 14pt; font-weight: 700; }
+h2 { font-size: 12pt; font-weight: 600; }
+h3 { font-size: 11pt; font-weight: 600; }
+h4 { font-size: 10pt; font-style: italic; font-weight: 600; }
+
+/* Bold text uses Inter for better readability */
+strong, b {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+}
+
+/* Section numbering */
+.section-number {
+    display: none;
+}
+
+/* Paragraphs */
+p {
+    text-indent: var(--par-indent);
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+p + p {
+    margin-top: var(--par-skip);
+}
+
+/* First paragraph after heading - no indent */
+h1 + p, h2 + p, h3 + p, h4 + p,
+.latex-abstract + p,
+.latex-abstract p,
+.theorem + p, .proof + p,
+.definition + p, .example + p {
+    text-indent: 0;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+li {
+    margin-bottom: 0.3em;
+}
+
+/* Links */
+a,
+a:visited,
+a:active,
+a:focus {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Tables */
+table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    font-size: 11pt;
+    width: 100%;
+}
+
+th, td {
+    padding: 0.5em 1em;
+    text-align: left;
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+th {
+    border-bottom: 1px solid var(--rule-color);
+    font-weight: bold;
+}
+
+.table-caption {
+    text-align: left;
+    font-size: 10pt;
+    margin-top: 0.5em;
+    color: var(--caption-color);
+    font-style: italic;
+}
+
+/* Figures */
+.latex-figure {
+    margin: 1em 0;
+    text-align: left;
+}
+
+.latex-figure img {
+    max-width: 100%;
+}
+
+.figure-caption {
+    font-size: 10pt;
+    margin-top: 0.5em;
+    color: var(--caption-color);
+    text-align: left;
+    font-style: italic;
+}
+
+/* Math displays */
+.latex-equation {
+    margin: 1em 0;
+    text-align: center;
+    position: relative;
+}
+
+.equation-number {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Theorems, Definitions, etc. */
+.theorem, .lemma, .proposition, .corollary,
+.definition, .example, .remark, .proof {
+    margin: 1em 0;
+    font-style: italic;
+}
+
+.theorem-header, .definition-header, .example-header {
+    font-weight: bold;
+    font-style: normal;
+    margin-right: 0.5em;
+}
+
+.proof {
+    font-style: normal;
+}
+
+.proof::after {
+    content: "□";
+    float: right;
+    font-size: 1.2em;
+}
+
+/* Code blocks */
+pre, code {
+    font-family: 'Computer Modern Typewriter', 'Courier New', monospace;
+    font-size: 10pt;
+}
+
+pre {
+    margin: 1em 0;
+    padding: 0.5em;
+    overflow-x: auto;
+    background: none;
+}
+
+code {
+    background: none;
+    padding: 0;
+}
+
+/* Navigation (minimal, LaTeX-style) */
+.latex-nav {
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+    border-bottom: 0.4pt solid var(--rule-color);
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+.latex-nav > a,
+.latex-nav > .dropdown {
+    font-size: 9pt;
+    white-space: nowrap;
+}
+
+.latex-nav > a {
+    text-decoration: none;
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none !important;
+    border: none;
+    color: var(--link-color);
+    text-decoration: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+.dropdown-toggle:hover {
+    background: none !important;
+    color: var(--link-color) !important;
+    text-decoration: underline;
+}
+
+/* Ensure no background in dark mode */
+body.dark-mode .dropdown-toggle {
+    background: none !important;
+}
+
+body.dark-mode .dropdown-toggle:hover {
+    background: none !important;
+    color: var(--link-color) !important;
+    text-decoration: underline;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: var(--paper-bg);
+    border: 1px solid var(--rule-color);
+    min-width: 120px;
+    z-index: 1;
+    left: 0;
+    top: 100%;
+    margin-top: 5px;
+}
+
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile dropdown improvements */
+@media (max-width: 768px) {
+    .latex-nav {
+        font-size: 10pt;
+    }
+    
+    .dropdown-content {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        top: auto;
+        width: auto;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .dropdown-content a {
+        padding: 1em 1.25em;
+        font-size: 11pt;
+    }
+}
+
+/* Mode toggle */
+.mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-family: Georgia, serif;
+    font-size: 10px;
+    background: var(--paper-bg);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 1px 4px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 2px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.mode-toggle:hover {
+    opacity: 1;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 0.4pt solid var(--rule-color);
+    margin: 1em 0;
+}
+
+/* Footnotes */
+.footnote {
+    font-size: 8pt;
+    vertical-align: super;
+    line-height: 0;
+}
+
+.footnote-text {
+    font-size: 9pt;
+    margin-top: 2em;
+    border-top: 0.4pt solid var(--rule-color);
+    padding-top: 0.5em;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    :root {
+        --page-width: 100%;
+        --margin-top: 0.5in;
+        --margin-bottom: 0.5in;
+    }
+    
+    body {
+        font-size: 9pt;
+    }
+    
+    .latex-document {
+        padding: 0 20px;
+    }
+    
+    .latex-title {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .latex-title > div:first-child {
+        margin-right: 0 !important;
+        margin-bottom: 1em;
+    }
+    
+    .latex-abstract {
+        margin: 1em 0;
+        font-size: 10pt;
+    }
+    
+    .latex-abstract p {
+        text-indent: 0;
+    }
+    
+    h1 { font-size: 12pt; }
+    h2 { font-size: 11pt; }
+    h3 { font-size: 10pt; }
+    h4 { font-size: 9pt; }
+    
+    .simulation-box {
+        padding: 0.5em;
+    }
+    
+    .control-group label {
+        display: block;
+        margin-bottom: 0.25em;
+    }
+    
+    .control-group input[type="range"] {
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    
+    table {
+        font-size: 9pt;
+        overflow-x: auto;
+        display: block;
+    }
+    
+    th, td {
+        padding: 0.25em 0.5em;
+    }
+    
+    .mode-toggle {
+        top: 10px;
+        right: 10px;
+        font-size: 9px;
+        padding: 1px 3px;
+    }
+    
+    .back-to-top {
+        bottom: 10px;
+        right: 10px;
+        font-size: 9px;
+        padding: 1px 3px;
+    }
+    
+    /* Mobile explore section */
+    .explore-button {
+        padding: 0.3em 0.6em;
+        font-size: 9pt;
+    }
+    
+    .button-label {
+        font-size: 9pt;
+    }
+}
+
+/* Page breaks for print */
+@media print {
+    .latex-document {
+        margin: 0;
+    }
+    
+    h1 {
+        page-break-before: always;
+    }
+    
+    .mode-toggle {
+        display: none;
+    }
+}
+
+/* Simulation specific styles */
+.simulation-box {
+    border: 0.4pt solid var(--rule-color);
+    padding: 1em;
+    margin: 1em 0;
+    background: var(--paper-bg);
+}
+
+.simulation-controls {
+    margin: 1em 0;
+    font-size: 11pt;
+}
+
+.control-group {
+    margin-bottom: 0.5em;
+}
+
+.control-group label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.control-group input[type="range"] {
+    width: 200px;
+    vertical-align: middle;
+}
+
+.control-group output {
+    margin-left: 1em;
+    font-family: 'Computer Modern Typewriter', monospace;
+}
+
+button {
+    font-family: 'Computer Modern Sans', sans-serif;
+    font-size: 11pt;
+    padding: 6px 16px;
+    background: var(--paper-bg);
+    border: 1px solid var(--rule-color);
+    cursor: pointer;
+    margin-top: 0.5em;
+}
+
+button:hover {
+    background: var(--text-color);
+    color: var(--paper-bg);
+}
+
+/* Small buttons */
+.small-button {
+    font-family: 'Computer Modern Sans', sans-serif;
+    font-size: 10pt;
+    padding: 4px 12px;
+    background: var(--paper-bg);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    cursor: pointer;
+    min-width: 30px;
+}
+
+.small-button:hover {
+    background: var(--text-color);
+    color: var(--paper-bg);
+}
+
+.mode-toggle:hover,
+.back-to-top:hover {
+    background: var(--text-color);
+    color: var(--paper-bg);
+    border-color: var(--text-color);
+}
+
+/* Chart container */
+.chart-container {
+    margin: 1em 0;
+    height: 300px;
+    border: 0.4pt solid var(--rule-color);
+    background: var(--paper-bg);
+}
+
+/* Explore section */
+.explore-section {
+    margin-top: 2em;
+}
+
+.explore-label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    font-size: 11pt;
+}
+
+.explore-buttons {
+    display: inline-flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+.explore-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4em 0.8em;
+    background: var(--paper-bg);
+    border: 1px solid var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 10pt;
+}
+
+.explore-button:hover {
+    background: var(--text-color);
+    color: var(--paper-bg);
+}
+
+.button-number {
+    font-weight: bold;
+    margin-right: 0.5em;
+}
+
+.button-label {
+    font-size: 10pt;
+}
+
+/* Dark mode explore buttons */
+body.dark-mode .explore-button {
+    background: #1a1a1a;
+    border-color: #666;
+}
+
+body.dark-mode .explore-button:hover {
+    background: #cccccc;
+    color: #0a0a0a;
+}
+
+/* Results display */
+.results-display {
+    font-family: 'Computer Modern Typewriter', monospace;
+    font-size: 10pt;
+    white-space: pre-wrap;
+    margin: 1em 0;
+    padding: 0.5em;
+    border-left: 2pt solid var(--rule-color);
+}
+
+/* Inline math adjustment for dark mode */
+body.dark-mode .MathJax {
+    color: var(--math-color) !important;
+}
+
+/* Special theorem box style */
+.latex-box {
+    border: 0.4pt solid var(--rule-color);
+    padding: 1em;
+    margin: 1em 0;
+    position: relative;
+}
+
+.latex-box-title {
+    position: absolute;
+    top: -0.5em;
+    left: 1em;
+    background: var(--paper-bg);
+    padding: 0 0.5em;
+    font-weight: bold;
+    font-size: 9pt;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    font-family: Georgia, serif;
+    font-size: 10px;
+    background: var(--paper-bg);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 1px 4px;
+    cursor: pointer;
+    border-radius: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 0.7;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    opacity: 1;
+}
+
+/* Post-it note */
+.post-it {
+    position: fixed;
+    top: 120px;
+    right: 50%;
+    margin-right: -300px;
+    width: 95px;
+    padding: 14px 12px;
+    background: #ffeb9c;
+    background-image: linear-gradient(135deg, #ffeb9c 0%, #fde047 20%, #facc15 100%);
+    box-shadow: 
+        0 1px 3px rgba(0,0,0,0.1),
+        0 3px 6px rgba(0,0,0,0.08),
+        0 6px 12px rgba(0,0,0,0.05),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+    transform: rotate(-2.5deg);
+    font-family: 'JetBrains Mono', 'Source Code Pro', 'Courier New', Courier, monospace;
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s, visibility 0.3s;
+    border-radius: 2px 2px 2px 8px;
+}
+
+.post-it.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.post-it::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 30%;
+    width: 25px;
+    height: 16px;
+    background: rgba(200,200,200,0.4);
+    transform: rotate(-5deg);
+    border-radius: 0 0 5px 5px;
+}
+
+.post-it-text {
+    font-size: 12px;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 0px;
+    transform: rotate(1deg);
+}
+
+.post-it-subtext {
+    font-size: 10px;
+    color: #444;
+    text-align: center;
+    margin-top: 4px;
+    font-weight: normal;
+    transform: rotate(-1deg);
+    line-height: 1.2;
+}
+
+body.dark-mode .post-it {
+    background: #e6daa6;
+    background-image: linear-gradient(135deg, #e6daa6 0%, #e0d392 100%);
+    box-shadow: 
+        0 1px 2px rgba(255,255,255,0.05),
+        0 2px 4px rgba(255,255,255,0.05),
+        0 4px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .post-it {
+        display: none;
+    }
+}

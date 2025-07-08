@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note from the Author — Autophage Protocol</title>
+    <meta name="description" content="A personal note from the creator of the Autophage Protocol">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <style>
+        /* Typewriter note style */
+        .note-container {
+            max-width: 650px;
+            margin: 2em auto;
+            padding: 2em 3em;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 2;
+            font-size: 11pt;
+            background: #fafafa;
+        }
+        
+        body.dark-mode .note-container {
+            background: #1a1a1a;
+        }
+        
+        .note-container p {
+            margin-bottom: 1.5em;
+            text-align: left;
+        }
+        
+        .note-container h2 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 2em 0 1em 0;
+            text-align: left;
+        }
+        
+        .comparison-table {
+            margin: 2em 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .comparison-row {
+            display: flex;
+            margin-bottom: 0.5em;
+        }
+        
+        .comparison-label {
+            width: 120px;
+            font-weight: bold;
+        }
+        
+        .comparison-autophage {
+            width: 120px;
+            margin-right: 2em;
+        }
+        
+        .comparison-else {
+            width: 120px;
+        }
+        
+        .greeting {
+            margin-bottom: 2em;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 11pt;
+            line-height: 1.5;
+        }
+        
+        .greeting-line1 {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        
+        .greeting-details {
+            font-style: italic;
+            color: var(--caption-color);
+            margin-left: 2em;
+        }
+        
+        .signature {
+            margin-top: 3em;
+            text-align: right;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <div class="note-container">
+            <div class="greeting" id="greeting">
+                <div class="greeting-line1">Dear Person Reading at</div>
+                <div class="greeting-details" id="greeting-details">[Loading location and time...]</div>
+            </div>
+            
+            <p>
+            Biomimetics, if it means anything, is enforcement. Not metaphor. In Autophage, value dies without renewal. The protocol encodes decay as law. Most systems use nature as garnish; permanence is their default. Here, mortality is mandatory. Wealth must circulate or disappear. If you want economics that lives, design for loss.
+            </p>
+
+            <h2>Economics: Living or Dead?</h2>
+
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div class="comparison-label"></div>
+                    <div class="comparison-autophage"><strong>Autophage</strong></div>
+                    <div class="comparison-else"><strong>Everything Else</strong></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Decay</div>
+                    <div class="comparison-autophage">Required</div>
+                    <div class="comparison-else">Avoided</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Renewal</div>
+                    <div class="comparison-autophage">Inevitable</div>
+                    <div class="comparison-else">Optional</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Accumulation</div>
+                    <div class="comparison-autophage">Self-defeating</div>
+                    <div class="comparison-else">Sacred</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Metabolism</div>
+                    <div class="comparison-autophage">Built-in</div>
+                    <div class="comparison-else">Cosmetic</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-label">Survival</div>
+                    <div class="comparison-autophage">Earned daily</div>
+                    <div class="comparison-else">Assumed forever</div>
+                </div>
+            </div>
+
+            <p>
+            The status quo rewards stasis and calls it success. In health and in money, what survives is what moves. Everything else is just afterlife accounting.
+            </p>
+
+            <p>
+            The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed, the simulations run thousands of times, but the true test lies in whether communities would choose renewal over accumulation, flow over hoarding, life over stasis. The theoretical framework is complete; the practical implementation awaits. In creating value that must move to exist, we might discover economics that serve life rather than constraining it. The mathematics of decay could become the foundation for sustainable abundance - but only real-world deployment will reveal if theory translates to practice.
+            </p>
+
+            <div class="signature">
+                <p>— 97 115 104</p>
+            </div>
+        </div>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Core functionality -->
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'Note from the Author',
+            version: '1.0'
+        });
+        
+        // Personalize greeting
+        async function updateGreeting() {
+            const greetingDetails = document.getElementById('greeting-details');
+            if (greetingDetails) {
+                // Get current time
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('en-US', { 
+                    hour: 'numeric', 
+                    minute: '2-digit',
+                    hour12: true 
+                });
+                const dateStr = now.toLocaleDateString('en-US', { 
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                
+                // Try to get real IP address
+                let ip = 'a location good for privacy';
+                try {
+                    const response = await fetch('https://api.ipify.org?format=json');
+                    const data = await response.json();
+                    if (data.ip) {
+                        ip = data.ip;
+                    }
+                } catch (error) {
+                    // Fallback message if IP lookup fails
+                    ip = 'a location good for privacy';
+                }
+                
+                greetingDetails.innerHTML = `${ip} on ${dateStr} at ${timeStr}`;
+            }
+        }
+        
+        // Update greeting on load
+        document.addEventListener('DOMContentLoaded', updateGreeting);
+    </script>
+</body>
+</html>

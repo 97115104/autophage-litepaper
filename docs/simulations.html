@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulations — Autophage Protocol</title>
+    <meta name="description" content="Interactive simulations validating the Autophage Protocol">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <!-- About -->
+        <div class="latex-abstract">
+            <h2>About this page</h2>
+            <p>
+            This page contains interactive simulations that validate the mathematical foundations of the Autophage Protocol. Each simulation tests specific theoretical predictions from the litepaper, allowing empirical verification of the protocol's economic and biological principles.
+            </p>
+        </div>
+
+        <!-- Section 1: System Metrics -->
+        <h1><span class="section-number">1</span>System Metrics</h1>
+
+        <p>
+        The following real-time metrics demonstrate the current state of our simulation environment:
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Current Value</th>
+                    <th>Target Range</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gini Coefficient</td>
+                    <td><code id="giniValue">0.350</code></td>
+                    <td>0.32–0.38</td>
+                    <td>Wealth distribution equality measure</td>
+                </tr>
+                <tr>
+                    <td>System Health</td>
+                    <td><code id="systemHealth">85%</code></td>
+                    <td>70–100%</td>
+                    <td>Liebig's Law minimum component</td>
+                </tr>
+                <tr>
+                    <td>Token Species</td>
+                    <td><code>4</code></td>
+                    <td>—</td>
+                    <td>Rhythm, Healing, Foundation, Catalyst</td>
+                </tr>
+                <tr>
+                    <td>Decay Rates</td>
+                    <td><code>0.1–10%</code></td>
+                    <td>Variable</td>
+                    <td>Daily percentage decay by species</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-caption">Table 1: Real-time system metrics updated every 5 seconds</div>
+
+        <!-- Simulation 1: Gini Coefficient -->
+        <h1><span class="section-number">2</span>Wealth Distribution Analysis</h1>
+
+        <div class="theorem">
+            <span class="theorem-header">Theorem 2.1.</span> Under the Autophage Protocol with daily decay rate $\delta = 0.02$ and activity-based token generation, the Gini coefficient converges to $G \in [0.32, 0.38]$ within 180 days for populations $n \geq 100$.
+        </div>
+
+        <p>
+        This simulation compares wealth distribution evolution between traditional economies (where wealth accumulates without decay) and the Autophage Protocol. The key innovation is the introduction of token decay, which prevents unlimited wealth accumulation while rewarding active participation.
+        </p>
+
+        <div class="simulation-box">
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label>Number of Agents:</label>
+                    <input type="range" id="numAgents" min="100" max="10000" value="1000" step="100">
+                    <output id="numAgentsValue">1000</output>
+                </div>
+                <div class="control-group">
+                    <label>Simulation Days:</label>
+                    <input type="range" id="simDays" min="30" max="365" value="180" step="5">
+                    <output id="simDaysValue">180</output>
+                </div>
+                <button onclick="runGiniSimulation()">Run Simulation</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="giniChart"></canvas>
+            </div>
+        </div>
+        <div class="figure-caption">Figure 1: Gini coefficient evolution over time comparing traditional vs. Autophage economies</div>
+
+        <div class="remark">
+            <span class="theorem-header">Remark.</span> The traditional economy exhibits monotonic increase in inequality, while Autophage converges to a stable equilibrium. This validates the protocol's design goal of sustainable wealth distribution.
+        </div>
+
+        <!-- Simulation 2: Token Decay -->
+        <h1><span class="section-number">3</span>Token Decay Dynamics</h1>
+
+        <div class="definition">
+            <span class="definition-header">Definition 3.1.</span> Token decay follows the exponential decay law $V(t) = V_0 e^{-\lambda t}$ where $\lambda = -\ln(1-\delta)$ and $\delta$ is the daily decay rate.
+        </div>
+
+        <p>
+        Each token species exhibits different decay characteristics aligned with its economic purpose:
+        </p>
+        
+        <ul>
+            <li><strong>Rhythm tokens</strong> ($\delta = 0.05$): High decay encourages daily activities</li>
+            <li><strong>Healing tokens</strong> ($\delta = 0.0075$): Moderate decay for quarterly health cycles</li>
+            <li><strong>Foundation tokens</strong> ($\delta = 0.001$): Low decay for long-term value storage</li>
+            <li><strong>Catalyst tokens</strong> ($\delta \in [0.02, 0.10]$): Dynamic decay for system stabilization</li>
+        </ul>
+
+        <div class="simulation-box">
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label>Initial Balance:</label>
+                    <input type="range" id="initialBalance" min="100" max="10000" value="1000" step="100">
+                    <output id="initialBalanceValue">1000</output>
+                </div>
+                <div class="control-group">
+                    <label>Days to Simulate:</label>
+                    <input type="range" id="decayDays" min="10" max="365" value="90" step="5">
+                    <output id="decayDaysValue">90</output>
+                </div>
+                <button onclick="runDecaySimulation()">Run Simulation</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="decayChart"></canvas>
+            </div>
+        </div>
+        <div class="figure-caption">Figure 2: Exponential decay curves for different token species on logarithmic scale</div>
+
+        <!-- Simulation 3: Monte Carlo Analysis -->
+        <h1><span class="section-number">4</span>Statistical Validation</h1>
+
+        <div class="lemma">
+            <span class="theorem-header">Lemma 4.1.</span> For $n \geq 1000$ simulation runs with activity variance $\sigma^2$, the empirical distribution of system metrics converges to theoretical predictions with 95% confidence intervals.
+        </div>
+
+        <p>
+        Monte Carlo simulation validates the robustness of the protocol under stochastic conditions. The simulation runs thousands of independent economies with varying user behavior patterns to establish confidence intervals for key metrics.
+        </p>
+
+        <div class="simulation-box">
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label>Number of Runs:</label>
+                    <input type="range" id="monteCarloRuns" min="100" max="10000" value="1000" step="100">
+                    <output id="monteCarloRunsValue">1000</output>
+                </div>
+                <div class="control-group">
+                    <label>Activity Variance:</label>
+                    <input type="range" id="activityVariance" min="0" max="100" value="30" step="5">
+                    <output id="activityVarianceValue">30%</output>
+                </div>
+                <button onclick="runMonteCarloSimulation()">Run Analysis</button>
+            </div>
+            <div id="monteCarloResults" class="results-display"></div>
+        </div>
+        <div class="figure-caption">Figure 3: Monte Carlo simulation results with confidence intervals</div>
+
+        <!-- Simulation 4: Biological Scaling -->
+        <h1><span class="section-number">5</span>Biological Scaling Laws</h1>
+
+        <div class="theorem">
+            <span class="theorem-header">Theorem 5.1 (Kleiber's Law for Networks).</span> System efficiency scales as $\eta(N) = 1 + \alpha(N/N_0)^{1/4}$ where $N$ is network size, $\alpha = 0.3$, and $N_0 = 1000$.
+        </div>
+
+        <p>
+        The protocol incorporates biological scaling principles to ensure sustainable growth. As the network expands, efficiency increases sub-linearly, preventing runaway growth while rewarding scale. This mirrors metabolic efficiency in biological systems where larger organisms achieve better energy efficiency per unit mass.
+        </p>
+
+        <div class="simulation-box">
+            <div class="simulation-controls">
+                <div class="control-group">
+                    <label>Network Size:</label>
+                    <input type="range" id="networkSize" min="100" max="100000" value="10000" step="1000">
+                    <output id="networkSizeValue">10,000</output>
+                </div>
+                <button onclick="runScalingSimulation()">Visualize Scaling</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="scalingChart"></canvas>
+            </div>
+        </div>
+        <div class="figure-caption">Figure 4: Biological scaling laws applied to network economics</div>
+
+        <div class="proof">
+            <span class="theorem-header">Proof sketch.</span> Following West et al. (1997), the 3/4 power law is adapted to network economics. The derivation assumes hierarchical distribution networks with space-filling properties, yielding the characteristic $N^{1/4}$ scaling.
+        </div>
+
+        <!-- Conclusions -->
+        <h1><span class="section-number">6</span>Conclusions</h1>
+
+        <p>
+        These simulations provide strong empirical support for the theoretical predictions of the Autophage Protocol. Key findings include:
+        </p>
+
+        <ol>
+            <li>Wealth distribution consistently converges to target Gini coefficients of 0.32–0.38</li>
+            <li>Token decay mechanisms effectively prevent wealth concentration while maintaining incentives</li>
+            <li>System stability is maintained across wide ranges of network sizes and activity patterns</li>
+            <li>Biological scaling laws successfully translate to economic contexts</li>
+        </ol>
+
+        <p>
+        These results suggest that incorporating biological principles into economic design can yield more equitable and sustainable systems. Future work will explore additional biological mechanisms and their potential economic applications.
+        </p>
+
+        <hr>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize components and theme
+        Components.init({
+            title: 'Interactive Simulations',
+            version: '1.0'
+        });
+
+        // Update chart colors for dark mode
+        function updateChartColors() {
+            // Re-run current charts if they exist
+            if (window.giniChart) runGiniSimulation();
+            if (window.decayChart) runDecaySimulation();
+            if (window.scalingChart) runScalingSimulation();
+        }
+        
+        // Listen for theme changes to update charts
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'theme') {
+                updateChartColors();
+            }
+        });
+        
+        // Update charts when theme changes via toggle
+        const originalToggleMode = window.toggleMode;
+        window.toggleMode = function() {
+            originalToggleMode();
+            updateChartColors();
+        };
+    </script>
+</body>
+</html>

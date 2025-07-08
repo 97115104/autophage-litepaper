@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Autophage Protocol</title>
+    <meta name="description" content="About the Autophage Protocol and 0x42 Research">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <style>
+        /* Simple arrow */
+        .arrow-down {
+            text-align: center;
+            font-size: 24pt;
+            margin: 2em 0;
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <!-- About Protocol -->
+        <h1>About the Protocol</h1>
+
+        <p>
+        The Autophage Protocol is an economic system where tokens decay over time. Health activities generate new tokens. The decay forces circulation instead of accumulation.
+        </p>
+
+        <p>
+        Zero-knowledge proofs protect user privacy while verifying activities. A dual-chamber reservoir maintains price stability. The mathematics target a Gini coefficient between 0.32 and 0.38.
+        </p>
+
+        <!-- About Research -->
+        <h1 id="research">About 0x42 Research</h1>
+        
+        <p>
+        Email: <a href="mailto:research@0x42.farm">research@0x42.farm</a><br>
+        Website: <a href="https://0x42.farm" target="_blank">0x42.farm</a><br>
+        GitHub: <a href="https://github.com/statusdothealth" target="_blank">github.com/statusdothealth</a>
+        </p>
+
+        <h2>Acknowledgments</h2>
+
+        <p>
+        Satoshi Nakamoto for programmable money. Elinor Ostrom for commons governance. Geoffrey West for biological scaling laws. Vitalik Buterin for economic mechanism design. Richard Dawkins for selfish gene theory. The Health Protocol Labs board for early guidance. The cypherpunk movement for privacy tech. Open source community for collaborative models.
+        </p>
+
+        <p>
+        This work is open source. The experiment continues.
+        </p>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Core functionality -->
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'About',
+            version: '1.0'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Feature Set — Autophage Protocol</title>
+    <meta name="description" content="Comprehensive feature documentation for the Autophage Protocol">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Title -->
+        <div class="latex-title">
+            <h1>Complete Feature Set</h1>
+            <div class="latex-author"><a href="about.html#research">0x42 Research</a></div>
+            <div class="latex-date">Version 1.0 — \today</div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="latex-nav">
+            <a href="index.html">Home</a> •
+            <a href="about.html">About</a> •
+            <a href="paper/litepaper.pdf" target="_blank">Litepaper</a> •
+            <div class="dropdown">
+                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Tools ▼</button>
+                <div class="dropdown-content">
+                    <a href="simulations.html">Interactive Simulations</a>
+                    <a href="math.html">Mathematical Reference</a>
+                </div>
+            </div>
+            •
+            <div class="dropdown">
+                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Extras ▼</button>
+                <div class="dropdown-content">
+                    <a href="plain-language.html">Plain Language Summary</a>
+                    <a href="author-note.html">Note from the Author</a>
+                    <a href="versions.html">Version History</a>
+                    <a href="references.html">References</a>
+                    <a href="features.html">Complete Feature Set</a>
+                    <a href="extended-math.html">Extended Mathematics</a>
+                    <a href="https://github.com/statusdothealth/litepaper" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="latex-abstract">
+            <h2>About this page</h2>
+            <p>
+            This document provides an exhaustive list of all Autophage Protocol features, including those not covered in the main litepaper. It serves as extended reading for understanding the protocol's full potential and future capabilities.
+            </p>
+        </div>
+
+        <h1>Core Protocol Features</h1>
+
+        <p>
+        Mandatory token decay creates an economy where value must circulate rather than accumulate. Proof of Temporal Persistence (PoTP) solves health incentives, privacy verification, and sustainable economics simultaneously.
+        </p>
+
+        <p>
+        Four token species provide temporal diversity matching health's natural rhythms. Rhythm tokens implement 5% daily decay mirroring cardiovascular fitness deterioration. Healing tokens use 0.75% daily decay acknowledging therapeutic timelines. Foundation tokens apply 0.1% daily decay reflecting preventive care's lasting impact. Catalyst tokens employ dynamic decay adjustment to maintain marketplace balance.
+        </p>
+
+        <p>
+        The dual-balance Reservoir manages both token and USDC flows through mathematical homeostasis. Three-tier liquidity system ensures healthcare access regardless of market conditions. Dynamic energy gradients between 1.2× and 3.0× create counter-cyclical stability.
+        </p>
+
+        <h2>Advanced Features</h2>
+        <p>
+        Metabolic Pricing enables dynamic price discovery based on energy expenditure with an average of $0.80 per activity. Energy Gradients provide counter-cyclical adjustments between 1.2× and 3.0× based on system health. Guaranteed Healthcare Access ensures Reservoir exchanges at metabolic price regardless of market conditions. The Multi-species Token System employs four distinct token types with different decay rates matching health rhythms. Automatic Rebalancing maintains system equilibrium through mathematical homeostasis.
+        </p>
+
+        <h1>Privacy Architecture</h1>
+
+        <p>
+        Zero-knowledge proofs enable health verification without exposing personal data through app-selected agnostic zkVMs. ProfileID generation uses SHA-256 with 768-bit entropy preventing identity correlation. Three-layer privacy architecture maintains mathematical separation between identity and activity.
+        </p>
+
+        <p>
+        K-anonymity enforcement requires minimum 100,000 users for all aggregate data releases. Temporal batching with 7-14 day delays prevents timing correlation attacks. Differential privacy injection makes individual identification mathematically impossible. Client-side encryption protects all metadata before transmission. Selective disclosure allows users to reveal chosen information while maintaining baseline privacy.
+        </p>
+
+        <h1>Economic Features</h1>
+
+        <h2>Revenue Streams</h2>
+        <p>
+        Time-Decayed Cash Access preserves 30% minimum value for healthcare needs. Wellness Vaults offer 30 to 365 day lock periods with 1 to 3% APY. Application Integration costs $0.15 monthly per user for zkVM orchestration. Marketplace Fees distribute 88% to sellers, 7% to protocol, and 5% to apps. Enterprise Verification requires $50 per employee quarterly. Compliance Reporting ranges from $100 to $500 per regulatory report. Data Analytics APIs cost $1 to $2 per member per month or $0.10 to $0.50 per query.
+        </p>
+
+        <p>
+        Overlapping reserve requirements ensure mathematical solvency through multiple safety margins. Circuit breakers activate at 80% reserve utilization to prevent bank runs. Healthcare settlements receive absolute priority over other redemptions. Fee revenue flows entirely to Reservoir with no external profit extraction. Unit economics achieve 91.7% contribution margin per user.
+        </p>
+
+        <h1>Token Generation System</h1>
+
+        <p>
+        Synergy bonuses reward holistic health: 10% for 2 activity types, 20% for 3 types, 25% for 4+ types daily. Seasonal multipliers align with human patterns: January 2.5×, April 2.0×, July 2.3×, October 1.8×, December 1.4×. Base rewards vary by activity type and difficulty level. Intensity multipliers reward vigorous activities up to 2.0×. Consistency bonuses use logarithmic scaling to reward sustained behavior.
+        </p>
+
+        <p>
+        Social multipliers encourage group activities with up to 1.5× rewards. Quality verification affects rewards based on data richness. Temporal multipliers align with circadian rhythms through sine wave calculations. Total multiplier cap at 2.0× prevents exploitation while maintaining incentives.
+        </p>
+
+        <h1>Future Protocol Extensions</h1>
+
+        <h2>Genetic Adaptation System</h2>
+        <p>
+        Trait Evolution allows users to burn tokens to evolve 0 to 10 genetic traits. Exponential Costs range from 1,000 to 2,500,000 tokens for trait progression. Activity Bonuses provide 5 to 15% boost per trait with a 50% maximum combined benefit. Privacy-Preserving design ensures traits remain hidden unless selectively revealed. Marketplace Premium enables 100 to 200% price increase for specialized traits.
+        </p>
+
+        <h2>Advanced Governance</h2>
+        <p>
+        Proof of Contribution determines voting weight based on lifetime Reservoir contributions. Market-Based Evolution allows users to stake tokens on improvements and earn USDC on success. Natural Selection ensures features with less than 1% usage sunset after 180 days. Emergency Governance requires 7 of 9 lifetime contributors for critical changes. Reputation Scoring recognizes non-monetary contributions toward influence.
+        </p>
+
+        <h2>Planned Integrations</h2>
+        <p>
+        Insurance Partnerships will enable direct integration with health insurance providers. Medical Provider Networks will offer streamlined verification through healthcare APIs. Wearable Device Support will provide automatic activity verification from fitness trackers. Corporate Wellness Programs will implement a B2B2C model for employee health initiatives. Research Data Marketplace will offer anonymized health insights for medical research.
+        </p>
+
+        <h1>Biological Laws Implementation</h1>
+
+        <p>
+        Kleiber's Law implements metabolic scaling with efficiency bonuses for network growth. Liebig's Law identifies bottlenecks and doubles rewards in constrained dimensions. Allee Effect prevents death spirals through multipliers below critical mass. Circadian alignment creates 30% reward variations following natural biorhythms.
+        </p>
+
+        <p>
+        Optimal foraging theory guides activity recommendations through ROI calculations. Bergmann's Rule adjusts reserves based on environmental hostility metrics. R/K selection theory modulates reward variance based on system maturity.
+        </p>
+
+        <h1>Marketplace Features</h1>
+
+        <p>
+        Three privacy tiers for proof listings: anonymous (baseline), ProfileID revelation (50-100% premium), and genetic trait display (100-200% additional premium). ProfileID revelation enables buyers to follow specific health journeys creating parasocial relationships. Genetic trait display allows sellers to showcase specialized expertise commanding premium prices.
+        </p>
+
+        <p>
+        Consumer-to-Consumer layer enables proof monetization with privacy tiers. Business-to-Business layer provides verification APIs and integration services. Business-to-Business-to-Consumer serves enterprise wellness verification needs. Privacy-preserving analytics enable population insights without individual exposure. Marketplace activity generates Catalyst tokens through quality and rarity formulas.
+        </p>
+
+        <h1>Technical Infrastructure</h1>
+
+        <p>
+        zkVM performance achieves sub-50ms proof generation at $0.003 per proof enabling mobile verification. State channel integration reduces blockchain transactions by 95% through off-chain accumulation. Anonymity accumulator requires k=100,000 users before any aggregate data release. Temporal batching adds 0-6 hour random delays within 24-hour windows preventing correlation.
+        </p>
+
+        <p>
+        Lazy evaluation calculates decay only during transactions saving gas. Batch operations process multiple actions in single transactions. Smart contract formal verification ensures mathematical correctness. Multi-signature upgrades require timelock periods for security. API specifications enable standardized app integration.
+        </p>
+
+        <h1>Implementation Roadmap</h1>
+
+        <h2>Phase 1: Core Protocol (Months 1-6)</h2>
+        <p>
+        The first phase includes smart contract deployment on selected blockchain. Basic token mechanics with four species will be implemented. Reservoir implementation with dual balances will establish the economic foundation. Initial app SDK and verification framework will enable third-party development. Basic privacy features with zkVM integration will protect user data from launch.
+        </p>
+
+        <h2>Phase 2: Marketplace Launch (Months 7-12)</h2>
+        <p>
+        Phase two introduces the Consumer-to-Consumer proof marketplace. Business API integration layer will serve enterprise needs. Advanced privacy tiers and ProfileID system will enhance user control. Catalyst token dynamics will maintain market balance. Initial enterprise partnerships will validate the business model.
+        </p>
+
+        <h2>Phase 3: Ecosystem Expansion (Year 2)</h2>
+        <p>
+        The third phase features genetic adaptation system rollout. Insurance provider integrations will expand healthcare access. Wellness Vault advanced features will enhance financial tools. Cross-chain interoperability will broaden ecosystem reach. Global regulatory compliance framework will enable international expansion.
+        </p>
+
+        <h1>Research & Development</h1>
+
+        <h2>Ongoing Research Areas</h2>
+        <p>
+        Behavioral Economics research focuses on optimal decay rates for different health behaviors. Privacy Technology explores next-generation zero-knowledge proof systems. Biological Modeling investigates additional natural laws for economic systems. Network Theory examines scale effects beyond Kleiber's and Metcalfe's Laws. Game Theory analyzes multi-agent equilibrium dynamics.
+        </p>
+
+        <h2>Experimental Features</h2>
+        <p>
+        Social Recovery Mechanisms provide community support for health setbacks. Predictive Health Rewards deliver AI-driven personalized incentives. Cross-Protocol Bridges enable integration with other DeFi systems. Decentralized Governance outlines the full DAO transition roadmap. Global Health Metrics facilitate population-level health tracking.
+        </p>
+
+        <h1>Additional Resources</h1>
+
+        <h2>Technical Documentation</h2>
+        <p>
+        Available technical resources include the Smart Contract Architecture Guide for blockchain developers. App Developer SDK Documentation enables third-party integrations. zkVM Integration Specifications detail privacy implementation. API Reference Manual provides comprehensive endpoint documentation. Security Audit Reports demonstrate protocol safety.
+        </p>
+
+        <h2>Community Resources</h2>
+        <p>
+        The Discord Community for Developers facilitates technical collaboration. Weekly Research Seminars explore protocol innovations. Open Source Contribution Guidelines welcome community development. Bug Bounty Program Details incentivize security research. Grant Program for Ecosystem Development funds innovative applications.
+        </p>
+
+        <!-- Footer -->
+        <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">
+            <p>© <span id="copyright-year">2025</span> 0x42 Farm LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'Complete Feature Set',
+            version: '1.0'
+        });
+        
+        // Set date
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateElement = document.querySelector('.latex-date');
+            if (dateElement) {
+                const today = new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                dateElement.innerHTML = dateElement.innerHTML.replace('\\today', today);
+            }
+            
+            // Update copyright year
+            const yearElement = document.getElementById('copyright-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        });
+        
+        // Dropdown toggle
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // Close all other open dropdowns first
+            document.querySelectorAll('.dropdown.show').forEach(d => {
+                if (d !== event.target.closest('.dropdown')) {
+                    d.classList.remove('show');
+                }
+            });
+            
+            // Toggle the clicked dropdown
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown.show').forEach(d => {
+                    d.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
