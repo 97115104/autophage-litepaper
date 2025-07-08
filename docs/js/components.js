@@ -118,7 +118,23 @@ const Components = {
     footer: function() {
         return `
         <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">
-            <p>© <span id="copyright-year">${new Date().getFullYear()}</span> ${CONFIG.copyright}. All rights reserved.</p>
+            <p>© <span id="copyright-year">${new Date().getFullYear()}</span> ${CONFIG.copyright}. All rights reserved.
+          <a href="https://attest.ink" 
+             target="_blank" 
+             rel="noopener" 
+             title="Built with AI assistance"
+             style="display: inline-flex; align-items: center; gap: 3px; padding: 2px 6px; margin-left: 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #888; text-decoration: none; font-size: 10px; opacity: 0.6; transition: all 0.2s; vertical-align: middle; -webkit-tap-highlight-color: transparent;"
+             onmouseover="if(!('ontouchstart' in window)) { this.style.opacity='0.9'; this.querySelector('span').textContent='Built with AI'; }" 
+             onmouseout="if(!('ontouchstart' in window)) { this.style.opacity='0.6'; this.querySelector('span').textContent='AI'; }">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="2" fill="currentColor"/>
+              <path d="M12 6V8M12 16V18M18 12H16M8 12H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>AI</span>
+          </a>
+            </p>
         </footer>
         `;
     },
