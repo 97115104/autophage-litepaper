@@ -23,6 +23,7 @@ const CONFIG = {
                 { label: 'Use Cases', href: 'use-cases' },
                 { label: 'Complete Feature Set', href: 'features' },
                 { label: 'Extended Mathematics', href: 'extended-math' },
+                { label: 'Gini Simulation Script', href: 'gini-simulation' },
                 { label: 'References', href: 'references' },
                 { label: 'Version History', href: 'versions' },
                 { label: 'Note from the Author', href: 'author-note' },
