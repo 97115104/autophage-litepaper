@@ -107,7 +107,7 @@ The documentation is organized for different audiences:
 - 📊 [Live Simulations](docs/simulations.html)
 
 **Research & Analysis:**
-- 📈 [Gini Coefficient Simulation Script](extras/gini-simulation.py)
+- 📈 [Gini Coefficient Simulation Script](https://autophage.xyz/gini-simulation.py) | [Local](extras/gini-simulation.py)
 - 🔬 [Extended Mathematical Proofs](docs/extended-math.html)
 - 📝 [Patent Application](https://0x42.farm/patents/1) - System and Method for Privacy-Preserving Health Incentives
 
