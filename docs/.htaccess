@@ -1,11 +1,17 @@
 # Remove .html extension from URLs
 RewriteEngine On
 
+# Set correct MIME type for Python files
+<Files "*.py">
+    AddType text/plain .py
+    Header set Content-Disposition "inline; filename=%{REQUEST_FILENAME}s"
+</Files>
+
 # Redirect .html to clean URLs
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1? [NC,L,R=301]
 
-# Serve .html for clean URLs
+# Serve .html for clean URLs (but not for files that exist)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^.]+)$ $1.html [NC,L]

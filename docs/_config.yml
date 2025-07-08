@@ -13,6 +13,11 @@ exclude:
   - serve.py
   - test-local.sh
 
-# Include dotfiles
+# Include dotfiles and Python files
 include:
   - .htaccess
+  - "*.py"
+
+# Don't process Python files with Jekyll
+keep_files:
+  - "gini-simulation.py"
