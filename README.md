@@ -109,7 +109,7 @@ The documentation is organized for different audiences:
 **Research & Analysis:**
 - 📈 [Gini Coefficient Simulation Script](https://autophage.xyz/gini-simulation) | [Local](extras/gini-simulation.py)
 - 🔬 [Extended Mathematical Proofs](docs/extended-math.html)
-- 📝 [Patent Application](https://0x42.farm/patents/1) - System and Method for Privacy-Preserving Health Incentives
+- 📝 [Patent Application](https://0x42r.io/patents/1) - System and Method for Privacy-Preserving Health Incentives
 
 **Development:**
 - 💻 [GitHub Repository](https://github.com/statusdothealth/litepaper)
@@ -118,8 +118,8 @@ The documentation is organized for different audiences:
 
 ## About the Research
 
-**Organization**: 0x42 Research (0x42 Farm LLC)  
-**Website**: [0x42.farm](https://0x42.farm)  
+**Organization**: 0x42 Research (0x42r LLC)  
+**Website**: [0x42r.io](https://0x42r.io)  
 **Protocol Website**: [autophage.xyz](https://autophage.xyz)  
 **Email**: info@0x42r.io  
 **Author**: Austin Harshberger
@@ -149,6 +149,6 @@ This is an active research project welcoming collaboration:
 
 ## License
 
-© 2025 0x42 Farm LLC. All rights reserved.
+© 2025 0x42r LLC. All rights reserved.
 
 The Autophage Protocol is currently in the research and development phase. Implementation details and specifications may evolve as the protocol matures toward production deployment.
