@@ -121,7 +121,7 @@ The documentation is organized for different audiences:
 **Organization**: 0x42 Research (0x42 Farm LLC)  
 **Website**: [0x42.farm](https://0x42.farm)  
 **Protocol Website**: [autophage.xyz](https://autophage.xyz)  
-**Email**: research@0x42.farm  
+**Email**: info@0x42r.io  
 **Author**: Austin Harshberger
 
 The Autophage Protocol represents a fundamental reimagining of economic systems, applying biological principles to create sustainable, health-focused value networks. The research combines cryptographic privacy preservation, mathematical modeling of biological systems, and empirical governance mechanisms to create an economy that rewards activity over accumulation.
@@ -131,7 +131,7 @@ The Autophage Protocol represents a fundamental reimagining of economic systems,
 This is an active research project welcoming collaboration:
 
 - 🐛 **Issues**: Open GitHub issues for bugs, suggestions, or questions
-- 📧 **Research**: Email research@0x42.farm for academic collaboration
+- 📧 **Research**: Email info@0x42r.io for academic collaboration
 - 💡 **Ideas**: Join discussions about protocol improvements and implementations
 - 🔬 **Simulations**: Contribute analysis tools and mathematical models
 
