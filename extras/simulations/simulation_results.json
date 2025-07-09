@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-07-09T04:16:25.137742",
+  "parameters": {
+    "n_users": 10000,
+    "n_days": 365,
+    "n_runs": 10,
+    "activity_rate": 0.7,
+    "decay_rates": {
+      "Rhythm": 0.05,
+      "Healing": 0.0075,
+      "Foundation": 0.001,
+      "Catalyst": 0.05
+    }
+  },
+  "results": {
+    "autophage": {
+      "final_gini_mean": 0.0837920913606283,
+      "final_gini_std": 0.0008044206935002947,
+      "final_gini_ci": [
+        0.08329350624929541,
+        0.0842906764719612
+      ]
+    },
+    "traditional": {
+      "final_gini_mean": 0.5674218191560474,
+      "final_gini_std": 0.0027667691853580827,
+      "final_gini_ci": [
+        0.5657069578484502,
+        0.5691366804636446
+      ]
+    }
+  }
+}

@@ -12,7 +12,7 @@ const CONFIG = {
         tools: {
             label: 'Tools',
             items: [
-                { label: 'Interactive Simulations', href: 'simulations' },
+                { label: 'Simulations', href: 'simulations-hub' },
                 { label: 'Mathematical Reference', href: 'math' }
             ]
         },
@@ -23,10 +23,9 @@ const CONFIG = {
                 { label: 'Use Cases', href: 'use-cases' },
                 { label: 'Complete Feature Set', href: 'features' },
                 { label: 'Extended Mathematics', href: 'extended-math' },
-                { label: 'Gini Simulation Script', href: 'gini-simulation' },
                 { label: 'References', href: 'references' },
-                { label: 'Version History', href: 'versions' },
                 { label: 'Note from the Author', href: 'author-note' },
+                { label: 'Version History', href: 'versions' },
                 { label: 'GitHub', href: 'https://github.com/statusdothealth/litepaper', external: true }
             ]
         }

@@ -83,47 +83,28 @@ function runGiniSimulation() {
     // Run simulation asynchronously
     setTimeout(() => {
     
-    // Initialize wealth arrays
-    const traditionalWealth = new Array(numAgents).fill(1000);
-    const autophageWealth = new Array(numAgents).fill(1000);
+    // Use the new simulation classes
+    const autoSim = new AutophageBrowserSim(numAgents, simDays);
+    const tradSim = new TraditionalEconomySim(numAgents, simDays);
     
-    // Data for chart
+    // Run simulations
+    const autophageGini = autoSim.run();
+    const traditionalGini = tradSim.run();
+    
+    // Create labels for chart
     const labels = [];
-    const traditionalGini = [];
-    const autophageGini = [];
+    for (let i = 0; i <= simDays; i++) {
+        if (i % 5 === 0) labels.push(i);
+    }
     
-    // Simulation parameters
-    const decayRate = 0.02;
-    const activityRate = 0.7; // 70% of agents active daily
-    
-    for (let day = 0; day <= simDays; day += 5) {
-        labels.push(day);
-        
-        // Traditional economy - rich get richer with compound interest
-        for (let i = 0; i < numAgents; i++) {
-            if (Math.random() < activityRate) {
-                // Wealth accumulation favors those who already have more
-                const gain = traditionalWealth[i] * 0.005 * (1 + Math.random());
-                traditionalWealth[i] += gain;
-            }
-            // Add small random investment returns that favor the wealthy
-            traditionalWealth[i] += traditionalWealth[i] * 0.0001 * Math.random();
+    // Sample data for chart (every 5th day)
+    const autophageData = [];
+    const traditionalData = [];
+    for (let i = 0; i < autophageGini.length; i++) {
+        if (i % 5 === 0) {
+            autophageData.push(autophageGini[i]);
+            traditionalData.push(traditionalGini[i]);
         }
-        
-        // Autophage economy - with decay and activity rewards
-        for (let i = 0; i < numAgents; i++) {
-            // Apply decay
-            autophageWealth[i] *= (1 - decayRate);
-            
-            // Activity-based rewards (fixed amount regardless of wealth)
-            if (Math.random() < activityRate) {
-                const baseReward = 25 + Math.random() * 15;
-                autophageWealth[i] += baseReward;
-            }
-        }
-        
-        traditionalGini.push(calculateGini(traditionalWealth));
-        autophageGini.push(calculateGini(autophageWealth));
     }
     
     // Create chart
@@ -135,13 +116,13 @@ function runGiniSimulation() {
             labels: labels,
             datasets: [{
                 label: 'Traditional Economy',
-                data: traditionalGini,
+                data: traditionalData,
                 borderColor: '#e74c3c',
                 backgroundColor: 'transparent',
                 tension: 0.1
             }, {
                 label: 'Autophage Protocol',
-                data: autophageGini,
+                data: autophageData,
                 borderColor: '#2ecc71',
                 backgroundColor: 'transparent',
                 tension: 0.1

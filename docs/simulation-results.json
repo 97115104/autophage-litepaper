@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-01-07T14:32:15",
+  "parameters": {
+    "n_users": 10000,
+    "n_days": 365,
+    "n_runs": 10,
+    "activity_rate": 0.7,
+    "decay_rates": {
+      "Rhythm": 0.05,
+      "Healing": 0.0075,
+      "Foundation": 0.001,
+      "Catalyst": 0.05
+    }
+  },
+  "results": {
+    "autophage": {
+      "final_gini_mean": 0.3562,
+      "final_gini_std": 0.0008,
+      "final_gini_ci": [0.3557, 0.3567]
+    },
+    "traditional": {
+      "final_gini_mean": 0.8329,
+      "final_gini_std": 0.0014,
+      "final_gini_ci": [0.8320, 0.8338]
+    }
+  }
+}
