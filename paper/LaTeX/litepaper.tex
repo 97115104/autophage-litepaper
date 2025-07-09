@@ -139,9 +139,18 @@ t_{1/2} = \frac{\ln(0.5)}{\ln(1 - \delta_i)} = \frac{\ln(2)}{\lambda_i}
 
 \textbf{Example 2.1:} Consider Sarah who runs daily, earning 50 Rhythm tokens per run. After maintaining a balance of 1,000 tokens, she stops running for two weeks. Her balance evolution follows:
 
-Day 0: $V = 1,000$ tokens  
-Day 7: $V = 1,000 \times 0.95^7 = 696$ tokens  
-Day 14: $V = 1,000 \times 0.95^{14} = 488$ tokens
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Day} & \textbf{Formula} & \textbf{Balance} \\
+\midrule
+0 & Initial & 1,000 tokens \\
+7 & $1,000 \times 0.95^7$ & 696 tokens \\
+14 & $1,000 \times 0.95^{14}$ & 488 tokens \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 This 51.2\% loss over two weeks mirrors the documented decline in cardiovascular fitness during training cessation \cite{mujika2000detraining}, validating the biological calibration.
 
@@ -173,11 +182,22 @@ M_{time} = 1 + 0.3\sin\left(\frac{2\pi(h - 6)}{24}\right)
 where $h$ is the hour of day in 24-hour format.
 
 \textbf{Example 2.2:} Marcus completes his morning workout routine:
-- Base reward: 35 Rhythm tokens
-- 30-day streak multiplier: $M_{streak} = 1 + \log_{10}(30) = 2.48$
-- 6 AM circadian bonus: $M_{time} = 1 + 0.3\sin(2\pi(6-6)/24) = 1.3$
-- Group workout: $M_{group} = 1.5$
-- Total generation: $35 \times 2.48 \times 1.3 \times 1.5 = 169$ tokens
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Calculation} & \textbf{Value} \\
+\midrule
+Base reward & Standard rate & 35 Rhythm tokens \\
+30-day streak multiplier & $1 + \log_{10}(30)$ & 2.48 \\
+6 AM circadian bonus & $1 + 0.3\sin(2\pi(6-6)/24)$ & 1.3 \\
+Group workout & Standard group bonus & 1.5 \\
+\midrule
+\textbf{Total generation} & $35 \times 2.48 \times 1.3 \times 1.5$ & \textbf{169 tokens} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 This comprehensive system rewards consistency, natural timing, and social engagement while maintaining economic balance.
 
@@ -284,10 +304,20 @@ For continuous acceleration above soft cap:
 where $\beta$ controls sensitivity (typically 0.5-2.0) and $\gamma$ shapes the acceleration curve (typically 1.0-1.5).
 
 \textbf{Example 2.3:} Consider whale protection for Rhythm tokens:
-- Balance $\leq$ 10,000: Standard 5\% decay
-- Balance 10,001-50,000: 7.5\% decay (50\% acceleration)
-- Balance 50,001-100,000: 10\% decay (100\% acceleration)
-- Balance > 100,000: 15\% decay (200\% acceleration)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Balance Range} & \textbf{Decay Rate} & \textbf{Acceleration} & \textbf{Daily Loss (75K example)} \\
+\midrule
+$\leq$ 10,000 & 5\% & Standard & - \\
+10,001-50,000 & 7.5\% & 50\% & - \\
+50,001-100,000 & 10\% & 100\% & 7,500 tokens \\
+> 100,000 & 15\% & 200\% & - \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 A user holding 75,000 Rhythm tokens loses 7,500 daily instead of 3,750 under standard decay, creating natural redistribution pressure.
 
@@ -334,10 +364,22 @@ R_{USDC}(t) \geq \max\left(0.4 \sum_u D_u(t), 3 \times \bar{H}_{monthly}, 0.22 \
 This triple-coverage requirement protects against bank runs, seasonal variations, and catastrophic events.
 
 \textbf{Example 3.1:} System snapshot at 100,000 active users:
-- Daily token decay: 500,000 tokens (average 5 per user)
-- Monthly healthcare settlements: \$800,000
-- Annual revenue: \$4,800,000
-- Required USDC reserve: max(\$1.6M, \$2.4M, \$1.056M) = \$2.4M
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Daily token decay & 500,000 tokens (5/user avg) \\
+Monthly healthcare settlements & \$800,000 \\
+Annual revenue & \$4,800,000 \\
+Required USDC reserve & \$2,400,000 \\
+\midrule
+Reserve calculation & max(\$1.6M, \$2.4M, \$1.056M) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The 3-month coverage requirement dominates, ensuring the system can weather extended stress periods.
 
@@ -356,7 +398,7 @@ The 3-month coverage requirement dominates, ensuring the system can weather exte
 
 % Reservoir
 \node[box, minimum width=4.5cm, minimum height=4cm] (reservoir) at (6,0) {};
-\node[above] at (6,1.8) {\textbf{The Reservoir}};
+\node[above] at (6,2) {\textbf{The Reservoir}};
 \node[chamber, align=center] (tokenchamber) at (6,0.8) {Token Chamber\\$R_{token}(t)$};
 \node[chamber, align=center] (usdcchamber) at (6,-0.8) {USDC Chamber\\$R_{USDC}(t)$};
 
@@ -374,7 +416,7 @@ The 3-month coverage requirement dominates, ensuring the system can weather exte
     node[flowlabel, below, pos=0.5] {USDC};
 
 % Equilibrium conditions
-\node[draw, thick, text width=10cm, align=center, below=2.5cm of reservoir] {
+\node[draw, thick, text width=10cm, align=center, below=1cm of reservoir] {
     \textbf{Equilibrium Maintenance}\\[0.5em]
     Inflows: $\sum \delta_i V_i^{(u)} + F_{total} = $ Outflows: $W_{total} + H_{settle}$\\[0.3em]
     Token velocity: 10-30x monthly circulation\\[0.3em]
@@ -382,6 +424,7 @@ The 3-month coverage requirement dominates, ensuring the system can weather exte
 };
 
 \end{tikzpicture}
+
 \caption{The Reservoir's dual-chamber architecture maintains separation between token metabolism and healthcare settlement liquidity, ensuring both community wealth circulation and guaranteed medical access.}
 \end{figure}
 
@@ -396,10 +439,21 @@ Priority(claim) = \omega_1 \times Urgency + \omega_2 \times Duration + \omega_3 
 where weights $\omega_i$ ensure medical needs supersede all other claims.
 
 \textbf{Example 3.2:} Emergency prescription claim processing:
-- Urgency score: 10 (maximum)
-- Wait duration: 2 hours
-- Provider verification: 8/10
-- Priority score: $0.7 \times 10 + 0.2 \times 2 + 0.1 \times 8 = 8.2$
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Value} & \textbf{Weight} \\
+\midrule
+Urgency score & 10 (maximum) & 0.7 \\
+Wait duration & 2 hours & 0.2 \\
+Provider verification & 8/10 & 0.1 \\
+\midrule
+\textbf{Priority score} & \multicolumn{2}{c}{$0.7 \times 10 + 0.2 \times 2 + 0.1 \times 8 = 8.2$} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 This claim processes ahead of routine wellness rewards (typical score: 2-3) but after critical emergency claims (score: 9+).
 
@@ -412,10 +466,20 @@ Wellness vaults reduce effective decay rates based on lock duration:
 \end{equation}
 
 where $r_{lock}$ is the reduction factor:
-- 30 days: $r_{lock} = 0.09$ (91\% of normal decay)
-- 90 days: $r_{lock} = 0.27$ (73\% of normal decay)  
-- 180 days: $r_{lock} = 0.45$ (55\% of normal decay)
-- 365 days: $r_{lock} = 0.90$ (10\% of normal decay)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Lock Duration} & \textbf{$r_{lock}$ Factor} & \textbf{Effective Decay} & \textbf{Decay Reduction} \\
+\midrule
+30 days & 0.09 & 91\% of normal & 9\% reduction \\
+90 days & 0.27 & 73\% of normal & 27\% reduction \\
+180 days & 0.45 & 55\% of normal & 45\% reduction \\
+365 days & 0.90 & 10\% of normal & 90\% reduction \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Early withdrawal penalty:
 \begin{equation}
@@ -435,24 +499,27 @@ Unlike traditional cryptocurrencies that derive value from speculation, the Auto
 P(t) = \frac{E_{health}(t) \times (1 + \gamma \times C_{ratio}(t)) + V_{market}(t) \times (1 - C_{ratio}(t))}{S_{active}(t) \times V(t) \times (1 + M_{activity}(t))}
 \end{equation}
 
-where:
-- $E_{health}(t)$ = Total metabolic energy from health activities (kcal-equivalent)
-- $V_{market}(t)$ = 30-day rolling marketplace volume (USDC)
-- $S_{active}(t)$ = Circulating supply excluding vaulted tokens
-- $V(t)$ = Token velocity (target: 10-30 monthly)
-- $C_{ratio}(t)$ = Catalyst token proportion
-- $\gamma$ = Energy gradient parameter (1.2-3.0)
-- $M_{activity}(t)$ = System-wide activity level
+where the parameters are defined as follows: $E_{health}(t)$ represents the total metabolic energy from health activities measured in kcal-equivalent. $V_{market}(t)$ captures the 30-day rolling marketplace volume in USDC. $S_{active}(t)$ denotes the circulating supply excluding vaulted tokens. $V(t)$ measures token velocity with a target range of 10-30 monthly transactions. $C_{ratio}(t)$ indicates the proportion of Catalyst tokens in the system. $\gamma$ serves as the energy gradient parameter, typically ranging from 1.2 to 3.0. Finally, $M_{activity}(t)$ reflects the system-wide activity level.
 
 \textbf{Example 4.1:} Price calculation during typical conditions:
-- Daily health energy: 500,000 kcal across all users
-- Standardized energy value: \$0.002 per kcal
-- Monthly marketplace volume: \$150,000
-- Active supply: 10 million tokens
-- Current velocity: 15x monthly
-- Catalyst ratio: 0.23
-- Activity multiplier: 1.4
-- Energy gradient: 2.0
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Parameter} & \textbf{Value} \\
+\midrule
+Daily health energy & 500,000 kcal \\
+Standardized energy value & \$0.002 per kcal \\
+Monthly marketplace volume & \$150,000 \\
+Active supply & 10 million tokens \\
+Current velocity & 15x monthly \\
+Catalyst ratio & 0.23 \\
+Activity multiplier & 1.4 \\
+Energy gradient & 2.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{align}
 P(t) &= \frac{(500,000 \times 0.002) \times (1 + 2.0 \times 0.23) + (150,000/30) \times (1 - 0.23)}{10,000,000 \times (15/30) \times (1 + 1.4)} \\
@@ -470,11 +537,22 @@ E_{activity} = T_{duration} \times W_{wage} + C_{metabolic} \times F_{food} + O_
 \end{equation}
 
 \textbf{Example 4.2:} 45-minute therapy session energy calculation:
-- Time cost: 0.75 hours × \$30/hour = \$22.50
-- Emotional energy: 200 kcal-equivalent × \$0.002 = \$0.40
-- Transportation: \$5.00
-- Opportunity cost: \$10.00
-- Total energy: \$37.90
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Cost Component} & \textbf{Calculation} & \textbf{Amount} \\
+\midrule
+Time cost & 0.75 hours × \$30/hour & \$22.50 \\
+Emotional energy & 200 kcal-equivalent × \$0.002 & \$0.40 \\
+Transportation & Fixed cost & \$5.00 \\
+Opportunity cost & Estimated value & \$10.00 \\
+\midrule
+\textbf{Total energy cost} & Sum of components & \textbf{\$37.90} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 This establishes the baseline value for Healing token generation from therapy activities.
 
@@ -492,11 +570,21 @@ ProfileID = H(H(UserID || Salt_1) || Salt_2 || Secret)
 This double-hashing with independent salts provides 768 bits of entropy, making correlation attacks computationally infeasible even with quantum advances.
 
 \textbf{Example 5.1:} Privacy preservation in practice:
-- Alice's UserID: `alice@email.com` 
-- System-generated Salt$_1$: 256 random bits
-- User-controlled Salt$_2$: 256 random bits
-- User secret: 256-bit passphrase
-- Resulting ProfileID: `0x7f3a...9b2e` (indistinguishable from random)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Value} \\
+\midrule
+Alice's UserID & `alice@email.com` \\
+System-generated Salt$_1$ & 256 random bits \\
+User-controlled Salt$_2$ & 256 random bits \\
+User secret & 256-bit passphrase \\
+Resulting ProfileID & `0x7f3a...9b2e` (indistinguishable from random) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Even if an attacker compromises the system database and obtains Salt$_1$, they cannot correlate ProfileIDs without also obtaining user-controlled Salt$_2$ and Secret values.
 
@@ -520,12 +608,19 @@ Full & + Historical patterns, correlations & \$100 & 500\% (\$600) \\
 \end{table}
 
 \textbf{Example 5.2:} Sarah's marathon proof monetization:
-- Anonymous listing: ``Sub-4:30 marathon, major city, female 25-34''
-- Sells for: \$100
-- ProfileID listing: Same + ``180-day running streak, 3 marathons/year''
-- Sells for: \$175
-- Genetic listing: Same + ``Endurance Elite trait, VO$_2$ optimization''
-- Sells for: \$350
+
+\begin{table}[h]
+\centering
+\begin{tabular}{p{2cm}p{8cm}c}
+\toprule
+\textbf{Privacy Tier} & \textbf{Information Revealed} & \textbf{Sale Price} \\
+\midrule
+Anonymous & ``Sub-4:30 marathon, major city, female 25-34'' & \$100 \\
+ProfileID & Same + ``180-day running streak, 3 marathons/year'' & \$175 \\
+Genetic & Same + ``Endurance Elite trait, VO$_2$ optimization'' & \$350 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Buyers value additional information for research, motivation, or verification purposes while Sarah maintains control over disclosure levels.
 
@@ -540,11 +635,21 @@ Health activities undergo privacy-preserving verification \cite{groth2016size}:
 where the statement proves properties without revealing underlying data.
 
 \textbf{Example 5.3:} Therapy session verification:
-- Private data: Therapist name, location, session notes, diagnosis codes
-- Public statement: ``Completed 50-minute therapy session on 2025-07-07''
-- Proof $\pi$: Cryptographic evidence statement is true
-- Token generation: 80 Healing tokens
-- Revealed information: None beyond the public statement
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Data Type} & \textbf{Details} \\
+\midrule
+Private data & Therapist name, location, session notes, diagnosis codes \\
+Public statement & ``Completed 50-minute therapy session on 2025-07-07'' \\
+Proof $\pi$ & Cryptographic evidence statement is true \\
+Token generation & 80 Healing tokens \\
+Revealed information & None beyond the public statement \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % Section 7: Biological Scaling Laws
 \section{Biological Scaling Laws}
@@ -560,10 +665,20 @@ Metabolic efficiency scales with network size following quarter-power scaling \c
 where $\alpha = 0.3$ and $N_0 = 1,000$ (reference network size).
 
 \textbf{Example 6.1:} Network scaling benefits:
-- 1,000 users: $\eta = 1 + 0.3 \times 1 = 1.30$ (30\% bonus)
-- 10,000 users: $\eta = 1 + 0.3 \times 1.78 = 1.53$ (53\% bonus)
-- 100,000 users: $\eta = 1 + 0.3 \times 3.16 = 1.95$ (95\% bonus)
-- 1,000,000 users: $\eta = 1 + 0.3 \times 5.62 = 2.69$ (169\% bonus)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rccc}
+\toprule
+\textbf{Network Size} & \textbf{Scaling Calculation} & \textbf{$\eta$ Value} & \textbf{Bonus} \\
+\midrule
+1,000 & $1 + 0.3 \times 1$ & 1.30 & 30\% \\
+10,000 & $1 + 0.3 \times 1.78$ & 1.53 & 53\% \\
+100,000 & $1 + 0.3 \times 3.16$ & 1.95 & 95\% \\
+1,000,000 & $1 + 0.3 \times 5.62$ & 2.69 & 169\% \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Larger networks provide efficiency benefits to all participants, mimicking biological metabolic scaling.
 
@@ -582,10 +697,21 @@ M_{bottleneck} = 1 + \kappa \times \left(\theta - H_{min}\right)
 \end{equation}
 
 \textbf{Example 6.2:} Geographic bottleneck response:
-- Urban participation: 85\% healthy
-- Rural participation: 45\% (below 70\% threshold)
-- Bottleneck multiplier: $M = 1 + 2 \times (0.7 - 0.45) = 1.5$
-- Rural users earn 50\% bonus tokens until balance restored
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Urban} & \textbf{Rural} \\
+\midrule
+Participation rate & 85\% & 45\% \\
+Health threshold & 70\% & 70\% \\
+Status & Healthy & Below threshold \\
+Bottleneck calculation & - & $M = 1 + 2 \times (0.7 - 0.45) = 1.5$ \\
+Token bonus & Standard & 50\% bonus \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Additional Biological Laws}
 
@@ -764,8 +890,8 @@ Monte Carlo simulations \cite{statusdothealth2025gini} across 10,000 users for 3
 \addlegendentry{US Dollar}
 
 % Target zone
-\fill[gray!20] (0,0.32) rectangle (365,0.38);
-\node[fill=white, font=\small] at (182.5,0.35) {Target Range};
+\fill[gray!20] (0,0.21) rectangle (365,0.29);
+\node[fill=white, font=\small] at (182.5,0.25) {Target Range};
 
 \end{axis}
 \end{tikzpicture}
@@ -773,10 +899,20 @@ Monte Carlo simulations \cite{statusdothealth2025gini} across 10,000 users for 3
 \end{figure}
 
 \textbf{Example 7.1:} Projected wealth distribution after one year (based on Monte Carlo simulation):
-- Top 10\%: Would hold approximately 24\% of wealth (vs 78\% in Bitcoin)
-- Bottom 50\%: Would hold approximately 28\% of wealth (vs 2\% in Bitcoin)
-- Median user: Would maintain 680-850 tokens through regular activity
-- Maximum sustainable balance: ~50,000 tokens (requires extreme daily activity)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Population Segment} & \textbf{Autophage} & \textbf{Bitcoin} \\
+\midrule
+Top 10\% wealth share & 24\% & 78\% \\
+Bottom 50\% wealth share & 28\% & 2\% \\
+Median user balance & 680-850 tokens & Variable \\
+Maximum sustainable balance & ~50,000 tokens & Unlimited \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Revenue Model and Unit Economics}
 
@@ -799,10 +935,24 @@ Enterprise Verification & \$1.25 & 92\% & \$15.0M \\
 \end{table}
 
 \textbf{Example 7.2:} Break-even analysis:
-- Fixed costs: \$30,000/month (development, infrastructure)
-- Variable cost per user: \$0.15/month
-- Break-even users: \$30,000 / (\$1.85 - \$0.15) = 17,647 users
-- Achieved in month 8-10 based on growth projections
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Cost Component} & \textbf{Amount} \\
+\midrule
+Fixed costs (monthly) & \$30,000 \\
+Variable cost per user & \$0.15/month \\
+Revenue per user & \$1.85/month \\
+Contribution margin & \$1.70/month \\
+\midrule
+Break-even calculation & \$30,000 / \$1.70 \\
+\textbf{Break-even users} & \textbf{17,647} \\
+Projected timeline & Month 8-10 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % Section 9: Empirical Governance
 \section{Empirical Governance}
@@ -818,12 +968,20 @@ C_{score} = w_1 \times \log_{10}(1 + R_{lifetime}) + w_2 \times V_{reputation} +
 where $w_1 = 0.5$, $w_2 = 0.3$, $w_3 = 0.2$.
 
 \textbf{Example 8.1:} Voting power calculation:
-- Alice: 50,000 lifetime tokens decayed, 95\% verification accuracy, 80\% active
-  - Score: $0.5 \times \log_{10}(50,001) + 0.3 \times 0.95 + 0.2 \times 0.80 = 2.80$
-- Bob: 5,000 lifetime tokens, 70\% accuracy, 40\% active
-  - Score: $0.5 \times \log_{10}(5,001) + 0.3 \times 0.70 + 0.2 \times 0.40 = 2.14$
-- Alice's voting power: $\sqrt{2.80} = 1.67$
-- Bob's voting power: $\sqrt{2.14} = 1.46$
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{User} & \textbf{Lifetime Tokens} & \textbf{Accuracy} & \textbf{Active} & \textbf{Score} & \textbf{Voting Power} \\
+\midrule
+Alice & 50,000 & 95\% & 80\% & 2.80 & 1.67 \\
+Bob & 5,000 & 70\% & 40\% & 2.14 & 1.46 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Score calculation: Alice achieves a score of $0.5 \times \log_{10}(50,001) + 0.3 \times 0.95 + 0.2 \times 0.80 = 2.80$, while Bob's score is $0.5 \times \log_{10}(5,001) + 0.3 \times 0.70 + 0.2 \times 0.40 = 2.14$.
 
 \subsection{On-Chain Experimentation}
 
@@ -836,17 +994,30 @@ All protocol changes require empirical validation:
 where $\epsilon = 0.05$ (5\% improvement) and $\alpha = 0.05$ (statistical significance).
 
 \textbf{Example 8.2:} Seasonal affective multiplier proposal:
-- Hypothesis: 2x winter rewards increase activity
-- Stake: 500 Catalyst tokens
-- Test group: 5,000 random users
-- Control: 5,000 random users
-- Duration: 30 days
-- Results: 
-  - Control average: 12.3 activities/month
-  - Treatment average: 15.8 activities/month
-  - Improvement: 28.5\%
-  - p-value: 0.0012
-- Outcome: Proposal passes, stake returned + 100 USDC bonus
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Experiment Parameter} & \textbf{Value} \\
+\midrule
+Hypothesis & 2x winter rewards increase activity \\
+Stake required & 500 Catalyst tokens \\
+Test group size & 5,000 random users \\
+Control group size & 5,000 random users \\
+Duration & 30 days \\
+\midrule
+\textbf{Results} & \\
+Control average & 12.3 activities/month \\
+Treatment average & 15.8 activities/month \\
+Improvement & 28.5\% \\
+p-value & 0.0012 \\
+\midrule
+Outcome & Proposal passes \\
+Reward & Stake returned + 100 USDC bonus \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % Section 10: Implementation Architecture
 \section{Implementation Architecture}
@@ -899,56 +1070,57 @@ The protocol consists of four primary contracts with specific responsibilities \
 
 Efficient implementation enables scalability:
 
-1. \textbf{Lazy Decay}: Calculate only on interaction
-   - Gas saved: ~17,000 per unused day
-   - Storage optimization: Single timestamp per user-species pair
-   - Implementation:
+1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair. The implementation follows:
    \begin{verbatim}
    actualBalance = storedBalance * (1 - decayRate) ^ daysSinceUpdate
    \end{verbatim}
 
-2. \textbf{Batch Processing}: Aggregate multiple proofs
-   - Batch size: Up to 100 proofs
-   - Gas reduction: 85\% vs individual transactions
-   - Merkle tree root submission for verification
+2. \textbf{Batch Processing}: Aggregate multiple proofs with batch sizes up to 100 proofs, achieving 85\% gas reduction compared to individual transactions through Merkle tree root submission for verification.
 
-3. \textbf{State Channels}: Off-chain accumulation
-   - Frequency: Daily settlement
-   - Reduction: 95\% fewer on-chain transactions
-   - Lightning-style payment channels for micropayments
+3. \textbf{State Channels}: Off-chain accumulation with daily settlement frequency, reducing on-chain transactions by 95\% through Lightning-style payment channels for micropayments.
 
 \textbf{Example 9.1:} Gas cost comparison:
-- Individual daily verification: 65,000 gas × 30 = 1,950,000 gas/month
-- Batched weekly verification: 120,000 gas × 4 = 480,000 gas/month
-- Savings: 75\% reduction in gas costs
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Verification Method} & \textbf{Calculation} & \textbf{Monthly Gas} \\
+\midrule
+Individual daily & 65,000 gas × 30 & 1,950,000 gas \\
+Batched weekly & 120,000 gas × 4 & 480,000 gas \\
+\midrule
+\textbf{Savings} & \multicolumn{2}{c}{75\% reduction in gas costs} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % Section 11: Limitations and Future Work
 \section{Limitations and Future Work}
 
 \subsection{Technical Limitations}
 
-Several constraints affect current implementation:
-
-1. \textbf{Proof Generation Overhead}: Zero-knowledge proofs require 47-180 seconds on mobile devices
-2. \textbf{Cross-Chain Fragmentation}: Each blockchain requires separate deployment
-3. \textbf{Regulatory Uncertainty}: Health token classification varies by jurisdiction
-4. \textbf{Behavioral Inertia}: Users resist ``disappearing money'' concept
+Several constraints affect current implementation. First, proof generation overhead presents a challenge, as zero-knowledge proofs require 47-180 seconds on mobile devices. Second, cross-chain fragmentation necessitates separate deployment for each blockchain. Third, regulatory uncertainty creates complexity as health token classification varies by jurisdiction. Finally, behavioral inertia manifests as user resistance to the concept of ``disappearing money.''
 
 \subsection{Future Research Directions}
 
-Priority areas for continued development:
-
-1. \textbf{Mobile-Optimized zkSNARKs}: Target sub-10 second proof generation
-2. \textbf{Cross-Chain Bridges}: Unified liquidity across ecosystems
-3. \textbf{Regulatory Frameworks}: Proactive engagement with health authorities
-4. \textbf{Behavioral Studies}: A/B testing optimal decay rates
-5. \textbf{Chronic Condition Support}: Adaptive parameters for different health needs
+Priority areas for continued development include mobile-optimized zkSNARKs targeting sub-10 second proof generation, cross-chain bridges for unified liquidity across ecosystems, regulatory frameworks through proactive engagement with health authorities, behavioral studies using A/B testing to determine optimal decay rates, and chronic condition support through adaptive parameters for different health needs.
 
 \textbf{Example 10.1:} Chronic condition adaptation:
-- Standard user: 5\% daily Rhythm decay
-- Mobility-limited user: 2.5\% daily decay with adjusted activity thresholds
-- Mental health focus: Healing tokens weighted 2x for stability
-- Personalized decay rates based on verified medical needs
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{User Type} & \textbf{Rhythm Decay} & \textbf{Special Adjustments} \\
+\midrule
+Standard user & 5\% daily & None \\
+Mobility-limited & 2.5\% daily & Adjusted activity thresholds \\
+Mental health focus & Standard & Healing tokens weighted 2x \\
+Personalized & Variable & Based on verified medical needs \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 % Section 12: Conclusion
 \section{Conclusion}
@@ -1150,17 +1322,40 @@ Sarah, a 29-year-old software engineer, uses the protocol to fund her gender-aff
 Morning runs earn 50-75 Rhythm tokens depending on distance and intensity. Her 30-day streak multiplier has grown to 2.48x, while her ``Early Bird'' genetic trait adds 15\% for pre-7 AM activities. Weekly therapy sessions generate 80 Healing tokens each, with her ``Mental Resilience'' trait providing an additional 12\% bonus.
 
 Her Chicago Marathon completion created particularly valuable proof:
-- Base marathon reward: 200 Foundation tokens
-- Sub-4:30 time bonus: 1.5x multiplier
-- Perfect weather penalty: 0.9x (easier conditions)
-- Total generation: 270 Foundation tokens
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Reward Component} & \textbf{Value} & \textbf{Tokens} \\
+\midrule
+Base marathon reward & Standard & 200 Foundation \\
+Sub-4:30 time bonus & 1.5x multiplier & Applied \\
+Perfect weather penalty & 0.9x & Applied \\
+\midrule
+\textbf{Total generation} & 200 × 1.5 × 0.9 & \textbf{270 Foundation} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The zero-knowledge proof included timing chip data, GPS traces, heart rate patterns, and photographic evidence, compressed into a verifiable statement: ``Female 25-34 completed major marathon in 4:27:33.'' She listed this anonymously for \$300, receiving \$264 after fees.
 
 Current progress toward \$4,000 surgery goal:
-- Token value: \$2,847 (mixed species in wellness vault)
-- Proof sales: \$1,584 (monthly average \$132)
-- Months to goal: 3.5 at current rate
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Income Source} & \textbf{Amount} \\
+\midrule
+Token value & \$2,847 \\
+Proof sales & \$1,584 \\
+Monthly average & \$132 \\
+\midrule
+Months to goal & 3.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Sarah's public ProfileID has attracted a following among trans athletes. While her gender identity remains private, her consistent performance inspires others facing similar journeys.
 
@@ -1168,16 +1363,35 @@ Sarah's public ProfileID has attracted a following among trans athletes. While h
 
 Marcus discovered the protocol on day 387 of sobriety. While physical fitness remained challenging, his daily recovery meetings became an economic foundation. Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:
 
-- 30 days continuous: 300 token bonus
-- 90 days: 900 tokens
-- 1 year: 3,000 tokens
-- 18 months: 4,500 tokens
+\begin{table}[h]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Milestone} & \textbf{Token Bonus} \\
+\midrule
+30 days continuous & 300 tokens \\
+90 days & 900 tokens \\
+1 year & 3,000 tokens \\
+18 months & 4,500 tokens \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 His genetic evolution focused on recovery optimization:
-1. Recovery Resilience (15\% bonus): 1,000 Foundation tokens
-2. Social Connection (12\% for group activities): 2,500 tokens
-3. Consistency Rewards (10\% for streaks): 5,000 tokens
-4. Healing Focus (20\% Healing bonus): 10,000 tokens
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llcc}
+\toprule
+\textbf{Trait} & \textbf{Benefit} & \textbf{Bonus} & \textbf{Cost} \\
+\midrule
+Recovery Resilience & General recovery bonus & 15\% & 1,000 Foundation \\
+Social Connection & Group activity bonus & 12\% & 2,500 Foundation \\
+Consistency Rewards & Streak bonus & 10\% & 5,000 Foundation \\
+Healing Focus & Healing token bonus & 20\% & 10,000 Foundation \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Combined multipliers mean his daily meetings now generate 72 tokens instead of the base 40. His 12,000 Healing token balance represents \$8,040 in value, providing financial security that supports sustained recovery.
 
@@ -1189,29 +1403,44 @@ The economic visibility of recovery has transformed his self-perception. ``My so
 
 The Prior family exemplifies intergenerational protocol participation. When grandmother Prior was diagnosed with type 2 diabetes, three generations united around her care. The protocol's age-adjusted multipliers ensure her modest activities generate substantial value:
 
-Grandma Prior (78):
-- 15-minute morning walks: 40 Rhythm tokens (age multiplier 2.5x)
-- Medication compliance: 50 Foundation tokens daily
-- Blood glucose monitoring: 20 Foundation tokens
-
-Her son (52):
-- Bicycle commute: 35 Rhythm tokens daily
-- Weekend family walks: 50 tokens + group bonus
-
-Her daughter (48):
-- Yoga practice: 25 Healing tokens
-- Meal prep for family: 15 Foundation tokens
-
-Grandchildren (16, 19, 22):
-- Various sports: 30-60 Rhythm tokens daily
-- Compete for highest contribution to grandma's fund
+\begin{table}[h]
+\centering
+\caption{Prior Family Daily Token Generation}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Family Member} & \textbf{Activity} & \textbf{Tokens} & \textbf{Type} \\
+\midrule
+Grandma Prior (78) & 15-minute morning walks & 40 & Rhythm \\
+& Medication compliance & 50 & Foundation \\
+& Blood glucose monitoring & 20 & Foundation \\
+\midrule
+Son (52) & Bicycle commute & 35 & Rhythm \\
+& Weekend family walks & 50+ & Rhythm \\
+\midrule
+Daughter (48) & Yoga practice & 25 & Healing \\
+& Meal prep for family & 15 & Foundation \\
+\midrule
+Grandchildren & Various sports & 30-60 & Rhythm \\
+(16, 19, 22) & Competition for contribution & Variable & Mixed \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events - seven participants generating 350 total tokens with 30\% group bonuses.
 
-Their genetic traits reflect family priorities:
-- Grandma: Medication Adherence (15\%), Elder Vitality (12\%)
-- Parents: Family Coordinator (10\%), Caregiver Dedication (12\%)
-- Grandchildren: Competitive Spirit (15\%), Youth Energy (10\%)
+\begin{table}[h]
+\centering
+\caption{Prior Family Genetic Traits}
+\begin{tabular}{lll}
+\toprule
+\textbf{Member} & \textbf{Trait 1} & \textbf{Trait 2} \\
+\midrule
+Grandma & Medication Adherence (15\%) & Elder Vitality (12\%) \\
+Parents & Family Coordinator (10\%) & Caregiver Dedication (12\%) \\
+Grandchildren & Competitive Spirit (15\%) & Youth Energy (10\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder. The protocol has transformed obligation into opportunity, making grandmother's health a source of family wealth rather than purely expense.
 
@@ -1220,19 +1449,41 @@ Monthly token generation covers 85\% of medical costs, with the family supplemen
 Luna leveraged the protocol to differentiate her 850K subscriber OnlyFans empire. Unlike competitors relying on photo editing and claims, she provides cryptographically verified fitness achievements. Her daily routine becomes multi-stream content:
 
 Morning workout routine:
-- 6 AM start: 50 Rhythm tokens base
-- Circadian bonus: 1.3x
-- Livestream multiplier: 1.5x (200+ viewers)
-- Genetic traits: Performance Aesthetics (15\%), Camera Ready (12\%)
-- Total generation: 115 Rhythm tokens
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Component} & \textbf{Multiplier} & \textbf{Value} \\
+\midrule
+Base reward & - & 50 Rhythm tokens \\
+6 AM circadian bonus & 1.3x & Applied \\
+Livestream multiplier & 1.5x & 200+ viewers \\
+Performance Aesthetics trait & 15\% & Applied \\
+Camera Ready trait & 12\% & Applied \\
+\midrule
+\textbf{Total generation} & Combined & \textbf{115 Rhythm tokens} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Every activity generates both tokens and content. Post-workout biometrics create Foundation tokens while providing transparency her audience craves. Meal prep earns tokens while teaching nutrition. Even rest days generate Healing tokens through documented recovery practices.
 
 Her proof monetization strategy:
-- Daily workout proofs: \$5 individual, \$100 monthly bundle
-- Transformation proofs: \$200 (90-day packages)
-- Personal record proofs: \$50-500 depending on achievement
-- Genetic trait revelation: \$1,000 (showing optimization strategy)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Proof Type} & \textbf{Individual Price} & \textbf{Bundle/Package} \\
+\midrule
+Daily workout & \$5 & \$100/month \\
+Transformation & - & \$200 (90-day) \\
+Personal records & \$50-500 & Varies by achievement \\
+Genetic trait revelation & \$1,000 & One-time \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 With 17,000 proof subscribers paying \$200/month average, Luna generates \$3.4M monthly from verification alone. The protocol's 12\% marketplace fees seem minimal compared to the trust premium her verification commands.
 
