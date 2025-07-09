@@ -282,7 +282,7 @@
         <div class="simulation-box">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
                 <h3 style="margin: 0;">autophage_simulation.py</h3>
-                <button onclick="downloadScript('autophage_simulation')">Download Script</button>
+                <button onclick="downloadScript('autophage_simulation')">View Script</button>
             </div>
             <div class="latex-figure">
                 <img src="gini_evolution.png" alt="Gini Evolution Comparison" style="width: 100%; max-width: 800px;">
@@ -324,7 +324,7 @@ def apply_whale_protection(self, balance: float, species: str) -> float:
         <div class="simulation-box">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
                 <h3 style="margin: 0;">autophage_abm.py</h3>
-                <button onclick="downloadScript('autophage_abm')">Download Script</button>
+                <button onclick="downloadScript('autophage_abm')">View Script</button>
             </div>
             
             <div class="latex-box" style="margin: 1em 0;">
@@ -516,7 +516,7 @@ python autophage_simulation.py</code></pre>
             updateChartColors();
         };
         
-        // Download simulation scripts
+        // View simulation scripts in browser
         function downloadScript(scriptName) {
             const scripts = {
                 'autophage_simulation': {
@@ -552,23 +552,8 @@ python autophage_simulation.py</code></pre>
             const script = scripts[scriptName];
             if (!script) return;
             
-            // Fetch and download the file
-            fetch(script.url)
-                .then(response => response.blob())
-                .then(blob => {
-                    const a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    a.download = script.filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(a.href);
-                })
-                .catch(error => {
-                    console.error('Download failed:', error);
-                    // Fallback to opening in new tab
-                    window.open(script.url, '_blank');
-                });
+            // Open file in new tab for viewing and copying
+            window.open(script.url, '_blank');
         }
     </script>
 </body>

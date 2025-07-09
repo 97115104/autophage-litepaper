@@ -623,7 +623,7 @@ distribution = {
             });
         }
         
-        // Download simulation files
+        // View simulation files in browser
         function downloadScript(scriptName) {
             const scripts = {
                 'adversarial_stress_test': {
@@ -651,23 +651,8 @@ distribution = {
             const script = scripts[scriptName];
             if (!script) return;
             
-            // Fetch and download the file
-            fetch(script.url)
-                .then(response => response.blob())
-                .then(blob => {
-                    const a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    a.download = script.filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(a.href);
-                })
-                .catch(error => {
-                    console.error('Download failed:', error);
-                    // Fallback to opening in new tab
-                    window.open(script.url, '_blank');
-                });
+            // Open file in new tab for viewing and copying
+            window.open(script.url, '_blank');
         }
     </script>
 </body>
