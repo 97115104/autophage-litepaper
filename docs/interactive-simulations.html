@@ -188,6 +188,10 @@
         Monte Carlo simulation validates the robustness of the protocol under stochastic conditions. The simulation runs thousands of independent economies with varying user behavior patterns to establish confidence intervals for key metrics.
         </p>
 
+        <div class="warning-box" style="background: rgba(243, 156, 18, 0.1); border-left: 4px solid #f39c12; padding: 1em; margin: 1em 0;">
+            <strong>⚠️ Note:</strong> This simulation can take 10-30 seconds for 1000 runs, or several minutes for 10,000 runs. The browser may appear unresponsive during calculation.
+        </div>
+
         <div class="simulation-box">
             <div class="simulation-controls">
                 <div class="control-group">
@@ -203,6 +207,17 @@
                 <button onclick="runMonteCarloSimulation()">Run Analysis</button>
             </div>
             <div id="monteCarloResults" class="results-display"></div>
+            <div id="monteCarloLoader" style="display: none; text-align: center; padding: 2em; background: var(--paper-bg); border: 2px solid var(--rule-color); border-radius: 8px; margin: 1em 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <div style="font-size: 1.2em; margin-bottom: 1em; font-weight: bold;">Running Monte Carlo Simulation...</div>
+                <div style="background: rgba(0,0,0,0.05); padding: 1em; border-radius: 4px; display: inline-block;">
+                    <canvas id="snakeCanvas" width="400" height="200" style="border: 2px solid var(--rule-color); background: var(--paper-bg); display: block;"></canvas>
+                    <div style="margin-top: 1em; color: var(--text-color);">
+                        <div id="progressText" style="font-weight: bold;">Initializing...</div>
+                        <div style="font-size: 0.9em; margin-top: 0.5em;">🎮 Play Tetris while you wait!</div>
+                        <div style="font-size: 0.8em; margin-top: 0.3em; opacity: 0.8;">← → Move • ↓ Drop • ↑ or Space to Rotate</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="figure-caption">Figure 3: Monte Carlo simulation results with confidence intervals</div>
 

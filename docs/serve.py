@@ -29,6 +29,13 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Origin', '*')
         super().end_headers()
     
+    def guess_type(self, path):
+        """Override to serve .py files as text/plain for browser display"""
+        mimetype, _ = super().guess_type(path)
+        if path.endswith('.py'):
+            return 'text/plain'
+        return mimetype
+    
     def do_GET(self):
         # Handle root path
         if self.path == '/':
