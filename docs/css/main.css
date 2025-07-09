@@ -776,9 +776,9 @@ body.dark-mode .MathJax {
     position: fixed;
     top: 120px;
     right: 50%;
-    margin-right: -300px;
-    width: 95px;
-    padding: 14px 12px;
+    margin-right: -340px;
+    width: 150px;
+    padding: 22px 20px;
     background: #ffeb9c;
     background-image: linear-gradient(135deg, #ffeb9c 0%, #fde047 20%, #facc15 100%);
     box-shadow: 
@@ -803,17 +803,17 @@ body.dark-mode .MathJax {
 .post-it::before {
     content: '';
     position: absolute;
-    top: -8px;
-    left: 30%;
-    width: 25px;
-    height: 16px;
+    top: -10px;
+    left: 38%;
+    width: 35px;
+    height: 18px;
     background: rgba(200,200,200,0.4);
     transform: rotate(-5deg);
     border-radius: 0 0 5px 5px;
 }
 
 .post-it-text {
-    font-size: 12px;
+    font-size: 16px;
     color: #1a1a1a;
     text-align: center;
     margin: 0;
@@ -823,13 +823,13 @@ body.dark-mode .MathJax {
 }
 
 .post-it-subtext {
-    font-size: 10px;
+    font-size: 13px;
     color: #444;
     text-align: center;
-    margin-top: 4px;
+    margin-top: 8px;
     font-weight: normal;
     transform: rotate(-1deg);
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 body.dark-mode .post-it {

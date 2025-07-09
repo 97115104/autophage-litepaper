@@ -118,7 +118,7 @@ The documentation is organized for different audiences:
 
 ## About the Research
 
-**Organization**: 0x42 Research (0x42 Research LLC)  
+**Organization**: 0x42 Research  
 **Website**: [0x42r.io](https://0x42r.io)  
 **Protocol Website**: [autophage.xyz](https://autophage.xyz)  
 **Email**: info@0x42r.io  
@@ -149,6 +149,6 @@ This is an active research project welcoming collaboration:
 
 ## License
 
-© 2025 0x42 Research LLC. All rights reserved.
+© 2025 0x42 Research. All rights reserved.
 
 The Autophage Protocol is currently in the research and development phase. Implementation details and specifications may evolve as the protocol matures toward production deployment.

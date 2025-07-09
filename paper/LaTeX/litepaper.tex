@@ -41,32 +41,42 @@
 % Title
 \title{\textbf{The Autophage Protocol: Metabolic Economics for Decentralized Health}}
 \author{Austin Harshberger\\
-\small\textit{1@0x42r.io}}
+\small{1@0x42r.io}}
 \date{July 7, 2025}
 
 \begin{document}
 \maketitle
 
-% Abstract
 \begin{abstract}
-Traditional economics assumes value persists indefinitely, enabling unlimited wealth accumulation. Living systems operate differently: value requires continuous renewal or it ceases to exist. This paper introduces the Autophage Protocol, where digital tokens decay exponentially like the health activities they represent. Four token species decay at rates calibrated to biological persistence: Rhythm (5\% daily) for exercise, Healing (0.75\%) for therapy, Foundation (0.1\%) for preventive care, and Catalyst (2-10\% dynamic) for marketplace balance. Decayed tokens flow to The Reservoir, funding community healthcare while maintaining individual privacy through zero-knowledge proofs. Mathematical modeling suggests wealth distribution would converge to Gini coefficients \cite{gini1921measurement} of 0.32-0.38, significantly more equitable than traditional systems at 0.82 or higher \cite{milanovic2014global,bertocchi2014wealth}. The protocol represents a new economic primitive where money must move to exist, creating the first genuinely metabolic digital economy.
+Traditional economics assumes value persists indefinitely, enabling unlimited wealth accumulation. Living systems operate differently: value requires continuous renewal or it ceases to exist. This paper introduces the Autophage Protocol, a system that combines formal incentive design with cryptographic privacy guarantees, linking tokenized health rewards to verifiable activity while maintaining a strict separation of identity and data. Four token species decay at rates calibrated to biological persistence: Rhythm (5\% daily) for exercise, Healing (0.75\%) for therapy, Foundation (0.1\%) for preventive care, and Catalyst (2--10\% dynamic) for marketplace balance. Decayed tokens flow to The Reservoir, funding community healthcare while preserving privacy through zero-knowledge proofs. Mathematical modeling suggests wealth distribution converges to Gini coefficients \cite{statusdothealth2025gini,gini1921measurement} of 0.32--0.38, far more equitable than traditional systems at 0.82 or higher \cite{bertocchi2014wealth,milanovic2014global}. The protocol represents a new economic primitive where money must move to exist, creating a digital economy with metabolism-like properties.
 \end{abstract}
 
-\textit{Note: Supporting resources are available at:}
-\begin{itemize}
-\item \textit{Gini coefficient simulations:} \url{https://autophage.xyz/gini-simulation} \cite{statusdothealth2025gini}
-\item \textit{Complete mathematical appendix:} \url{https://autophage.xyz/math} \cite{statusdothealth2025math}
-\end{itemize}
+
+% Reader's Guide
+\section*{Reader's Guide}
+\addcontentsline{toc}{section}{Reader's Guide}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Audience} & \textbf{Recommended Sections} \\
+\hline
+Non-technical readers & Abstract, Related Work, Introduction, Appendix B-D \\
+Technical readers     & All sections, focus on 3-7 and 9-11 \\
+Developers            & Sections 5-6, Appendix C, Appendix F \\
+Stewards   & Abstract, Related Work, Sections 1-4, Appendix D \\
+\hline
+\end{tabular}
+\end{center}
+
 
 \tableofcontents
-\newpage
 
 % Section 1: Introduction
 \section{Introduction}
 
 Money does not die. This fundamental property of traditional economics creates systemic inequality and health incentive failures. A dollar earned decades ago maintains its nominal value indefinitely. Bitcoin \cite{nakamoto2008bitcoin} stored in 2009 remains unchanged today. This permanence rewards accumulation over activity, creating economies where wealth concentrates among those who already possess it while those who need resources most must continuously labor for finite rewards.
 
-The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name itself, meaning ``self-eating,'' captures the essential dynamic: value that must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. This paper formalizes a complete economic system built on temporal decay rather than temporal permanence.
+The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name Autophage, meaning “self-eating,” mirrors the essential dynamic: value that must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. The idea of money that loses value over time has been tried before. In the early 1900s, Silvio Gesell proposed stamped scrip that forced currency to circulate by making it expire \cite{gesell1958natural}. His experiments failed when official enforcement ended and people found ways around the system. Freicoin, launched in 2013, built decay into a cryptocurrency protocol \cite{freicoin2013project}, but used a single decay rate for everyone, disconnected from actual behavior. Neither system linked decay to anything meaningful.
 
 The protocol implements four interconnected innovations. First, it creates multiple token species with decay rates precisely calibrated to match the temporal persistence of their underlying health activities. Exercise tokens decay rapidly like cardiovascular fitness, while preventive care tokens persist longer like vaccine immunity. Second, it achieves cryptographic privacy separation through zero-knowledge proofs, enabling health verification without surveillance. Third, it derives token value from measurable metabolic energy expenditure rather than speculative markets. Fourth, it implements empirical governance where all protocol changes must demonstrate statistically significant health improvements through on-chain experiments.
 
@@ -74,7 +84,18 @@ These mechanisms work together to create an economy that mimics biological syste
 
 The following sections present the complete mathematical framework, implementation architecture, and empirical validation of this metabolic economic system. Each component has been designed to align financial incentives with biological imperatives, creating the first digital economy that enhances rather than exploits human health.
 
-% Section 2: Metabolic Token Dynamics
+% Section 2: Related Work
+\section{Related Work}
+In the early 20th century, Silvio Gesell proposed “stamped scrip” to force currency to circulate by making it expire, an approach he tested in Wörgl, Austria during the Great Depression \cite{gesell1958natural}. These experiments gained traction under local government support, but collapsed as soon as legal enforcement lapsed. The main lesson: demurrage alone does not guarantee a stable or resilient economy, especially when external incentives favor stasis.
+
+Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin’s approach was blunt: a single decay rate applied to all, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
+
+Other "health coins" have focused on rewards for activity, using move-to-earn or similar models. Most are marketplace tokens or insurance incentives, structured around accumulation. STEP’N \cite{stepn2022whitepaper} pays users for walking, but value is driven by speculative tokenomics, not by any durable health metric. The project saw rapid growth but struggled to maintain sustainable rewards. Sweatcoin uses a similar approach. Users earn points for steps and spend them in a marketplace, but the system has no decay, no biological calibration, and no link to real health persistence.
+
+The Autophage Protocol diverges on three counts:
+First, it ties decay rates directly to the half-life of underlying health activities, making token persistence a function of biological process rather than arbitrary policy. Second, it separates identity from data using zero-knowledge proofs, so participation does not require surveillance. Third, it requires every protocol change to demonstrate measurable health improvement on-chain before implementation. In sum: where earlier systems enforced circulation by decree, Autophage encodes it at the metabolic and behavioral level.
+
+% Section 3: Metabolic Token Dynamics
 \section{Metabolic Token Dynamics}
 
 \subsection{Mathematical Foundation}
@@ -289,7 +310,7 @@ where $\rho_{target} = 0.25$ represents the target 25\% supply ratio, $\beta = 2
 
 This 16\% increase in decay rate gradually returns the system to equilibrium without shock.
 
-% Section 3: The Reservoir
+% Section 4: The Reservoir
 \section{The Reservoir: Dual-Chamber Architecture}
 
 \subsection{System Architecture}
@@ -403,7 +424,7 @@ P_{withdrawal} = V_{locked} \times \frac{t_{remaining}}{t_{total}} \times p_{fac
 
 where $p_{factor} = 0.5$ creates a 50\% penalty proportional to time remaining.
 
-% Section 4: Metabolic Price Discovery
+% Section 5: Metabolic Price Discovery
 \section{Metabolic Price Discovery}
 
 \subsection{Endogenous Pricing Model}
@@ -457,7 +478,7 @@ E_{activity} = T_{duration} \times W_{wage} + C_{metabolic} \times F_{food} + O_
 
 This establishes the baseline value for Healing token generation from therapy activities.
 
-% Section 5: Privacy Architecture
+% Section 6: Privacy Architecture
 \section{Privacy Architecture}
 
 \subsection{Zero-Knowledge Identity Separation}
@@ -525,7 +546,7 @@ where the statement proves properties without revealing underlying data.
 - Token generation: 80 Healing tokens
 - Revealed information: None beyond the public statement
 
-% Section 6: Biological Scaling Laws
+% Section 7: Biological Scaling Laws
 \section{Biological Scaling Laws}
 
 \subsection{Kleiber's Law Implementation}
@@ -570,7 +591,7 @@ M_{bottleneck} = 1 + \kappa \times \left(\theta - H_{min}\right)
 
 The protocol implements five additional scaling laws:
 
-1. **Allee Effect** \cite{allee1931animal}: Small population support
+1. \textbf{Allee Effect} \cite{allee1931animal}: Small population support
    \begin{equation}
    M_{Allee} = \begin{cases}
    2.0 & N < 500 \\
@@ -579,23 +600,23 @@ The protocol implements five additional scaling laws:
    \end{cases}
    \end{equation}
 
-2. **Circadian Rhythms**: Time-optimized rewards
+2. \textbf{Circadian Rhythms}: Time-optimized rewards
    \begin{equation}
    M_{circadian}(h) = 1 + A \times \sin\left(\frac{2\pi(h - \phi)}{24}\right)
    \end{equation}
    where $A = 0.3$ and $\phi = 6$ (6 AM peak)
 
-3. **Bergmann's Rule** \cite{bergmann1847klima}: Environmental adaptation
+3. \textbf{Bergmann's Rule} \cite{bergmann1847klima}: Environmental adaptation
    \begin{equation}
    R_{target} = R_{base} \times (1 + \sigma \times H_{environment})
    \end{equation}
 
-4. **Optimal Foraging** \cite{levin1976optimal}: Activity recommendation
+4. \textbf{Optimal Foraging} \cite{levin1976optimal}: Activity recommendation
    \begin{equation}
    ROI_{activity} = \frac{Tokens \times (1 - \delta)^{t_{hold}}}{Energy_{cost}}
    \end{equation}
 
-5. **R/K Selection** \cite{macarthur1967r}: Growth phase modulation
+5. \textbf{R/K Selection} \cite{macarthur1967r}: Growth phase modulation
    \begin{equation}
    \sigma_{rewards} = \begin{cases}
    0.5 & \text{R-phase} (N < 10^4) \\
@@ -626,7 +647,7 @@ Subject to the constraint:
 M_{genetic} \leq 1.5
 \end{equation}
 
-% Section 7: Economic Analysis
+% Section 8: Economic Analysis
 \section{Economic Analysis}
 
 \subsection{Wealth Distribution Dynamics}
@@ -783,7 +804,7 @@ Enterprise Verification & \$1.25 & 92\% & \$15.0M \\
 - Break-even users: \$30,000 / (\$1.85 - \$0.15) = 17,647 users
 - Achieved in month 8-10 based on growth projections
 
-% Section 8: Empirical Governance
+% Section 9: Empirical Governance
 \section{Empirical Governance}
 
 \subsection{Contribution-Based Voting}
@@ -827,14 +848,14 @@ where $\epsilon = 0.05$ (5\% improvement) and $\alpha = 0.05$ (statistical signi
   - p-value: 0.0012
 - Outcome: Proposal passes, stake returned + 100 USDC bonus
 
-% Section 9: Implementation Architecture
+% Section 10: Implementation Architecture
 \section{Implementation Architecture}
 
 \subsection{Core Smart Contracts}
 
 The protocol consists of four primary contracts with specific responsibilities \cite{harshberger2024patent}:
 
-1. **TokenContract**: Multi-species token with lazy decay evaluation
+1. \textbf{TokenContract}: Multi-species token with lazy decay evaluation
    \begin{verbatim}
    function balanceOf(address user, uint8 species) returns (uint256) {
        uint256 timeSince = block.timestamp - lastUpdate[user][species];
@@ -843,7 +864,7 @@ The protocol consists of four primary contracts with specific responsibilities \
    }
    \end{verbatim}
 
-2. **ReservoirContract**: Dual-chamber treasury management
+2. \textbf{ReservoirContract}: Dual-chamber treasury management
    \begin{verbatim}
    function processHealthcareClaim(Claim memory claim) {
        require(usdcBalance >= claim.amount, "Insufficient reserves");
@@ -853,7 +874,7 @@ The protocol consists of four primary contracts with specific responsibilities \
    }
    \end{verbatim}
 
-3. **VerificationEngine**: zkVM proof processing
+3. \textbf{VerificationEngine}: zkVM proof processing
    \begin{verbatim}
    function verifyAndMint(Proof memory proof, uint8 species) {
        require(zkVerifier.verify(proof), "Invalid proof");
@@ -862,7 +883,7 @@ The protocol consists of four primary contracts with specific responsibilities \
    }
    \end{verbatim}
 
-4. **GovernanceContract**: Experiment management
+4. \textbf{GovernanceContract}: Experiment management
    \begin{verbatim}
    function evaluateProposal(uint256 proposalId) {
        Proposal memory p = proposals[proposalId];
@@ -878,7 +899,7 @@ The protocol consists of four primary contracts with specific responsibilities \
 
 Efficient implementation enables scalability:
 
-1. **Lazy Decay**: Calculate only on interaction
+1. \textbf{Lazy Decay}: Calculate only on interaction
    - Gas saved: ~17,000 per unused day
    - Storage optimization: Single timestamp per user-species pair
    - Implementation:
@@ -886,12 +907,12 @@ Efficient implementation enables scalability:
    actualBalance = storedBalance * (1 - decayRate) ^ daysSinceUpdate
    \end{verbatim}
 
-2. **Batch Processing**: Aggregate multiple proofs
+2. \textbf{Batch Processing}: Aggregate multiple proofs
    - Batch size: Up to 100 proofs
    - Gas reduction: 85\% vs individual transactions
    - Merkle tree root submission for verification
 
-3. **State Channels**: Off-chain accumulation
+3. \textbf{State Channels}: Off-chain accumulation
    - Frequency: Daily settlement
    - Reduction: 95\% fewer on-chain transactions
    - Lightning-style payment channels for micropayments
@@ -901,27 +922,27 @@ Efficient implementation enables scalability:
 - Batched weekly verification: 120,000 gas × 4 = 480,000 gas/month
 - Savings: 75\% reduction in gas costs
 
-% Section 10: Limitations and Future Work
+% Section 11: Limitations and Future Work
 \section{Limitations and Future Work}
 
 \subsection{Technical Limitations}
 
 Several constraints affect current implementation:
 
-1. **Proof Generation Overhead**: Zero-knowledge proofs require 47-180 seconds on mobile devices
-2. **Cross-Chain Fragmentation**: Each blockchain requires separate deployment
-3. **Regulatory Uncertainty**: Health token classification varies by jurisdiction
-4. **Behavioral Inertia**: Users resist ``disappearing money'' concept
+1. \textbf{Proof Generation Overhead}: Zero-knowledge proofs require 47-180 seconds on mobile devices
+2. \textbf{Cross-Chain Fragmentation}: Each blockchain requires separate deployment
+3. \textbf{Regulatory Uncertainty}: Health token classification varies by jurisdiction
+4. \textbf{Behavioral Inertia}: Users resist ``disappearing money'' concept
 
 \subsection{Future Research Directions}
 
 Priority areas for continued development:
 
-1. **Mobile-Optimized zkSNARKs**: Target sub-10 second proof generation
-2. **Cross-Chain Bridges**: Unified liquidity across ecosystems
-3. **Regulatory Frameworks**: Proactive engagement with health authorities
-4. **Behavioral Studies**: A/B testing optimal decay rates
-5. **Chronic Condition Support**: Adaptive parameters for different health needs
+1. \textbf{Mobile-Optimized zkSNARKs}: Target sub-10 second proof generation
+2. \textbf{Cross-Chain Bridges}: Unified liquidity across ecosystems
+3. \textbf{Regulatory Frameworks}: Proactive engagement with health authorities
+4. \textbf{Behavioral Studies}: A/B testing optimal decay rates
+5. \textbf{Chronic Condition Support}: Adaptive parameters for different health needs
 
 \textbf{Example 10.1:} Chronic condition adaptation:
 - Standard user: 5\% daily Rhythm decay
@@ -929,7 +950,7 @@ Priority areas for continued development:
 - Mental health focus: Healing tokens weighted 2x for stability
 - Personalized decay rates based on verified medical needs
 
-% Section 11: Conclusion
+% Section 12: Conclusion
 \section{Conclusion}
 
 The Autophage Protocol demonstrates that economic systems can theoretically implement biological principles to create more equitable and health-promoting outcomes. By introducing mandatory token decay calibrated to health activity persistence, the protocol creates an economy where value must flow to exist, preventing the pathological accumulation that characterizes traditional monetary systems.
@@ -940,6 +961,7 @@ The theoretical model indicates the protocol could achieve break-even at approxi
 
 Perhaps most significantly, the protocol exists as a complete alternative to permanent-value economics. Where Bitcoin \cite{nakamoto2008bitcoin} provides digital gold and Ethereum \cite{buterin2014ethereum} enables programmable contracts, the Autophage Protocol introduces digital metabolism. These three primitives - geological permanence, computational flexibility, and biological persistence - together could form a complete foundation for human-centric digital economies.
 
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{plain}
 \bibliography{references}
 
@@ -1075,6 +1097,9 @@ Slowest-decaying species (0.1\% daily) earned through preventive care and long-t
 \item[Genetic Adaptation]
 System allowing users to burn Foundation tokens for permanent earning traits, creating specialized economic profiles.
 
+\item[Gini Coefficient]
+A statistical measure of how wealth is distributed in a system. Zero means everyone holds the same amount, while one means a single participant holds everything. In this protocol, a lower Gini coefficient signals that value is circulating widely. Most national currencies and cryptocurrencies show Gini values above 0.80.
+
 \item[Half-Life]
 Time required for token balance to reduce by 50\% without renewal; 13.51 days for Rhythm, 92.42 for Healing, 693 for Foundation.
 
@@ -1101,6 +1126,9 @@ Fastest-decaying species (5\% daily) earned through exercise, medication adheren
 
 \item[Soft Cap]
 Balance threshold triggering accelerated decay to prevent excessive accumulation while allowing reasonable savings.
+
+\item[USDC]
+Dollar-pegged stablecoin issued by Circle and Coinbase. Used as a programmatic, fully-backed USD equivalent for on-chain settlements.
 
 \item[Wellness Vault]
 Time-locked token storage with reduced decay rates enabling targeted healthcare saving.
@@ -1254,7 +1282,7 @@ Survival & Earned daily & Assumed forever \\
 
 The status quo rewards stasis and calls it success. In health and in money, what survives is what moves. Everything else is just afterlife accounting.
 
-The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed, the simulations run thousands of times, but the true test lies in whether communities would choose renewal over accumulation, flow over hoarding, life over stasis. The theoretical framework is complete; the practical implementation awaits. In creating value that must move to exist, we might discover economics that serve life rather than constraining it. The mathematics of decay could become the foundation for sustainable abundance - but only real-world deployment will reveal if theory translates to practice.
+The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed, the simulations run thousands of times, but the true test lies in whether communities would choose renewal over accumulation, flow over hoarding, life over stasis. The theoretical framework is complete; the practical implementation awaits. In creating value that must move to exist, we might discover economics that prioritizes continual renewal of value, mirroring living systems. The mathematics of decay could become the foundation for sustainable abundance - but only real-world deployment will reveal if theory translates to practice.
 
 % Appendix E: Acknowledgments
 \section{Acknowledgments}

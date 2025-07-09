@@ -161,7 +161,7 @@ const Components = {
             const postIt = document.createElement('div');
             postIt.className = 'post-it';
             postIt.innerHTML = `
-                <p class="post-it-text">An experiment!</p>
+                <p class="post-it-text">Research Preview</p>
                 <p class="post-it-subtext">feedback welcome</p>
             `;
             document.body.appendChild(postIt);
