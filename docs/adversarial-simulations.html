@@ -651,8 +651,23 @@ distribution = {
             const script = scripts[scriptName];
             if (!script) return;
             
-            // For now, just open in new tab since local file downloads require server
-            window.open(script.url, '_blank');
+            // Fetch and download the file
+            fetch(script.url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = script.filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(a.href);
+                })
+                .catch(error => {
+                    console.error('Download failed:', error);
+                    // Fallback to opening in new tab
+                    window.open(script.url, '_blank');
+                });
         }
     </script>
 </body>

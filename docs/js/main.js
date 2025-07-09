@@ -5,9 +5,9 @@ function updateMetrics() {
     
     if (giniElement) {
         // Simulate small variations in Gini coefficient
-        const base = 0.35;
-        const variation = (Math.random() - 0.5) * 0.06;
-        const gini = Math.max(0.32, Math.min(0.38, base + variation));
+        const base = 0.095;
+        const variation = (Math.random() - 0.5) * 0.03;
+        const gini = Math.max(0.08, Math.min(0.11, base + variation));
         giniElement.textContent = gini.toFixed(3);
     }
     
@@ -352,35 +352,33 @@ function runMonteCarloSimulation() {
                 results.innerHTML = `Running simulation... ${run}/${numRuns} (${Math.round(run/numRuns*100)}%)\n`;
             }
             
-            // Simulate one economy
-            const numAgents = 1000;
-            const wealth = new Array(numAgents).fill(1000);
-            const activityLevels = [];
-        
-        // Run for 180 days
-        for (let day = 0; day < 180; day++) {
-            let dailyActivity = 0;
+            // Use the Autophage simulation for accurate results
+            const sim = new AutophageBrowserSim(1000, 180);
             
-            for (let i = 0; i < numAgents; i++) {
-                // Apply decay
-                wealth[i] *= 0.98;
-                
-                // Activity with variance
-                const baseActivity = 0.7;
-                const agentActivity = Math.max(0, Math.min(1, baseActivity + (Math.random() - 0.5) * variance));
-                
-                if (Math.random() < agentActivity) {
-                    wealth[i] += 20 + Math.random() * 10;
-                    dailyActivity++;
-                }
+            // Add variance to the activity rate
+            sim.activityRate = Math.max(0.3, Math.min(0.95, 0.7 + (Math.random() - 0.5) * variance));
+            
+            // Run the simulation
+            const giniHistory = sim.run();
+            
+            // Get final values
+            const finalGini = giniHistory[giniHistory.length - 1];
+            
+            // Calculate total wealth
+            const totalWealth = [];
+            for (let i = 0; i < sim.nUsers; i++) {
+                totalWealth.push(
+                    sim.balances.rhythm[i] + 
+                    sim.balances.healing[i] + 
+                    sim.balances.foundation[i] + 
+                    sim.balances.catalyst[i]
+                );
             }
+            const avgWealth = totalWealth.reduce((a, b) => a + b, 0) / sim.nUsers;
             
-            activityLevels.push(dailyActivity / numAgents);
-        }
-        
-            giniResults.push(calculateGini(wealth));
-            wealthResults.push(wealth.reduce((a, b) => a + b, 0) / numAgents);
-            activityResults.push(activityLevels.reduce((a, b) => a + b, 0) / activityLevels.length);
+            giniResults.push(finalGini);
+            wealthResults.push(avgWealth);
+            activityResults.push(sim.activityRate);
         }
         
         // Calculate statistics
@@ -409,7 +407,7 @@ Activity Rate:
   Mean: ${(activityMean * 100).toFixed(1)}%
   Std Dev: ${(activityStd * 100).toFixed(1)}%
 
-Convergence: ${giniMean >= 0.32 && giniMean <= 0.38 ? '✓ Within target range (0.32-0.38)' : '✗ Outside target range'}`;
+Convergence: ${giniMean >= 0.08 && giniMean <= 0.11 ? '✓ Within target range (0.08-0.11)' : '✗ Outside target range'}`;
 
         // Re-enable button
         button.textContent = originalText;

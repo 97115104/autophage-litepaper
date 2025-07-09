@@ -12,7 +12,7 @@ const CONFIG = {
         tools: {
             label: 'Tools',
             items: [
-                { label: 'Simulations', href: 'simulations-hub' },
+                { label: 'Simulations', href: 'simulations' },
                 { label: 'Mathematical Reference', href: 'math' }
             ]
         },
