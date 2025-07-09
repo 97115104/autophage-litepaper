@@ -43,6 +43,28 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Hide Tetris game on mobile devices */
+        @media (max-width: 768px) {
+            #snakeCanvas {
+                display: none !important;
+            }
+            
+            #monteCarloLoader .game-instructions {
+                display: none !important;
+            }
+            
+            #monteCarloLoader > div > div {
+                padding: 0.5em !important;
+            }
+            
+            /* Simplify loader on mobile */
+            #monteCarloLoader {
+                padding: 1em !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Components will add mode toggle and back to top -->
@@ -213,8 +235,8 @@
                     <canvas id="snakeCanvas" width="400" height="200" style="border: 2px solid var(--rule-color); background: var(--paper-bg); display: block;"></canvas>
                     <div style="margin-top: 1em; color: var(--text-color);">
                         <div id="progressText" style="font-weight: bold;">Initializing...</div>
-                        <div style="font-size: 0.9em; margin-top: 0.5em;">🎮 Play Tetris while you wait!</div>
-                        <div style="font-size: 0.8em; margin-top: 0.3em; opacity: 0.8;">← → Move • ↓ Drop • ↑ or Space to Rotate</div>
+                        <div class="game-instructions" style="font-size: 0.9em; margin-top: 0.5em;">🎮 Play Tetris while you wait!</div>
+                        <div class="game-instructions" style="font-size: 0.8em; margin-top: 0.3em; opacity: 0.8;">← → Move • ↓ Drop • ↑ or Space to Rotate</div>
                     </div>
                 </div>
             </div>
