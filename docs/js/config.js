@@ -19,14 +19,17 @@ const CONFIG = {
         extras: {
             label: 'Extras',
             items: [
+                { label: 'Ultra-Simple Explanation', href: 'autophage-simply' },
                 { label: 'Plain Language Summary', href: 'plain-language' },
                 { label: 'Use Cases', href: 'use-cases' },
+                { label: 'Understanding Price Discovery', href: 'price-discovery' },
+                { label: 'Understanding Genetic Traits', href: 'genetic-traits' },
                 { label: 'Complete Feature Set', href: 'features' },
                 { label: 'Extended Mathematics', href: 'extended-math' },
                 { label: 'References', href: 'references' },
+                { label: 'Acknowledgments', href: 'acknowledgments' },
                 { label: 'Note from the Author', href: 'author-note' },
-                { label: 'Version History', href: 'versions' },
-                { label: 'GitHub', href: 'https://github.com/statusdothealth/litepaper', external: true }
+                { label: 'Version History', href: 'versions' }
             ]
         }
     },

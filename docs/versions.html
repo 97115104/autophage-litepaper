@@ -63,39 +63,8 @@
     <!-- Components will add mode toggle and back to top -->
 
     <div class="latex-document">
-        <!-- Title -->
-        <div class="latex-title">
-            <h1>Version History</h1>
-            <div class="latex-author"><a href="about.html#research">0x42 Research</a></div>
-            <div class="latex-date">Last Updated — \today</div>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="latex-nav">
-            <a href="index">Home</a> •
-            <a href="about">About</a> •
-            <a href="paper/litepaper.pdf" target="_blank">Litepaper</a> •
-            <div class="dropdown">
-                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Tools ▼</button>
-                <div class="dropdown-content">
-                    <a href="interactive-simulations">Interactive Simulations</a>
-                    <a href="math">Mathematical Reference</a>
-                </div>
-            </div>
-            •
-            <div class="dropdown">
-                <button class="dropdown-toggle" onclick="toggleDropdown(event)">Extras ▼</button>
-                <div class="dropdown-content">
-                    <a href="plain-language">Plain Language Summary</a>
-                    <a href="use-cases">Use Cases</a>
-                    <a href="author-note">Note from the Author</a>
-                    <a href="versions">Version History</a>
-                    <a href="references">References</a>
-                    <a href="features">Complete Feature Set</a>
-                    <a href="extended-math">Extended Mathematics</a>
-                </div>
-            </div>
-        </nav>
+        <!-- Header placeholder -->
+        <div id="header"></div>
 
         <div class="latex-abstract">
             <h2>About this page</h2>
@@ -252,31 +221,6 @@
             }
         });
         
-        // Dropdown toggle
-        function toggleDropdown(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            // Close all other open dropdowns first
-            document.querySelectorAll('.dropdown.show').forEach(d => {
-                if (d !== event.target.closest('.dropdown')) {
-                    d.classList.remove('show');
-                }
-            });
-            
-            // Toggle the clicked dropdown
-            const dropdown = event.target.closest('.dropdown');
-            dropdown.classList.toggle('show');
-        }
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown.show').forEach(d => {
-                    d.classList.remove('show');
-                });
-            }
-        });
     </script>
 </body>
 </html>
