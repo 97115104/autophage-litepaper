@@ -31,7 +31,7 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     
     def guess_type(self, path):
         """Override to serve .py files as text/plain for browser display"""
-        mimetype, _ = super().guess_type(path)
+        mimetype = super().guess_type(path)
         if path.endswith('.py'):
             return 'text/plain'
         return mimetype
