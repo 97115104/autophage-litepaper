@@ -19,21 +19,16 @@ const CONFIG = {
         extras: {
             label: 'Extras',
             items: [
-                { label: 'Ultra-Simple Explanation', href: 'autophage-simply' },
-                { label: 'Plain Language Summary', href: 'plain-language' },
-                { label: 'Use Cases', href: 'use-cases' },
-                { label: 'Understanding Price Discovery', href: 'price-discovery' },
-                { label: 'Understanding Genetic Traits', href: 'genetic-traits' },
+                { label: 'For Non-Technical Readers', href: 'non-technical' },
                 { label: 'Complete Feature Set', href: 'features' },
-                { label: 'Extended Mathematics', href: 'extended-math' },
+                { label: 'Note from the Author', href: 'author-note' },
                 { label: 'References', href: 'references' },
                 { label: 'Acknowledgments', href: 'acknowledgments' },
-                { label: 'Note from the Author', href: 'author-note' },
                 { label: 'Version History', href: 'versions' }
             ]
         }
     },
-    siteName: 'Autophage Protocol Research',
+    siteName: 'Autophage Protocol',
     orgName: '0x42 Research',
     orgLink: 'about#research',
     copyright: '0x42 Research'

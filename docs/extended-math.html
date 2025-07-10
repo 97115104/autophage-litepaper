@@ -58,6 +58,26 @@
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        /* Make equation numbers clickable */
+        .equation-number a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .equation-number a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Make section headings clickable */
+        h1 a, h2 a, h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        h1 a:hover, h2 a:hover, h3 a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <!-- Components will add mode toggle and back to top -->
@@ -73,13 +93,13 @@
             </p>
         </div>
 
-        <h1>Advanced Token Decay Mathematics</h1>
+        <h1 id="advanced-token-decay"><a href="#advanced-token-decay">Advanced Token Decay Mathematics</a></h1>
 
         <h2>Continuous Decay Differential Equation</h2>
 
         <div class="latex-equation">
             $$\frac{dV}{dt} = -\lambda V$$
-            <span class="equation-number">(A.1)</span>
+            <span class="equation-number" id="eq-A1"><a href="#eq-A1">(A.1)</a></span>
         </div>
 
         <p>
@@ -99,7 +119,7 @@
             \lambda_{base} \times 1.25 & \text{if } V > 50,000 \\
             \lambda_{base} \times 1.50 & \text{if } V > 100,000
             \end{cases}$$
-            <span class="equation-number">(A.2)</span>
+            <span class="equation-number" id="eq-A2"><a href="#eq-A2">(A.2)</a></span>
         </div>
 
         <p>
@@ -110,18 +130,18 @@
 
         <div class="latex-equation">
             $$R_{inflow}(t) = \sum_{i \in \{R,H,F,C\}} \lambda_i \times V_i(t)$$
-            <span class="equation-number">(A.3)</span>
+            <span class="equation-number" id="eq-A3"><a href="#eq-A3">(A.3)</a></span>
         </div>
 
         <p>
         All decayed tokens flow to the Reservoir for redistribution. This creates a community wealth pool that grows with system activity, funding public health initiatives and rewards.
         </p>
 
-        <h1>Complete Token Generation Formula</h1>
+        <h1 id="token-generation"><a href="#token-generation">Complete Token Generation Formula</a></h1>
 
         <div class="latex-equation">
             $$T_{gen} = B \times M \times S \times G \times N \times Sy \times Ge \times V \times A \times \eta(N) \times C(h) \times P(N) \times F_{strategy}$$
-            <span class="equation-number">(A.4)</span>
+            <span class="equation-number" id="eq-A4"><a href="#eq-A4">(A.4)</a></span>
         </div>
 
         <p>
@@ -133,13 +153,13 @@
         <h3>Consistency Multiplier</h3>
         <div class="latex-equation">
             $$M_{consistency} = 1 + \log_{10}(\text{consecutive\_days})$$
-            <span class="equation-number">(A.5)</span>
+            <span class="equation-number" id="eq-A5"><a href="#eq-A5">(A.5)</a></span>
         </div>
 
         <h3>Group Activity Multiplier</h3>
         <div class="latex-equation">
             $$M_{group} = 1 + 0.75 \times \min\left(\frac{\text{participants} - 1}{10}, 1\right)$$
-            <span class="equation-number">(A.6)</span>
+            <span class="equation-number" id="eq-A6"><a href="#eq-A6">(A.6)</a></span>
         </div>
 
         <h3>Synergy Bonus</h3>
@@ -150,16 +170,16 @@
             1.2 & \text{if activities} = 3 \\
             1.25 & \text{if activities} \geq 4
             \end{cases}$$
-            <span class="equation-number">(A.7)</span>
+            <span class="equation-number" id="eq-A7"><a href="#eq-A7">(A.7)</a></span>
         </div>
 
-        <h1>Metabolic Pricing Dynamics</h1>
+        <h1 id="metabolic-pricing-dynamics"><a href="#metabolic-pricing-dynamics">Metabolic Pricing Dynamics</a></h1>
 
         <h2>Complete Price Discovery Formula</h2>
 
         <div class="latex-equation">
             $$P(t) = \frac{E_{health}(t) \times (1 + \gamma C_{ratio}(t)) + V_{market}(t) \times (1 - C_{ratio}(t))}{S_{active}(t) \times V(t) \times (1 + M_{activity}(t))}$$
-            <span class="equation-number">(A.8)</span>
+            <span class="equation-number" id="eq-A8"><a href="#eq-A8">(A.8)</a></span>
         </div>
 
         <p>
@@ -168,30 +188,38 @@
         <ul>
             <li>$E_{health}(t) = 0.80$ USD average health activity energy cost</li>
             <li>$\gamma \in [1.2, 3.0]$ energy gradient based on system health</li>
-            <li>$C_{ratio}(t)$ proportion of price from creation vs market</li>
+            <li>$C_{ratio}(t) = \frac{V_{catalyst}(t)}{\sum_{i \in \{R,H,F,C\}} V_i(t)}$ is the catalyst token ratio (target: 0.25)</li>
             <li>$S_{active}(t)$ active token supply</li>
             <li>$V(t)$ velocity of token circulation</li>
             <li>$M_{activity}(t)$ activity level multiplier</li>
+        </ul>
+        
+        <p>
+        The catalyst ratio $C_{ratio}(t)$ is the key to metabolic price discovery. When catalyst tokens are exactly 25% of total supply, the pricing formula balances energy costs and market valuation equally. When catalyst ratio deviates:
+        </p>
+        <ul>
+            <li>High catalyst ratio (>0.25): Prices weight more toward energy costs, reducing speculation</li>
+            <li>Low catalyst ratio (<0.25): Prices weight more toward market valuation, increasing liquidity</li>
         </ul>
 
         <h2>Energy Gradient Calculation</h2>
 
         <div class="latex-equation">
             $$\gamma = 1.2 + 1.8 \times \left(1 - \frac{H_{system}}{100}\right)$$
-            <span class="equation-number">(A.9)</span>
+            <span class="equation-number" id="eq-A9"><a href="#eq-A9">(A.9)</a></span>
         </div>
 
         <p>
         System health $H_{system}$ ranges from 0-100%, with lower health triggering higher energy gradients to incentivize participation during low activity periods.
         </p>
 
-        <h1>Biological Scaling Laws</h1>
+        <h1 id="biological-scaling-laws"><a href="#biological-scaling-laws">Biological Scaling Laws</a></h1>
 
         <h2>Inverted Kleiber's Law for Networks</h2>
 
         <div class="latex-equation">
             $$C_{individual}(N) = C_{base} \times \left(\frac{N}{N_0}\right)^{-1/4}$$
-            <span class="equation-number">(A.10)</span>
+            <span class="equation-number" id="eq-A10"><a href="#eq-A10">(A.10)</a></span>
         </div>
 
         <p>
@@ -202,20 +230,20 @@
 
         <div class="latex-equation">
             $$H_{system} = \min(H_{users}, H_{apps}, H_{reserves}, H_{velocity}, H_{geographic})$$
-            <span class="equation-number">(A.11)</span>
+            <span class="equation-number" id="eq-A11"><a href="#eq-A11">(A.11)</a></span>
         </div>
 
         <p>
         System health equals its weakest component. If any dimension falls below 50%, targeted multipliers double to restore balance.
         </p>
 
-        <h1>Marketplace Dynamics</h1>
+        <h1 id="marketplace-dynamics"><a href="#marketplace-dynamics">Marketplace Dynamics</a></h1>
 
         <h2>Catalyst Token Generation</h2>
 
         <div class="latex-equation">
             $$T_{catalyst} = Q \times R \times P_{tier} \times V_{market}$$
-            <span class="equation-number">(A.12)</span>
+            <span class="equation-number" id="eq-A12"><a href="#eq-A12">(A.12)</a></span>
         </div>
 
         <p>
@@ -236,16 +264,16 @@
             1.75 & \text{ProfileID revealed} \\
             3.5 & \text{Genetic traits displayed}
             \end{cases}$$
-            <span class="equation-number">(A.13)</span>
+            <span class="equation-number" id="eq-A13"><a href="#eq-A13">(A.13)</a></span>
         </div>
 
-        <h1>Governance Mathematics</h1>
+        <h1 id="governance-mathematics"><a href="#governance-mathematics">Governance Mathematics</a></h1>
 
         <h2>Contribution Score</h2>
 
         <div class="latex-equation">
             $$S_{contribution} = \sum_{t=0}^{T} D_t \times (0.95)^{T-t} + R_{reputation}$$
-            <span class="equation-number">(A.14)</span>
+            <span class="equation-number" id="eq-A14"><a href="#eq-A14">(A.14)</a></span>
         </div>
 
         <p>
@@ -256,20 +284,20 @@
 
         <div class="latex-equation">
             $$P_{success} = \frac{1}{1 + e^{-k(I-I_0)}}$$
-            <span class="equation-number">(A.15)</span>
+            <span class="equation-number" id="eq-A15"><a href="#eq-A15">(A.15)</a></span>
         </div>
 
         <p>
         Sigmoid function where $I$ is health improvement percentage, $I_0 = 5\%$ threshold, and $k = 0.5$ steepness. Proposals achieving 5%+ health improvement have >50% chance of stake return plus bonus.
         </p>
 
-        <h1>Statistical Validation</h1>
+        <h1 id="statistical-validation"><a href="#statistical-validation">Statistical Validation</a></h1>
 
         <h2>Gini Coefficient Convergence</h2>
 
         <div class="latex-equation">
             $$G(t) = G^* + (G_0 - G^*) \times e^{-\alpha t}$$
-            <span class="equation-number">(A.16)</span>
+            <span class="equation-number" id="eq-A16"><a href="#eq-A16">(A.16)</a></span>
         </div>
 
         <p>
@@ -280,12 +308,267 @@
 
         <div class="latex-equation">
             $$CI_{95\%} = \bar{X} \pm 1.96 \times \frac{\sigma}{\sqrt{n}}$$
-            <span class="equation-number">(A.17)</span>
+            <span class="equation-number" id="eq-A17"><a href="#eq-A17">(A.17)</a></span>
         </div>
 
         <p>
         With $n = 10,000$ simulation runs, confidence intervals validate theoretical predictions. All key metrics converge within 2% of mathematical expectations.
         </p>
+
+        <h1 id="wellness-vaults-mathematics"><a href="#wellness-vaults-mathematics">Wellness Vaults Mathematics</a></h1>
+
+        <h2>Vault Balance Calculation</h2>
+
+        <p>
+        Wellness vaults protect health savings with reduced decay rates:
+        </p>
+
+        <div class="latex-equation">
+            $$V_{vault}(t) = V_0 \times e^{-\lambda_{vault} \times t} \times (1 + y)^t$$
+            <span class="equation-number" id="eq-A18"><a href="#eq-A18">(A.18)</a></span>
+        </div>
+
+        <p>
+        Where:
+        </p>
+        <ul>
+            <li>$\lambda_{vault} = 0.001$ (0.1% daily decay vs 5% for Rhythm tokens)</li>
+            <li>$y = 0.0002$ (0.02% daily yield)</li>
+            <li>Vaulted tokens can only be used for qualified health expenses</li>
+        </ul>
+
+        <h2>Seasonal Health Multipliers</h2>
+
+        <div class="latex-equation">
+            $$M_{seasonal} = 1 + 0.25 \times \sin\left(\frac{2\pi(\text{month} - 3)}{12}\right)$$
+            <span class="equation-number" id="eq-A19"><a href="#eq-A19">(A.19)</a></span>
+        </div>
+
+        <p>
+        Natural health cycles affect token generation. Peak in spring (March), trough in fall (September). Multiplier ranges from 0.75× to 1.25×.
+        </p>
+
+        <h1 id="circuit-breaker-mathematics"><a href="#circuit-breaker-mathematics">Circuit Breaker Mathematics</a></h1>
+
+        <h2>Price Volatility Protection</h2>
+
+        <div class="latex-equation">
+            $$\text{If } |\Delta P_{24h}| > 0.3 \text{ then } \begin{cases}
+            V_{max} = V_{max} \times 0.5 \\
+            S_{bounds} = S_{bounds} \times 1.5 \\
+            T_{delay} = 300 \text{ seconds}
+            \end{cases}$$
+            <span class="equation-number" id="eq-A20"><a href="#eq-A20">(A.20)</a></span>
+        </div>
+
+        <p>
+        When 24-hour price change exceeds 30%, velocity caps reduce by 50%, slippage bounds increase by 50%, and 5-minute transaction delays activate.
+        </p>
+
+        <h2>Bank Run Prevention</h2>
+
+        <div class="latex-equation">
+            $$\text{If } W_{1h} > 0.05 \times S_{total} \text{ then } W_{max} = \min(0.01 \times B_{user}, 10000)$$
+            <span class="equation-number" id="eq-A21"><a href="#eq-A21">(A.21)</a></span>
+        </div>
+
+        <p>
+        If hourly withdrawals exceed 5% of total supply, individual withdrawal limits activate: 1% of user balance or 10,000 tokens, whichever is smaller.
+        </p>
+
+        <h2>Sybil Attack Detection</h2>
+
+        <div class="latex-equation">
+            $$\text{If } N_{new,1h} > 1000 \text{ then } \begin{cases}
+            V_{new} = 100 \text{ tokens/day max} \\
+            T_{verification} = 48 \text{ hours} \\
+            S_{proof} = \text{"enhanced"}
+            \end{cases}$$
+            <span class="equation-number" id="eq-A22"><a href="#eq-A22">(A.22)</a></span>
+        </div>
+
+        <h1 id="cross-species-exchange-mathematics"><a href="#cross-species-exchange-mathematics">Cross-Species Exchange Mathematics</a></h1>
+
+        <h2>Exchange Rate Matrix</h2>
+
+        <div class="latex-equation">
+            $$R_{base} = \begin{pmatrix}
+            1.0 & 0.5 & 0.2 \\
+            1.8 & 1.0 & 0.4 \\
+            4.5 & 2.2 & 1.0
+            \end{pmatrix}$$
+            <span class="equation-number" id="eq-A23"><a href="#eq-A23">(A.23)</a></span>
+        </div>
+
+        <p>
+        Base exchange rates between [Rhythm, Healing, Foundation] tokens. Rates reflect utility differences, not just decay differentials.
+        </p>
+
+        <h2>Slippage Protection Formula</h2>
+
+        <div class="latex-equation">
+            $$R_{effective} = R_{base} \times \left(1 - \min\left(0.05, \frac{A_{trade}}{L_{pool}}\right)\right)$$
+            <span class="equation-number" id="eq-A24"><a href="#eq-A24">(A.24)</a></span>
+        </div>
+
+        <p>
+        Large trades relative to liquidity pool experience slippage, capped at 5%. This prevents manipulation through large cross-species swaps.
+        </p>
+
+        <h2>Cross-Species Arbitrage Bounds</h2>
+
+        <div class="latex-equation">
+            $$\prod_{i \in \text{cycle}} R_i \in [0.95, 1.05]$$
+            <span class="equation-number" id="eq-A25"><a href="#eq-A25">(A.25)</a></span>
+        </div>
+
+        <p>
+        Any circular exchange path must yield between 95% and 105% of starting value, preventing infinite arbitrage loops.
+        </p>
+
+        <h1 id="additional-system-formulas"><a href="#additional-system-formulas">Additional System Formulas</a></h1>
+
+        <h2>Circulation Velocity</h2>
+
+        <div class="latex-equation">
+            $$V_{circ} = \frac{\sum_{30d} T_{volume}}{S_{active}} \times \frac{30}{t}$$
+            <span class="equation-number" id="eq-A26"><a href="#eq-A26">(A.26)</a></span>
+        </div>
+
+        <p>
+        Token velocity normalized to 30-day periods. Healthy range: 2-10× monthly. Below 2× indicates hoarding, above 10× suggests speculation.
+        </p>
+
+        <h2>Genetic Trait Cost Function</h2>
+
+        <div class="latex-equation">
+            $$C_{trait} = \sum_{i=1}^{n} 1000 \times (L_{old,i} + 1) \times (L_{new,i} - L_{old,i})$$
+            <span class="equation-number" id="eq-A27"><a href="#eq-A27">(A.27)</a></span>
+        </div>
+
+        <p>
+        Upgrading genetic traits becomes exponentially expensive at higher levels. Level 0→1 costs 1,000 tokens, while level 9→10 costs 10,000 tokens.
+        </p>
+
+        <h2>Network Health Score</h2>
+
+        <div class="latex-equation">
+            $$H_{network} = \left(\prod_{i=1}^{5} H_i\right)^{1/5} \times \left(1 - \frac{G_{actual} - G_{target}}{G_{target}}\right)$$
+            <span class="equation-number" id="eq-A28"><a href="#eq-A28">(A.28)</a></span>
+        </div>
+
+        <p>
+        Geometric mean of health dimensions (users, apps, reserves, velocity, geography) adjusted by Gini coefficient deviation from target range [0.32, 0.38].
+        </p>
+
+        <h2>Proof Rarity Multiplier</h2>
+
+        <div class="latex-equation">
+            $$M_{rarity} = 1 + \log_{10}\left(\frac{N_{total}}{N_{activity} + 1}\right)$$
+            <span class="equation-number" id="eq-A29"><a href="#eq-A29">(A.29)</a></span>
+        </div>
+
+        <p>
+        Rare activities earn higher marketplace premiums. If only 100 of 1 million users complete ultramarathons, rarity multiplier = 5×.
+        </p>
+
+        <h1 id="governance-reward-mathematics"><a href="#governance-reward-mathematics">Governance Reward Mathematics</a></h1>
+
+        <h2>Governance Contribution Score</h2>
+
+        <div class="latex-equation">
+            $$C = 0.5 \times \log_{10}(1 + R_{lifetime}) + 0.3 \times V_{reputation} + 0.2 \times A_{participation}$$
+            <span class="equation-number" id="eq-A30"><a href="#eq-A30">(A.30)</a></span>
+        </div>
+
+        <p>
+        Where:
+        </p>
+        <ul>
+            <li>$R_{lifetime} = \sum$(Tokens decayed + Tokens donated + Fees paid)</li>
+            <li>$V_{reputation} = \frac{\text{Successful verifications}}{\text{Total verifications}} \times \log_{10}(1 + \text{Total verifications})$</li>
+            <li>$A_{participation} = \min(1, \frac{\text{Days active in 90}}{90}) \times (1 + \text{Consistency bonus})$</li>
+        </ul>
+
+        <h2>Progressive USDC Bonus Formula</h2>
+
+        <div class="latex-equation">
+            $$\text{USDC Bonus} = 100 \times M(P) \times \max(0, P - 1.0) \times \sqrt{\frac{U}{1000}}$$
+            <span class="equation-number" id="eq-A31"><a href="#eq-A31">(A.31)</a></span>
+        </div>
+
+        <p>
+        Performance multiplier $M(P)$ scales with achievement level:
+        </p>
+        <ul>
+            <li>0.5× for 100-150% of target</li>
+            <li>1.0× for 150-200% of target</li>
+            <li>2.0× for 200-300% of target</li>
+            <li>3.0× for 300-400% of target</li>
+            <li>4.0× for 400%+ of target</li>
+        </ul>
+
+        <h1 id="reservoir-sustainability-model"><a href="#reservoir-sustainability-model">Reservoir Sustainability Model</a></h1>
+
+        <h2>Dynamic Balance Equation</h2>
+
+        <div class="latex-equation">
+            $$R(t+1) = R(t) + I(t) - W_c(t) - W_b(t) - S(t)$$
+            <span class="equation-number" id="eq-A32"><a href="#eq-A32">(A.32)</a></span>
+        </div>
+
+        <p>
+        Where:
+        </p>
+        <ul>
+            <li>$R(t)$ = Reservoir balance at time $t$</li>
+            <li>$I(t)$ = Inflows (fees + circulation)</li>
+            <li>$W_c(t)$ = Cash withdrawals</li>
+            <li>$W_b(t)$ = Benefit redemptions</li>
+            <li>$S(t)$ = Public health spending</li>
+        </ul>
+
+        <h2>Time-Decayed Cash Access Function</h2>
+
+        <div class="latex-equation">
+            $$A_{cash}(u,t) = \sum_{i=0}^{t} C(u,i) \times D(t-i)$$
+            <span class="equation-number" id="eq-A33"><a href="#eq-A33">(A.33)</a></span>
+        </div>
+
+        <p>
+        Decay function $D(y)$ preserves recent contributions:
+        </p>
+        <ul>
+            <li>100% value if less than 1 year old</li>
+            <li>75% value if 1-2 years old</li>
+            <li>50% value if 2-5 years old</li>
+            <li>30% value if 5+ years old</li>
+        </ul>
+
+        <h2>Genetic Baseline Modification Cost</h2>
+
+        <div class="latex-equation">
+            $$\text{Cost} = \begin{cases}
+            1 \text{ point} & \text{to increase trait by +1} \\
+            2 \text{ points} & \text{to decrease trait by -1}
+            \end{cases}$$
+            <span class="equation-number" id="eq-A34"><a href="#eq-A34">(A.34)</a></span>
+        </div>
+
+        <p>
+        Returning nutrients to the system requires more energy than allocating them. Maximum trait value: 10.
+        </p>
+
+        <h2>Specialist and Generalist Bonuses</h2>
+
+        <div class="latex-equation">
+            $$M_{specialization} = \begin{cases}
+            1.5 & \text{if any trait} \geq 7 \text{ (specialist)} \\
+            1.25 & \text{if all traits} \geq 3 \text{ (generalist)} \\
+            1.0 & \text{otherwise (default)}
+            \end{cases}$$
+            <span class="equation-number" id="eq-A35"><a href="#eq-A35">(A.35)</a></span>
+        </div>
 
         <!-- Footer -->
         <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">

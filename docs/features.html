@@ -69,147 +69,347 @@
         <div class="latex-abstract">
             <h2>About this page</h2>
             <p>
-            This document provides an exhaustive list of all Autophage Protocol features, including those not covered in the main litepaper. It serves as extended reading for understanding the protocol's full potential and future capabilities.
+            A list of 119 proposed Autophage Protocol features across 12 categories. These are experimental features envisioned for the protocol, not all are described in the litepaper itself. Each feature includes a brief explanation and references to mathematical formulations where applicable.
             </p>
         </div>
 
         <h1>Core Protocol Features</h1>
 
-        <p>
-        Mandatory token decay creates an economy where value must circulate rather than accumulate. Proof of Temporal Persistence (PoTP) solves health incentives, privacy verification, and sustainable economics simultaneously.
-        </p>
+        <p><strong>1.1 Proof of Temporal Persistence (PoTP)</strong> — Tokens decay over time requiring continuous health activity regeneration. See <a href="math#section-1">decay formulas</a>.</p>
+        
+        <p><strong>1.2 Four Token Species</strong> — Rhythm (5% daily decay), Healing (0.75%), Foundation (0.1%), and Catalyst (2-10% dynamic) tokens match different health activity rhythms. See <a href="math#section-1">Table 1</a>.</p>
+        
+        <p><strong>1.3 Mandatory Token Decay</strong> — All tokens follow $V(t) = V_0 \times e^{-\lambda t}$ creating an economy where value must circulate.</p>
+        
+        <p><strong>1.4 Dual-Balance Reservoir</strong> — Community wealth pool managing both tokens and USDC with mathematical solvency guarantees. See <a href="extended-math#reservoir-sustainability-model">reservoir equations</a>.</p>
+        
+        <p><strong>1.5 Metabolic Price Discovery</strong> — Token prices emerge from energy expenditure ($0.80 average per activity) not speculation. See <a href="math#eq-12">equation 12</a>.</p>
+        
+        <p><strong>1.6 Three-Tier Liquidity System</strong> — Reservoir guarantees healthcare access, manages vault maturity, while apps provide lifestyle liquidity.</p>
+        
+        <p><strong>1.7 Zero-Knowledge Health Verification</strong> — Prove health activities without revealing health data using zkSNARKs at $0.003 per proof.</p>
+        
+        <p><strong>1.8 Dynamic Energy Gradient</strong> — System adjusts rewards 1.2-3.0× based on health metrics to maintain stability. See <a href="extended-math#eq-A9">equation A.9</a>.</p>
+        
+        <p><strong>1.9 Privacy-First Architecture</strong> — ProfileID generation with 768-bit entropy, k-anonymity (100,000 users), and differential privacy (ε = 0.1).</p>
+        
+        <p><strong>1.10 Time-Decayed Cash Access</strong> — Reservoir contributions maintain 100% healthcare value but cash access decays to 30% over 5 years. See <a href="extended-math#eq-A33">equation A.33</a>.</p>
 
-        <p>
-        Four token species provide temporal diversity matching health's natural rhythms. Rhythm tokens implement 5% daily decay mirroring cardiovascular fitness deterioration. Healing tokens use 0.75% daily decay acknowledging therapeutic timelines. Foundation tokens apply 0.1% daily decay reflecting preventive care's lasting impact. Catalyst tokens employ dynamic decay adjustment to maintain marketplace balance.
-        </p>
+        <h1>Token Generation Features</h1>
 
-        <p>
-        The dual-balance Reservoir manages both token and USDC flows through mathematical homeostasis. Three-tier liquidity system ensures healthcare access regardless of market conditions. Dynamic energy gradients between 1.2× and 3.0× create counter-cyclical stability.
-        </p>
-
-        <h2>Advanced Features</h2>
-        <p>
-        Metabolic Pricing enables dynamic price discovery based on energy expenditure with an average of $0.80 per activity. Energy Gradients provide counter-cyclical adjustments between 1.2× and 3.0× based on system health. Guaranteed Healthcare Access ensures Reservoir exchanges at metabolic price regardless of market conditions. The Multi-species Token System employs four distinct token types with different decay rates matching health rhythms. Automatic Rebalancing maintains system equilibrium through mathematical homeostasis.
-        </p>
-
-        <h1>Privacy Architecture</h1>
-
-        <p>
-        Zero-knowledge proofs enable health verification without exposing personal data through app-selected agnostic zkVMs. ProfileID generation uses SHA-256 with 768-bit entropy preventing identity correlation. Three-layer privacy architecture maintains mathematical separation between identity and activity.
-        </p>
-
-        <p>
-        K-anonymity enforcement requires minimum 100,000 users for all aggregate data releases. Temporal batching with 7-14 day delays prevents timing correlation attacks. Differential privacy injection makes individual identification mathematically impossible. Client-side encryption protects all metadata before transmission. Selective disclosure allows users to reveal chosen information while maintaining baseline privacy.
-        </p>
+        <p><strong>2.1 Complete Generation Formula</strong> — $T_{gen} = B \times M_{total}$ where $M_{total}$ combines all multipliers, capped at 20×. See <a href="math#eq-4">equation 4</a>.</p>
+        
+        <p><strong>2.2 Consistency Multiplier</strong> — Rewards increase logarithmically with consecutive days: $M = 1 + \log_{10}(\text{days})$. See <a href="math#eq-6">equation 6</a>.</p>
+        
+        <p><strong>2.3 Synergy Bonuses</strong> — 10% bonus for 2 activity types, 20% for 3 types, 25% for 4+ types daily.</p>
+        
+        <p><strong>2.4 Circadian Rhythm Multiplier</strong> — Token generation follows daily cycles with noon peak (1.3×) and midnight minimum (0.7×). See <a href="math#eq-7">equation 7</a>.</p>
+        
+        <p><strong>2.5 Seasonal Multipliers</strong> — January 2.5×, April 2.0×, July 2.3×, October 1.8×, December 1.4× matching human health patterns.</p>
+        
+        <p><strong>2.6 Group Activity Bonus</strong> — Up to 1.5× rewards for exercising with others, capped at 10 participants.</p>
+        
+        <p><strong>2.7 Intensity Multipliers</strong> — Vigorous activities earn up to 2.0× base rewards based on heart rate zones.</p>
+        
+        <p><strong>2.8 Quality Verification</strong> — Richer data (GPS, heart rate, duration) increases rewards up to 1.5×.</p>
+        
+        <p><strong>2.9 Healing Periods</strong> — 30-day grace degradation preserves progress during life interruptions instead of binary resets.</p>
+        
+        <p><strong>2.10 Progressive Decay for Large Balances</strong> — Decay rates increase when balances exceed soft caps to prevent hoarding. See <a href="math#eq-8">equation 8</a>.</p>
 
         <h1>Economic Features</h1>
 
+        <p><strong>3.1 Wellness Vaults</strong> — Special accounts with 0.1% daily decay (vs 5% for Rhythm) and 0.02% yield for health savings. See <a href="extended-math#eq-A18">equation A.18</a>.</p>
+
         <h2>Revenue Streams</h2>
+        
+        <h3>Time-Decayed Cash Access</h3>
         <p>
-        Time-Decayed Cash Access preserves 30% minimum value for healthcare needs. Wellness Vaults offer 30 to 365 day lock periods with 1 to 3% APY. Application Integration costs \$0.15 monthly per user for zkVM orchestration. Marketplace Fees distribute 88% to sellers, 7% to protocol, and 5% to apps. Enterprise Verification requires \$50 per employee quarterly. Compliance Reporting ranges from \$100 to \$500 per regulatory report. Data Analytics APIs cost \$1 to \$2 per member per month or \$0.10 to \$0.50 per query.
+        Contributions maintain value for healthcare redemption following:
+        </p>
+        
+        <div class="latex-equation">
+            $$A_{cash}(u,t) = \sum_{i=0}^{t} C(u,i) \times D(t-i)$$
+        </div>
+        
+        <p>
+        Where decay function $D(y)$ preserves: 100% (< 1 year), 75% (1-2 years), 50% (2-5 years), 30% (5+ years)
+        </p>
+        
+        <h3>Fee Structure</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Cost</th>
+                    <th>Distribution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>App Integration</td>
+                    <td>$0.15/user/month</td>
+                    <td>100% to Reservoir</td>
+                </tr>
+                <tr>
+                    <td>Marketplace Transaction</td>
+                    <td>12% total</td>
+                    <td>88% seller, 7% protocol, 5% app</td>
+                </tr>
+                <tr>
+                    <td>Enterprise Verification</td>
+                    <td>$50/employee/quarter</td>
+                    <td>100% to Reservoir</td>
+                </tr>
+                <tr>
+                    <td>Wellness Vaults</td>
+                    <td>1-3% APY</td>
+                    <td>Funded by decay redistribution</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p>
+        See <a href="extended-math#reservoir-sustainability-model">Reservoir mathematics</a> for solvency proofs.
         </p>
 
-        <p>
-        Overlapping reserve requirements ensure mathematical solvency through multiple safety margins. Circuit breakers activate at 80% reserve utilization to prevent bank runs. Healthcare settlements receive absolute priority over other redemptions. Fee revenue flows entirely to Reservoir with no external profit extraction. Unit economics achieve 91.7% contribution margin per user.
-        </p>
+        <h3>Additional Economic Features</h3>
+        
+        <p><strong>3.2 Compliance Reporting</strong> — $100-500 per regulatory report depending on complexity.</p>
+        
+        <p><strong>3.3 Data Analytics APIs</strong> — $1-2 per member monthly or $0.10-0.50 per query for population insights.</p>
+        
+        <p><strong>3.4 Healthcare Settlement Priority</strong> — Medical redemptions process before all other withdrawal types.</p>
+        
+        <p><strong>3.5 Overlapping Reserve Requirements</strong> — Multiple safety margins ensure mathematical solvency.</p>
+        
+        <p><strong>3.6 Circuit Breakers</strong> — Activate at 80% reserve utilization to prevent bank runs. See <a href="extended-math#eq-A20">equations A.20</a>-<a href="extended-math#eq-A22">A.22</a>.</p>
+        
+        <p><strong>3.7 Unit Economics</strong> — 91.7% contribution margin per user with realistic growth from 1,000 to 10M users.</p>
 
-        <h1>Token Generation System</h1>
+        <h1>Privacy Features</h1>
 
-        <p>
-        Synergy bonuses reward holistic health: 10% for 2 activity types, 20% for 3 types, 25% for 4+ types daily. Seasonal multipliers align with human patterns: January 2.5×, April 2.0×, July 2.3×, October 1.8×, December 1.4×. Base rewards vary by activity type and difficulty level. Intensity multipliers reward vigorous activities up to 2.0×. Consistency bonuses use logarithmic scaling to reward sustained behavior.
-        </p>
+        <p><strong>4.1 Zero-Knowledge Proofs</strong> — Health verification without data exposure using app-selected zkVMs at $0.003 per proof.</p>
+        
+        <p><strong>4.2 ProfileID Generation</strong> — SHA-256 with 768-bit entropy prevents identity correlation across activities.</p>
+        
+        <p><strong>4.3 Three-Layer Privacy Architecture</strong> — Mathematical separation between identity, activity, and verification layers.</p>
+        
+        <p><strong>4.4 K-Anonymity Enforcement</strong> — Minimum 100,000 users required for any aggregate data release.</p>
+        
+        <p><strong>4.5 Temporal Batching</strong> — 0-6 hour random delays within 24-hour windows prevent timing attacks.</p>
+        
+        <p><strong>4.6 Differential Privacy</strong> — Noise injection with ε = 0.1 makes individual identification mathematically impossible.</p>
+        
+        <p><strong>4.7 Client-Side Encryption</strong> — All metadata encrypted before transmission to prevent network analysis.</p>
+        
+        <p><strong>4.8 Selective Disclosure</strong> — Users choose exactly what information to reveal while maintaining baseline privacy.</p>
+        
+        <p><strong>4.9 Unlinkable Credentials</strong> — Build reputation without compromising identity through cryptographic commitments.</p>
+        
+        <p><strong>4.10 Privacy Tier Marketplace Premiums</strong> — Anonymous (baseline), ProfileID (+50-100%), Genetic traits (+100-200%).</p>
 
-        <p>
-        Social multipliers encourage group activities with up to 1.5× rewards. Quality verification affects rewards based on data richness. Temporal multipliers align with circadian rhythms through sine wave calculations. Total multiplier cap at 2.0× prevents exploitation while maintaining incentives.
-        </p>
+        <h1>Genetic Adaptation Features</h1>
 
-        <h1>Future Protocol Extensions</h1>
+        <p><strong>5.1 Editable Genetic Baselines</strong> — Users allocate points (0-10) across Rhythm, Healing, and Foundation traits to specialize their metabolism.</p>
+        
+        <p><strong>5.2 Trait Modification Costs</strong> — Increase trait +1 costs 1 point, decrease -1 costs 2 points (returning nutrients requires energy). See <a href="extended-math#eq-A34">equation A.34</a>.</p>
+        
+        <p><strong>5.3 Specialist Bonus</strong> — Any trait ≥7 provides 50% token generation boost in that domain. See <a href="extended-math#eq-A35">equation A.35</a>.</p>
+        
+        <p><strong>5.4 Generalist Bonus</strong> — All traits ≥3 provides 25% boost across all activities.</p>
+        
+        <p><strong>5.5 Mixed Specialist Groups</strong> — Different specialists working together earn 75% bonus for all participants.</p>
+        
+        <p><strong>5.6 Genetic Amplifications</strong> — 30-day temporary +3 trait boosts for 300 tokens each.</p>
+        
+        <p><strong>5.7 Genetic Catalysts</strong> — 7-day performance boosts to trait level 10 for 150 tokens.</p>
+        
+        <p><strong>5.8 Group Catalysts</strong> — Purchase 7-day boosts for entire groups: Pack Rhythm, Healing Circle, Prevention Shield (400 tokens each).</p>
+        
+        <p><strong>5.9 Dynamic Reallocation</strong> — Shift specialization as life changes (pregnancy→healing focus, aging→foundation focus).</p>
+        
+        <p><strong>5.10 Marketplace Premium for Traits</strong> — Genetic trait display commands 100-200% higher prices for specialized proofs.</p>
 
-        <h2>Genetic Adaptation System</h2>
-        <p>
-        Trait Evolution allows users to burn tokens to evolve 0 to 10 genetic traits. Exponential Costs range from 1,000 to 2,500,000 tokens for trait progression. Activity Bonuses provide 5 to 15% boost per trait with a 50% maximum combined benefit. Privacy-Preserving design ensures traits remain hidden unless selectively revealed. Marketplace Premium enables 100 to 200% price increase for specialized traits.
-        </p>
+        <h1>Governance Features</h1>
 
-        <h2>Advanced Governance</h2>
-        <p>
-        Proof of Contribution determines voting weight based on lifetime Reservoir contributions. Market-Based Evolution allows users to stake tokens on improvements and earn USDC on success. Natural Selection ensures features with less than 1% usage sunset after 180 days. Emergency Governance requires 7 of 9 lifetime contributors for critical changes. Reputation Scoring recognizes non-monetary contributions toward influence.
-        </p>
+        <p><strong>6.1 Proof of Contribution</strong> — Voting power from lifetime Reservoir contributions, not token holdings. See <a href="extended-math#eq-A30">equation A.30</a>.</p>
+        
+        <p><strong>6.2 Market-Based Evolution</strong> — Stake tokens on improvements, earn 2-3× returns based on measurable outcomes.</p>
+        
+        <p><strong>6.3 Progressive USDC Bonuses</strong> — Cash rewards scale with performance and users affected. See <a href="extended-math#eq-A31">equation A.31</a>.</p>
+        
+        <p><strong>6.4 Natural Selection</strong> — Features with <1% usage for 180 days automatically sunset unless saved by 75% vote.</p>
+        
+        <p><strong>6.5 Quadratic Voting</strong> — Square root of contribution score prevents whale dominance.</p>
+        
+        <p><strong>6.6 Emergency Governance</strong> — 7 of 9 lifetime contributors required with 48-hour timelock.</p>
+        
+        <p><strong>6.7 Reputation Evolution</strong> — Build influence through successful proposals and accurate predictions.</p>
+        
+        <p><strong>6.8 Outcome-Based Rewards</strong> — Automatic measurement and distribution based on health improvements.</p>
+        
+        <p><strong>6.9 Parameter Adjustment Ranges</strong> — Governance can modify parameters within pre-set bounds (e.g., decay ±20%).</p>
+        
+        <p><strong>6.10 Feature Preservation Votes</strong> — Community can override automatic sunset with supermajority.</p>
 
-        <h2>Planned Integrations</h2>
-        <p>
-        Insurance Partnerships will enable direct integration with health insurance providers. Medical Provider Networks will offer streamlined verification through healthcare APIs. Wearable Device Support will provide automatic activity verification from fitness trackers. Corporate Wellness Programs will implement a B2B2C model for employee health initiatives. Research Data Marketplace will offer anonymized health insights for medical research.
-        </p>
+        <h1>Biological Implementation Features</h1>
 
-        <h1>Biological Laws Implementation</h1>
-
-        <p>
-        Kleiber's Law implements metabolic scaling with efficiency bonuses for network growth. Liebig's Law identifies bottlenecks and doubles rewards in constrained dimensions. Allee Effect prevents death spirals through multipliers below critical mass. Circadian alignment creates 30% reward variations following natural biorhythms.
-        </p>
-
-        <p>
-        Optimal foraging theory guides activity recommendations through ROI calculations. Bergmann's Rule adjusts reserves based on environmental hostility metrics. R/K selection theory modulates reward variance based on system maturity.
-        </p>
+        <p><strong>7.1 Kleiber's Law Network Scaling</strong> — Efficiency increases with size: $\eta(N) = 1 + 0.3(N/10^9)^{1/4}$ creating positive-sum growth. See <a href="math#eq-13">equation 13</a>.</p>
+        
+        <p><strong>7.2 Liebig's Law Implementation</strong> — System health equals weakest component with automatic 2× multipliers for bottlenecks. See <a href="math#eq-14">equation 14</a>.</p>
+        
+        <p><strong>7.3 Allee Effect Protection</strong> — Below 1,000 users, 50% bonus multipliers prevent early network death.</p>
+        
+        <p><strong>7.4 Circadian Rhythm Alignment</strong> — 30% reward variation with peaks at 7AM, noon, 6PM and 0.7× multiplier midnight-5AM.</p>
+        
+        <p><strong>7.5 Seasonal Health Multipliers</strong> — Natural patterns from 1.4× (December) to 2.5× (January) matching human cycles. See <a href="extended-math#eq-A19">equation A.19</a>.</p>
+        
+        <p><strong>7.6 Optimal Foraging Engine</strong> — Automated ROI calculation: Health Benefit / (Time × Effort × Opportunity Cost).</p>
+        
+        <p><strong>7.7 R/K Selection Lifecycle</strong> — Early growth phase (75 tokens, high variance) evolves to mature sustainability (50 tokens, stability).</p>
+        
+        <p><strong>7.8 Group Metabolic Cooperation</strong> — 1000-person groups generate 3.77× individual value through super-linear efficiency.</p>
+        
+        <p><strong>7.9 Environmental Hostility Response</strong> — Reserves automatically increase 50% under regulatory threats.</p>
+        
+        <p><strong>7.10 Sleep Protection Economics</strong> — Midnight-5AM rewards reduced to 0.7× to encourage healthy rest.</p>
+        
+        <p><strong>7.11 Bergmann's Rule Adaptation</strong> — Reserve requirements scale 1-2× based on environmental threats.</p>
+        
+        <p><strong>7.12 Critical Mass Insurance</strong> — Mathematical guarantees against early death through extra rewards below 1K users.</p>
+        
+        <p><strong>7.13 Metabolic Cascade Effects</strong> — Biological laws interact multiplicatively creating emergent properties.</p>
+        
+        <p><strong>7.14 Settlement Cost Optimization</strong> — Healthcare costs scale with $(\text{ReservoirSize}/\text{Target})^{3/4}$ following Kleiber's Law.</p>
+        
+        <p><strong>7.15 Dual-Phase Growth Strategy</strong> — R-selection exploration transitions to K-selection optimization at maturity.</p>
 
         <h1>Marketplace Features</h1>
 
-        <p>
-        Three privacy tiers for proof listings: anonymous (baseline), ProfileID revelation (50-100% premium), and genetic trait display (100-200% additional premium). ProfileID revelation enables buyers to follow specific health journeys creating parasocial relationships. Genetic trait display allows sellers to showcase specialized expertise commanding premium prices.
-        </p>
-
-        <p>
-        Consumer-to-Consumer layer enables proof monetization with privacy tiers. Business-to-Business layer provides verification APIs and integration services. Business-to-Business-to-Consumer serves enterprise wellness verification needs. Privacy-preserving analytics enable population insights without individual exposure. Marketplace activity generates Catalyst tokens through quality and rarity formulas.
-        </p>
+        <p><strong>8.1 Three-Sided Marketplace</strong> — C2C proof monetization, B2B app infrastructure, B2B2C enterprise wellness.</p>
+        
+        <p><strong>8.2 Catalyst Token Generation</strong> — Fourth species created through marketplace activity maintaining 25% ecosystem balance. See <a href="extended-math#eq-A12">equation A.12</a>.</p>
+        
+        <p><strong>8.3 Dynamic Catalyst Decay</strong> — Self-regulates 2-10% daily: $\lambda = \lambda_{base}(1 + 2|C_{ratio} - 0.25|)$ to maintain equilibrium.</p>
+        
+        <p><strong>8.4 Privacy Tier Pricing</strong> — Anonymous (baseline), ProfileID (+50-100%), Genetic traits (+100-200% additional).</p>
+        
+        <p><strong>8.5 Proof Rarity Multiplier</strong> — Rare activities earn logarithmic premiums up to 5× for unique accomplishments. See <a href="extended-math#eq-A29">equation A.29</a>.</p>
+        
+        <p><strong>8.6 ProfileID Parasocial Relationships</strong> — Buyers can follow specific health journeys creating influencer dynamics.</p>
+        
+        <p><strong>8.7 USDC-Only Fee Collection</strong> — All marketplace fees in stablecoin for Reservoir stability.</p>
+        
+        <p><strong>8.8 Flexible Payment Options</strong> — Pay with any token combination, automatic conversion at metabolic prices.</p>
+        
+        <p><strong>8.9 Quality Score Generation</strong> — Verification richness (0-1) affects catalyst rewards and marketplace reputation.</p>
+        
+        <p><strong>8.10 Apps Define Health</strong> — Protocol provides infrastructure, applications determine valid activities.</p>
+        
+        <p><strong>8.11 Enzymatic Acceleration</strong> — Catalyst tokens speed verification and trust-building throughout ecosystem.</p>
+        
+        <p><strong>8.12 Privacy-Preserving Commerce</strong> — All transactions use zero-knowledge proofs, data never transfers.</p>
 
         <h1>Technical Infrastructure</h1>
 
-        <p>
-        zkVM performance achieves sub-50ms proof generation at $0.003 per proof enabling mobile verification. State channel integration reduces blockchain transactions by 95% through off-chain accumulation. Anonymity accumulator requires k=100,000 users before any aggregate data release. Temporal batching adds 0-6 hour random delays within 24-hour windows preventing correlation.
-        </p>
+        <p><strong>9.1 zkVM Performance</strong> — Sub-50ms proof generation at $0.003 per proof enabling mobile verification.</p>
+        
+        <p><strong>9.2 Multi-Contract Architecture</strong> — HealthToken.sol (decay), Reservoir.sol (treasury), ContributionGovernance.sol (voting), Verification.sol (apps).</p>
+        
+        <p><strong>9.3 Gas-Optimized Decay</strong> — Lazy evaluation calculates decay only during transactions, not continuously.</p>
+        
+        <p><strong>9.4 Anonymity Accumulator</strong> — Requires k=100,000 users before any aggregate data release.</p>
+        
+        <p><strong>9.5 Smart Contract Formal Verification</strong> — Mathematical proof of correctness for all core contracts.</p>
+        
+        <p><strong>9.6 Multi-Signature Upgrades</strong> — Timelock periods ensure security during protocol updates.</p>
+        
+        <p><strong>9.7 Emergency Pause Functions</strong> — Circuit breakers without centralized control using multi-sig.</p>
+        
+        <p><strong>9.8 API Standardization</strong> — RESTful and GraphQL interfaces for app integration.</p>
+        
+        <p><strong>9.9 Modular zkVM Support</strong> — Swap proof systems without protocol changes.</p>
+        
+        <p><strong>9.10 Cross-Chain Bridge Design</strong> — Future interoperability with other health blockchains.</p>
 
-        <p>
-        Lazy evaluation calculates decay only during transactions saving gas. Batch operations process multiple actions in single transactions. Smart contract formal verification ensures mathematical correctness. Multi-signature upgrades require timelock periods for security. API specifications enable standardized app integration.
-        </p>
 
-        <h1>Implementation Roadmap</h1>
+        <h1>Research Areas</h1>
 
-        <h2>Phase 1: Core Protocol (Months 1-6)</h2>
-        <p>
-        The first phase includes smart contract deployment on selected blockchain. Basic token mechanics with four species will be implemented. Reservoir implementation with dual balances will establish the economic foundation. Initial app SDK and verification framework will enable third-party development. Basic privacy features with zkVM integration will protect user data from launch.
-        </p>
+        <p><strong>10.1 Behavioral Economics</strong> — Optimal decay rates for different health behaviors and populations.</p>
+        
+        <p><strong>10.2 Privacy Technology</strong> — Next-generation zero-knowledge proofs and homomorphic encryption.</p>
+        
+        <p><strong>10.3 Biological Modeling</strong> — Additional natural laws for economic systems beyond current implementation.</p>
+        
+        <p><strong>10.4 Network Theory</strong> — Scale effects beyond Kleiber's and Metcalfe's Laws.</p>
+        
+        <p><strong>10.5 Game Theory</strong> — Multi-agent equilibrium dynamics and mechanism design.</p>
+        
+        <p><strong>10.6 Health Outcomes</strong> — Measuring real-world impact on population health metrics.</p>
+        
+        <p><strong>10.7 Token Economics</strong> — Refining decay rates and multipliers based on empirical data.</p>
+        
+        <p><strong>10.8 Cross-Protocol Integration</strong> — Bridging with other DeFi and health protocols.</p>
+        
+        <p><strong>10.9 Regulatory Frameworks</strong> — Navigating global health data and financial regulations.</p>
+        
+        <p><strong>10.10 Social Recovery</strong> — Community support mechanisms for health setbacks.</p>
 
-        <h2>Phase 2: Marketplace Launch (Months 7-12)</h2>
-        <p>
-        Phase two introduces the Consumer-to-Consumer proof marketplace. Business API integration layer will serve enterprise needs. Advanced privacy tiers and ProfileID system will enhance user control. Catalyst token dynamics will maintain market balance. Initial enterprise partnerships will validate the business model.
-        </p>
+        <h1>Verification System Features</h1>
 
-        <h2>Phase 3: Ecosystem Expansion (Year 2)</h2>
-        <p>
-        The third phase features genetic adaptation system rollout. Insurance provider integrations will expand healthcare access. Wellness Vault advanced features will enhance financial tools. Cross-chain interoperability will broaden ecosystem reach. Global regulatory compliance framework will enable international expansion.
-        </p>
+        <p><strong>11.1 App Staking Requirements</strong> — Apps stake USDC proportional to verification volume creating economic trust.</p>
+        
+        <p><strong>11.2 Progressive Slashing</strong> — Penalties escalate from 10% to 100% for repeated violations.</p>
+        
+        <p><strong>11.3 Reputation Rewards</strong> — Accurate verifications increase limits and reduce stake requirements.</p>
+        
+        <p><strong>11.4 zkVM Agnosticism</strong> — Apps choose their preferred zero-knowledge virtual machine for competitive pricing.</p>
+        
+        <p><strong>11.5 Batch Processing</strong> — 85% gas cost reduction through transaction aggregation.</p>
+        
+        <p><strong>11.6 State Channels</strong> — Off-chain accumulation with on-chain settlement reduces costs 95%.</p>
+        
+        <p><strong>11.7 Statistical Fraud Detection</strong> — Automatic pattern analysis identifies abnormal verification behavior.</p>
+        
+        <p><strong>11.8 Regional Standards</strong> — Adapt to local healthcare requirements and regulations.</p>
+        
+        <p><strong>11.9 Modular Verification Engine</strong> — Pluggable processors support diverse health proof types.</p>
+        
+        <p><strong>11.10 Slashing Insurance</strong> — Apps can purchase coverage against false positive slashing events.</p>
 
-        <h1>Research & Development</h1>
+        <h1>Additional Novel Features</h1>
 
-        <h2>Ongoing Research Areas</h2>
-        <p>
-        Behavioral Economics research focuses on optimal decay rates for different health behaviors. Privacy Technology explores next-generation zero-knowledge proof systems. Biological Modeling investigates additional natural laws for economic systems. Network Theory examines scale effects beyond Kleiber's and Metcalfe's Laws. Game Theory analyzes multi-agent equilibrium dynamics.
-        </p>
-
-        <h2>Experimental Features</h2>
-        <p>
-        Social Recovery Mechanisms provide community support for health setbacks. Predictive Health Rewards deliver AI-driven personalized incentives. Cross-Protocol Bridges enable integration with other DeFi systems. Decentralized Governance outlines the full DAO transition roadmap. Global Health Metrics facilitate population-level health tracking.
-        </p>
+        <p><strong>12.1 Achievement System</strong> — Permanent 1.1-1.5× multipliers for major health milestones (marathon, 100 therapy sessions, etc).</p>
+        
+        <p><strong>12.2 Fluid Participation</strong> — Casual users earn points that convert to tokens when ready for deeper engagement.</p>
+        
+        <p><strong>12.3 Living Economy Death Condition</strong> — System reaches zero equilibrium without users, implementing true economic mortality.</p>
+        
+        <p><strong>12.4 Value Circulation</strong> — Tokens redeemable for any life-supporting activity from healthcare to coffee to concerts.</p>
+        
+        <p><strong>12.5 Cross-Species Exchange</strong> — Trade between token types with slippage protection and arbitrage bounds. See <a href="extended-math#eq-A23">equations A.23</a>-<a href="extended-math#eq-A25">A.25</a>.</p>
+        
+        <p><strong>12.6 Circulation Velocity Tracking</strong> — Monitor token movement normalized to 30-day periods (healthy: 2-10×). See <a href="extended-math#eq-A26">equation A.26</a>.</p>
+        
+        <p><strong>12.7 Network Health Score</strong> — Geometric mean of five dimensions adjusted by Gini coefficient. See <a href="extended-math#eq-A28">equation A.28</a>.</p>
+        
+        <p><strong>12.8 Progressive Decay Acceleration</strong> — Soft caps at 10K, 20K, 50K, 100K tokens increase decay 5%, 10%, 25%, 50%.</p>
+        
+        <p><strong>12.9 Mathematical Sustainability Model</strong> — Complete dual-balance equations ensuring perpetual solvency.</p>
+        
+        <p><strong>12.10 Apps Define Health</strong> — Protocol provides economic infrastructure, applications determine health activities.</p>
 
         <h1>Additional Resources</h1>
 
-        <h2>Technical Documentation</h2>
-        <p>
-        Available technical resources include the Smart Contract Architecture Guide for blockchain developers. App Developer SDK Documentation enables third-party integrations. zkVM Integration Specifications detail privacy implementation. API Reference Manual provides comprehensive endpoint documentation. Security Audit Reports demonstrate protocol safety.
-        </p>
-
-        <h2>Community Resources</h2>
-        <p>
-        The Discord Community for Developers facilitates technical collaboration. Weekly Research Seminars explore protocol innovations. Open Source Contribution Guidelines welcome community development. Bug Bounty Program Details incentivize security research. Grant Program for Ecosystem Development funds innovative applications.
-        </p>
+        <h2>Learn More</h2>
+        <ul>
+            <li><a href="math">Mathematical Reference</a> - Complete formulas and proofs</li>
+            <li><a href="extended-math">Extended Mathematics</a> - Advanced formulas and implementation details</li>
+            <li><a href="use-cases">Use Cases</a> - See features in action through example stories</li>
+            <li><a href="plain-language">Plain Language Summary</a> - Non-technical explanation</li>
+            <li><a href="simulations">Interactive Simulations</a> - Test features in real-time</li>
+        </ul>
 
         <!-- Footer -->
         <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">
