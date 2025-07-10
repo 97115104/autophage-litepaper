@@ -673,9 +673,10 @@ distribution = {
             const script = scripts[scriptName];
             if (!script) return;
             
-            // Open file in new tab for viewing and copying
-            window.open(script.url, '_blank');
+            // Use the new viewFile function
+            viewFile(script.url, script.filename);
         }
     </script>
+    <script src="js/file-viewer.js"></script>
 </body>
 </html>

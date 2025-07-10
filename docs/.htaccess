@@ -9,3 +9,15 @@ RewriteRule ^ /%1? [NC,L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^.]+)$ $1.html [NC,L]
+
+# Serve Python files as plain text for viewing in browser
+<FilesMatch "\.py$">
+    ForceType text/plain
+    Header set Content-Disposition "inline"
+</FilesMatch>
+
+# Also handle other text files
+<FilesMatch "\.(txt|md|json)$">
+    ForceType text/plain
+    Header set Content-Disposition "inline"
+</FilesMatch>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Viewer — Autophage Protocol</title>
+    <meta name="description" content="View source code files">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
+    <style>
+        .code-container {
+            margin: 2em 0;
+            border: 1px solid var(--rule-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .code-header {
+            background: var(--paper-bg);
+            padding: 1em;
+            border-bottom: 1px solid var(--rule-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .code-header h2 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        
+        .code-actions {
+            display: flex;
+            gap: 1em;
+        }
+        
+        .code-button {
+            padding: 0.5em 1em;
+            background: var(--paper-bg);
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        
+        .code-button:hover {
+            background: var(--text-color);
+            color: var(--paper-bg);
+        }
+        
+        pre {
+            margin: 0 !important;
+            border-radius: 0 !important;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 4em 2em;
+            color: #e74c3c;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 4em 2em;
+        }
+        
+        body.dark-mode pre[class*="language-"] {
+            background: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <div class="latex-document">
+        <header>
+            <h1>Code Viewer</h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/interactive-simulations">Simulations</a>
+                <a href="/adversarial-simulations">Adversarial</a>
+            </nav>
+        </header>
+
+        <div class="code-container">
+            <div class="code-header">
+                <h2 id="filename">Loading...</h2>
+                <div class="code-actions">
+                    <button class="code-button" onclick="copyCode()">Copy Code</button>
+                    <a id="download-link" class="code-button" download>Download</a>
+                    <a id="raw-link" class="code-button" target="_blank">View Raw</a>
+                </div>
+            </div>
+            <div id="code-content">
+                <div class="loading">Loading code...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prism.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    
+    <script>
+        // Get file from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const file = urlParams.get('file');
+        
+        if (file) {
+            // Update filename
+            document.getElementById('filename').textContent = file.split('/').pop();
+            
+            // Update download link
+            const downloadLink = document.getElementById('download-link');
+            downloadLink.href = file;
+            downloadLink.download = file.split('/').pop();
+            
+            // Update raw link
+            document.getElementById('raw-link').href = file;
+            
+            // Fetch and display the file
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) throw new Error('File not found');
+                    return response.text();
+                })
+                .then(content => {
+                    const codeContent = document.getElementById('code-content');
+                    const extension = file.split('.').pop();
+                    const language = extension === 'py' ? 'python' : 
+                                   extension === 'js' ? 'javascript' : 
+                                   extension === 'json' ? 'json' : 
+                                   'plaintext';
+                    
+                    codeContent.innerHTML = `<pre><code class="language-${language}">${escapeHtml(content)}</code></pre>`;
+                    
+                    // Re-run Prism highlighting
+                    Prism.highlightAll();
+                })
+                .catch(error => {
+                    document.getElementById('code-content').innerHTML = 
+                        '<div class="error-message">Error loading file: ' + error.message + '</div>';
+                });
+        } else {
+            document.getElementById('code-content').innerHTML = 
+                '<div class="error-message">No file specified</div>';
+        }
+        
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+        
+        function copyCode() {
+            const codeElement = document.querySelector('pre code');
+            if (codeElement) {
+                navigator.clipboard.writeText(codeElement.textContent)
+                    .then(() => {
+                        const button = event.target;
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 2000);
+                    });
+            }
+        }
+        
+        // Apply dark mode if needed
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
