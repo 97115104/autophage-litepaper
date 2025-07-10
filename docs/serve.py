@@ -41,6 +41,22 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
         if self.path == '/':
             self.path = '/index.html'
         
+        # Handle clean URLs - if path has no extension and no file exists, try adding .html
+        # Split path and query string
+        path_parts = self.path.split('?', 1)
+        path = path_parts[0]
+        query_string = '?' + path_parts[1] if len(path_parts) > 1 else ''
+        
+        # Remove trailing slash
+        if path.endswith('/') and path != '/':
+            path = path[:-1]
+        
+        # If path has no extension and the file doesn't exist, try adding .html
+        if '.' not in os.path.basename(path) and not os.path.exists('.' + path):
+            html_path = path + '.html'
+            if os.path.exists('.' + html_path):
+                self.path = html_path + query_string
+        
         # Log the request
         print(f"Serving: {self.path}")
         

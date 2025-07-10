@@ -9,6 +9,10 @@
     <!-- Prevent dark mode flash -->
     <script src="js/theme-init.js"></script>
     
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
     <!-- Styles -->
     <link rel="stylesheet" href="css/main.css">
     
@@ -19,7 +23,6 @@
     
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     
     <style>
         .code-container {
@@ -57,6 +60,8 @@
             font-size: 0.9em;
             border-radius: 4px;
             text-decoration: none;
+            font-family: inherit;
+            transition: all 0.2s ease;
         }
         
         .code-button:hover {
@@ -64,9 +69,31 @@
             color: var(--paper-bg);
         }
         
+        /* Ensure all buttons have same appearance */
+        button.code-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
         pre {
             margin: 0 !important;
             border-radius: 0 !important;
+            text-shadow: none !important;
+        }
+        
+        pre code {
+            text-shadow: none !important;
+        }
+        
+        /* Override any Prism.js text shadows */
+        .token {
+            text-shadow: none !important;
+        }
+        
+        code[class*="language-"],
+        pre[class*="language-"] {
+            text-shadow: none !important;
         }
         
         .error-message {
@@ -80,35 +107,97 @@
             padding: 4em 2em;
         }
         
-        body.dark-mode pre[class*="language-"] {
-            background: #1e1e1e;
+        /* Simple dark mode for code */
+        body.dark-mode pre {
+            background: #2d2d30;
+            color: #d4d4d4;
+        }
+        
+        body.dark-mode code {
+            background: #2d2d30;
+            color: #d4d4d4;
+        }
+        
+        /* Override Prism colors for dark mode */
+        body.dark-mode .token.comment,
+        body.dark-mode .token.prolog,
+        body.dark-mode .token.doctype,
+        body.dark-mode .token.cdata {
+            color: #608b4e;
+        }
+        
+        body.dark-mode .token.punctuation {
+            color: #d4d4d4;
+        }
+        
+        body.dark-mode .token.property,
+        body.dark-mode .token.tag,
+        body.dark-mode .token.boolean,
+        body.dark-mode .token.number,
+        body.dark-mode .token.constant,
+        body.dark-mode .token.symbol,
+        body.dark-mode .token.deleted {
+            color: #b5cea8;
+        }
+        
+        body.dark-mode .token.selector,
+        body.dark-mode .token.attr-name,
+        body.dark-mode .token.string,
+        body.dark-mode .token.char,
+        body.dark-mode .token.builtin,
+        body.dark-mode .token.inserted {
+            color: #ce9178;
+        }
+        
+        body.dark-mode .token.operator,
+        body.dark-mode .token.entity,
+        body.dark-mode .token.url,
+        body.dark-mode .language-css .token.string,
+        body.dark-mode .style .token.string {
+            color: #d4d4d4;
+        }
+        
+        body.dark-mode .token.atrule,
+        body.dark-mode .token.attr-value,
+        body.dark-mode .token.keyword {
+            color: #c586c0;
+        }
+        
+        body.dark-mode .token.function,
+        body.dark-mode .token.class-name {
+            color: #dcdcaa;
+        }
+        
+        body.dark-mode .token.regex,
+        body.dark-mode .token.important,
+        body.dark-mode .token.variable {
+            color: #d16969;
         }
     </style>
 </head>
 <body>
+    <!-- Components will add mode toggle and back to top -->
+    
     <div class="latex-document">
-        <header>
-            <h1>Code Viewer</h1>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/interactive-simulations">Simulations</a>
-                <a href="/adversarial-simulations">Adversarial</a>
-            </nav>
-        </header>
+        <!-- Header placeholder -->
+        <div id="header"></div>
 
         <div class="code-container">
             <div class="code-header">
                 <h2 id="filename">Loading...</h2>
                 <div class="code-actions">
                     <button class="code-button" onclick="copyCode()">Copy Code</button>
-                    <a id="download-link" class="code-button" download>Download</a>
-                    <a id="raw-link" class="code-button" target="_blank">View Raw</a>
+                    <button class="code-button" onclick="downloadFile()">Download</button>
+                    <button class="code-button" onclick="viewRaw()">View Raw</button>
                 </div>
             </div>
             <div id="code-content">
                 <div class="loading">Loading code...</div>
             </div>
         </div>
+        
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
     </div>
 
     <!-- Prism.js -->
@@ -116,21 +205,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
     
     <script>
+        // Store the file URL globally - declare it first
+        let currentFileUrl = null;
+        
         // Get file from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
         const file = urlParams.get('file');
         
         if (file) {
+            // Store the file URL
+            currentFileUrl = file;
+            
             // Update filename
             document.getElementById('filename').textContent = file.split('/').pop();
-            
-            // Update download link
-            const downloadLink = document.getElementById('download-link');
-            downloadLink.href = file;
-            downloadLink.download = file.split('/').pop();
-            
-            // Update raw link
-            document.getElementById('raw-link').href = file;
             
             // Fetch and display the file
             fetch(file)
@@ -172,25 +259,73 @@
         }
         
         function copyCode() {
-            const codeElement = document.querySelector('pre code');
+            const codeElement = document.querySelector('pre code') || document.querySelector('pre');
             if (codeElement) {
-                navigator.clipboard.writeText(codeElement.textContent)
+                const textContent = codeElement.textContent || codeElement.innerText;
+                navigator.clipboard.writeText(textContent)
                     .then(() => {
-                        const button = event.target;
+                        // Find the button that was clicked
+                        const buttons = document.querySelectorAll('.code-actions button');
+                        const button = buttons[0]; // Copy button is first
                         const originalText = button.textContent;
                         button.textContent = 'Copied!';
                         setTimeout(() => {
                             button.textContent = originalText;
                         }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy:', err);
+                        // Fallback for older browsers
+                        const textArea = document.createElement('textarea');
+                        textArea.value = textContent;
+                        textArea.style.position = 'fixed';
+                        textArea.style.left = '-999999px';
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        try {
+                            document.execCommand('copy');
+                            const buttons = document.querySelectorAll('.code-actions button');
+                            const button = buttons[0];
+                            button.textContent = 'Copied!';
+                            setTimeout(() => {
+                                button.textContent = 'Copy Code';
+                            }, 2000);
+                        } catch (err) {
+                            console.error('Fallback copy failed:', err);
+                        }
+                        document.body.removeChild(textArea);
                     });
             }
         }
         
-        // Apply dark mode if needed
-        if (localStorage.getItem('theme') === 'dark' || 
-            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.body.classList.add('dark-mode');
+        function downloadFile() {
+            if (currentFileUrl) {
+                const filename = currentFileUrl.split('/').pop();
+                const a = document.createElement('a');
+                a.href = currentFileUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
         }
+        
+        function viewRaw() {
+            if (currentFileUrl) {
+                window.open(currentFileUrl, '_blank');
+            }
+        }
+        
+    </script>
+    
+    <!-- Main script -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize components
+        Components.init({
+            title: 'Code Viewer',
+            version: '1.0'
+        });
     </script>
 </body>
 </html>

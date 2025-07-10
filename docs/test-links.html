@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Links</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Test Clean URLs</h1>
+    
+    <h2>Regular Pages</h2>
+    <ul>
+        <li><a href="index">Home (no .html)</a></li>
+        <li><a href="about">About (no .html)</a></li>
+        <li><a href="interactive-simulations">Interactive Simulations (no .html)</a></li>
+    </ul>
+    
+    <h2>Code Viewer</h2>
+    <ul>
+        <li><a href="code-viewer?file=simulations/autophage_simulation.py">View Python File (no .html)</a></li>
+        <li><a href="code-viewer?file=simulations/requirements.txt">View Text File (no .html)</a></li>
+    </ul>
+    
+    <h2>File Viewer Function</h2>
+    <button onclick="viewFile('simulations/autophage_simulation.py', 'autophage_simulation.py')">
+        Open with viewFile()
+    </button>
+    
+    <script src="js/file-viewer.js"></script>
+</body>
+</html>

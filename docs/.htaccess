@@ -1,13 +1,14 @@
 # Remove .html extension from URLs
 RewriteEngine On
 
-# Redirect .html to clean URLs
-RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1? [NC,L,R=301]
+# Redirect .html to clean URLs (including query strings)
+RewriteCond %{THE_REQUEST} \s/([^.\s]+)\.html(\?[^\s]*)?\s [NC]
+RewriteRule ^ /%1%2? [NC,L,R=301]
 
 # Serve .html for clean URLs (but not for files that exist)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !\.
 RewriteRule ^([^.]+)$ $1.html [NC,L]
 
 # Serve Python files as plain text for viewing in browser
