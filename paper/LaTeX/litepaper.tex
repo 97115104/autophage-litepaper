@@ -1071,7 +1071,7 @@ The protocol consists of four primary contracts with specific responsibilities \
 Efficient implementation enables scalability:
 
 1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair.\footnote{
-Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/simulations}.
+Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/gas-optimization}.
 }
 
 2. \textbf{Batch Processing}: Aggregate multiple proofs with batch sizes up to 100 proofs, achieving 85\% gas reduction compared to individual transactions through Merkle tree root submission for verification.
