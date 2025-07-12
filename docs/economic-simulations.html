@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Simulations — Autophage Protocol</title>
+    <meta name="description" content="Interactive economic model simulations validating revenue streams and unit economics">
+    
+    <!-- Prevent dark mode flash -->
+    <script src="js/theme-init.js"></script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/main.css" as="style">
+    <link rel="preload" href="js/config.js" as="script">
+    <link rel="preload" href="js/components.js" as="script">    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="alternate icon" href="assets/favicon.ico">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-touch-icon-152x152.png">
+    
+    <!-- Android Chrome Icons -->
+    <link rel="manifest" href="assets/site.webmanifest">
+    
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#f5f5f5">
+    <meta name="msapplication-TileImage" content="assets/mstile-144x144.png">
+    <meta name="msapplication-config" content="assets/browserconfig.xml">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#f5f5f5">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Configuration and Components -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        .revenue-table {
+            width: 100%;
+            margin: 2em 0;
+            border-collapse: collapse;
+        }
+        
+        .revenue-table th,
+        .revenue-table td {
+            padding: 0.75em;
+            text-align: left;
+            border-bottom: 1px solid var(--rule-color);
+        }
+        
+        .revenue-table th {
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        body.dark-mode .revenue-table th {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .revenue-table td:nth-child(2),
+        .revenue-table td:nth-child(3),
+        .revenue-table td:nth-child(4) {
+            text-align: right;
+        }
+        
+        .revenue-table th:nth-child(2),
+        .revenue-table th:nth-child(3),
+        .revenue-table th:nth-child(4) {
+            text-align: right;
+        }
+        
+        .revenue-table tr.total-row {
+            font-weight: bold;
+            border-top: 2px solid var(--rule-color);
+        }
+        
+        .metric-box {
+            background: var(--paper-bg);
+            border: 1px solid var(--rule-color);
+            padding: 1.5em;
+            margin: 1em 0;
+            border-radius: 4px;
+        }
+        
+        .metric-value {
+            font-size: 24pt;
+            font-weight: bold;
+            display: block;
+            margin: 0.2em 0;
+        }
+        
+        .metric-label {
+            font-size: 10pt;
+            color: var(--caption-color);
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1em;
+            margin: 2em 0;
+        }
+        
+        .control-panel {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--rule-color);
+            padding: 1.5em;
+            margin: 2em 0;
+            border-radius: 4px;
+        }
+        
+        body.dark-mode .control-panel {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .slider-group {
+            margin: 1em 0;
+        }
+        
+        .slider-group label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            font-size: 10pt;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+        
+        .slider-container input[type="range"] {
+            flex: 1;
+        }
+        
+        .slider-value {
+            min-width: 80px;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10pt;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 2em 0;
+        }
+        
+        .success-metric {
+            background: rgba(46, 204, 113, 0.05);
+            border-left: 4px solid #2ecc71;
+            padding: 1em;
+            margin: 1em 0;
+        }
+        
+        body.dark-mode .success-metric {
+            background: rgba(46, 204, 113, 0.1);
+        }
+        
+        .warning-metric {
+            background: rgba(243, 156, 18, 0.05);
+            border-left: 4px solid #f39c12;
+            padding: 1em;
+            margin: 1em 0;
+        }
+        
+        body.dark-mode .warning-metric {
+            background: rgba(243, 156, 18, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Components will add mode toggle and back to top -->
+
+    <div class="latex-document">
+        <!-- Header placeholder -->
+        <div id="header"></div>
+
+        <!-- About -->
+        <div class="latex-abstract">
+            <h2>About this page</h2>
+            <p>
+            This page contains interactive economic simulations that validate the revenue model and unit economics of the Autophage Protocol. The simulations demonstrate how the protocol generates sustainable revenue through app integration fees, marketplace transactions, and enterprise verification services.
+            </p>
+        </div>
+
+        <!-- Section 1: Revenue Model Overview -->
+        <h1><span class="section-number">1</span>Revenue Model Overview</h1>
+
+        <p>
+        The Autophage Protocol generates revenue through three primary streams, each designed to align with user value creation while maintaining high contribution margins:
+        </p>
+
+        <div class="theorem">
+            <span class="theorem-header">Economic Principle.</span> Sustainable protocol economics require revenue generation that scales with user engagement while maintaining contribution margins above 85%.
+        </div>
+
+        <table class="revenue-table">
+            <thead>
+                <tr>
+                    <th>Revenue Stream</th>
+                    <th>Per User/Month</th>
+                    <th>Margin</th>
+                    <th>Annual at 1M Users</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>App Integration Fees</td>
+                    <td>$0.15</td>
+                    <td>95%</td>
+                    <td>$1.8M</td>
+                </tr>
+                <tr>
+                    <td>Marketplace Fees (12%)</td>
+                    <td>$0.45</td>
+                    <td>88%</td>
+                    <td>$5.4M</td>
+                </tr>
+                <tr>
+                    <td>Enterprise Verification</td>
+                    <td>$1.25</td>
+                    <td>92%</td>
+                    <td>$15.0M</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total</td>
+                    <td>$1.85</td>
+                    <td>91.7%</td>
+                    <td>$22.2M</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-caption">Table 1: Revenue streams and contribution margins at scale</div>
+
+        <!-- Section 2: Interactive Revenue Calculator -->
+        <h1><span class="section-number">2</span>Interactive Revenue Calculator</h1>
+
+        <p>
+        Adjust the parameters below to see how changes in user base, pricing, and engagement affect total revenue:
+        </p>
+
+        <div class="control-panel">
+            <h3>Revenue Parameters</h3>
+            
+            <div class="slider-group">
+                <label>Total Users</label>
+                <div class="slider-container">
+                    <input type="range" id="totalUsers" min="10000" max="10000000" value="1000000" step="10000">
+                    <span class="slider-value" id="totalUsersValue">1,000,000</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>App Integration Fee ($/user/month)</label>
+                <div class="slider-container">
+                    <input type="range" id="appFee" min="0.05" max="0.50" value="0.15" step="0.01">
+                    <span class="slider-value" id="appFeeValue">$0.15</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>Average Marketplace Transaction ($/user/month)</label>
+                <div class="slider-container">
+                    <input type="range" id="marketplaceVolume" min="0" max="20" value="3.75" step="0.25">
+                    <span class="slider-value" id="marketplaceVolumeValue">$3.75</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>Marketplace Fee Rate (%)</label>
+                <div class="slider-container">
+                    <input type="range" id="marketplaceFeeRate" min="5" max="20" value="12" step="0.5">
+                    <span class="slider-value" id="marketplaceFeeRateValue">12%</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>Enterprise Verification Adoption (%)</label>
+                <div class="slider-container">
+                    <input type="range" id="enterpriseAdoption" min="0" max="20" value="5" step="0.5">
+                    <span class="slider-value" id="enterpriseAdoptionValue">5%</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>Enterprise Fee ($/verified user/month)</label>
+                <div class="slider-container">
+                    <input type="range" id="enterpriseFee" min="10" max="50" value="25" step="1">
+                    <span class="slider-value" id="enterpriseFeeValue">$25.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <span class="metric-label">Monthly Revenue</span>
+                <span class="metric-value" id="monthlyRevenue">$1,850,000</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-label">Annual Revenue</span>
+                <span class="metric-value" id="annualRevenue">$22,200,000</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-label">Revenue per User</span>
+                <span class="metric-value" id="revenuePerUser">$1.85</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-label">Gross Margin</span>
+                <span class="metric-value" id="grossMargin">91.7%</span>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+        </div>
+        <div class="figure-caption">Figure 1: Revenue breakdown by stream</div>
+
+        <!-- Section 3: Break-Even Analysis -->
+        <h1><span class="section-number">3</span>Break-Even Analysis</h1>
+
+        <p>
+        The break-even analysis demonstrates the path to profitability based on fixed costs, variable costs per user, and revenue generation:
+        </p>
+
+        <div class="definition">
+            <span class="definition-header">Definition 3.1.</span> Break-even point occurs when total revenue equals total costs: $R(n) = FC + VC \cdot n$, where $n$ is the number of users, $FC$ is fixed costs, and $VC$ is variable cost per user.
+        </div>
+
+        <div class="control-panel">
+            <h3>Cost Structure Parameters</h3>
+            
+            <div class="slider-group">
+                <label>Fixed Costs (Monthly)</label>
+                <div class="slider-container">
+                    <input type="range" id="fixedCosts" min="10000" max="100000" value="30000" step="1000">
+                    <span class="slider-value" id="fixedCostsValue">$30,000</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>Variable Cost per User (Monthly)</label>
+                <div class="slider-container">
+                    <input type="range" id="variableCost" min="0.05" max="0.50" value="0.15" step="0.01">
+                    <span class="slider-value" id="variableCostValue">$0.15</span>
+                </div>
+            </div>
+        </div>
+
+        <table class="revenue-table">
+            <thead>
+                <tr>
+                    <th>Cost Component</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fixed costs (monthly)</td>
+                    <td id="breakEvenFixed">$30,000</td>
+                </tr>
+                <tr>
+                    <td>Variable cost per user</td>
+                    <td id="breakEvenVariable">$0.15/month</td>
+                </tr>
+                <tr>
+                    <td>Revenue per user</td>
+                    <td id="breakEvenRevenue">$1.85/month</td>
+                </tr>
+                <tr>
+                    <td>Contribution margin</td>
+                    <td id="contributionMargin">$1.70/month</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Break-even users</td>
+                    <td id="breakEvenUsers">17,647</td>
+                </tr>
+                <tr>
+                    <td>Projected timeline</td>
+                    <td id="breakEvenTimeline">Month 8-10</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="table-caption">Table 2: Break-even analysis with current parameters</div>
+
+        <div class="chart-container">
+            <canvas id="breakEvenChart"></canvas>
+        </div>
+        <div class="figure-caption">Figure 2: Break-even analysis showing revenue vs. costs over user growth</div>
+
+        <div id="profitabilityStatus" class="success-metric">
+            <strong>Status:</strong> At 1,000,000 users, the protocol generates $1,700,000 in monthly profit with a 91.9% profit margin.
+        </div>
+
+        <!-- Section 4: Growth Projections -->
+        <h1><span class="section-number">4</span>Growth Projections</h1>
+
+        <p>
+        Based on the current parameters, the following chart shows projected revenue growth over 36 months assuming exponential user growth:
+        </p>
+
+        <div class="control-panel">
+            <h3>Growth Parameters</h3>
+            
+            <div class="slider-group">
+                <label>Monthly Growth Rate (%)</label>
+                <div class="slider-container">
+                    <input type="range" id="growthRate" min="5" max="50" value="20" step="1">
+                    <span class="slider-value" id="growthRateValue">20%</span>
+                </div>
+            </div>
+            
+            <div class="slider-group">
+                <label>Starting Users</label>
+                <div class="slider-container">
+                    <input type="range" id="startingUsers" min="100" max="10000" value="1000" step="100">
+                    <span class="slider-value" id="startingUsersValue">1,000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="growthChart"></canvas>
+        </div>
+        <div class="figure-caption">Figure 3: 36-month revenue projection based on user growth</div>
+
+        <!-- Section 5: Sensitivity Analysis -->
+        <h1><span class="section-number">5</span>Sensitivity Analysis</h1>
+
+        <p>
+        Understanding how changes in key parameters affect overall economics is crucial for strategic planning:
+        </p>
+
+        <div class="chart-container">
+            <canvas id="sensitivityChart"></canvas>
+        </div>
+        <div class="figure-caption">Figure 4: Sensitivity of annual revenue to changes in key parameters</div>
+
+        <div class="remark">
+            <span class="theorem-header">Key Insight.</span> The model is most sensitive to enterprise verification adoption rates, suggesting this should be a primary focus for growth strategies.
+        </div>
+
+        <!-- Section 6: Python Implementation -->
+        <h1><span class="section-number">6</span>Economic Model Implementation</h1>
+
+        <p>
+        The following Python script implements the complete economic model for validation and scenario analysis:
+        </p>
+
+        <div class="simulation-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
+                <h3 style="margin: 0;">economic_model.py</h3>
+                <button onclick="downloadScript('economic_model')">View Script</button>
+            </div>
+            
+            <details style="margin-top: 1em;">
+                <summary style="cursor: pointer; font-weight: bold;">View Key Code Sections</summary>
+                <pre style="background: var(--paper-bg); border: 1px solid var(--rule-color); padding: 1em; margin-top: 1em; overflow-x: auto;"><code># Revenue model implementation
+class AutophageEconomics:
+    def __init__(self):
+        # Revenue streams with margins
+        self.revenue_streams = {
+            'app_integration': {
+                'per_user_month': 0.15,
+                'margin': 0.95,
+                'description': 'App Integration Fees'
+            },
+            'marketplace': {
+                'per_user_month': 0.45,  # 12% of $3.75 avg transaction
+                'margin': 0.88,
+                'description': 'Marketplace Fees (12%)'
+            },
+            'enterprise': {
+                'per_user_month': 1.25,  # 5% adoption at $25/user
+                'margin': 0.92,
+                'description': 'Enterprise Verification'
+            }
+        }
+        
+        # Cost structure
+        self.fixed_costs_monthly = 30000
+        self.variable_cost_per_user = 0.15
+    
+    def calculate_revenue(self, users):
+        """Calculate total revenue for given user count"""
+        total_revenue = 0
+        for stream, params in self.revenue_streams.items():
+            stream_revenue = users * params['per_user_month']
+            total_revenue += stream_revenue
+        return total_revenue
+    
+    def break_even_analysis(self):
+        """Calculate break-even point"""
+        revenue_per_user = sum(s['per_user_month'] for s in self.revenue_streams.values())
+        contribution_margin = revenue_per_user - self.variable_cost_per_user
+        break_even_users = self.fixed_costs_monthly / contribution_margin
+        return {
+            'break_even_users': int(break_even_users),
+            'contribution_margin': contribution_margin,
+            'months_to_break_even': self.estimate_time_to_users(break_even_users)
+        }</code></pre>
+            </details>
+        </div>
+
+        <!-- Conclusions -->
+        <h1><span class="section-number">7</span>Conclusions</h1>
+
+        <p>
+        The economic simulations demonstrate that the Autophage Protocol can achieve sustainable unit economics with:
+        </p>
+
+        <ol>
+            <li>High contribution margins (>90%) across all revenue streams</li>
+            <li>Break-even achievable with fewer than 20,000 users</li>
+            <li>Scalable revenue model that grows with user engagement</li>
+            <li>Multiple revenue streams providing diversification and stability</li>
+            <li>Enterprise verification as the highest-value revenue driver</li>
+        </ol>
+
+        <p>
+        These results validate the economic viability of the protocol while maintaining alignment with the core mission of equitable value distribution. The high margins enable reinvestment in protocol development and user rewards.
+        </p>
+
+        <hr>
+
+        <!-- Footer placeholder -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/economic-sim.js"></script>
+    <script>
+        // Initialize components and theme
+        Components.init({
+            title: 'Economic Simulations',
+            version: '1.0'
+        });
+        
+        // View simulation scripts in browser
+        function downloadScript(scriptName) {
+            const scripts = {
+                'economic_model': {
+                    filename: 'economic_model.py',
+                    url: 'simulations/economic_model.py'
+                }
+            };
+            
+            const script = scripts[scriptName];
+            if (!script) return;
+            
+            // Use the viewFile function
+            viewFile(script.url, script.filename);
+        }
+    </script>
+    <script src="js/file-viewer.js"></script>
+</body>
+</html>

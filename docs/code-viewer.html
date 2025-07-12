@@ -312,7 +312,24 @@
         
         function viewRaw() {
             if (currentFileUrl) {
-                window.open(currentFileUrl, '_blank');
+                // Fetch the content and display as plain text in a new window
+                fetch(currentFileUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error('File not found');
+                        return response.text();
+                    })
+                    .then(content => {
+                        // Create a new window with the raw content
+                        const newWindow = window.open('', '_blank');
+                        newWindow.document.write('<html><head><title>' + currentFileUrl.split('/').pop() + '</title></head><body>');
+                        newWindow.document.write('<pre style="font-family: monospace; white-space: pre-wrap; word-wrap: break-word;">');
+                        newWindow.document.write(escapeHtml(content));
+                        newWindow.document.write('</pre></body></html>');
+                        newWindow.document.close();
+                    })
+                    .catch(error => {
+                        alert('Error loading file: ' + error.message);
+                    });
             }
         }
         

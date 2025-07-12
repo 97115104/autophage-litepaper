@@ -49,7 +49,7 @@
 \maketitle
 
 \begin{abstract}
-Traditional economics assumes value persists indefinitely, enabling unlimited wealth accumulation. Living systems operate differently: value requires continuous renewal or it ceases to exist. This paper introduces the Autophage Protocol, a system that combines formal incentive design with cryptographic privacy guarantees, linking tokenized health rewards to verifiable activity while maintaining a strict separation of identity and data. Four token species decay at rates calibrated to biological persistence: Rhythm (5\% daily) for exercise, Healing (0.75\%) for therapy, Foundation (0.1\%) for preventive care, and Catalyst (2--10\% dynamic) for marketplace balance. Decayed tokens flow to The Reservoir, funding community healthcare while preserving privacy through zero-knowledge proofs. Mathematical modeling suggests wealth distribution converges to a Gini coefficient of 0.08--0.11 under baseline conditions, and remains below 0.55 even when 23\% of the population acts adversarially\footnote{See full simulation results and adversarial methodology in Appendix F. All code and raw data available at \texttt{https://autophage.xyz/simulations}.}, far more equitable than traditional systems at 0.82 or higher \cite{bertocchi2014wealth,milanovic2014global}. The protocol represents a new economic primitive where money must move to exist, creating a digital economy with metabolism-like properties.
+Traditional economics assumes value persists indefinitely, enabling unlimited wealth accumulation. Living systems operate differently: value requires continuous renewal or it ceases to exist. This paper introduces the Autophage Protocol, a system that combines formal incentive design with cryptographic privacy guarantees, linking tokenized health rewards to verifiable activity while maintaining a strict separation of identity and data. Four token species decay at rates calibrated to biological persistence: Rhythm (5\% daily) for exercise, Healing (0.75\%) for therapy, Foundation (0.1\%) for preventive care, and Catalyst (2--10\% dynamic) for marketplace balance. Decayed tokens flow to The Reservoir, funding community healthcare while preserving privacy through zero-knowledge proofs. Mathematical modeling suggests wealth distribution converges to a Gini coefficient of 0.08--0.11 under baseline conditions, and remains below 0.55 even when 23\% of the population acts adversarially\footnote{See full simulation results and adversarial methodology in Appendix F. All code and raw data available at \url{https://autophage.xyz/simulations}.}, far more equitable than traditional systems at 0.82 or higher \cite{bertocchi2014wealth,milanovic2014global}. The protocol represents a new economic primitive where money must move to exist, creating a digital economy with metabolism-like properties.
 \end{abstract}
 
 % Reader's Guide
@@ -782,7 +782,7 @@ M_{genetic} \leq 1.5
 
 \subsection{Wealth Distribution Dynamics}
 
-Monte Carlo simulations\footnote{See \texttt{https://autophage.xyz/gini-simulation}, simulation log, and Appendix F for configuration.} across 10,000 users for 365 days show that the protocol actively converges to broad equality. 
+Monte Carlo simulations\footnote{See \url{https://autophage.xyz/gini-simulation}, simulation log, and Appendix F for configuration.} across 10,000 users for 365 days show that the protocol actively converges to broad equality. 
 
 In baseline (honest) conditions, the Gini coefficient falls from 0.11 (day 30) to 0.08 by day 365. In other words: after a year, the \emph{typical user} is almost as well-off as their peers, and the bottom 50\% holds meaningful wealth (see table). For context, the same simulation run with Bitcoin-style rules produces Gini values above 0.88, and ``fiat'' simulations stabilize around 0.56.
 
@@ -907,7 +907,7 @@ Final Gini & 0.08--0.11 & 0.54--0.55 & $>$0.88 \\
 \end{tabular}
 \end{table}
 
-In summary: even under sustained, adversarial attack from almost a quarter of the network (including coordinated Sybil swarms and collusion pools), the protocol refuses to become a winner-take-all system. Inequality rises, but never approaches the levels endemic to fiat or crypto. And when the network is honest, almost everyone ends up close to the mean.
+To summarize, even under sustained, adversarial attack from almost a quarter of the network (including coordinated Sybil swarms and collusion pools), the protocol refuses to become a winner-take-all system. Inequality rises, but never approaches the levels endemic to fiat or crypto. And when the network is honest, almost everyone ends up close to the mean.
 
 \subsection{Revenue Model and Unit Economics}
 
@@ -948,8 +948,10 @@ Projected timeline & Month 8--10 \\
 \end{tabular}
 \end{table}
 
-All economic analysis, results, and adversarial testing scripts are provided in Appendix F and Appendix G.
-\footnote{``Traditional Economy'' refers to a random-transfer, non-decaying model with equal initial balances and no endogenous redistribution.}
+This table summarizes the core unit economics of the protocol, showing that a monthly fixed cost of \$30,000 and a variable cost of \$0.15 per user are offset by \$1.85 in monthly revenue per user, resulting in a break-even point at 17,647 users.s.
+\footnote{All economic analysis, results, and adversarial testing scripts are provided at \url{https://autophage.xyz/economic-simulations}}
+
+
 
 % Section 9: Empirical Governance
 \section{Empirical Governance}
@@ -1068,10 +1070,9 @@ The protocol consists of four primary contracts with specific responsibilities \
 
 Efficient implementation enables scalability:
 
-1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair. The implementation follows:
-   \begin{verbatim}
-   actualBalance = storedBalance * (1 - decayRate) ^ daysSinceUpdate
-   \end{verbatim}
+1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair.\footnote{
+Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/simulations}.
+}
 
 2. \textbf{Batch Processing}: Aggregate multiple proofs with batch sizes up to 100 proofs, achieving 85\% gas reduction compared to individual transactions through Merkle tree root submission for verification.
 
@@ -1092,22 +1093,28 @@ Batched weekly & 120,000 gas × 4 & 480,000 gas \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-% Section 11: Limitations and Future Work
 \clearpage
 \section{Limitations and Future Work}
 
 \subsection{Technical Limitations}
 
-Several constraints affect current implementation.
+Several constraints affect current implementation. Most notably, proof generation overhead remains a significant challenge: modern zero-knowledge systems such as Groth16, Aurora, and Zexe typically require between 47 and 180 seconds to generate a proof on mobile devices \cite{groth2016size,ben2019aurora,bowe2017zexe}. This performance bottleneck limits user experience and complicates real-time verification.
 
-First, proof generation overhead presents a challenge, as zero-knowledge proofs require 47-180 seconds on mobile devices.
+Additionally, cross-chain fragmentation introduces complexity, as each blockchain environment demands a separate deployment and maintenance cycle, hindering seamless interoperability across ecosystems. Regulatory uncertainty further complicates matters; health token classification and compliance requirements vary by jurisdiction, making global rollout an ongoing challenge.
 
-Second, cross-chain fragmentation necessitates separate deployment for each blockchain. Third, regulatory uncertainty creates complexity as health token classification varies by jurisdiction. Finally, behavioral inertia manifests as user resistance to the concept of ``disappearing money.''
+Finally, beyond technical and legal constraints, behavioral inertia is perhaps the most stubborn: prior experiments with demurrage currencies consistently reveal user resistance to the very idea of ``disappearing money'' \cite{gesell1958natural,freicoin2013project}, exemplifying the need for careful behavioral design and user education in any system based on token decay.
 
 \subsection{Future Research Directions}
 
-Priority areas for continued development include mobile-optimized zkSNARKs targeting sub-10 second proof generation, cross-chain bridges for unified liquidity across ecosystems, regulatory frameworks through proactive engagement with health authorities, behavioral studies using A/B testing to determine optimal decay rates, and chronic condition support through adaptive parameters for different health needs.
+Metabolic economics depends on improvements in speed, privacy, and interoperability. Current proof systems create significant usability barriers; if proof generation takes a minute or more on typical devices, user participation will decline. Research should prioritize mobile-optimized zkSNARKs, faster STARKs, and new methods for aggregating proofs to reduce these bottlenecks.
+
+Cross-chain interoperability is not solved. Without effective bridges and state proofs, metabolic assets will remain siloed and lose composability. Unified liquidity across chains requires both technical and economic solutions, not just token wrappers.
+
+Regulation is not a solved problem. Health token classification varies by jurisdiction, which directly affects protocol design and user experience. Collaboration with regulators and health authorities is necessary to develop frameworks that enable participation rather than just impose compliance.
+
+Behavioral economics is central. The actual decay rates, reward curves, and incentive multipliers should be determined by empirical data from live deployments. Arbitrary choices will create usability problems and suppress activity; optimization must be experimental, not just theoretical.
+
+Metabolic incentives must adapt to individual health conditions. Static decay rates and uniform tokenomics cannot create equity. Personalization, achieved without undermining privacy, is essential if the protocol is to avoid reproducing the failures of legacy health systems.
 
 \textbf{Example 10.1:} Chronic condition adaptation:
 
