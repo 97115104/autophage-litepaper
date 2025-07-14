@@ -149,9 +149,15 @@
                 }
             });
             
-            // 15% chance for litepaper
-            if (Math.random() < 0.15) {
+            // 10% chance for litepaper
+            if (Math.random() < 0.10) {
                 openLitepaper();
+                return;
+            }
+            
+            // 10% chance for smart contracts interactive demo
+            if (Math.random() < 0.10) {
+                window.open('https://contracts.autophage.xyz/', '_blank');
                 return;
             }
             
