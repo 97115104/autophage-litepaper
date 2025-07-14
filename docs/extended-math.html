@@ -387,44 +387,6 @@
             <span class="equation-number" id="eq-A22"><a href="#eq-A22">(A.22)</a></span>
         </div>
 
-        <h1 id="cross-species-exchange-mathematics"><a href="#cross-species-exchange-mathematics">Cross-Species Exchange Mathematics</a></h1>
-
-        <h2>Exchange Rate Matrix</h2>
-
-        <div class="latex-equation">
-            $$R_{base} = \begin{pmatrix}
-            1.0 & 0.5 & 0.2 \\
-            1.8 & 1.0 & 0.4 \\
-            4.5 & 2.2 & 1.0
-            \end{pmatrix}$$
-            <span class="equation-number" id="eq-A23"><a href="#eq-A23">(A.23)</a></span>
-        </div>
-
-        <p>
-        Base exchange rates between [Rhythm, Healing, Foundation] tokens. Rates reflect utility differences, not just decay differentials.
-        </p>
-
-        <h2>Slippage Protection Formula</h2>
-
-        <div class="latex-equation">
-            $$R_{effective} = R_{base} \times \left(1 - \min\left(0.05, \frac{A_{trade}}{L_{pool}}\right)\right)$$
-            <span class="equation-number" id="eq-A24"><a href="#eq-A24">(A.24)</a></span>
-        </div>
-
-        <p>
-        Large trades relative to liquidity pool experience slippage, capped at 5%. This prevents manipulation through large cross-species swaps.
-        </p>
-
-        <h2>Cross-Species Arbitrage Bounds</h2>
-
-        <div class="latex-equation">
-            $$\prod_{i \in \text{cycle}} R_i \in [0.95, 1.05]$$
-            <span class="equation-number" id="eq-A25"><a href="#eq-A25">(A.25)</a></span>
-        </div>
-
-        <p>
-        Any circular exchange path must yield between 95% and 105% of starting value, preventing infinite arbitrage loops.
-        </p>
 
         <h1 id="additional-system-formulas"><a href="#additional-system-formulas">Additional System Formulas</a></h1>
 

@@ -872,3 +872,19 @@ Autophage Protocol aligns money with the fundamental patterns of life. In nature
 ---
 
 *These appendices provide comprehensive detail for all audiences. The protocol continues to evolve through empirical governance and community innovation.*
+
+---
+
+## Addendum: On the Irreversibility of Health Value Conversion
+
+Conversion between token species is not permitted within the Autophage Protocol. Each token species, Rhythm, Healing, Foundation, and Catalyst, functions as a discrete record of a particular kind of health persistence. The protocol is intentionally designed to make these categories non-fungible because doing so serves as a structural assertion about how value should reflect real-world persistence.
+
+Allowing conversion between tokens would erode the biological foundation of the protocol, making it possible to "farm" one domain of health for rewards in another. In practice, such a mechanism would create arbitrage opportunities, invite speculation, and undermine the protocol's core behavioral incentives. Metabolic activity is not inherently fungible; cardiovascular endurance cannot be traded for vaccine immunity, and emotional recovery cannot be converted into daily exercise. The logic of metabolism is structural and so should not be transactional.
+
+Proof of Temporal Persistence is defined by the activity that generates each token. If a user wishes to hold more Foundation tokens, they must engage in preventive care; to increase Healing tokens, they must participate in therapy or recovery. The marketplace allows users to monetize verified actions or proofs, but does not flatten the specific metabolic history those proofs represent. Catalyst tokens serve as the protocol's primary "liquidity" vector for governance and marketplace functions, but are not a substitute for sustained health actions in any other domain.
+
+This irreversibility anchors the protocol to the realities of biology, closing the door to speculative gamesmanship and ensuring that economic rewards remain tethered to real, verifiable health persistence.
+
+Each token is a distinct receipt for a unique kind of effort and persistence.
+
+If you want Foundation, you must do the work.

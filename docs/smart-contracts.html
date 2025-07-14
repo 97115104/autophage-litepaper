@@ -323,25 +323,13 @@
 
         <div class="info-box">
             <strong>Key Design Principles:</strong>
-            <ul>
-                <li>Lazy evaluation for gas efficiency</li>
-                <li>Modular architecture for upgradability</li>
-                <li>Privacy-first with zero-knowledge proofs</li>
-                <li>Empirical validation for all changes</li>
-                <li>Biological scaling laws embedded in code</li>
-            </ul>
+            The contracts implement lazy evaluation for gas efficiency, modular architecture for upgradability, and privacy-first design with zero-knowledge proofs. All protocol changes require empirical validation, and biological scaling laws are embedded directly in the code.
         </div>
 
         <h2>POTP Meta-Token System</h2>
         <p>
-        The protocol introduces POTP (Proof of Temporal Persistence) as the meta-token for cross-species settlement, governance, and protocol accounting. Users interact indirectly with POTP through species token conversions. This meta-token architecture enables:
+        The protocol introduces POTP (Proof of Temporal Persistence) as the meta-token for cross-species settlement, governance, and protocol accounting. Users interact indirectly with POTP through species token conversions. This meta-token architecture enables cross-species liquidity management, unified governance across all token types, protocol-level accounting and settlements, and future cross-chain bridging capabilities.
         </p>
-        <ul>
-            <li>Cross-species liquidity management</li>
-            <li>Unified governance across all token types</li>
-            <li>Protocol-level accounting and settlements</li>
-            <li>Future cross-chain bridging capabilities</li>
-        </ul>
 
         <!-- Contract Architecture Overview -->
         <h1><span class="section-number">2</span>Contract Architecture</h1>
@@ -520,15 +508,26 @@
                 </div>
                 <p>Processes pending claims in priority order up to available USDC balance.</p>
 
-                <div class="function-signature">
-                    exchangeSpeciesToUSDC(uint8 species, uint256 amount) → uint256
-                </div>
-                <p>Exchanges species tokens for USDC based on metabolic pricing.</p>
 
                 <div class="function-signature">
-                    getClaimStatus(uint256 claimId) → HealthcareClaim
+                    distributeReward(address recipient, uint8 species, uint256 amount)
                 </div>
-                <p>Returns detailed information about a specific healthcare claim.</p>
+                <p>Distributes tokens as activity rewards. Called by verification engine after activity validation.</p>
+
+                <div class="function-signature">
+                    depositUSDC(uint256 amount)
+                </div>
+                <p>Deposits USDC for healthcare settlements. Marketplace fees and other revenue streams deposit here.</p>
+
+                <div class="function-signature">
+                    calculateMetabolicPrice() → uint256
+                </div>
+                <p>Calculates metabolic price based on system activity implementing endogenous pricing.</p>
+
+                <div class="function-signature">
+                    getReservoirStats() → (uint256[4], uint256, uint256, uint256, bool)
+                </div>
+                <p>Returns comprehensive reservoir statistics including token balances, USDC reserves, and solvency status.</p>
             </div>
 
             <h3>Solvency Requirements</h3>
@@ -573,9 +572,19 @@
                 <p>Evolves a genetic trait by burning Foundation tokens. Cost increases exponentially.</p>
 
                 <div class="function-signature">
-                    calculateReward(uint8 activityType, uint256 energyExpended, bytes32 profileId) → uint256
+                    batchVerifyAndMint(HealthProof[] calldata proofs) → uint256
                 </div>
-                <p>Calculates reward amount with all applicable multipliers.</p>
+                <p>Processes multiple health proofs in a single transaction for gas efficiency.</p>
+
+                <div class="function-signature">
+                    slashApp(address app, string reason)
+                </div>
+                <p>Slashes a misbehaving app's stake with progressive penalties.</p>
+
+                <div class="function-signature">
+                    updateBaseReward(ActivityType activityType, uint256 newReward)
+                </div>
+                <p>Updates base reward for an activity type. Restricted to ORACLE_ROLE.</p>
             </div>
 
             <h3>Activity Types</h3>
@@ -664,14 +673,24 @@
                 <p>Begins A/B test with specified user groups.</p>
 
                 <div class="function-signature">
-                    validateExperiment(uint256 proposalId, uint256 improvement, uint256 pValue)
+                    completeExperiment(uint256 experimentId, uint256 controlResult, uint256 treatmentResult, uint256 pValue)
                 </div>
-                <p>Validates experimental results. Requires ≥5% improvement and p<0.05.</p>
+                <p>Completes experiment with results. Validates statistical significance and improvement threshold.</p>
 
                 <div class="function-signature">
-                    calculateContributionScore(address user) → uint256
+                    updateContributionScore(address user, uint256 tokensContributed, uint256 successfulProposals)
                 </div>
-                <p>Calculates voting weight based on lifetime contributions, not holdings.</p>
+                <p>Updates user's contribution score based on lifetime contributions.</p>
+
+                <div class="function-signature">
+                    trackFeatureUsage(bytes32 featureId)
+                </div>
+                <p>Tracks feature usage for automatic sunset evaluation.</p>
+
+                <div class="function-signature">
+                    sunsetUnusedFeatures(bytes32[] featureIds)
+                </div>
+                <p>Disables features with <1% usage for 180+ days.</p>
             </div>
 
             <h3>Contribution-Based Voting</h3>
@@ -683,12 +702,7 @@
             <h3>Experiment Requirements</h3>
             <div class="info-box">
                 <strong>Success Criteria:</strong>
-                <ul>
-                    <li>≥5% improvement in target metric</li>
-                    <li>p-value < 0.05 (statistical significance)</li>
-                    <li>Minimum 7-day experiment duration</li>
-                    <li>Control and treatment groups</li>
-                </ul>
+                Experiments must demonstrate at least 5% improvement in the target metric with statistical significance (p-value < 0.05). Tests require a minimum 7-day duration and must include both control and treatment groups.
             </div>
 
             <h3>Proposal Process</h3>
@@ -711,15 +725,37 @@
         <!-- Gas Optimization -->
         <h1><span class="section-number">3</span>Gas Optimization Strategies</h1>
 
-        <div class="info-box">
-            <strong>Key Optimizations:</strong>
-            <ul>
-                <li><strong>Lazy Decay:</strong> Calculate only on interaction (saves ~17,000 gas per unused day)</li>
-                <li><strong>Storage Packing:</strong> Single slot per user balance (128 + 64 + 64 bits)</li>
-                <li><strong>Batch Processing:</strong> Up to 100 proofs per transaction (85% gas reduction)</li>
-                <li><strong>Efficient Math:</strong> Optimized power function for decay calculations</li>
-            </ul>
-        </div>
+        <table class="parameter-table">
+            <thead>
+                <tr>
+                    <th>Optimization</th>
+                    <th>Description</th>
+                    <th>Gas Savings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Lazy Decay</strong></td>
+                    <td>Calculate only on interaction</td>
+                    <td>~17,000 gas per unused day</td>
+                </tr>
+                <tr>
+                    <td><strong>Storage Packing</strong></td>
+                    <td>Single slot per user balance (128 + 64 + 64 bits)</td>
+                    <td>50% storage cost reduction</td>
+                </tr>
+                <tr>
+                    <td><strong>Batch Processing</strong></td>
+                    <td>Up to 100 proofs per transaction</td>
+                    <td>85% gas reduction</td>
+                </tr>
+                <tr>
+                    <td><strong>Efficient Math</strong></td>
+                    <td>Optimized power function for decay</td>
+                    <td>30% computation reduction</td>
+                </tr>
+            </tbody>
+        </table>
 
         <div class="code-example">
             <pre>// Packed storage struct - fits in single 256-bit slot
@@ -733,17 +769,36 @@ struct Balance {
         <!-- Security Considerations -->
         <h1><span class="section-number">4</span>Security Considerations</h1>
 
-        <div class="warning-box">
-            <strong>Security Features:</strong>
-            <ul>
-                <li>Multi-signature requirements for critical functions</li>
-                <li>Reentrancy guards on all external functions</li>
-                <li>Pausable in case of emergency</li>
-                <li>Role-based access control (RBAC)</li>
-                <li>Slashing for malicious verification apps</li>
-                <li>Solvency checks before healthcare settlements</li>
-            </ul>
-        </div>
+        <table class="parameter-table">
+            <thead>
+                <tr>
+                    <th>Security Layer</th>
+                    <th>Implementation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Access Control</strong></td>
+                    <td>Multi-signature requirements for critical functions with role-based permissions</td>
+                </tr>
+                <tr>
+                    <td><strong>Reentrancy Protection</strong></td>
+                    <td>Guards on all external functions prevent recursive calls</td>
+                </tr>
+                <tr>
+                    <td><strong>Emergency Controls</strong></td>
+                    <td>Pausable functionality for rapid response to threats</td>
+                </tr>
+                <tr>
+                    <td><strong>App Security</strong></td>
+                    <td>Progressive slashing mechanism for malicious verification apps</td>
+                </tr>
+                <tr>
+                    <td><strong>Financial Security</strong></td>
+                    <td>Automated solvency checks before processing healthcare settlements</td>
+                </tr>
+            </tbody>
+        </table>
 
         <!-- Deployment Guide -->
         <h1><span class="section-number">5</span>Deployment Guide</h1>
@@ -912,14 +967,7 @@ console.log('Voting weight:', score);</pre>
 
         <div class="deployment-section">
             <h3><svg class="icon icon-inline"><use href="assets/icons.svg#icon-web"></use></svg> Web Interface</h3>
-            <p>Access the protocol through your browser at <a href="https://contracts.autophage.xyz/" target="_blank">contracts.autophage.xyz</a>:</p>
-            <ul>
-                <li><strong>Demo Mode</strong> - Try without a wallet using simulated transactions</li>
-                <li><strong>MetaMask Integration</strong> - Connect wallet for full Web3 interaction</li>
-                <li><strong>All Species Tokens</strong> - Mint and track RHY, HLN, FDN, and CTL tokens</li>
-                <li><strong>Real-time Decay</strong> - Watch tokens decay and update balances live</li>
-                <li><strong>Activity Submission</strong> - Submit health activities and receive rewards</li>
-            </ul>
+            <p>Access the protocol through your browser at <a href="https://contracts.autophage.xyz/" target="_blank">contracts.autophage.xyz</a>. The demo provides a simulated environment where you can mint and track all four token species (RHY, HLN, FDN, and CTL), watch real-time decay calculations, and submit health activities to receive rewards—all without requiring a wallet connection.</p>
 
             <h3><svg class="icon icon-inline"><use href="assets/icons.svg#icon-terminal"></use></svg> Interactive Console</h3>
             <p>Menu-driven interface for hands-on contract interaction:</p>
@@ -952,18 +1000,52 @@ npx hardhat test test/gas-benchmarks.js</pre>
         <!-- Future Improvements -->
         <h1><span class="section-number">8</span>Future Improvements</h1>
 
-        <div class="info-box">
-            <strong>Planned Enhancements:</strong>
-            <ul>
-                <li><strong>Cross-chain Bridge:</strong> Deploy on multiple chains with unified liquidity</li>
-                <li><strong>Layer 2 Scaling:</strong> Move high-frequency operations to Arbitrum/Optimism</li>
-                <li><strong>Privacy Enhancements:</strong> Integrate with Aztec or similar privacy protocols</li>
-                <li><strong>Modular Decay:</strong> Allow custom decay curves for special circumstances</li>
-                <li><strong>Social Recovery:</strong> Multi-sig recovery for lost private keys</li>
-                <li><strong>Insurance Pool:</strong> Additional protection for healthcare claims</li>
-                <li><strong>POTP Implementation:</strong> Complete meta-token integration for cross-species settlements</li>
-            </ul>
-        </div>
+        <table class="parameter-table">
+            <thead>
+                <tr>
+                    <th>Enhancement</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Cross-chain Bridge</strong></td>
+                    <td>Deploy on multiple chains with unified liquidity</td>
+                    <td>Research</td>
+                </tr>
+                <tr>
+                    <td><strong>Layer 2 Scaling</strong></td>
+                    <td>Move high-frequency operations to Arbitrum/Optimism</td>
+                    <td>Planning</td>
+                </tr>
+                <tr>
+                    <td><strong>Privacy Enhancements</strong></td>
+                    <td>Integrate with Aztec or similar privacy protocols</td>
+                    <td>Research</td>
+                </tr>
+                <tr>
+                    <td><strong>Modular Decay</strong></td>
+                    <td>Custom decay curves for special circumstances</td>
+                    <td>Design</td>
+                </tr>
+                <tr>
+                    <td><strong>Social Recovery</strong></td>
+                    <td>Multi-sig recovery for lost private keys</td>
+                    <td>Planning</td>
+                </tr>
+                <tr>
+                    <td><strong>Insurance Pool</strong></td>
+                    <td>Additional protection for healthcare claims</td>
+                    <td>Research</td>
+                </tr>
+                <tr>
+                    <td><strong>POTP Implementation</strong></td>
+                    <td>Complete meta-token integration</td>
+                    <td>Development</td>
+                </tr>
+            </tbody>
+        </table>
 
         <!-- Audit Status -->
         <h1><span class="section-number">9</span>Audit Status</h1>
@@ -972,13 +1054,7 @@ npx hardhat test test/gas-benchmarks.js</pre>
             <strong><svg class="icon icon-inline icon-warning"><use href="assets/icons.svg#icon-warning"></use></svg> Important:</strong> These contracts are currently unaudited and should not be used in production without thorough security review.
         </div>
 
-        <p>Planned audits:</p>
-        <ul>
-            <li>Formal verification of decay mathematics</li>
-            <li>Economic attack vector analysis</li>
-            <li>Gas optimization review</li>
-            <li>Access control verification</li>
-        </ul>
+        <p>The protocol requires comprehensive security audits including formal verification of decay mathematics, economic attack vector analysis, gas optimization review, and access control verification before production deployment.</p>
 
         <!-- Contributing -->
         <h1><span class="section-number">10</span>Contributing</h1>
@@ -989,14 +1065,7 @@ npx hardhat test test/gas-benchmarks.js</pre>
 
         <div class="info-box">
             <strong>Areas for Contribution:</strong>
-            <ul>
-                <li>Gas optimization improvements</li>
-                <li>Additional health activity types</li>
-                <li>Enhanced privacy features</li>
-                <li>Governance mechanism refinements</li>
-                <li>Test coverage expansion</li>
-                <li>Documentation improvements</li>
-            </ul>
+            The project welcomes contributions in gas optimization improvements, additional health activity types, enhanced privacy features, governance mechanism refinements, test coverage expansion, and documentation improvements.
         </div>
 
         <hr>
