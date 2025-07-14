@@ -846,3 +846,66 @@ body.dark-mode .post-it {
         display: none;
     }
 }
+
+/* Icon System */
+.icon {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: text-bottom;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+.icon-inline {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.125em;
+}
+
+.icon-large {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+/* Icon color overrides */
+.icon-warning {
+    color: #f39c12;
+}
+
+.icon-success {
+    color: #2ecc71;
+}
+
+.icon-error {
+    color: #e74c3c;
+}
+
+/* Contract card icons */
+.contract-icon .icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+/* Simulation card icons */
+.simulation-card .icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+.simulation-card .card-icon {
+    display: inline-block;
+    margin-right: 0.25em;
+}
+
+/* Load external SVG icons */
+.icon-svg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+EOF < /dev/null

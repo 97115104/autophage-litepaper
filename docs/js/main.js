@@ -724,7 +724,7 @@ Activity Rate:
   Mean: ${(activityMean * 100).toFixed(1)}%
   Std Dev: ${(activityStd * 100).toFixed(1)}%
 
-Convergence: ${giniMean >= 0.08 && giniMean <= 0.11 ? '✓ Within target range (0.08-0.11)' : '✗ Outside target range'}`;
+Convergence: ${giniMean >= 0.08 && giniMean <= 0.11 ? '<svg class="icon icon-inline"><use href="../assets/icons.svg#icon-check"></use></svg> Within target range (0.08-0.11)' : '<svg class="icon icon-inline"><use href="../assets/icons.svg#icon-x"></use></svg> Outside target range'}`;
 
         // Stop tetris game
         if (tetrisGame) {

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Define arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+    
+    <!-- Define gradients -->
+    <linearGradient id="tokenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="reservoirGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="verificationGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="governanceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d68910;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="appGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.2"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="600" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Autophage Protocol Contract Architecture
+  </text>
+  
+  <!-- External Apps -->
+  <g id="apps">
+    <rect x="50" y="100" width="150" height="80" rx="10" fill="url(#appGradient)" filter="url(#shadow)"/>
+    <text x="125" y="135" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Health Apps
+    </text>
+    <text x="125" y="155" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      (Strava, Apple Health,
+    </text>
+    <text x="125" y="170" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      Fitbit, etc.)
+    </text>
+  </g>
+  
+  <!-- VerificationEngine Contract -->
+  <g id="verification">
+    <rect x="300" y="100" width="180" height="120" rx="10" fill="url(#verificationGradient)" filter="url(#shadow)"/>
+    <text x="390" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      VerificationEngine
+    </text>
+    <text x="390" y="150" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • ZK Proof Verification
+    </text>
+    <text x="390" y="165" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Reward Calculation
+    </text>
+    <text x="390" y="180" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Multiplier System
+    </text>
+    <text x="390" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • App Registration
+    </text>
+    <text x="390" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Genetic Traits
+    </text>
+  </g>
+  
+  <!-- AutophageToken Contract -->
+  <g id="token">
+    <rect x="580" y="100" width="180" height="120" rx="10" fill="url(#tokenGradient)" filter="url(#shadow)"/>
+    <text x="670" y="130" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      AutophageToken
+    </text>
+    <text x="670" y="150" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Multi-Species Tokens
+    </text>
+    <text x="670" y="165" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Lazy Decay (17k gas/day)
+    </text>
+    <text x="670" y="180" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Whale Protection
+    </text>
+    <text x="670" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Wellness Vault
+    </text>
+    <text x="670" y="210" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Storage Packing
+    </text>
+  </g>
+  
+  <!-- ReservoirContract -->
+  <g id="reservoir">
+    <rect x="300" y="320" width="280" height="120" rx="10" fill="url(#reservoirGradient)" filter="url(#shadow)"/>
+    <text x="440" y="350" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      ReservoirContract
+    </text>
+    <text x="440" y="370" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Dual-Chamber Architecture
+    </text>
+    <text x="440" y="385" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Healthcare Claim Processing
+    </text>
+    <text x="440" y="400" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • USDC Liquidity Management
+    </text>
+    <text x="440" y="415" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Metabolic Price Discovery
+    </text>
+    <text x="440" y="430" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Triple-Coverage Solvency
+    </text>
+  </g>
+  
+  <!-- GovernanceContract -->
+  <g id="governance">
+    <rect x="650" y="320" width="200" height="120" rx="10" fill="url(#governanceGradient)" filter="url(#shadow)"/>
+    <text x="750" y="350" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      GovernanceContract
+    </text>
+    <text x="750" y="370" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Empirical Governance
+    </text>
+    <text x="750" y="385" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • A/B Testing Framework
+    </text>
+    <text x="750" y="400" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Contribution Voting
+    </text>
+    <text x="750" y="415" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Feature Sunset
+    </text>
+    <text x="750" y="430" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      • Statistical Validation
+    </text>
+  </g>
+  
+  <!-- External Systems -->
+  <g id="external">
+    <rect x="50" y="320" width="150" height="80" rx="10" fill="#95a5a6" filter="url(#shadow)"/>
+    <text x="125" y="355" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Healthcare
+    </text>
+    <text x="125" y="375" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      Providers
+    </text>
+    
+    <rect x="50" y="450" width="150" height="80" rx="10" fill="#7f8c8d" filter="url(#shadow)"/>
+    <text x="125" y="485" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Oracle
+    </text>
+    <text x="125" y="505" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">
+      Network
+    </text>
+  </g>
+  
+  <!-- Arrows -->
+  <g id="arrows" fill="none" stroke="#333" stroke-width="2">
+    <!-- Apps to VerificationEngine -->
+    <path d="M 200 140 L 300 140" marker-end="url(#arrowhead)"/>
+    <text x="250" y="135" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Submit Proofs</text>
+    
+    <!-- VerificationEngine to Token -->
+    <path d="M 480 160 L 580 160" marker-end="url(#arrowhead)"/>
+    <text x="530" y="155" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Mint Tokens</text>
+    
+    <!-- Token to Reservoir (decay) -->
+    <path d="M 670 220 L 670 260 Q 670 280 650 280 L 500 280 Q 480 280 480 300 L 480 320" marker-end="url(#arrowhead)"/>
+    <text x="575" y="275" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Decayed Value</text>
+    
+    <!-- Reservoir to Token (redistribution) -->
+    <path d="M 420 320 L 420 300 Q 420 280 440 280 L 590 280 Q 610 280 610 260 L 610 220" marker-end="url(#arrowhead)"/>
+    <text x="515" y="295" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Redistribute</text>
+    
+    <!-- Healthcare to Reservoir -->
+    <path d="M 200 360 L 300 360" marker-end="url(#arrowhead)"/>
+    <text x="250" y="355" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Claims</text>
+    
+    <!-- Oracle to various contracts -->
+    <path d="M 200 490 L 250 490 Q 270 490 270 470 L 270 180 Q 270 160 290 160 L 300 160" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+    <text x="235" y="485" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Data</text>
+    
+    <!-- Governance to other contracts -->
+    <path d="M 750 320 L 750 280 Q 750 260 730 260 L 680 260 Q 660 260 660 240 L 660 220" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+    <text x="705" y="275" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Parameters</text>
+    
+    <!-- Governance to Reservoir -->
+    <path d="M 650 380 L 580 380" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+    <text x="615" y="375" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">Updates</text>
+  </g>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="700" y="480" width="180" height="100" rx="5" fill="white" stroke="#ddd" stroke-width="1"/>
+    <text x="790" y="500" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">
+      Legend
+    </text>
+    
+    <line x1="710" y1="515" x2="740" y2="515" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="745" y="520" font-family="Arial, sans-serif" font-size="11" fill="#333">Data Flow</text>
+    
+    <line x1="710" y1="535" x2="740" y2="535" stroke="#333" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+    <text x="745" y="540" font-family="Arial, sans-serif" font-size="11" fill="#333">Control/Config</text>
+    
+    <rect x="710" y="550" width="30" height="20" rx="5" fill="#3498db"/>
+    <text x="745" y="565" font-family="Arial, sans-serif" font-size="11" fill="#333">Smart Contract</text>
+  </g>
+  
+  <!-- Token Species Box -->
+  <g id="species-info">
+    <rect x="20" y="240" width="200" height="60" rx="5" fill="white" stroke="#ddd" stroke-width="1"/>
+    <text x="30" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">
+      Token Species:
+    </text>
+    <text x="30" y="275" font-family="Arial, sans-serif" font-size="10" fill="#555">
+      Rhythm (5%), Healing (0.75%),
+    </text>
+    <text x="30" y="290" font-family="Arial, sans-serif" font-size="10" fill="#555">
+      Foundation (0.1%), Catalyst (2-10%)
+    </text>
+  </g>
+</svg>

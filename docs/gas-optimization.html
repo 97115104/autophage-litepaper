@@ -301,7 +301,7 @@
 
         <div class="code-comparison">
             <div class="code-block naive-code">
-                <h4>❌ Naive Implementation <span class="gas-cost-badge gas-high">~82,000 gas/block</span></h4>
+                <h4><svg class="icon icon-inline icon-error"><use href="assets/icons.svg#icon-x-red"></use></svg> Naive Implementation <span class="gas-cost-badge gas-high">~82,000 gas/block</span></h4>
                 <pre>// Updates every user balance on each block
 function updateAllBalances() {
     for (user in users) {
@@ -317,7 +317,7 @@ function updateAllBalances() {
             </div>
             
             <div class="code-block optimized-code">
-                <h4>✅ Optimized Implementation <span class="gas-cost-badge gas-low">~65,000 gas/interaction</span></h4>
+                <h4><svg class="icon icon-inline icon-success"><use href="assets/icons.svg#icon-check-green"></use></svg> Optimized Implementation <span class="gas-cost-badge gas-low">~65,000 gas/interaction</span></h4>
                 <pre>// Updates only on user interaction
 function getBalance(address user, uint8 species) {
     uint256 storedBalance = balances[user][species];

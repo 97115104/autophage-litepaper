@@ -21,6 +21,7 @@ const CONFIG = {
             items: [
                 { label: 'For Non-Technical Readers', href: 'non-technical' },
                 { label: 'Complete Feature Set', href: 'features' },
+                { label: 'Smart Contracts', href: 'smart-contracts' },
                 { label: 'Note from the Author', href: 'author-note' },
                 { label: 'References', href: 'references' },
                 { label: 'Acknowledgments', href: 'acknowledgments' },
