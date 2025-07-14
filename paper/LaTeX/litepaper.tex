@@ -49,7 +49,7 @@
 \maketitle
 
 \begin{abstract}
-Traditional economics assumes value persists indefinitely, enabling unlimited wealth accumulation. Living systems operate differently because value requires continuous renewal or it ceases to exist. This paper introduces the Autophage Protocol, a system that combines formal incentive design with cryptographic privacy guarantees, linking tokenized health rewards to verifiable activity while maintaining a strict separation of identity and data. Four token species decay at rates calibrated to biological persistence: Rhythm (5\% daily) for exercise, Healing (0.75\%) for therapy, Foundation (0.1\%) for preventive care, and Catalyst (2--10\% dynamic) for marketplace balance. Decayed tokens flow to The Reservoir, funding community healthcare while preserving privacy through zero-knowledge proofs. Mathematical modeling suggests wealth distribution converges to a Gini coefficient of 0.08--0.11 under baseline conditions, and remains below 0.55 even when 23\% of the population acts adversarially\footnote{See full simulation results and adversarial methodology in Appendix F. All code and raw data available at \url{https://autophage.xyz/simulations}.}, far more equitable than traditional systems at 0.82 or higher \cite{bertocchi2014wealth,milanovic2014global}. The protocol represents a new economic primitive where money must move to exist, creating a digital economy with metabolism-like properties.
+Traditional economics assumes value persists indefinitely, enabling unlimited wealth accumulation. Living systems operate differently because value requires continuous renewal or it ceases to exist. This paper introduces the Autophage Protocol, a system that combines formal incentive design with cryptographic privacy guarantees, linking tokenized health rewards to verifiable activity while maintaining a strict separation of identity and data. Four token species decay at rates calibrated to biological persistence: Rhythm (5\% daily) for exercise, Healing (0.75\%) for therapy, Foundation (0.1\%) for preventive care, and Catalyst (2--10\% dynamic) for marketplace balance. Decayed tokens flow to The Reservoir, funding community healthcare while preserving privacy through zero-knowledge proofs. Mathematical modeling suggests wealth distribution converges to a Gini coefficient of 0.08--0.11 under baseline conditions, and remains below 0.55 even when 23\% of the population acts adversarially\footnote{See full simulation results and adversarial methodology in Appendix F. All code and raw data available at \url{https://autophage.xyz/simulations}.}, far more equitable than traditional systems at 0.82 or higher \cite{BLOTEVOGEL2022103413,milanovic2014global}. The protocol represents a new economic primitive where money must move to exist, creating a digital economy with metabolism-like properties.
 \end{abstract}
 
 % Reader's Guide
@@ -86,12 +86,11 @@ The following sections present the complete mathematical framework, implementati
 \section{Related Work}
 In the early 20th century, Silvio Gesell proposed ``stamped scrip'' to force currency to circulate by making it expire, an approach he tested in Wörgl, Austria during the Great Depression \cite{gesell1958natural}. These experiments gained traction under local government support, but collapsed as soon as legal enforcement lapsed. The main lesson being demurrage alone does not guarantee a stable or resilient economy, especially when external incentives favor stasis.
 
-Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin's approach applied a single decay rate applied to all, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
+Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin's approach applied a single decay rate to all tokens, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
 
-Other ``health coins'' have focused on rewards for activity, using move-to-earn or similar models. Most are marketplace tokens or insurance incentives, structured around accumulation. STEP'N \cite{stepn2022whitepaper} pays users for walking, but value is driven by speculative tokenomics, not by any durable health metric. The project saw rapid growth but struggled to maintain sustainable rewards. Sweatcoin uses a similar approach. Users earn points for steps and spend them in a marketplace, but the system lacks decay mechanics, biological calibration, and any link to real health persistence.
+Other ``health coins'' have focused on rewards for activity, using move-to-earn or similar models. Most are marketplace tokens, structured around accumulation. STEP'N \cite{stepn2022whitepaper} pays users for walking, but value is driven by speculative tokenomics, not by any durable health metric. The project saw rapid growth but struggled to maintain sustainable rewards. Sweatcoin uses a similar approach. Users earn points for steps and spend them in a marketplace, but the system lacks decay mechanics, biological calibration, and any link to real health persistence.
 
-The Autophage Protocol diverges on three counts:
-First, it ties decay rates directly to the half-life of underlying health activities, making token persistence a function of biological process rather than arbitrary policy. Second, it separates identity from data using zero-knowledge proofs, so participation does not require surveillance. Third, it requires every protocol change to demonstrate measurable health improvement on-chain before implementation and so where earlier systems enforced circulation by decree, Autophage encodes it at the metabolic and behavioral level.
+The Autophage Protocol diverges on three counts. First, it ties decay rates directly to the half-life of underlying health activities, making token persistence a function of biological process instead of arbitrary policy. Second, it separates identity from data using zero-knowledge proofs, so participation does not require surveillance. Third, it requires every protocol change to demonstrate measurable health improvement on-chain before implementation and so where earlier systems enforced circulation by decree, Autophage encodes it at the metabolic and behavioral level.
 
 % Section 3: Metabolic Token Dynamics
 \section{Metabolic Token Dynamics}
@@ -114,7 +113,7 @@ The continuous-time differential equation underlying this discrete implementatio
 
 where $\lambda = -\ln(1-\delta)$ is the continuous decay constant. This formulation ensures mathematical consistency while enabling computationally efficient blockchain implementation.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Token Species Parameters and Biological Justification}
 \begin{tabular}{lccll}
@@ -122,12 +121,13 @@ where $\lambda = -\ln(1-\delta)$ is the continuous decay constant. This formulat
 \textbf{Species} & \textbf{Decay Rate} & \textbf{Half-Life} & \textbf{Health Domain} & \textbf{Biological Basis} \\
 \midrule
 Rhythm & 5\% & 13.51 days & Exercise, medication & VO$_2$ max decline rate \cite{mujika2000detraining} \\
-Healing & 0.75\% & 92.42 days & Therapy, recovery & Neuroplasticity timescales \\
-Foundation & 0.1\% & 693.15 days & Preventive care & Antibody persistence \\
+Healing & 0.75\% & 92.42 days & Therapy, recovery & Neuroplasticity timescales \cite{kolb2011neuroplasticity} \\
+Foundation & 0.1\% & 693.15 days & Preventive care & Antibody persistence \cite{amanna2007duration} \\
 Catalyst & 2--10\% & Variable & Marketplace & Self-regulating \\
 \bottomrule
 \end{tabular}
 \end{table}
+
 
 The half-life calculations follow directly from exponential decay:
 
@@ -1023,7 +1023,7 @@ Reward & Stake returned + 100 USDC bonus \\
 
 \subsection{Core Smart Contracts}
 
-The protocol consists of four primary contracts with specific responsibilities \cite{harshberger2024patent}:
+The protocol consists of four primary contracts with specific responsibilities \cite{harshberger2025patent}:
 
 1. \textbf{TokenContract}: Multi-species token with lazy decay evaluation
    \begin{verbatim}
