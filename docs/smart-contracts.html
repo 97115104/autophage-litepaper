@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Smart Contracts — Autophage Protocol</title>
     <meta name="description" content="Comprehensive guide to the Autophage Protocol smart contracts">
     
@@ -44,6 +44,89 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <style>
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .latex-document {
+                padding: 1em;
+            }
+            
+            .contract-card {
+                padding: 1em;
+                margin: 1em 0;
+            }
+            
+            .token-species-table {
+                font-size: 9pt;
+            }
+            
+            .token-species-table th,
+            .token-species-table td {
+                padding: 0.5em;
+            }
+            
+            .function-signature {
+                font-size: 9pt;
+                word-break: break-all;
+            }
+            
+            .code-example pre {
+                font-size: 8pt;
+                overflow-x: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+            
+            .latex-equation {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .latex-equation .MathJax_Display {
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+            
+            /* Make math formulas scrollable on mobile */
+            .MathJax_Display {
+                display: block !important;
+                text-align: left !important;
+                margin: 1em 0 !important;
+            }
+            
+            .MathJax {
+                display: inline-block !important;
+                max-width: 100% !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+            }
+            
+            /* Better mobile table handling */
+            .parameter-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Ensure buttons are touch-friendly */
+            .view-contract-btn {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                padding: 0.75em 1em;
+            }
+            
+            /* Adjust deployment section for mobile */
+            .deployment-section {
+                padding: 1em;
+            }
+            
+            /* Make info and warning boxes more compact */
+            .info-box, .warning-box {
+                padding: 0.75em;
+                margin: 1em 0;
+            }
+        }
+        
         .contract-card {
             background: var(--paper-bg);
             border: 1px solid var(--rule-color);
@@ -156,6 +239,15 @@
             width: 100%;
             margin: 2em 0;
             border-collapse: collapse;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        @media (min-width: 769px) {
+            .token-species-table {
+                display: table;
+            }
         }
         
         .token-species-table th,
@@ -214,7 +306,11 @@
         <div class="latex-abstract">
             <h2>About this page</h2>
             <p>
-            This page provides a guide to the Autophage Protocol's smart contracts. Each contract implements specific functionality from the litepaper, working together to create the metabolic economic system. The contracts are designed for gas efficiency, security, and upgradability. They are demonstrative and should be considered experimental, not production-ready.
+            This page provides a guide to the Autophage Protocol's smart contracts. Each contract implements specific functionality from the litepaper, working together to create the metabolic economic system. The contracts are designed for gas efficiency, security, and upgradability. They implement the POTP (Proof of Temporal Persistence) token system with multi-species health incentive tokens. These contracts are demonstrative and should be considered experimental, not production-ready.
+            </p>
+            <p>
+            <strong>Repository:</strong> <a href="https://github.com/97115104/autophage-smart-contracts" target="_blank">github.com/97115104/autophage-smart-contracts</a><br>
+            <strong>Interactive Demo:</strong> <a href="https://contracts.autophage.xyz/" target="_blank">contracts.autophage.xyz</a>
             </p>
         </div>
 
@@ -235,6 +331,17 @@
                 <li>Biological scaling laws embedded in code</li>
             </ul>
         </div>
+
+        <h2>POTP Meta-Token System</h2>
+        <p>
+        The protocol introduces POTP (Proof of Temporal Persistence) as the meta-token for cross-species settlement, governance, and protocol accounting. Users interact indirectly with POTP through species token conversions. This meta-token architecture enables:
+        </p>
+        <ul>
+            <li>Cross-species liquidity management</li>
+            <li>Unified governance across all token types</li>
+            <li>Protocol-level accounting and settlements</li>
+            <li>Future cross-chain bridging capabilities</li>
+        </ul>
 
         <!-- Contract Architecture Overview -->
         <h1><span class="section-number">2</span>Contract Architecture</h1>
@@ -260,6 +367,7 @@
                 <thead>
                     <tr>
                         <th>Species</th>
+                        <th>Symbol</th>
                         <th>ID</th>
                         <th>Daily Decay</th>
                         <th>Half-Life</th>
@@ -269,6 +377,7 @@
                 <tbody>
                     <tr>
                         <td><strong>Rhythm</strong></td>
+                        <td>RHY</td>
                         <td>0</td>
                         <td>5%</td>
                         <td>13.51 days</td>
@@ -276,6 +385,7 @@
                     </tr>
                     <tr>
                         <td><strong>Healing</strong></td>
+                        <td>HLN</td>
                         <td>1</td>
                         <td>0.75%</td>
                         <td>92.42 days</td>
@@ -283,6 +393,7 @@
                     </tr>
                     <tr>
                         <td><strong>Foundation</strong></td>
+                        <td>FDN</td>
                         <td>2</td>
                         <td>0.1%</td>
                         <td>693.15 days</td>
@@ -290,10 +401,11 @@
                     </tr>
                     <tr>
                         <td><strong>Catalyst</strong></td>
+                        <td>CTL</td>
                         <td>3</td>
                         <td>2-10%</td>
                         <td>Variable</td>
-                        <td>Marketplace balance, dynamic adjustment</td>
+                        <td>Marketplace balance</td>
                     </tr>
                 </tbody>
             </table>
@@ -314,6 +426,21 @@
                     lockInVault(uint8 species, uint256 amount, uint256 lockDays)
                 </div>
                 <p>Locks tokens in wellness vault for reduced decay rates (30-365 days).</p>
+
+                <div class="function-signature">
+                    mint(address to, uint8 species, uint256 amount)
+                </div>
+                <p>Mints new tokens. Restricted to MINTER_ROLE (VerificationEngine).</p>
+
+                <div class="function-signature">
+                    collectDecay(address[] users, uint8[] species) → uint256
+                </div>
+                <p>Collects decayed value from user balances. Restricted to RESERVOIR_ROLE.</p>
+
+                <div class="function-signature">
+                    getAllBalances(address user) → uint256[4]
+                </div>
+                <p>Returns all four token species balances for a user in a single call.</p>
             </div>
 
             <h3>Decay Calculation</h3>
@@ -379,19 +506,29 @@
             <h3>Key Functions</h3>
             <div class="function-list">
                 <div class="function-signature">
-                    collectDecayedTokens(address[] users, uint8[] species)
+                    collectDecayedTokens(address[] users, uint8[] species) → uint256
                 </div>
                 <p>Sweeps decayed value from user balances into the Reservoir for redistribution.</p>
 
                 <div class="function-signature">
                     submitHealthcareClaim(uint256 amount, uint8 urgencyScore, string claimType, bytes32 verificationHash) → uint256
                 </div>
-                <p>Submits healthcare claim with priority scoring (urgency 1-10). Claims processed by priority.</p>
+                <p>Submits healthcare claim with priority scoring (urgency 1-10). Returns claim ID for tracking.</p>
 
                 <div class="function-signature">
-                    calculateMetabolicPrice() → uint256
+                    processHealthcareClaims(uint256 maxClaims)
                 </div>
-                <p>Calculates endogenous token price based on health activity energy and market volume.</p>
+                <p>Processes pending claims in priority order up to available USDC balance.</p>
+
+                <div class="function-signature">
+                    exchangeSpeciesToUSDC(uint8 species, uint256 amount) → uint256
+                </div>
+                <p>Exchanges species tokens for USDC based on metabolic pricing.</p>
+
+                <div class="function-signature">
+                    getClaimStatus(uint256 claimId) → HealthcareClaim
+                </div>
+                <p>Returns detailed information about a specific healthcare claim.</p>
             </div>
 
             <h3>Solvency Requirements</h3>
@@ -417,6 +554,29 @@
             <p>
             Processes zero-knowledge proofs of health activities and calculates multi-factor rewards. This contract bridges the gap between private health data and public token rewards.
             </p>
+
+            <h3>Key Functions</h3>
+            <div class="function-list">
+                <div class="function-signature">
+                    verifyAndMint(HealthProof calldata healthProof) → uint256
+                </div>
+                <p>Verifies zero-knowledge proof and mints reward tokens. Restricted to registered apps.</p>
+
+                <div class="function-signature">
+                    registerApp(uint256 stakeAmount)
+                </div>
+                <p>Registers verification app with required USDC stake (minimum 10,000).</p>
+
+                <div class="function-signature">
+                    evolveGeneticTrait(bytes32 profileId, string traitName)
+                </div>
+                <p>Evolves a genetic trait by burning Foundation tokens. Cost increases exponentially.</p>
+
+                <div class="function-signature">
+                    calculateReward(uint8 activityType, uint256 energyExpended, bytes32 profileId) → uint256
+                </div>
+                <p>Calculates reward amount with all applicable multipliers.</p>
+            </div>
 
             <h3>Activity Types</h3>
             <table class="parameter-table">
@@ -485,6 +645,34 @@
             <p>
             Implements empirical governance where all protocol changes must demonstrate measurable health improvements through on-chain experiments.
             </p>
+
+            <h3>Key Functions</h3>
+            <div class="function-list">
+                <div class="function-signature">
+                    createProposal(string title, string description, string hypothesis, ProposalType pType) → uint256
+                </div>
+                <p>Creates new proposal with testable hypothesis. Requires 500 Catalyst token stake.</p>
+
+                <div class="function-signature">
+                    vote(uint256 proposalId, bool support)
+                </div>
+                <p>Cast vote weighted by contribution score, not token balance.</p>
+
+                <div class="function-signature">
+                    startExperiment(uint256 proposalId, uint256 controlGroup, uint256 treatmentGroup)
+                </div>
+                <p>Begins A/B test with specified user groups.</p>
+
+                <div class="function-signature">
+                    validateExperiment(uint256 proposalId, uint256 improvement, uint256 pValue)
+                </div>
+                <p>Validates experimental results. Requires ≥5% improvement and p<0.05.</p>
+
+                <div class="function-signature">
+                    calculateContributionScore(address user) → uint256
+                </div>
+                <p>Calculates voting weight based on lifetime contributions, not holdings.</p>
+            </div>
 
             <h3>Contribution-Based Voting</h3>
             <p>Voting weight calculated from lifetime contributions, not current holdings:</p>
@@ -561,6 +749,57 @@ struct Balance {
         <h1><span class="section-number">5</span>Deployment Guide</h1>
 
         <div class="deployment-section">
+            <h3>Quick Start</h3>
+            <div class="code-example">
+                <pre># Clone the repository
+git clone https://github.com/97115104/autophage-smart-contracts.git
+cd autophage-smart-contracts
+
+# Install dependencies
+npm install
+
+# Compile contracts
+npm run compile
+
+# Run automated demo
+npm run demo
+
+# Or visit the deployed demo
+# https://contracts.autophage.xyz/</pre>
+            </div>
+
+            <h3>Available Scripts</h3>
+            <table class="parameter-table">
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>npm run compile</code></td>
+                        <td>Compile Solidity contracts</td>
+                    </tr>
+                    <tr>
+                        <td><code>npm test</code></td>
+                        <td>Run all test suites</td>
+                    </tr>
+                    <tr>
+                        <td><code>npm run demo</code></td>
+                        <td>Run automated demo</td>
+                    </tr>
+                    <tr>
+                        <td><code>npm run interact</code></td>
+                        <td>Start interactive console</td>
+                    </tr>
+                    <tr>
+                        <td><code>npm run deploy:localhost</code></td>
+                        <td>Deploy to local node</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <h3>Deployment Order</h3>
             <ol>
                 <li><strong>AutophageToken:</strong> Deploy first (no dependencies)</li>
@@ -570,13 +809,18 @@ struct Balance {
             </ol>
 
             <h3>Post-Deployment Setup</h3>
-            <ol>
-                <li>Grant MINTER_ROLE to VerificationEngine on AutophageToken</li>
-                <li>Grant RESERVOIR_ROLE to ReservoirContract on AutophageToken</li>
-                <li>Grant ORACLE_ROLE to trusted oracle addresses</li>
-                <li>Transfer admin roles to multi-sig wallet</li>
-                <li>Verify all contracts on Etherscan</li>
-            </ol>
+            <div class="code-example">
+                <pre>// Grant necessary roles
+await autophageToken.grantRole(MINTER_ROLE, verificationEngine.address);
+await autophageToken.grantRole(RESERVOIR_ROLE, reservoir.address);
+
+// Configure initial parameters
+await verificationEngine.updateBaseReward(EXERCISE, parseEther("50"));
+await reservoir.setMinimumSolvency(parseEther("1000000")); // $1M USDC
+
+// Transfer admin to multi-sig
+await autophageToken.transferOwnership(multiSigWallet);</pre>
+            </div>
 
             <h3>Initial Parameters</h3>
             <div class="code-example">
@@ -596,11 +840,11 @@ Tier 3: 100,000</pre>
         <!-- Integration Examples -->
         <h1><span class="section-number">6</span>Integration Examples</h1>
 
-        <h3>Submitting a Health Proof</h3>
+        <h3>Health Activity Rewards</h3>
         <div class="code-example">
-            <pre>// Example: Submit exercise proof
-const proof = {
-    activityHash: ethers.utils.keccak256(activityData),
+            <pre>// Submit workout proof, receive tokens
+const healthProof = {
+    activityHash: ethers.keccak256(activityData),
     activityType: 0, // EXERCISE
     energyExpended: 250, // kcal
     timestamp: Date.now() / 1000,
@@ -608,33 +852,105 @@ const proof = {
     proof: zkProofData,
     metadata: encryptedMetadata
 };
-
-await verificationEngine.verifyAndMint(proof);</pre>
+await verificationEngine.verifyAndMint(healthProof);
+// User receives ~75 Rhythm tokens (base 50 + multipliers)</pre>
         </div>
 
-        <h3>Checking Token Balance with Decay</h3>
+        <h3>Token Balance Management</h3>
         <div class="code-example">
             <pre>// Get current balance (decay applied automatically)
 const rhythmBalance = await autophageToken.balanceOf(userAddress, 0);
 const allBalances = await autophageToken.getAllBalances(userAddress);
 
-console.log('Rhythm tokens:', ethers.utils.formatEther(rhythmBalance));
-console.log('All balances:', allBalances.map(b => ethers.utils.formatEther(b)));</pre>
+console.log('Rhythm tokens:', ethers.formatEther(rhythmBalance));
+console.log('All balances:', allBalances.map(b => ethers.formatEther(b)));
+
+// Lock tokens for reduced decay
+await autophageToken.lockInVault(
+    0,     // Rhythm (RHY) species
+    ethers.parseEther("500"),   // Amount
+    30     // Days
+);
+// Locked tokens decay at reduced rate based on lock duration</pre>
         </div>
 
-        <h3>Submitting Healthcare Claim</h3>
+        <h3>Healthcare Claims</h3>
         <div class="code-example">
-            <pre>// Submit prescription claim
+            <pre>// Submit medical expense claim
 const claimId = await reservoir.submitHealthcareClaim(
-    ethers.utils.parseEther("150"), // $150 USDC
-    8,                              // Urgency score (1-10)
-    "prescription",                 // Claim type
-    verificationHash               // Proof hash
-);</pre>
+    ethers.parseEther("1000"), // $1000 USDC claim
+    8,                         // Urgency score (1-10)
+    "emergency",               // Claim type
+    verificationHash          // ZK proof hash
+);
+
+// Check claim status
+const claim = await reservoir.getClaimStatus(claimId);
+console.log('Claim status:', claim.status); // PENDING, APPROVED, PAID, REJECTED</pre>
+        </div>
+
+        <h3>Governance Participation</h3>
+        <div class="code-example">
+            <pre>// Create proposal with measurable hypothesis
+const proposalId = await governance.createProposal(
+    "Increase Exercise Rewards",
+    "Boost base rewards from 50 to 60 tokens",
+    "Will increase DAU by 10%",
+    0 // PARAMETER_CHANGE
+);
+
+// Vote on proposal (weighted by contribution score)
+await governance.vote(proposalId, true); // support
+
+// Check contribution score
+const score = await governance.calculateContributionScore(userAddress);
+console.log('Voting weight:', score);</pre>
+        </div>
+
+        <!-- Interactive Demo -->
+        <h1><span class="section-number">7</span>Interactive Demo & Testing</h1>
+
+        <div class="deployment-section">
+            <h3><svg class="icon icon-inline"><use href="assets/icons.svg#icon-web"></use></svg> Web Interface</h3>
+            <p>Access the protocol through your browser at <a href="https://contracts.autophage.xyz/" target="_blank">contracts.autophage.xyz</a>:</p>
+            <ul>
+                <li><strong>Demo Mode</strong> - Try without a wallet using simulated transactions</li>
+                <li><strong>MetaMask Integration</strong> - Connect wallet for full Web3 interaction</li>
+                <li><strong>All Species Tokens</strong> - Mint and track RHY, HLN, FDN, and CTL tokens</li>
+                <li><strong>Real-time Decay</strong> - Watch tokens decay and update balances live</li>
+                <li><strong>Activity Submission</strong> - Submit health activities and receive rewards</li>
+            </ul>
+
+            <h3><svg class="icon icon-inline"><use href="assets/icons.svg#icon-terminal"></use></svg> Interactive Console</h3>
+            <p>Menu-driven interface for hands-on contract interaction:</p>
+            <div class="code-example">
+                <pre># Start local blockchain
+npm run node
+
+# Deploy contracts (new terminal)
+npm run deploy:localhost
+
+# Launch interactive console (new terminal)
+npm run interact</pre>
+            </div>
+
+            <h3>Testing</h3>
+            <p>Comprehensive test coverage ensures contract reliability:</p>
+            <div class="code-example">
+                <pre># Run all tests
+npm test
+
+# Run specific test suites
+npx hardhat test test/AutophageToken.test.js
+npx hardhat test test/BasicFunctionality.test.js
+
+# Gas benchmarking
+npx hardhat test test/gas-benchmarks.js</pre>
+            </div>
         </div>
 
         <!-- Future Improvements -->
-        <h1><span class="section-number">7</span>Future Improvements</h1>
+        <h1><span class="section-number">8</span>Future Improvements</h1>
 
         <div class="info-box">
             <strong>Planned Enhancements:</strong>
@@ -645,14 +961,42 @@ const claimId = await reservoir.submitHealthcareClaim(
                 <li><strong>Modular Decay:</strong> Allow custom decay curves for special circumstances</li>
                 <li><strong>Social Recovery:</strong> Multi-sig recovery for lost private keys</li>
                 <li><strong>Insurance Pool:</strong> Additional protection for healthcare claims</li>
+                <li><strong>POTP Implementation:</strong> Complete meta-token integration for cross-species settlements</li>
             </ul>
         </div>
 
         <!-- Audit Status -->
-        <h1><span class="section-number">8</span>Audit Status</h1>
+        <h1><span class="section-number">9</span>Audit Status</h1>
 
         <div class="warning-box">
             <strong><svg class="icon icon-inline icon-warning"><use href="assets/icons.svg#icon-warning"></use></svg> Important:</strong> These contracts are currently unaudited and should not be used in production without thorough security review.
+        </div>
+
+        <p>Planned audits:</p>
+        <ul>
+            <li>Formal verification of decay mathematics</li>
+            <li>Economic attack vector analysis</li>
+            <li>Gas optimization review</li>
+            <li>Access control verification</li>
+        </ul>
+
+        <!-- Contributing -->
+        <h1><span class="section-number">10</span>Contributing</h1>
+
+        <p>
+        We welcome contributions! See <a href="https://github.com/97115104/autophage-smart-contracts/blob/main/CONTRIBUTING.md" target="_blank">CONTRIBUTING.md</a> for detailed guidelines.
+        </p>
+
+        <div class="info-box">
+            <strong>Areas for Contribution:</strong>
+            <ul>
+                <li>Gas optimization improvements</li>
+                <li>Additional health activity types</li>
+                <li>Enhanced privacy features</li>
+                <li>Governance mechanism refinements</li>
+                <li>Test coverage expansion</li>
+                <li>Documentation improvements</li>
+            </ul>
         </div>
 
         <hr>

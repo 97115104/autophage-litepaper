@@ -51,6 +51,31 @@ const ThemeManager = {
 
 // Component system for Autophage Protocol Documentation
 const Components = {
+    // Initialize components
+    init: function(config = {}) {
+        // Load header
+        const headerDiv = document.getElementById('header');
+        if (headerDiv) {
+            headerDiv.innerHTML = this.header(config.title || CONFIG.siteName, config.version || '1.0');
+        }
+        
+        // Load footer
+        const footerDiv = document.getElementById('footer');
+        if (footerDiv) {
+            footerDiv.innerHTML = this.footer();
+        }
+        
+        // Initialize theme
+        const theme = ThemeManager.getTheme();
+        ThemeManager.applyTheme(theme);
+        
+        // Add mode toggle functionality
+        this.initializeModeToggle();
+        
+        // Add back to top functionality
+        this.initializeBackToTop();
+    },
+    
     // Generate navigation HTML
     navigation: function() {
         const basePath = getBasePath();
@@ -139,15 +164,19 @@ const Components = {
         `;
     },
     
-    // Initialize components on page
-    init: function(options = {}) {
+    // Initialize mode toggle functionality
+    initializeModeToggle: function() {
         // Add mode toggle button
         const modeToggle = document.createElement('button');
         modeToggle.className = 'mode-toggle';
         modeToggle.onclick = function() { window.toggleMode(); };
-        modeToggle.textContent = 'D';
+        modeToggle.textContent = document.body.classList.contains('dark-mode') ? 'L' : 'D';
+        modeToggle.setAttribute('aria-label', 'Toggle dark mode');
         document.body.appendChild(modeToggle);
-        
+    },
+    
+    // Initialize back to top functionality
+    initializeBackToTop: function() {
         // Add back to top button
         const backToTop = document.createElement('button');
         backToTop.className = 'back-to-top';
@@ -155,6 +184,15 @@ const Components = {
         backToTop.innerHTML = '↑';
         backToTop.setAttribute('aria-label', 'Back to top');
         document.body.appendChild(backToTop);
+        
+        // Show/hide based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
         
         // Add post-it note (desktop only)
         if (window.innerWidth > 768) {
@@ -165,25 +203,6 @@ const Components = {
                 <p class="post-it-subtext">feedback welcome</p>
             `;
             document.body.appendChild(postIt);
-        }
-        
-        // Initialize dark mode
-        // First remove the init class from HTML element
-        if (document.documentElement.classList.contains('dark-mode-init')) {
-            document.documentElement.classList.remove('dark-mode-init');
-            // Apply dark mode to body
-            document.body.classList.add('dark-mode');
-            modeToggle.textContent = 'L';
-        } else {
-            // Get theme from ThemeManager
-            const theme = ThemeManager.getTheme();
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-                modeToggle.textContent = 'L';
-            } else {
-                document.body.classList.remove('dark-mode');
-                modeToggle.textContent = 'D';
-            }
         }
         
         // Insert header if placeholder exists
