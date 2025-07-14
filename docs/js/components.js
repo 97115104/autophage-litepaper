@@ -52,7 +52,7 @@ const ThemeManager = {
 // Component system for Autophage Protocol Documentation
 const Components = {
     // Initialize components
-    init: function(config = {}) {
+    init: async function(config = {}) {
         // Load header
         const headerDiv = document.getElementById('header');
         if (headerDiv) {
@@ -64,6 +64,9 @@ const Components = {
         if (footerDiv) {
             footerDiv.innerHTML = this.footer();
         }
+        
+        // Update deployment date
+        await this.updateDeploymentDate();
         
         // Initialize theme
         const theme = ThemeManager.getTheme();
@@ -131,7 +134,7 @@ const Components = {
         <div class="latex-title">
             <h1>${title}</h1>
             <div class="latex-author"><a href="${basePath}${CONFIG.orgLink}">${CONFIG.orgName}</a></div>
-            <div class="latex-date">Version ${version} — \\today</div>
+            <div class="latex-date">Version ${version} — <span id="deployment-date">\\today</span></div>
         </div>
         
         <!-- Navigation -->
@@ -205,28 +208,7 @@ const Components = {
             document.body.appendChild(postIt);
         }
         
-        // Insert header if placeholder exists
-        const headerEl = document.getElementById('header');
-        if (headerEl) {
-            headerEl.innerHTML = this.header(options.title, options.version);
-        }
         
-        // Insert footer if placeholder exists
-        const footerEl = document.getElementById('footer');
-        if (footerEl) {
-            footerEl.innerHTML = this.footer();
-        }
-        
-        // Set today's date
-        const dateElement = document.querySelector('.latex-date');
-        if (dateElement) {
-            const today = new Date().toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            });
-            dateElement.innerHTML = dateElement.innerHTML.replace('\\today', today);
-        }
         
         // Update copyright year
         const yearElement = document.getElementById('copyright-year');
@@ -257,6 +239,35 @@ const Components = {
         
         // Mark body as loaded
         document.body.classList.add('loaded');
+    },
+    
+    // Update deployment date from last-modified header
+    updateDeploymentDate: async function() {
+        const deploymentDateElement = document.getElementById('deployment-date');
+        if (!deploymentDateElement) return;
+        
+        try {
+            // Fetch the current page to get its last-modified header
+            const response = await fetch(window.location.pathname, {
+                method: 'HEAD'
+            });
+            
+            const lastModified = response.headers.get('last-modified');
+            if (lastModified) {
+                const date = new Date(lastModified);
+                deploymentDateElement.textContent = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } else {
+                // Fallback to configured deployment date
+                deploymentDateElement.textContent = CONFIG.deploymentDate || 'December 2024';
+            }
+        } catch (error) {
+            // If fetch fails, use fallback
+            deploymentDateElement.textContent = CONFIG.deploymentDate || 'December 2024';
+        }
     }
 };
 

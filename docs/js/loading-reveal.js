@@ -1,7 +1,15 @@
 // Loading reveal animation - only for homepage
 (function() {
-    // Only run on homepage
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLoadingReveal);
+    } else {
+        initLoadingReveal();
+    }
+    
+    function initLoadingReveal() {
+        // Only run on homepage
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')) {
         // Add loading CSS
         const style = document.createElement('style');
         style.textContent = `
@@ -41,7 +49,7 @@
             .loading-text {
                 position: absolute;
                 color: #666;
-                font-family: 'Computer Modern', serif;
+                font-family: system-ui, -apple-system, sans-serif;
                 font-size: 10pt;
                 text-align: center;
                 opacity: 0;
@@ -75,5 +83,6 @@
         
         // Auto-hide after 5 seconds
         setTimeout(hideOverlay, 5000);
+        }
     }
 })();

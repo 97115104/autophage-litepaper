@@ -32,7 +32,9 @@ const CONFIG = {
     siteName: 'Autophage Protocol',
     orgName: '0x42 Research',
     orgLink: 'about#research',
-    copyright: '0x42 Research'
+    copyright: '0x42 Research',
+    // This should be updated with each deployment/release
+    deploymentDate: 'December 2024'
 };
 
 // Helper to get base path for current page
