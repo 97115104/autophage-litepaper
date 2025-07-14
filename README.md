@@ -149,6 +149,8 @@ This is an active research project welcoming collaboration:
 
 ## License
 
-© 2025 0x42 Research. All rights reserved.
+This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
+
+© 2025 0x42 Research. The Autophage Protocol litepaper and associated materials are released under Apache 2.0, providing a balance of openness and flexibility for both academic and commercial use.
 
 The Autophage Protocol is currently in the research and development phase. Implementation details and specifications may evolve as the protocol matures toward production deployment.
