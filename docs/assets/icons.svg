@@ -121,5 +121,16 @@
       <rect x="9" y="11" width="6" height="2" fill="currentColor"/>
       <path d="M9 16 L 11 18 L 15 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+    
+    <!-- Code/Smart Contract Icon -->
+    <symbol id="icon-code" viewBox="0 0 24 24">
+      <path d="M8 5L4 9l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 5l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="14" y1="3" x2="10" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <rect x="3" y="14" width="18" height="7" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="6" cy="17.5" r="1" fill="currentColor"/>
+      <circle cx="10" cy="17.5" r="1" fill="currentColor"/>
+      <circle cx="14" cy="17.5" r="1" fill="currentColor"/>
+    </symbol>
   </defs>
 </svg>

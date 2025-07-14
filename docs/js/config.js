@@ -13,7 +13,6 @@ const CONFIG = {
             label: 'Tools',
             items: [
                 { label: 'Simulations', href: 'simulations' },
-                { label: 'Smart Contracts', href: 'smart-contracts' },
                 { label: 'Mathematical Reference', href: 'math' }
             ]
         },
