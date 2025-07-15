@@ -1184,7 +1184,7 @@ Perhaps most significantly, the protocol exists as a complete alternative to per
 \section{Appendix}
 \appendix
 
-% Appendix A: Complete Feature Set
+% Appendix Complete Feature Set
 \section{Complete Feature Set}
 
 \begin{longtable}{p{5cm}p{9.5cm}}
@@ -1267,22 +1267,10 @@ Research Data Feeds & Anonymized aggregate health behavior data available for pu
 Liquidity Provision Rewards & Catalyst tokens for providing marketplace liquidity and facilitating trades \\
 \midrule
 Multi-Signature Security & Critical protocol functions require 7-of-9 guardian signatures preventing single points of failure \\
-\midrule
-Metadata Privacy Options & Selective disclosure of activity metadata for enhanced marketplace value \\
-\midrule
-Intergenerational Transfers & Family wellness vaults enabling health wealth transfer across generations \\
-\midrule
-Emergency Override System & Circuit breakers activate at 80\% reserve utilization protecting healthcare access \\
-\midrule
-Behavioral Nudge Engine & Personalized activity recommendations based on ROI calculations \\
-\midrule
-Social Proof Mechanics & Visibility controls for inspiring others while maintaining personal privacy \\
-\midrule
-Regulatory Compliance API & Automated reporting tools for jurisdictional health data requirements \\
 \bottomrule
 \end{longtable}
 
-% Appendix B: Glossary
+% Appendix Glossary
 \section{Glossary of Terms}
 
 \begin{description}[style=nextline]
@@ -1295,6 +1283,9 @@ Fourth token species with dynamic 2–10\% decay maintaining 25\% ecosystem bala
 
 \item[Circadian Multiplier]
 Time-of-day reward adjustment following natural biological rhythms, maximizing at 6 AM (1.3x) and minimizing at 6 PM (0.7x).
+
+\item[Contribution Score]
+Governance weight calculated from lifetime Reservoir contributions, reputation, and participation rather than current holdings.
 
 \item[Decay Rate ($\delta$)]
 Daily percentage of token value lost, ranging from 0.1\% (Foundation) to 5\% (Rhythm) based on activity persistence.
@@ -1338,6 +1329,9 @@ Core protocol mechanism requiring continuous activity to maintain value, prevent
 \item[Rhythm Tokens]
 Fastest-decaying species (5\% daily) earned through exercise, medication adherence, and daily health habits.
 
+\item[Soft Cap]
+Balance threshold triggering accelerated decay to prevent excessive accumulation while allowing reasonable savings.
+
 \item[USDC]
 Dollar-pegged stablecoin issued by Circle and Coinbase. Used as a programmatic, fully-backed USD equivalent for on-chain settlements.
 
@@ -1347,7 +1341,12 @@ Time-locked token storage with reduced decay rates enabling targeted healthcare 
 \item[Zero-Knowledge Proof]
 Cryptographic method verifying health activities without revealing personal data, maintaining privacy.
 
-% Appendix C: Use Case Examples
+\item[zkVM Orchestration]
+Application layer managing proof generation across heterogeneous health apps while preserving privacy.
+\end{description}
+
+\clearpage
+% Appendix Use Case Examples
 \section{Selected Use Case Examples}
 
 The following use cases are hypothetical. Each user journey is designed to show how the protocol works in practice. No story describes a real person or actual event. These are demonstrations of what is possible with the Autophage Protocol.
@@ -1396,7 +1395,6 @@ Months to goal & 3.5 \\
 
 Sarah's public ProfileID has attracted a following among trans athletes. While her gender identity remains private, her consistent performance inspires others facing similar journeys.
 
-\clearpage
 \subsection{Recovery Economics: Marcus's Story}
 
 Marcus discovered the protocol on day 387 of sobriety. While physical fitness remained challenging, his daily recovery meetings became an economic foundation. Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:
@@ -1437,7 +1435,6 @@ Marcus monetizes his journey selectively. Anonymous daily proofs sell for \$2-3 
 
 The economic visibility of recovery has transformed his self-perception. ``My sobriety has measurable value,'' he tells newcomers. ``Every day clean creates wealth for myself and data that helps others.''
 
-\clearpage
 \subsection{Family Wellness: The Prior Household}
 
 The Prior family exemplifies intergenerational protocol participation. When grandmother Prior was diagnosed with type 2 diabetes, three generations united around her care. The protocol's age-adjusted multipliers ensure her modest activities generate substantial value:
@@ -1465,6 +1462,8 @@ Grandchildren & Various sports & 30-60 & Rhythm \\
 \end{tabular}
 \end{table}
 
+\clearpage
+
 The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events, seven participants generating 350 total tokens with 30\% group bonuses.
 
 \begin{table}[H]
@@ -1483,7 +1482,6 @@ Grandchildren & Competitive Spirit (15\%) & Youth Energy (10\%) \\
 
 Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder.
 
-\clearpage
 \subsection{Creator Economy: Luna's Empire}
 
 Luna leverages the protocol to differentiate her 850K subscriber OnlyFans empire. Unlike competitors relying on photo editing and claims, she provides cryptographically verified fitness achievements. Her daily routine becomes multi-stream content:
@@ -1527,11 +1525,7 @@ Genetic trait revelation & \$1,000 & One-time \\
 
 With 17,000 proof subscribers paying \$200/month average, Luna generates \$3.4M monthly from verification alone. The protocol's 12\% marketplace fees seem minimal compared to the trust premium her verification commands.
 
-``My body is my business,'' Luna explains. ``The protocol proves I do the work with no filters, or lies, with math.''
-
-Her success inspired an entire creator category. Thousands now build audiences around verified transformation rather than edited inspiration.
-
-% Appendix D: Plain Language Summary
+% Appendix Plain Language Summary
 \clearpage
 \section{Plain Language Summary}
 
@@ -1554,7 +1548,7 @@ The result transforms economics from a system of accumulation to one of circulat
 % Note from the Author
 \clearpage
 
-% Appendix E: Math Explanation
+% Appendix Math Explanation
 \section{Understanding the Math for Everyone}
 
 This appendix explains the paper's formal notation so that any motivated reader can understand what is being described. Mathematics serves two purposes in this protocol. It makes rules unambiguous and repeatable, and it allows anyone to verify or critique the system’s logic without relying on trust or marketing claims.
@@ -1638,30 +1632,15 @@ For clarity:
 No mathematical symbol in this paper is used for gatekeeping. The explicit notation is necessary for precision and trust. Each equation can be seen as a technical contract between the protocol and its users. If anything is unclear, these tables provide a reference for decoding the symbols, and every formula can be read aloud, checked in simulation, or translated into code. In short, the math is here so anyone can follow the logic, test the claims, and keep the system honest.
 
 \clearpage
-
 \section{Note from the Author}
 
 Biomimetics, if it means anything, is enforcement rather than metaphor.
 
 In Autophage, decay is structural. Value dies if it does not circulate. Most systems treat nature as garnish; here, mortality is code. Accumulation outside of health savings is a liability.
 
-\begin{table}[H]
-\centering
-\caption*{Economics: Living or Dead}
-\begin{tabular}{lcc}
-\toprule
-& \textbf{Autophage} & \textbf{Everything Else} \\
-\midrule
-Decay & Required & Avoided \\
-Renewal & Inevitable & Optional \\
-Accumulation & Self-defeating & Sacred \\
-Metabolism & Built-in & Cosmetic \\
-Survival & Earned daily & Assumed forever \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 The status quo rewards stasis and calls it success. In health and in money, what survives is what moves. Everything else is just afterlife accounting.
+
+--
 
 The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed and the simulations run thousands of times, but the true test lies in whether individuals and communities will choose renewal, flow, and life over accumulation, comfort, and stasis.
 
@@ -1669,7 +1648,7 @@ With this paper, the theoretical framework is complete; only practical implement
 
 The mathematics of decay could become the foundation for sustainable abundance, but only real-world deployment will reveal if theory translates to practice.
 
-% Appendix F: Acknowledgments
+% Appendix Acknowledgments
 \section{Acknowledgments}
 
 This work stands on the shoulders of giants.
@@ -1684,8 +1663,8 @@ And to OpenAI and Anthropic for their GPT products, which served as tireless int
 
 Thank you all.
 
-% Appendix G: Adversarial Stress Test
-
+\clearpage
+% Appendix Adversarial Stress Test
 \section{Adversarial Stress Test}
 
 \subsection*{Methodology}
@@ -1731,6 +1710,7 @@ Three protocol mechanisms proved decisive:
 
 Adversarial simulation confirms that no known strategy can meaningfully circumvent enforced decay and activity requirements. Even with coordinated attacks and sybil formations, the protocol maintained Gini coefficients below those observed in all major legacy and digital monetary systems. This outcome validates the protocol's core claim that value must circulate to persist, and attempts to evade circulation lead only to accelerated loss.
 
+% Appendix Addendum On the Irreversibility of Health Value Conversion
 \section{On the Irreversibility of Health Value Conversion}
 
 Conversion between token species is not permitted within the Autophage Protocol.
@@ -1747,6 +1727,7 @@ Each token is a distinct receipt for a unique kind of effort and persistence.
 
 If you want Foundation, you must do the work.
 
+% Appendix AI Attestation
 \section{AI Attestation}
 \begin{center}
 \fbox{\small\texttt{AI-ASSISTED} $\cdot$ \texttt{attest.ink/attestation/1}}
@@ -1754,7 +1735,7 @@ If you want Foundation, you must do the work.
 
 The mathematical formalization and technical notation in this paper were developed with assistance from various large language models. What began as an experiment to explore the boundaries of AI-assisted research evolved into a fully-realized theoretical framework. These tools served a role similar to LaTeX for typesetting or symbolic algebra systems for verification, enabling more rigorous expression and validation of ideas. All core concepts, protocol design, and theoretical insights are original human work.\footnote{For detailed AI tool attribution and transparency, see \url{https://attest.ink/attestation/1}.}
 
-% Appendix H: Version History
+% Appendix Version History
 \section{Version History}
 
 \begin{table}[H]
@@ -1781,6 +1762,4 @@ v1.3 & July 2025 & Complete academic paper for arXiv \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\end{description}
 \end{document}
