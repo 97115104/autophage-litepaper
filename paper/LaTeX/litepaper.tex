@@ -70,6 +70,7 @@ Stewards   & Abstract, Related Work, Sections 1-4, Appendix D and E \\
 
 \clearpage
 \tableofcontents
+\clearpage
 
 % Section 1: Introduction
 \section{Introduction}
@@ -89,14 +90,13 @@ In the early 20th century, Silvio Gesell proposed ``stamped scrip'' to force cur
 Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin's approach was blunt, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
 
 Other ``health coins'' have focused on rewards for activity, using move-to-earn or similar models. Most are marketplace tokens, structured around accumulation. STEP'N \cite{stepn2022whitepaper} pays users for walking, but value is driven by speculative tokenomics, not by any durable health metric. The project saw rapid growth but struggled to maintain sustainable rewards. Sweatcoin uses a similar approach. Users earn points for steps and spend them in a marketplace, but the system lacks decay mechanics, biological calibration, and any link to real health persistence.
+\clearpage
 
 The Autophage Protocol diverges on three counts. First, it ties decay rates directly to the half-life of underlying health activities, making token persistence a function of biological process instead of arbitrary policy. Second, it separates identity from data using zero-knowledge proofs, so participation does not require surveillance. Third, it requires every protocol change to demonstrate measurable health improvement on-chain before implementation. Where earlier systems enforced circulation by decree, Autophage encodes it at the metabolic and behavioral level.
 
 \section*{Navigating Sections 3–10}
 
 The following sections, from three to ten, are focused primarily on formalized mathematical representations of the protocol. For readers less interested in academic rigor, it is advisable to focus only on the various Examples in each section, as they are written more plainly. The core components covered in each section, but not in the Examples, are also summarized in Appendix A–D. For those interested in learning how to translate the mathematics from Sections 3–10, start by reading Appendix E.
-
-\clearpage
 
 % Section 3: Metabolic Token Dynamics
 \section{Metabolic Token Dynamics}
@@ -157,8 +157,6 @@ t_{1/2} = \frac{\ln(0.5)}{\ln(1 - \delta_i)} = \frac{\ln(2)}{\lambda_i}
 \end{table}
 
 This 51.2\% loss over two weeks mirrors the documented decline in cardiovascular fitness during training cessation \cite{mujika2000detraining}, validating the biological calibration.
-
-\clearpage
 
 \subsection{Token Generation Mechanics}
 
@@ -370,6 +368,7 @@ R_{USDC}(t) \geq \max\left(0.4 \sum_u D_u(t), 3 \times \bar{H}_{monthly}, 0.22 \
 \end{equation}
 
 This triple-coverage requirement protects against bank runs, seasonal variations, and catastrophic events.
+\clearpage
 
 \textbf{Example 4.1:} System snapshot at 100,000 active users:
 
@@ -445,6 +444,7 @@ Priority(claim) = \omega_1 \times Urgency + \omega_2 \times Duration + \omega_3 
 \end{equation}
 
 where weights $\omega_i$ ensure medical needs supersede all other claims.
+\clearpage
 
 \textbf{Example 4.2:} Emergency prescription claim processing:
 
@@ -1296,9 +1296,6 @@ Fourth token species with dynamic 2–10\% decay maintaining 25\% ecosystem bala
 \item[Circadian Multiplier]
 Time-of-day reward adjustment following natural biological rhythms, maximizing at 6 AM (1.3x) and minimizing at 6 PM (0.7x).
 
-\item[Contribution Score]
-Governance weight calculated from lifetime Reservoir contributions, reputation, and participation rather than current holdings.
-
 \item[Decay Rate ($\delta$)]
 Daily percentage of token value lost, ranging from 0.1\% (Foundation) to 5\% (Rhythm) based on activity persistence.
 
@@ -1341,9 +1338,6 @@ Core protocol mechanism requiring continuous activity to maintain value, prevent
 \item[Rhythm Tokens]
 Fastest-decaying species (5\% daily) earned through exercise, medication adherence, and daily health habits.
 
-\item[Soft Cap]
-Balance threshold triggering accelerated decay to prevent excessive accumulation while allowing reasonable savings.
-
 \item[USDC]
 Dollar-pegged stablecoin issued by Circle and Coinbase. Used as a programmatic, fully-backed USD equivalent for on-chain settlements.
 
@@ -1352,10 +1346,6 @@ Time-locked token storage with reduced decay rates enabling targeted healthcare 
 
 \item[Zero-Knowledge Proof]
 Cryptographic method verifying health activities without revealing personal data, maintaining privacy.
-
-\item[zkVM Orchestration]
-Application layer managing proof generation across heterogeneous health apps while preserving privacy.
-\end{description}
 
 % Appendix C: Use Case Examples
 \section{Selected Use Case Examples}
@@ -1567,11 +1557,9 @@ The result transforms economics from a system of accumulation to one of circulat
 % Appendix E: Math Explanation
 \section{Understanding the Math for Everyone}
 
-This appendix explains the paper's mathematical notation so that any motivated reader can understand what is being described. Mathematics serves two purposes in this protocol. It makes rules unambiguous and repeatable, and it allows anyone to verify or critique the system’s logic without relying on trust or marketing claims. The symbols, indices, and operators are a shared language for efficiency, accuracy, and transparency.
+This appendix explains the paper's formal notation so that any motivated reader can understand what is being described. Mathematics serves two purposes in this protocol. It makes rules unambiguous and repeatable, and it allows anyone to verify or critique the system’s logic without relying on trust or marketing claims.
 
 \subsection*{Mathematical Symbols in Context}
-
-The following table summarizes the main mathematical symbols used throughout the paper, with an explanation for each:
 
 \begin{table}[H]
 \centering
@@ -1594,7 +1582,7 @@ $^{(u)}$ & Superscript shows the user $u$ & $V^{(u)}$ is value for user $u$ \\
 
 \subsection*{Why These Symbols? A Brief History and Rationale}
 
-Many of the mathematical symbols used here have a long history, appearing in physics, biology, and economics. They have specific meanings that make formulas easier to read across disciplines. The table below places each major symbol in historical and scientific context:
+Many of the mathematical symbols used here have a long history, appearing in physics, biology, and economics::
 
 \begin{table}[H]
 \centering
@@ -1610,9 +1598,6 @@ $\gamma$ & Greek letter gamma. Used for rates of change, sensitivity, and scalin
 \bottomrule
 \end{tabular}
 \end{table}
-
-
-These symbols make the protocol’s equations legible to anyone with a background in the sciences or engineering. Using the standard Greek alphabet is an academic shorthand, but each symbol is defined in context for accessibility.
 
 \subsection*{How to Read the Equations Aloud}
 
@@ -1638,7 +1623,6 @@ Read aloud: “Delta sub catalyst at time t equals delta base times the quantity
 
 \vspace{0.5em}
 
-\clearpage
 \noindent
 For clarity:
 \begin{itemize}
@@ -1652,6 +1636,8 @@ For clarity:
 \vspace{0.5em}
 
 No mathematical symbol in this paper is used for gatekeeping. The explicit notation is necessary for precision and trust. Each equation can be seen as a technical contract between the protocol and its users. If anything is unclear, these tables provide a reference for decoding the symbols, and every formula can be read aloud, checked in simulation, or translated into code. In short, the math is here so anyone can follow the logic, test the claims, and keep the system honest.
+
+\clearpage
 
 \section{Note from the Author}
 
@@ -1694,7 +1680,7 @@ The protocol builds upon decades of groundbreaking work in cryptography and dist
 
 I learned a lot from researchers and writers like Dawkins \cite{dawkins1976selfish}, Ostrom \cite{ostrom1990governing}, von Neumann \cite{von1945first}, and from reading far too many papers instead of sleeping. They didn't endorse this work, but their ideas made it possible to approach health and economics differently.
 
-And to OpenAI and Anthropic for their GPT products, which served as tireless intellectual companions, drawing from humanity's collective knowledge to help me bridge the chasms between evolutionary biology, cryptographic theory, and economic modeling. These were disciplines I'd enthusiastically collided but couldn't quite reconcile alone.
+And to OpenAI and Anthropic for their GPT products, which served as tireless intellectual companions, drawing from humanity's collective knowledge to help me bridge the chasms between evolutionary biology, cryptographic theory, and economic modeling.
 
 Thank you all.
 
@@ -1724,8 +1710,6 @@ Bitcoin & 0.88 & Pathological inequality \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\clearpage
 
 The highest Gini observed at initialization was 0.63, reflecting initial distribution noise. At one year, the system stabilized at a Gini of 0.55 which is higher than baseline, but well below traditional currencies and cryptocurrencies.
 
@@ -1798,4 +1782,5 @@ v1.3 & July 2025 & Complete academic paper for arXiv \\
 \end{tabular}
 \end{table}
 
+\end{description}
 \end{document}
