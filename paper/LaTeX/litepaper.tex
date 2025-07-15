@@ -75,7 +75,9 @@ Stewards   & Abstract, Related Work, Sections 1-4, Appendix D and E \\
 % Section 1: Introduction
 \section{Introduction}
 
-Money does not die. This fundamental property of traditional economics creates systemic inequality and health incentive failures. A dollar earned decades ago maintains its nominal value indefinitely. Bitcoin \cite{nakamoto2008bitcoin} stored in 2009 remains unchanged today. This permanence rewards accumulation over activity, creating economies where wealth concentrates among those who already possess it while those who need resources most must continuously labor for finite rewards.
+Money does not die.
+
+This fundamental property of traditional economics creates systemic inequality and health incentive failures. A dollar earned decades ago maintains its nominal value indefinitely. Bitcoin \cite{nakamoto2008bitcoin} stored in 2009 remains unchanged today. This permanence rewards accumulation over activity, creating economies where wealth concentrates among those who already possess it while those who need resources most must continuously labor for finite rewards.
 
 The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name Autophage, meaning ``self-eating,'' mirrors the essential dynamic in that value must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. The protocol implements four interconnected novelties. First, it creates multiple token species with decay rates precisely calibrated to match the temporal persistence of their underlying health activities. Exercise tokens decay rapidly like cardiovascular fitness, while preventive care tokens persist longer like vaccine immunity. Second, it achieves cryptographic privacy separation through zero-knowledge proofs, enabling health verification without surveillance. Third, it derives token value from measurable metabolic energy expenditure rather than speculative markets. Fourth, it implements empirical governance where all protocol changes must demonstrate statistically significant health improvements through on-chain experiments.
 
@@ -184,6 +186,8 @@ The circadian multiplier uses a sinusoidal function:
 M_{time} = 1 + 0.3\sin\left(\frac{2\pi(h - 6)}{24}\right)
 \end{equation}
 where $h$ is the hour of day in 24-hour format.
+
+~
 
 \textbf{Example 3.2:} Marcus completes his morning workout routine:
 
@@ -307,6 +311,8 @@ For continuous acceleration above soft cap:
 
 where $\beta$ controls sensitivity (typically 0.5-2.0) and $\gamma$ shapes the acceleration curve (typically 1.0-1.5).
 
+~
+
 \textbf{Example 3.3:} Consider whale protection for Rhythm tokens:
 
 \begin{table}[H]
@@ -336,6 +342,8 @@ Catalyst tokens maintain ecosystem balance through dynamic decay adjustment:
 \end{equation}
 
 where $\rho_{target} = 0.25$ represents the target 25\% supply ratio, $\beta = 2$ controls sensitivity, and $\gamma = 1.5$ shapes the response curve.
+
+~
 
 \textbf{Example 3.4:} When Catalyst tokens comprise 40\% of total supply:
 \begin{align}
@@ -578,6 +586,8 @@ ProfileID = H(H(UserID || Salt_1) || Salt_2 || Secret)
 
 This double-hashing with independent salts provides 768 bits of entropy, making correlation attacks computationally infeasible even with quantum advances.
 
+~
+
 \textbf{Example 6.1:} Privacy preservation in practice:
 
 \begin{table}[H]
@@ -674,6 +684,8 @@ Metabolic efficiency scales with network size following quarter-power scaling \c
 
 where $\alpha = 0.3$ and $N_0 = 1,000$ (reference network size).
 
+~
+
 \textbf{Example 7.1:} Network scaling benefits:
 
 \begin{table}[H]
@@ -705,6 +717,8 @@ When any component falls below threshold $\theta = 0.7$:
 \begin{equation}
 M_{bottleneck} = 1 + \kappa \times \left(\theta - H_{min}\right)
 \end{equation}
+
+\clearpage
 
 \textbf{Example 7.2:} Geographic bottleneck response:
 
@@ -994,6 +1008,8 @@ C_{score} = w_1 \times \log_{10}(1 + R_{lifetime}) + w_2 \times V_{reputation} +
 
 where $w_1 = 0.5$, $w_2 = 0.3$, $w_3 = 0.2$.
 
+~
+
 \textbf{Example 9.1:} Voting power calculation:
 
 \begin{table}[H]
@@ -1019,6 +1035,8 @@ All protocol changes require empirical validation:
 \end{equation}
 
 where $\epsilon = 0.05$ (5\% improvement) and $\alpha = 0.05$ (statistical significance).
+
+~
 
 \textbf{Example 9.2:} Seasonal affective multiplier proposal:
 
@@ -1109,6 +1127,8 @@ Empirical gas measurements were conducted using Ethereum mainnet test contracts 
 
 3. \textbf{State Channels}: Off-chain accumulation with daily settlement frequency, reducing on-chain transactions by 95\% through Lightning-style payment channels for micropayments.
 
+~
+
 \textbf{Example 10.2:} Gas cost comparison:
 
 \begin{table}[H]
@@ -1137,13 +1157,17 @@ Finally, beyond technical and legal constraints, behavioral inertia is perhaps t
 
 \subsection{Future Research Directions}
 
-Metabolic economics depends on improvements in speed, privacy, and interoperability. Current proof systems as indicated in Technical Limitations, create significant usability barriers; if proof generation takes a minute or more on typical devices, user participation will decline. Research should prioritize mobile-optimized zkSNARKs, faster STARKs, and new methods for aggregating proofs to reduce these bottlenecks.
+Metabolic economics depends on improvements in speed, privacy, and interoperability. Current proof systems as indicated in Technical Limitations, create significant usability barriers; if proof generation takes a minute or more on typical devices, user participation will decline. 
+
+Research should prioritize mobile-optimized zkSNARKs, faster STARKs, and new methods for aggregating proofs to reduce these bottlenecks.
 
 Cross-chain interoperability is not solved. Without effective bridges and state proofs, metabolic assets will remain siloed and lose composability. Unified liquidity across chains requires both technical and economic solutions that are more sophisticated than token wrappers.
 
 Behavioral economics is central. The actual decay rates, reward curves, and incentive multipliers should be determined by empirical data from live deployments. Arbitrary choices will create usability problems and suppress activity; optimization must be experimental, not just theoretical.
 
 Metabolic incentives must adapt to individual health conditions. Static decay rates and uniform tokenomics cannot create equity. Personalization, achieved without undermining privacy, is essential if the protocol is to avoid reproducing the failures of legacy health systems.
+
+~
 
 \textbf{Example 11.2:} Chronic condition adaptation:
 
@@ -1357,6 +1381,8 @@ Sarah, a 29-year-old software engineer, uses the protocol to fund her gender-aff
 
 Morning runs earn 50--75 Rhythm tokens depending on distance and intensity. Her 30-day streak multiplier has grown to 2.48x, while her ``Early Bird'' genetic trait adds 15\% for pre-7 AM activities. Weekly therapy sessions generate 80 Healing tokens each, with her ``Mental Resilience'' trait providing an additional 12\% bonus.
 
+~
+
 Her Chicago Marathon completion created particularly valuable proof:
 
 \begin{table}[H]
@@ -1397,7 +1423,11 @@ Sarah's public ProfileID has attracted a following among trans athletes. While h
 
 \subsection{Recovery Economics: Marcus's Story}
 
-Marcus discovered the protocol on day 387 of sobriety. While physical fitness remained challenging, his daily recovery meetings became an economic foundation. Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:
+Marcus discovered the protocol on day 387 of sobriety. While physical fitness remained challenging, his daily recovery meetings became an economic foundation.
+
+\clearpage
+
+Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:
 
 \begin{table}[H]
 \centering
@@ -1486,6 +1516,8 @@ Monthly token generation covers 85\% of medical costs, with the family supplemen
 
 Luna leverages the protocol to differentiate her 850K subscriber OnlyFans empire. Unlike competitors relying on photo editing and claims, she provides cryptographically verified fitness achievements. Her daily routine becomes multi-stream content:
 
+~
+
 Morning workout routine:
 
 \begin{table}[H]
@@ -1529,7 +1561,9 @@ With 17,000 proof subscribers paying \$200/month average, Luna generates \$3.4M 
 \clearpage
 \section{Plain Language Summary}
 
-Traditional money persists indefinitely. A dollar earned decades ago maintains its value without effort. This permanence creates economies where wealth concentrates among those who already possess it, while those who need resources most must continuously labor for finite rewards. The Autophage Protocol introduces a fundamental alternative through money that decays.
+Traditional money persists indefinitely.
+
+A dollar earned decades ago maintains its value without effort. This permanence creates economies where wealth concentrates among those who already possess it, while those who need resources most must continuously labor for finite rewards. The Autophage Protocol introduces a fundamental alternative through money that decays.
 
 The protocol creates four species of digital tokens, each calibrated to match the persistence of different health activities. Exercise tokens decay at five percent daily, reflecting how quickly cardiovascular fitness deteriorates without maintenance. Therapy tokens decay at three-quarters of one percent daily, mirroring the gradual erosion of mental health progress. Preventive care tokens decay at one-tenth of one percent daily, representing the long-term nature of vaccinations and screenings. A fourth species, Catalyst tokens, maintains ecosystem balance through dynamic decay rates.
 
