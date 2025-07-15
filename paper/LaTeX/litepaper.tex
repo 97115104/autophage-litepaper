@@ -76,7 +76,7 @@ Stewards   & Abstract, Related Work, Sections 1-4, Appendix D and E \\
 
 Money does not die. This fundamental property of traditional economics creates systemic inequality and health incentive failures. A dollar earned decades ago maintains its nominal value indefinitely. Bitcoin \cite{nakamoto2008bitcoin} stored in 2009 remains unchanged today. This permanence rewards accumulation over activity, creating economies where wealth concentrates among those who already possess it while those who need resources most must continuously labor for finite rewards.
 
-The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name Autophage, meaning ``self-eating,'' mirrors the essential dynamic in that value that must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. The protocol implements four interconnected novelties. First, it creates multiple token species with decay rates precisely calibrated to match the temporal persistence of their underlying health activities. Exercise tokens decay rapidly like cardiovascular fitness, while preventive care tokens persist longer like vaccine immunity. Second, it achieves cryptographic privacy separation through zero-knowledge proofs, enabling health verification without surveillance. Third, it derives token value from measurable metabolic energy expenditure rather than speculative markets. Fourth, it implements empirical governance where all protocol changes must demonstrate statistically significant health improvements through on-chain experiments.
+The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name Autophage, meaning ``self-eating,'' mirrors the essential dynamic in that value must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. The protocol implements four interconnected novelties. First, it creates multiple token species with decay rates precisely calibrated to match the temporal persistence of their underlying health activities. Exercise tokens decay rapidly like cardiovascular fitness, while preventive care tokens persist longer like vaccine immunity. Second, it achieves cryptographic privacy separation through zero-knowledge proofs, enabling health verification without surveillance. Third, it derives token value from measurable metabolic energy expenditure rather than speculative markets. Fourth, it implements empirical governance where all protocol changes must demonstrate statistically significant health improvements through on-chain experiments.
 
 These mechanisms work together to create an economy that mimics biological systems. Analogous to how organisms require continuous energy input to maintain homeostasis, protocol participants must engage in verified health activities to maintain token balances.
 
@@ -86,11 +86,17 @@ The following sections present the complete mathematical framework, implementati
 \section{Related Work}
 In the early 20th century, Silvio Gesell proposed ``stamped scrip'' to force currency to circulate by making it expire, an approach he tested in Wörgl, Austria during the Great Depression \cite{gesell1958natural}. These experiments gained traction under local government support, but collapsed as soon as legal enforcement lapsed. The main lesson being demurrage alone does not guarantee a stable or resilient economy, especially when external incentives favor stasis.
 
-Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin's approach applied a single decay rate to all tokens, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
+Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin's approach was blunt, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
 
 Other ``health coins'' have focused on rewards for activity, using move-to-earn or similar models. Most are marketplace tokens, structured around accumulation. STEP'N \cite{stepn2022whitepaper} pays users for walking, but value is driven by speculative tokenomics, not by any durable health metric. The project saw rapid growth but struggled to maintain sustainable rewards. Sweatcoin uses a similar approach. Users earn points for steps and spend them in a marketplace, but the system lacks decay mechanics, biological calibration, and any link to real health persistence.
 
 The Autophage Protocol diverges on three counts. First, it ties decay rates directly to the half-life of underlying health activities, making token persistence a function of biological process instead of arbitrary policy. Second, it separates identity from data using zero-knowledge proofs, so participation does not require surveillance. Third, it requires every protocol change to demonstrate measurable health improvement on-chain before implementation. Where earlier systems enforced circulation by decree, Autophage encodes it at the metabolic and behavioral level.
+
+\section*{Navigating Sections 3–10}
+
+The following sections, from three to ten, are focused primarily on formalized mathematical representations of the protocol. For readers less interested in academic rigor, it is advisable to focus only on the various Examples in each section, as they are written more plainly. The core components covered in each section, but not in the Examples, are also summarized in Appendix A–D. For those interested in learning how to translate the mathematics from Sections 3–10, start by reading Appendix E.
+
+\clearpage
 
 % Section 3: Metabolic Token Dynamics
 \section{Metabolic Token Dynamics}
@@ -137,7 +143,7 @@ t_{1/2} = \frac{\ln(0.5)}{\ln(1 - \delta_i)} = \frac{\ln(2)}{\lambda_i}
 
 \textbf{Example 3.1:} Consider Sarah who runs daily, earning 50 Rhythm tokens per run. After maintaining a balance of 1,000 tokens, she stops running for two weeks. Her balance evolution follows:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lcc}
 \toprule
@@ -151,6 +157,8 @@ t_{1/2} = \frac{\ln(0.5)}{\ln(1 - \delta_i)} = \frac{\ln(2)}{\lambda_i}
 \end{table}
 
 This 51.2\% loss over two weeks mirrors the documented decline in cardiovascular fitness during training cessation \cite{mujika2000detraining}, validating the biological calibration.
+
+\clearpage
 
 \subsection{Token Generation Mechanics}
 
@@ -166,7 +174,7 @@ where $\mathcal{A}_i$ represents activities mapped to species $i$, $B_{i,j}$ is 
 M_{total} = M_{streak} \times M_{group} \times M_{time} \times M_{genetic} \times M_{synergy} \times M_{quality}
 \end{equation}
 
-subject to the constraint $0.3 \leq M_{total} \leq 20$ to prevent exploitation while rewarding excellence.
+subject to the constraint $0.3 \leq M_{total} \leq 20$ to prevent exploitation while rewarding performance.
 
 The streak multiplier follows a logarithmic function:
 \begin{equation}
@@ -200,7 +208,7 @@ Group workout & Standard group bonus & 1.5 \\
 This demonstrates how the system rewards consistency, natural timing, and social engagement while maintaining economic balance.
 
 % Decay curves figure
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
@@ -303,7 +311,7 @@ where $\beta$ controls sensitivity (typically 0.5-2.0) and $\gamma$ shapes the a
 
 \textbf{Example 3.3:} Consider whale protection for Rhythm tokens:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lccc}
 \toprule
@@ -320,6 +328,8 @@ $>$ 100,000 & 15\% & 200\% & - \\
 A user holding 75,000 Rhythm tokens loses 7,500 daily instead of 3,750 under standard decay, creating natural redistribution pressure.
 
 \subsection{Catalyst Token Dynamics}
+
+Catalyst tokens function as the protocol’s liquidity and governance utility, enabling marketplace transactions, proposal staking, and price discovery through metabolic pricing. They are earned through verified activity, subject to dynamic decay, and cannot be vaulted or used for long-term savings.
 
 Catalyst tokens maintain ecosystem balance through dynamic decay adjustment:
 
@@ -363,7 +373,7 @@ This triple-coverage requirement protects against bank runs, seasonal variations
 
 \textbf{Example 4.1:} System snapshot at 100,000 active users:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lr}
 \toprule
@@ -382,7 +392,7 @@ Reserve calculation & max(\$1.6M, \$2.4M, \$1.056M) \\
 The 3-month coverage requirement dominates, ensuring the system can weather extended stress periods.
 
 % Reservoir flow diagram
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[
     box/.style={rectangle, draw, thick, minimum width=3cm, minimum height=2cm, align=center},
@@ -436,7 +446,6 @@ Priority(claim) = \omega_1 \times Urgency + \omega_2 \times Duration + \omega_3 
 
 where weights $\omega_i$ ensure medical needs supersede all other claims.
 
-\clearpage
 \textbf{Example 4.2:} Emergency prescription claim processing:
 
 \begin{table}[H]
@@ -466,7 +475,7 @@ Wellness vaults reduce effective decay rates based on lock duration:
 
 where $r_{lock}$ is the reduction factor:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lccc}
 \toprule
@@ -806,7 +815,7 @@ Monte Carlo simulations\footnote{All results and source code available at \url{h
 In baseline (honest) conditions, the Gini coefficient falls from 0.11 (day 30) to 0.08 by day 365 maintaining that after a year, the \emph{typical user} is almost as well-off as their peers, and the bottom 50\% holds meaningful wealth (see table). For context, the same simulation run with Bitcoin-style rules produces Gini values above 0.88, and ``fiat'' simulations stabilize around 0.56.
 
 % Monte Carlo results
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
@@ -905,7 +914,7 @@ In baseline (honest) conditions, the Gini coefficient falls from 0.11 (day 30) t
 \end{axis}
 \end{tikzpicture}
 \caption{
-Gini coefficient evolution over one year (10,000 users, 0.7 activity rate). Autophage Protocol converges to 0.08--0.11 in honest conditions and resists adversarial attacks up to 0.55 (with 23\% of users acting against the system; see Appendix F). Traditional economies and Bitcoin remain above 0.80.
+Gini coefficient evolution over one year (10,000 users, 0.7 activity rate). Autophage Protocol converges to 0.08--0.11 in honest conditions and resists adversarial attacks up to 0.55 (with 23\% of users acting against the system; see Appendix H). Traditional economies and Bitcoin remain above 0.80.
 }
 \end{figure}
 
@@ -950,7 +959,7 @@ Enterprise Verification & \$1.25 & 92\% & \$15.0M \\
 
 \textbf{Example 8.2:} Break-even analysis:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lr}
 \toprule
@@ -1130,7 +1139,7 @@ Finally, beyond technical and legal constraints, behavioral inertia is perhaps t
 
 Metabolic economics depends on improvements in speed, privacy, and interoperability. Current proof systems as indicated in Technical Limitations, create significant usability barriers; if proof generation takes a minute or more on typical devices, user participation will decline. Research should prioritize mobile-optimized zkSNARKs, faster STARKs, and new methods for aggregating proofs to reduce these bottlenecks.
 
-Cross-chain interoperability is not solved. Without effective bridges and state proofs, metabolic assets will remain siloed and lose composability. Unified liquidity across chains requires both technical and economic solutions, not just token wrappers.
+Cross-chain interoperability is not solved. Without effective bridges and state proofs, metabolic assets will remain siloed and lose composability. Unified liquidity across chains requires both technical and economic solutions that are more sophisticated than token wrappers.
 
 Behavioral economics is central. The actual decay rates, reward curves, and incentive multipliers should be determined by empirical data from live deployments. Arbitrary choices will create usability problems and suppress activity; optimization must be experimental, not just theoretical.
 
@@ -1161,7 +1170,7 @@ The mathematical framework suggests several promising properties. First, wealth 
 
 The theoretical model indicates the protocol could achieve break-even at approximately 17,000 users with 91.7\% contribution margins. The dual-chamber Reservoir design should maintain healthcare settlement guarantees even under extreme stress scenarios. The empirical governance system would enable continuous optimization based on statistically significant health improvements.
 
-Perhaps most significantly, the protocol exists as a complete alternative to permanent-value economics. Where Bitcoin \cite{nakamoto2008bitcoin} provides digital gold and Ethereum \cite{buterin2014ethereum} enables programmable contracts, the Autophage Protocol introduces digital metabolism. These three primitives - geological permanence, computational flexibility, and biological persistence - together could form a complete foundation for human-centric digital economies.
+Perhaps most significantly, the protocol exists as a complete alternative to permanent-value economics. Where Bitcoin \cite{nakamoto2008bitcoin} provides digital gold and Ethereum \cite{buterin2014ethereum} enables programmable contracts, the Autophage Protocol introduces digital metabolism. These three primitives, geological permanence, computational flexibility, and biological persistence, together could form a complete foundation for human-centric digital economies.
 
 \clearpage
 
@@ -1281,7 +1290,8 @@ Regulatory Compliance API & Automated reporting tools for jurisdictional health 
 Self-consuming; in the protocol context, value that must decay to create circulation and prevent accumulation.
 
 \item[Catalyst Tokens]
-Fourth token species with dynamic 2-10\% decay maintaining 25\% ecosystem balance through automatic adjustment.
+Fourth token species with dynamic 2–10\% decay maintaining 25\% ecosystem balance through automatic adjustment. Catalyst tokens are earned through marketplace participation and protocol activity, used for staking, governance proposals, and price discovery tied to metabolic pricing. They cannot be vaulted or saved.
+
 
 \item[Circadian Multiplier]
 Time-of-day reward adjustment following natural biological rhythms, maximizing at 6 AM (1.3x) and minimizing at 6 PM (0.7x).
@@ -1350,6 +1360,8 @@ Application layer managing proof generation across heterogeneous health apps whi
 % Appendix C: Use Case Examples
 \section{Selected Use Case Examples}
 
+The following use cases are hypothetical. Each user journey is designed to show how the protocol works in practice. No story describes a real person or actual event. These are demonstrations of what is possible with the Autophage Protocol.
+
 \subsection{Marathon Training: Sarah's Journey}
 
 Sarah, a 29-year-old software engineer, uses the protocol to fund her gender-affirming surgery while training for marathons. Her daily routine generates multiple token streams:
@@ -1358,7 +1370,7 @@ Morning runs earn 50--75 Rhythm tokens depending on distance and intensity. Her 
 
 Her Chicago Marathon completion created particularly valuable proof:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lcc}
 \toprule
@@ -1377,7 +1389,7 @@ The zero-knowledge proof included timing chip data, GPS traces, heart rate patte
 
 Current progress toward \$4,000 surgery goal:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lr}
 \toprule
@@ -1394,11 +1406,12 @@ Months to goal & 3.5 \\
 
 Sarah's public ProfileID has attracted a following among trans athletes. While her gender identity remains private, her consistent performance inspires others facing similar journeys.
 
+\clearpage
 \subsection{Recovery Economics: Marcus's Story}
 
 Marcus discovered the protocol on day 387 of sobriety. While physical fitness remained challenging, his daily recovery meetings became an economic foundation. Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lc}
 \toprule
@@ -1414,7 +1427,7 @@ Marcus discovered the protocol on day 387 of sobriety. While physical fitness re
 
 His genetic evolution focused on recovery optimization:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{llcc}
 \toprule
@@ -1434,11 +1447,12 @@ Marcus monetizes his journey selectively. Anonymous daily proofs sell for \$2-3 
 
 The economic visibility of recovery has transformed his self-perception. ``My sobriety has measurable value,'' he tells newcomers. ``Every day clean creates wealth for myself and data that helps others.''
 
+\clearpage
 \subsection{Family Wellness: The Prior Household}
 
 The Prior family exemplifies intergenerational protocol participation. When grandmother Prior was diagnosed with type 2 diabetes, three generations united around her care. The protocol's age-adjusted multipliers ensure her modest activities generate substantial value:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Prior Family Daily Token Generation}
 \begin{tabular}{llcc}
@@ -1461,9 +1475,9 @@ Grandchildren & Various sports & 30-60 & Rhythm \\
 \end{tabular}
 \end{table}
 
-The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events - seven participants generating 350 total tokens with 30\% group bonuses.
+The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events, seven participants generating 350 total tokens with 30\% group bonuses.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Prior Family Genetic Traits}
 \begin{tabular}{lll}
@@ -1477,15 +1491,16 @@ Grandchildren & Competitive Spirit (15\%) & Youth Energy (10\%) \\
 \end{tabular}
 \end{table}
 
-Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder. The protocol has transformed obligation into opportunity, making grandmother's health a source of family wealth rather than purely expense.
+Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder.
 
+\clearpage
 \subsection{Creator Economy: Luna's Empire}
 
-Luna leveraged the protocol to differentiate her 850K subscriber OnlyFans empire. Unlike competitors relying on photo editing and claims, she provides cryptographically verified fitness achievements. Her daily routine becomes multi-stream content:
+Luna leverages the protocol to differentiate her 850K subscriber OnlyFans empire. Unlike competitors relying on photo editing and claims, she provides cryptographically verified fitness achievements. Her daily routine becomes multi-stream content:
 
 Morning workout routine:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lcc}
 \toprule
@@ -1506,7 +1521,7 @@ Every activity generates both tokens and content. Post-workout biometrics create
 
 Her proof monetization strategy:
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \begin{tabular}{lcc}
 \toprule
@@ -1534,7 +1549,7 @@ Traditional money persists indefinitely. A dollar earned decades ago maintains i
 
 The protocol creates four species of digital tokens, each calibrated to match the persistence of different health activities. Exercise tokens decay at five percent daily, reflecting how quickly cardiovascular fitness deteriorates without maintenance. Therapy tokens decay at three-quarters of one percent daily, mirroring the gradual erosion of mental health progress. Preventive care tokens decay at one-tenth of one percent daily, representing the long-term nature of vaccinations and screenings. A fourth species, Catalyst tokens, maintains ecosystem balance through dynamic decay rates.
 
-Every token must be earned through verified health activity. Running generates Rhythm tokens. Therapy sessions produce Healing tokens. Annual checkups create Foundation tokens. The system rewards consistency through multipliers where morning workouts earn circadian bonuses, group activities multiply rewards, and sustained streaks compound earnings. Users who exercise daily maintain steady balances, while inactive users watch their wealth evaporate.
+Every token must be earned through verified health activity. Running generates Rhythm tokens. Therapy sessions produce Healing tokens. Annual checkups create Foundation tokens. The system rewards consistency through multipliers where morning workouts earn circadian bonuses, group activities multiply rewards, and sustained streaks compound earnings. Users who exercise daily maintain steady balances, while inactive users watch their balances decrease.
 
 Decayed tokens flow to The Reservoir, a dual-chamber treasury at the protocol's heart. One chamber collects expired tokens and redistributes them as rewards for new activities. The other maintains stablecoin reserves to settle real healthcare expenses. This architecture ensures that individual decay creates collective wealth, funding community health infrastructure through the natural expiration of unused value.
 
@@ -1542,9 +1557,9 @@ Privacy remains absolute through cryptographic separation. The system verifies t
 
 The protocol implements biological scaling laws throughout. Network effects follow Kleiber's Law, increasing efficiency as the ecosystem grows. Bottlenecks trigger automatic rebalancing through Liebig's Law. Small communities receive enhanced support through Allee Effect multipliers. Every mechanism derives from observed biological systems rather than economic theory.
 
-Users adapt their economic metabolism through genetic traits, burning Foundation tokens to evolve permanent earning multipliers. Wellness vaults enable targeted saving by reducing decay rates for locked tokens. Progressive decay acceleration prevents extreme accumulation. Empirical governance requires all changes to demonstrate measurable health improvements through on-chain experiments.
+Users adapt their economic metabolism through genetic traits, using Foundation tokens to evolve permanent earning multipliers. Wellness vaults enable targeted saving by reducing decay rates for locked tokens. Progressive decay acceleration prevents extreme accumulation. Empirical governance requires all changes to demonstrate measurable health improvements through on-chain experiments.
 
-The result transforms economics from a system of accumulation to one of circulation. Wealth flows or disappears. Health activities generate immediate value. Privacy and transparency coexist through mathematics. The experiment poses a fundamental question: can an economy modeled on living systems create more equitable and sustainable outcomes than one modeled on geological permanence?
+The result transforms economics from a system of accumulation to one of circulation. Wealth flows or disappears. Health activities generate immediate value. Privacy and transparency coexist through mathematics. The Autophage Protocol experiment poses a fundamental question: can an economy modeled on living systems create more equitable and sustainable outcomes than one modeled on geological permanence?
 
 % Note from the Author
 \clearpage
@@ -1640,7 +1655,9 @@ No mathematical symbol in this paper is used for gatekeeping. The explicit notat
 
 \section{Note from the Author}
 
-Biomimetics, if it means anything, is enforcement. Not metaphor. In Autophage, value dies without renewal. The protocol encodes decay as law. Most systems use nature as garnish; permanence is their default. Here, mortality is mandatory. Wealth must circulate or disappear. If you want economics that lives, design for loss.
+Biomimetics, if it means anything, is enforcement rather than metaphor.
+
+In Autophage, decay is structural. Value dies if it does not circulate. Most systems treat nature as garnish; here, mortality is code. Accumulation outside of health savings is a liability.
 
 \begin{table}[H]
 \centering
@@ -1660,9 +1677,11 @@ Survival & Earned daily & Assumed forever \\
 
 The status quo rewards stasis and calls it success. In health and in money, what survives is what moves. Everything else is just afterlife accounting.
 
-The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed, the simulations run thousands of times, but the true test lies in whether communities would choose renewal over accumulation, flow over hoarding, life over stasis. The theoretical framework is complete; the practical implementation awaits. In creating value that must move to exist, we might discover economics that prioritizes continual renewal of value, mirroring living systems.
+The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed and the simulations run thousands of times, but the true test lies in whether individuals and communities will choose renewal, flow, and life over accumulation, comfort, and stasis.
 
-The mathematics of decay could become the foundation for sustainable abundance but only real-world deployment will reveal if theory translates to practice.
+With this paper, the theoretical framework is complete; only practical implementation awaits. My hope is that, in creating value which must move to exist, we might discover economics that prioritize continual renewal of value, mirroring living systems and benefiting all instead of the few.
+
+The mathematics of decay could become the foundation for sustainable abundance, but only real-world deployment will reveal if theory translates to practice.
 
 % Appendix F: Acknowledgments
 \section{Acknowledgments}
@@ -1689,7 +1708,7 @@ To test protocol resilience, a Monte Carlo simulation was run with 10,000 users 
 
 Despite sustained adversarial activity, the protocol demonstrated significant resistance to inequality amplification.
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Summary of Adversarial Stress Test Outcomes}
 \begin{tabular}{lcc}
@@ -1724,15 +1743,13 @@ Three protocol mechanisms proved decisive:
 
 Adversarial simulation confirms that no known strategy can meaningfully circumvent enforced decay and activity requirements. Even with coordinated attacks and sybil formations, the protocol maintained Gini coefficients below those observed in all major legacy and digital monetary systems. This outcome validates the protocol's core claim that value must circulate to persist, and attempts to evade circulation lead only to accelerated loss.
 
-Absolutely. Here’s an academic, candid addendum you can drop into your appendices, right after any section that even hints at token conversion:
-
-\section{Addendum: On the Irreversibility of Health Value Conversion}
+\section{On the Irreversibility of Health Value Conversion}
 
 Conversion between token species is not permitted within the Autophage Protocol.
 
 Each token species, Rhythm, Healing, Foundation, and Catalyst, functions as a discrete record of a particular kind of health persistence. The protocol is intentionally designed to make these categories non-fungible because doing so serves as a structural assertion about how value should reflect real-world persistence.
 
-Allowing conversion between tokens would erode the biological foundation of the protocol, making it possible to “farm” one domain of health for rewards in another. In practice, such a mechanism would create arbitrage opportunities, invite speculation, and undermine the protocol’s core behavioral incentives. Metabolic activity is not inherently fungible; cardiovascular endurance cannot be traded for vaccine immunity, and emotional recovery cannot be converted into daily exercise. The logic of metabolism is structural and so should not be transactional.
+Allowing conversion between tokens would erode the biological foundation of the protocol, making it possible to “farm” one domain of health for rewards in another. In practice, such a mechanism would create arbitrage opportunities, invite speculation, and undermine the protocol’s core behavioral incentives. Metabolic activity is not inherently fungible; cardiovascular endurance cannot be traded for vaccine immunity, and emotional recovery cannot be converted into daily exercise.
 
 Proof of Temporal Persistence is defined by the activity that generates each token. If a user wishes to hold more Foundation tokens, they must engage in preventive care; to increase Healing tokens, they must participate in therapy or recovery. The marketplace allows users to monetize verified actions or proofs, but does not flatten the specific metabolic history those proofs represent. Catalyst tokens serve as the protocol’s primary “liquidity” vector for governance and marketplace functions, but are not a substitute for sustained health actions in any other domain.
 
@@ -1745,7 +1762,7 @@ If you want Foundation, you must do the work.
 % Appendix H: Version History
 \section{Version History}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Protocol Evolution Timeline}
 \begin{tabular}{lll}
