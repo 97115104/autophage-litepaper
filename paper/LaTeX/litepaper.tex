@@ -98,28 +98,34 @@ The Autophage Protocol diverges on three counts. First, it ties decay rates dire
 
 \section*{Navigating Sections 3–10}
 
-The following sections, from three to ten, are focused primarily on formalized mathematical representations of the protocol. For readers less interested in academic rigor, it is advisable to focus only on the various Examples in each section, as they are written more plainly. The core components covered in each section, but not in the Examples, are also summarized in Appendix A–D. For those interested in learning how to translate the mathematics from Sections 3–10, start by reading Appendix E.
+The following sections, from three to ten, are focused primarily on formalized mathematical representations of the protocol. For readers less interested in academic rigor, it is advisable to focus only on the various Examples in each section, as they are written more plainly. The core components covered in each section, but not in the Examples, are also summarized in Appendix A–D.For those interested in learning how to translate the mathematics from Sections 3–10, start by reading Appendix E.
 
 % Section 3: Metabolic Token Dynamics
 \section{Metabolic Token Dynamics}
 
 \subsection{Mathematical Foundation}
 
-The protocol implements a four-species token ecosystem where each species exhibits distinct decay characteristics matching its health domain. Let $S = \{\tokenname{Rhythm}, \tokenname{Healing}, \tokenname{Foundation}, \tokenname{Catalyst}\}$ denote the set of token species. For any user $u$ at discrete time $t$, the balance $V_i^{(u)}(t)$ of species $i \in S$ evolves according to:
+The protocol implements a four-species token ecosystem where each species exhibits distinct decay characteristics matching its health domain. Let $S = \{\tokenname{Rhythm}, \tokenname{Healing}, \tokenname{Foundation}, \tokenname{Catalyst}\}$ denote the set of token species.
+
+~
+
+\noindent{For any user $u$ at discrete time $t$, the balance $V_i^{(u)}(t)$ of species $i \in S$ evolves according to:}
 
 \begin{equation}
 V_i^{(u)}(t+1) = V_i^{(u)}(t)(1 - \delta_i) + G_i^{(u)}(t)
 \end{equation}
 
-where $\delta_i \in (0,1)$ represents the daily decay rate and $G_i^{(u)}(t)$ represents newly generated tokens from verified health activities.
+\noindent{where $\delta_i \in (0,1)$ represents the daily decay rate and $G_i^{(u)}(t)$ represents newly generated tokens from verified health activities.}
 
-The continuous-time differential equation underlying this discrete implementation is:
+~
+
+\noindent{The continuous-time differential equation underlying this discrete implementation is:}
 
 \begin{equation}
 \frac{dV}{dt} = -\lambda V + g(t)
 \end{equation}
 
-where $\lambda = -\ln(1-\delta)$ is the continuous decay constant. This formulation ensures mathematical consistency while enabling computationally efficient blockchain implementation.
+\noindent{where $\lambda = -\ln(1-\delta)$ is the continuous decay constant. This formulation ensures mathematical consistency while enabling computationally efficient blockchain implementation.}
 
 \begin{table}[H]
 \centering
@@ -136,14 +142,14 @@ Catalyst & 2--10\% & Variable & Marketplace & Self-regulating \\
 \end{tabular}
 \end{table}
 
-
-The half-life calculations follow directly from exponential decay:
+\clearpage
+\noindent{The half-life calculations follow directly from exponential decay:}
 
 \begin{equation}
 t_{1/2} = \frac{\ln(0.5)}{\ln(1 - \delta_i)} = \frac{\ln(2)}{\lambda_i}
 \end{equation}
 
-\textbf{Example 3.1:} Consider Sarah who runs daily, earning 50 Rhythm tokens per run. After maintaining a balance of 1,000 tokens, she stops running for two weeks. Her balance evolution follows:
+\noindent{\textbf{Example 3.1:} Consider Sarah who runs daily, earning 50 Rhythm tokens per run. After maintaining a balance of 1,000 tokens, she stops running for two weeks. Her balance evolution follows:}
 
 \begin{table}[H]
 \centering
@@ -158,7 +164,7 @@ t_{1/2} = \frac{\ln(0.5)}{\ln(1 - \delta_i)} = \frac{\ln(2)}{\lambda_i}
 \end{tabular}
 \end{table}
 
-This 51.2\% loss over two weeks mirrors the documented decline in cardiovascular fitness during training cessation \cite{mujika2000detraining}, validating the biological calibration.
+\noindent{This 51.2\% loss over two weeks mirrors the documented decline in cardiovascular fitness during training cessation \cite{mujika2000detraining}, validating the biological calibration.}
 
 \subsection{Token Generation Mechanics}
 
@@ -168,20 +174,22 @@ Health activities generate tokens through a multi-factor reward system:
 G_i^{(u)}(t) = \sum_{j \in \mathcal{A}_i} B_{i,j} \times M_{total}^{(u,j)}(t) \times \mathbf{1}[\text{activity } j \text{ verified}]
 \end{equation}
 
-where $\mathcal{A}_i$ represents activities mapped to species $i$, $B_{i,j}$ is the base reward for activity $j$, and $M_{total}$ combines multiple multipliers:
+\noindent{where $\mathcal{A}_i$ represents activities mapped to species $i$, $B_{i,j}$ is the base reward for activity $j$, and $M_{total}$ combines multiple multipliers:}
 
 \begin{equation}
 M_{total} = M_{streak} \times M_{group} \times M_{time} \times M_{genetic} \times M_{synergy} \times M_{quality}
 \end{equation}
 
-subject to the constraint $0.3 \leq M_{total} \leq 20$ to prevent exploitation while rewarding performance.
+\noindent{subject to the constraint $0.3 \leq M_{total} \leq 20$ to prevent exploitation while rewarding performance.}
 
-The streak multiplier follows a logarithmic function:
+~
+
+\noindent{The streak multiplier follows a logarithmic function:}
 \begin{equation}
 M_{streak} = 1 + \log_{10}(\text{consecutive days})
 \end{equation}
 
-The circadian multiplier uses a sinusoidal function:
+\noindent{The circadian multiplier uses a sinusoidal function:}
 \begin{equation}
 M_{time} = 1 + 0.3\sin\left(\frac{2\pi(h - 6)}{24}\right)
 \end{equation}
@@ -189,7 +197,7 @@ where $h$ is the hour of day in 24-hour format.
 
 ~
 
-\textbf{Example 3.2:} Marcus completes his morning workout routine:
+\noindent{\textbf{Example 3.2:} Marcus completes his morning workout routine:}
 
 \begin{table}[H]
 \centering
@@ -206,8 +214,6 @@ Group workout & Standard group bonus & 1.5 \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-This demonstrates how the system rewards consistency, natural timing, and social engagement while maintaining economic balance.
 
 % Decay curves figure
 \begin{figure}[H]
@@ -302,18 +308,20 @@ The protocol implements progressive decay acceleration for large balances to pre
 \delta_i^{eff}(V) = \delta_i \times \left(1 + \sum_{k=1}^{n} \alpha_k \times \mathbf{1}[V > \tau_k]\right)
 \end{equation}
 
-where $\tau_k$ represents tier thresholds and $\alpha_k$ represents acceleration factors.
+\noindent{where $\tau_k$ represents tier thresholds and $\alpha_k$ represents acceleration factors.}
 
-For continuous acceleration above soft cap:
+~
+
+\noindent{For continuous acceleration above soft cap:}
 \begin{equation}
 \delta_i^{eff}(V) = \delta_i \times \left(1 + \beta \times \max\left(0, \frac{V - \tau_{soft}}{\tau_{soft}}\right)^{\gamma}\right)
 \end{equation}
 
-where $\beta$ controls sensitivity (typically 0.5-2.0) and $\gamma$ shapes the acceleration curve (typically 1.0-1.5).
+\noindent{where $\beta$ controls sensitivity (typically 0.5-2.0) and $\gamma$ shapes the acceleration curve (typically 1.0-1.5).}
 
 ~
 
-\textbf{Example 3.3:} Consider whale protection for Rhythm tokens:
+\noindent{\textbf{Example 3.3:} Consider whale protection for Rhythm tokens:}
 
 \begin{table}[H]
 \centering
@@ -329,30 +337,32 @@ $>$ 100,000 & 15\% & 200\% & - \\
 \end{tabular}
 \end{table}
 
-A user holding 75,000 Rhythm tokens loses 7,500 daily instead of 3,750 under standard decay, creating natural redistribution pressure.
+\noindent{A user holding 75,000 Rhythm tokens loses 7,500 daily instead of 3,750 under standard decay, creating natural redistribution pressure.}
 
 \subsection{Catalyst Token Dynamics}
 
 Catalyst tokens function as the protocol’s liquidity and governance utility, enabling marketplace transactions, proposal staking, and price discovery through metabolic pricing. They are earned through verified activity, subject to dynamic decay, and cannot be vaulted or used for long-term savings.
 
-Catalyst tokens maintain ecosystem balance through dynamic decay adjustment:
+~
+
+\noindent{Catalyst tokens maintain ecosystem balance through dynamic decay adjustment:}
 
 \begin{equation}
 \delta_{catalyst}(t) = \delta_{base} \times \left(1 + \beta \times \left|\frac{V_{catalyst}(t)}{\sum_{i \in S} V_i(t)} - \rho_{target}\right|^{\gamma}\right)
 \end{equation}
 
-where $\rho_{target} = 0.25$ represents the target 25\% supply ratio, $\beta = 2$ controls sensitivity, and $\gamma = 1.5$ shapes the response curve.
+\noindent{where $\rho_{target} = 0.25$ represents the target 25\% supply ratio, $\beta = 2$ controls sensitivity, and $\gamma = 1.5$ shapes the response curve.}
 
 ~
 
-\textbf{Example 3.4:} When Catalyst tokens comprise 40\% of total supply:
+\noindent{\textbf{Example 3.4:} When Catalyst tokens comprise 40\% of total supply:}
 \begin{align}
 \delta_{catalyst} &= 0.02 \times \left(1 + 2 \times |0.40 - 0.25|^{1.5}\right) \\
 &= 0.02 \times (1 + 2 \times 0.058) \\
 &= 0.0232 \text{ (2.32\% daily decay)}
 \end{align}
 
-This 16\% increase in decay rate gradually returns the system to equilibrium without shock.
+\noindent{This 16\% increase in decay rate gradually returns the system to equilibrium without shock.}
 
 % Section 4: The Reservoir
 \section{The Reservoir: Dual-Chamber Architecture}
@@ -369,16 +379,16 @@ R_{token}(t+1) = R_{token}(t) + \underbrace{\sum_{i,u} \delta_i V_i^{(u)}(t)}_{\
 R_{USDC}(t+1) = R_{USDC}(t) + \underbrace{F_{market}(t) + F_{app}(t)}_{\text{fee inflows}} - \underbrace{H_{settle}(t)}_{\text{healthcare settlements}}
 \end{equation}
 
-The solvency constraint ensures healthcare access remains guaranteed:
+\noindent{The solvency constraint ensures healthcare access remains guaranteed:}
 
 \begin{equation}
 R_{USDC}(t) \geq \max\left(0.4 \sum_u D_u(t), 3 \times \bar{H}_{monthly}, 0.22 \times Y_{annual}\right)
 \end{equation}
 
-This triple-coverage requirement protects against bank runs, seasonal variations, and catastrophic events.
+\noindent{This triple-coverage requirement protects against bank runs, seasonal variations, and catastrophic events.}
 \clearpage
 
-\textbf{Example 4.1:} System snapshot at 100,000 active users:
+\noindent{\textbf{Example 4.1:} System snapshot at 100,000 active users:}
 
 \begin{table}[H]
 \centering
@@ -396,7 +406,7 @@ Reserve calculation & max(\$1.6M, \$2.4M, \$1.056M) \\
 \end{tabular}
 \end{table}
 
-The 3-month coverage requirement dominates, ensuring the system can weather extended stress periods.
+\noindent{The 3-month coverage requirement dominates, ensuring the system can weather extended stress periods.}
 
 % Reservoir flow diagram
 \begin{figure}[H]
@@ -451,10 +461,10 @@ Healthcare settlements follow strict priority queuing:
 Priority(claim) = \omega_1 \times Urgency + \omega_2 \times Duration + \omega_3 \times Verification
 \end{equation}
 
-where weights $\omega_i$ ensure medical needs supersede all other claims.
+\noindent{where weights $\omega_i$ ensure medical needs supersede all other claims.}
 \clearpage
 
-\textbf{Example 4.2:} Emergency prescription claim processing:
+\noindent{\textbf{Example 4.2:} Emergency prescription claim processing:}
 
 \begin{table}[H]
 \centering
@@ -471,7 +481,7 @@ Provider verification & 8/10 & 0.1 \\
 \end{tabular}
 \end{table}
 
-This claim processes ahead of routine wellness rewards (typical score: 2-3) but after critical emergency claims (score: 9+).
+\noindent{This claim processes ahead of routine wellness rewards (typical score: 2-3) but after critical emergency claims (score: 9+).}
 
 \subsection{Wellness Vault Mechanics}
 
@@ -481,7 +491,7 @@ Wellness vaults reduce effective decay rates based on lock duration:
 \delta_{vault} = \delta_{base} \times (1 - r_{lock})
 \end{equation}
 
-where $r_{lock}$ is the reduction factor:
+\noindent{where $r_{lock}$ is the reduction factor:}
 
 \begin{table}[H]
 \centering
@@ -497,12 +507,12 @@ where $r_{lock}$ is the reduction factor:
 \end{tabular}
 \end{table}
 
-Early withdrawal penalty:
+\noindent{Early withdrawal penalty:}
 \begin{equation}
 P_{withdrawal} = V_{locked} \times \frac{t_{remaining}}{t_{total}} \times p_{factor}
 \end{equation}
 
-where $p_{factor} = 0.5$ creates a 50\% penalty proportional to time remaining.
+\noindent{where $p_{factor} = 0.5$ creates a 50\% penalty proportional to time remaining.}
 
 % Section 5: Metabolic Price Discovery
 \section{Metabolic Price Discovery}
@@ -515,10 +525,10 @@ Unlike traditional cryptocurrencies that derive value from speculation, the Auto
 P(t) = \frac{E_{health}(t) \times (1 + \gamma \times C_{ratio}(t)) + V_{market}(t) \times (1 - C_{ratio}(t))}{S_{active}(t) \times V(t) \times (1 + M_{activity}(t))}
 \end{equation}
 
-where the parameters are defined as follows: $E_{health}(t)$ represents the total metabolic energy from health activities measured in kcal-equivalent. $V_{market}(t)$ captures the 30-day rolling marketplace volume in USDC. $S_{active}(t)$ denotes the circulating supply excluding vaulted tokens. $V(t)$ measures token velocity with a target range of 10-30 monthly transactions. $C_{ratio}(t)$ indicates the proportion of Catalyst tokens in the system. $\gamma$ serves as the energy gradient parameter, typically ranging from 1.2 to 3.0. Finally, $M_{activity}(t)$ reflects the system-wide activity level.
+\noindent{where the parameters are defined as follows: $E_{health}(t)$ represents the total metabolic energy from health activities measured in kcal-equivalent. $V_{market}(t)$ captures the 30-day rolling marketplace volume in USDC. $S_{active}(t)$ denotes the circulating supply excluding vaulted tokens. $V(t)$ measures token velocity with a target range of 10-30 monthly transactions. $C_{ratio}(t)$ indicates the proportion of Catalyst tokens in the system. $\gamma$ serves as the energy gradient parameter, typically ranging from 1.2 to 3.0. Finally, $M_{activity}(t)$ reflects the system-wide activity level.}
 
 \clearpage
-\textbf{Example 5.1:} Price calculation during typical conditions:
+\noindent{\textbf{Example 5.1:} Price calculation during typical conditions:}
 
 \begin{table}[H]
 \centering
@@ -553,7 +563,7 @@ Each activity's energy cost encompasses multiple factors:
 E_{activity} = T_{duration} \times W_{wage} + C_{metabolic} \times F_{food} + O_{opportunity} + E_{equipment}
 \end{equation}
 
-\textbf{Example 5.2:} 45-minute therapy session energy calculation:
+\noindent{\textbf{Example 5.2:} 45-minute therapy session energy calculation:}
 
 \begin{table}[H]
 \centering
@@ -571,7 +581,7 @@ Opportunity cost & Estimated value & \$10.00 \\
 \end{tabular}
 \end{table}
 
-This establishes the baseline value for Healing token generation from therapy activities.
+\noindent{This establishes the baseline value for Healing token generation from therapy activities.}
 
 % Section 6: Privacy Architecture
 \section{Privacy Architecture}
@@ -584,11 +594,11 @@ The protocol achieves complete separation between identity and health data throu
 ProfileID = H(H(UserID || Salt_1) || Salt_2 || Secret)
 \end{equation}
 
-This double-hashing with independent salts provides 768 bits of entropy, making correlation attacks computationally infeasible even with quantum advances.
+\noindent{This double-hashing with independent salts provides 768 bits of entropy, making correlation attacks computationally infeasible even with quantum advances.}
 
 ~
 
-\textbf{Example 6.1:} Privacy preservation in practice:
+\noindent{\textbf{Example 6.1:} Privacy preservation in practice:}
 
 \begin{table}[H]
 \centering
@@ -605,7 +615,7 @@ Resulting ProfileID & \texttt{0x7f3a...9b2e} (indistinguishable from random) \\
 \end{tabular}
 \end{table}
 
-Even if an attacker compromises the system database and obtains Salt$_1$, they cannot correlate ProfileIDs without also obtaining user-controlled Salt$_2$ and Secret values.
+\noindent{Even if an attacker compromises the system database and obtains Salt$_1$, they cannot correlate ProfileIDs without also obtaining user-controlled Salt$_2$ and Secret values.}
 
 \subsection{Privacy-Preserving Marketplace}
 
@@ -626,7 +636,7 @@ Full & + Historical patterns, correlations & \$100 & 500\% (\$600) \\
 \end{tabular}
 \end{table}
 
-\textbf{Example 6.2:} Sarah's marathon proof monetization:
+\noindent{\textbf{Example 6.2:} Sarah's marathon proof monetization:}
 
 \begin{table}[H]
 \centering
@@ -641,7 +651,7 @@ Genetic & Same + ``Endurance Elite trait, VO$_2$ optimization'' & \$350 \\
 \end{tabular}
 \end{table}
 
-Buyers value additional information for research, motivation, or verification purposes while Sarah maintains control over disclosure levels.
+\noindent{Buyers value additional information for research, motivation, or verification purposes while Sarah maintains control over disclosure levels.}
 
 \subsection{Zero-Knowledge Proof Generation}
 
@@ -651,10 +661,10 @@ Health activities undergo privacy-preserving verification \cite{groth2016size}:
 \pi = \text{Prove}\left(C = \text{Commit}(activity, r), \text{Statement}, witness\right)
 \end{equation}
 
-where the statement proves properties without revealing underlying data.
+\noindent{where the statement proves properties without revealing underlying data.}
 
 \clearpage
-\textbf{Example 6.3:} Therapy session verification:
+\noindent{\textbf{Example 6.3:} Therapy session verification:}
 
 \begin{table}[H]
 \centering
@@ -682,11 +692,11 @@ Metabolic efficiency scales with network size following quarter-power scaling \c
 \eta(N) = 1 + \alpha \times \left(\frac{N}{N_0}\right)^{0.25}
 \end{equation}
 
-where $\alpha = 0.3$ and $N_0 = 1,000$ (reference network size).
+\noindent{where $\alpha = 0.3$ and $N_0 = 1,000$ (reference network size).}
 
 ~
 
-\textbf{Example 7.1:} Network scaling benefits:
+\noindent{\textbf{Example 7.1:} Network scaling benefits:}
 
 \begin{table}[H]
 \centering
@@ -702,7 +712,7 @@ where $\alpha = 0.3$ and $N_0 = 1,000$ (reference network size).
 \end{tabular}
 \end{table}
 
-Larger networks provide efficiency benefits to all participants, mimicking biological metabolic scaling.
+\noindent{Larger networks provide efficiency benefits to all participants, mimicking biological metabolic scaling.}
 
 \subsection{Liebig's Law of the Minimum}
 
@@ -712,7 +722,7 @@ System health limited by weakest component triggers automatic rebalancing \cite{
 H_{system} = \min(H_{users}, H_{reserves}, H_{apps}, H_{geographic}, H_{velocity})
 \end{equation}
 
-When any component falls below threshold $\theta = 0.7$:
+\noindent{When any component falls below threshold $\theta = 0.7$:}
 
 \begin{equation}
 M_{bottleneck} = 1 + \kappa \times \left(\theta - H_{min}\right)
@@ -720,7 +730,7 @@ M_{bottleneck} = 1 + \kappa \times \left(\theta - H_{min}\right)
 
 \clearpage
 
-\textbf{Example 7.2:} Geographic bottleneck response:
+\noindent{\textbf{Example 7.2:} Geographic bottleneck response:}
 
 \begin{table}[H]
 \centering
@@ -740,6 +750,8 @@ Token bonus & Standard & 50\% bonus \\
 \subsection{Additional Biological Laws}
 
 The protocol implements five additional scaling laws:
+
+~
 
 1. \textbf{Allee Effect} \cite{allee1931animal}: Small population support
    \begin{equation}
@@ -777,6 +789,7 @@ The protocol implements five additional scaling laws:
    \end{cases}
    \end{equation}
 
+\clearpage
 \subsection{Genetic Adaptation System}
 
 Users can burn Foundation tokens to evolve genetic traits:
@@ -785,23 +798,22 @@ Users can burn Foundation tokens to evolve genetic traits:
 \text{Cost}_{trait_n} = 1000 \times 2.5^{n-1} \text{ Foundation tokens}
 \end{equation}
 
-Combined trait bonus calculation:
+\noindent{Combined trait bonus calculation:}
 \begin{equation}
 M_{\text{genetic}} = 1 + \sum_{i=1}^{n} b_i \times (1 - d_i)
 \end{equation}
 
-where $b_i$ is the individual trait bonus (0.05--0.15) and $d_i$ is a diminishing returns factor:
+\noindent{where $b_i$ is the individual trait bonus (0.05--0.15) and $d_i$ is a diminishing returns factor:}
 \begin{equation}
 d_i = 0.1 \times (i - 1)
 \end{equation}
 
-Subject to the constraint:
+\noindent{Subject to the constraint:}
 \begin{equation}
 M_{\text{genetic}} \leq 1.5
 \end{equation}
 
-\clearpage
-\textbf{Example 7.4:} User evolves three genetic traits:
+\noindent{\textbf{Example 7.4:} User evolves three genetic traits:}
 \begin{table}[H]
 \small
 \centering
@@ -817,7 +829,7 @@ Group Fitness (3) & 0.08 & 0.20 & 0.064       & 6,250 \\
 \bottomrule
 \end{tabular}
 \end{table}
-This example shows a user evolving three traits, with the cost and adjusted bonus for each. Diminishing returns reduce the value of each subsequent trait by 10\%. The total cost is 9,750 Foundation tokens for a combined multiplier of 1.274.
+\noindent{This example shows a user evolving three traits, with the cost and adjusted bonus for each. Diminishing returns reduce the value of each subsequent trait by 10\%. The total cost is 9,750 Foundation tokens for a combined multiplier of 1.274.}
 
 % Section 8: Economic Analysis
 \section{Economic Analysis}
@@ -932,7 +944,7 @@ Gini coefficient evolution over one year (10,000 users, 0.7 activity rate). Auto
 }
 \end{figure}
 
-\textbf{Example 8.1:} Wealth distribution after one year (mean of 10 simulation runs):
+\noindent{\textbf{Example 8.1:} Wealth distribution after one year (mean of 10 simulation runs):}
 
 \begin{table}[H]
 \centering
@@ -971,7 +983,7 @@ Enterprise Verification & \$1.25 & 92\% & \$15.0M \\
 \end{tabular}
 \end{table}
 
-\textbf{Example 8.2:} Break-even analysis:
+\noindent{\textbf{Example 8.2:} Break-even analysis:}
 
 \begin{table}[H]
 \centering
@@ -990,8 +1002,8 @@ Projected timeline & Month 8--10 \\
 \end{tabular}
 \end{table}
 
-This table summarizes the core unit economics of the protocol, showing that a monthly fixed cost of \$30,000 and a variable cost of \$0.15 per user are offset by \$1.85 in monthly revenue per user, resulting in a break-even point at 17,647 users.
-\footnote{All economic analysis and results are available at \url{https://autophage.xyz/economic-simulations}. Fixed costs are set at \$30,000 for demonstration only. Actual costs will vary depending on whether cloud or physical infrastructure is used, among other factors.}
+\noindent{This table summarizes the core unit economics of the protocol, showing that a monthly fixed cost of \$30,000 and a variable cost of \$0.15 per user are offset by \$1.85 in monthly revenue per user, resulting in a break-even point at 17,647 users.
+\footnote{All economic analysis and results are available at \url{https://autophage.xyz/economic-simulations}. Fixed costs are set at \$30,000 for demonstration only. Actual costs will vary depending on whether cloud or physical infrastructure is used, among other factors.}}
 
 
 
@@ -1006,11 +1018,11 @@ Traditional token-weighted voting fails when tokens decay. The protocol implemen
 C_{score} = w_1 \times \log_{10}(1 + R_{lifetime}) + w_2 \times V_{reputation} + w_3 \times A_{participation}
 \end{equation}
 
-where $w_1 = 0.5$, $w_2 = 0.3$, $w_3 = 0.2$.
+\noindent{where $w_1 = 0.5$, $w_2 = 0.3$, $w_3 = 0.2$.}
 
 ~
 
-\textbf{Example 9.1:} Voting power calculation:
+\noindent{\textbf{Example 9.1:} Voting power calculation:}
 
 \begin{table}[H]
 \centering
@@ -1024,7 +1036,7 @@ Bob & 5,000 & 70\% & 40\% & 2.14 & 1.46 \\
 \end{tabular}
 \end{table}
 
-Score calculation: Alice achieves a score of $0.5 \times \log_{10}(50,001) + 0.3 \times 0.95 + 0.2 \times 0.80 = 2.80$, while Bob's score is $0.5 \times \log_{10}(5,001) + 0.3 \times 0.70 + 0.2 \times 0.40 = 2.14$.
+\noindent{Score calculation: Alice achieves a score of $0.5 \times \log_{10}(50,001) + 0.3 \times 0.95 + 0.2 \times 0.80 = 2.80$, while Bob's score is $0.5 \times \log_{10}(5,001) + 0.3 \times 0.70 + 0.2 \times 0.40 = 2.14$.}
 
 \subsection{On-Chain Experimentation}
 
@@ -1034,11 +1046,11 @@ All protocol changes require empirical validation:
 \text{Success} = \left(\frac{\mu_{treatment} - \mu_{control}}{\mu_{control}} \geq \epsilon\right) \land (p < \alpha)
 \end{equation}
 
-where $\epsilon = 0.05$ (5\% improvement) and $\alpha = 0.05$ (statistical significance).
+\noindent{where $\epsilon = 0.05$ (5\% improvement) and $\alpha = 0.05$ (statistical significance).}
 
 ~
 
-\textbf{Example 9.2:} Seasonal affective multiplier proposal:
+\noindent{\textbf{Example 9.2:} Seasonal affective multiplier proposal:}
 
 \begin{table}[H]
 \centering
@@ -1064,14 +1076,14 @@ Reward & Stake returned + 100 USDC bonus \\
 \end{tabular}
 \end{table}
 
-\clearpage
-
 % Section 10: Implementation Architecture
 \section{Implementation Architecture}
 
 \subsection{Core Smart Contracts}
 
 The protocol consists of four primary contracts with specific responsibilities \footnote{Each of the prospective smart contracts is viewable at \url{https://autophage.xyz/smart-contracts}. These contracts are experimental and so are intended solely for demonstration purposes.}:
+
+~
 
 1. \textbf{AutophageToken}: Multi-species token with lazy decay evaluation
    \begin{verbatim}
@@ -1081,6 +1093,8 @@ The protocol consists of four primary contracts with specific responsibilities \
        return balance[user][species] * decayFactor / (PRECISION ** timeSince);
    }
    \end{verbatim}
+
+\clearpage
 
 2. \textbf{ReservoirContract}: Dual-chamber treasury management
    \begin{verbatim}
@@ -1113,11 +1127,11 @@ The protocol consists of four primary contracts with specific responsibilities \
    }
    \end{verbatim}
 
-\clearpage
-
 \subsection{Gas Optimization Strategies}
 
 Efficient implementation enables scalability:
+
+~
 
 1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair.\footnote{
 Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/gas-optimization}.
@@ -1127,9 +1141,8 @@ Empirical gas measurements were conducted using Ethereum mainnet test contracts 
 
 3. \textbf{State Channels}: Off-chain accumulation with daily settlement frequency, reducing on-chain transactions by 95\% through Lightning-style payment channels for micropayments.
 
-~
-
-\textbf{Example 10.2:} Gas cost comparison:
+\clearpage
+\noindent{\textbf{Example 10.2:} Gas cost comparison:}
 
 \begin{table}[H]
 \centering
@@ -1167,8 +1180,7 @@ Behavioral economics is central. The actual decay rates, reward curves, and ince
 
 Metabolic incentives must adapt to individual health conditions. Static decay rates and uniform tokenomics cannot create equity. Personalization, achieved without undermining privacy, is essential if the protocol is to avoid reproducing the failures of legacy health systems.
 
-~
-
+\clearpage
 \textbf{Example 11.2:} Chronic condition adaptation:
 
 \begin{table}[H]
@@ -1379,11 +1391,13 @@ The following use cases are hypothetical. Each user journey is designed to show 
 
 Sarah, a 29-year-old software engineer, uses the protocol to fund her gender-affirming surgery while training for marathons. Her daily routine generates multiple token streams:
 
-Morning runs earn 50--75 Rhythm tokens depending on distance and intensity. Her 30-day streak multiplier has grown to 2.48x, while her ``Early Bird'' genetic trait adds 15\% for pre-7 AM activities. Weekly therapy sessions generate 80 Healing tokens each, with her ``Mental Resilience'' trait providing an additional 12\% bonus.
+~
+
+\noindent{Morning runs earn 50--75 Rhythm tokens depending on distance and intensity. Her 30-day streak multiplier has grown to 2.48x, while her ``Early Bird'' genetic trait adds 15\% for pre-7 AM activities. Weekly therapy sessions generate 80 Healing tokens each, with her ``Mental Resilience'' trait providing an additional 12\% bonus.}
 
 ~
 
-Her Chicago Marathon completion created particularly valuable proof:
+\noindent{Her Chicago Marathon completion created particularly valuable proof:}
 
 \begin{table}[H]
 \centering
@@ -1400,9 +1414,11 @@ Perfect weather penalty & 0.9x & Applied \\
 \end{tabular}
 \end{table}
 
-The zero-knowledge proof included timing chip data, GPS traces, heart rate patterns, and photographic evidence, compressed into a verifiable statement: ``Female 25--34 completed major marathon in 4:27:33.'' She listed this anonymously for \$300, receiving \$264 after fees.
+\noindent{The zero-knowledge proof included timing chip data, GPS traces, heart rate patterns, and photographic evidence, compressed into a verifiable statement: ``Female 25--34 completed major marathon in 4:27:33.'' She listed this anonymously for \$300, receiving \$264 after fees.}
 
-Current progress toward \$4,000 surgery goal:
+~
+
+\noindent{Current progress toward \$4,000 surgery goal:}
 
 \begin{table}[H]
 \centering
@@ -1419,7 +1435,7 @@ Months to goal & 3.5 \\
 \end{tabular}
 \end{table}
 
-Sarah's public ProfileID has attracted a following among trans athletes. While her gender identity remains private, her consistent performance inspires others facing similar journeys.
+\noindent{Sarah's public ProfileID has attracted a following among trans athletes. While her gender identity remains private, her consistent performance inspires others facing similar journeys.}
 
 \subsection{Recovery Economics: Marcus's Story}
 
@@ -1427,7 +1443,7 @@ Marcus discovered the protocol on day 387 of sobriety. While physical fitness re
 
 \clearpage
 
-Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:
+\noindent{Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:}
 
 \begin{table}[H]
 \centering
@@ -1443,7 +1459,7 @@ Each meeting generates 40 Healing tokens, with milestones providing substantial 
 \end{tabular}
 \end{table}
 
-His genetic evolution focused on recovery optimization:
+\noindent{His genetic evolution focused on recovery optimization:}
 
 \begin{table}[H]
 \centering
@@ -1459,11 +1475,15 @@ Healing Focus & Healing token bonus & 20\% & 10,000 Foundation \\
 \end{tabular}
 \end{table}
 
-Combined multipliers mean his daily meetings now generate 72 tokens instead of the base 40. His 12,000 Healing token balance represents \$8,040 in value, providing financial security that supports sustained recovery.
+\noindent{Combined multipliers mean his daily meetings now generate 72 tokens instead of the base 40. His 12,000 Healing token balance represents \$8,040 in value, providing financial security that supports sustained recovery.}
 
-Marcus monetizes his journey selectively. Anonymous daily proofs sell for \$2-3 to researchers studying recovery patterns. His one-year sobriety proof sold for \$100. Monthly proof sales generate \$180 supplemental income, funding gym membership and therapy copays.
+~
 
-The economic visibility of recovery has transformed his self-perception. ``My sobriety has measurable value,'' he tells newcomers. ``Every day clean creates wealth for myself and data that helps others.''
+\noindent{Marcus monetizes his journey selectively. Anonymous daily proofs sell for \$2-3 to researchers studying recovery patterns. His one-year sobriety proof sold for \$100. Monthly proof sales generate \$180 supplemental income, funding gym membership and therapy co-pays.}
+
+~
+
+\noindent{The economic visibility of recovery has transformed his self-perception. ``My sobriety has measurable value,'' he tells newcomers. ``Every day clean creates wealth for myself and data that helps others.''}
 
 \subsection{Family Wellness: The Prior Household}
 
@@ -1492,9 +1512,7 @@ Grandchildren & Various sports & 30-60 & Rhythm \\
 \end{tabular}
 \end{table}
 
-\clearpage
-
-The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events, seven participants generating 350 total tokens with 30\% group bonuses.
+\noindent{The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events, seven participants generating 350 total tokens with 30\% group bonuses.}
 
 \begin{table}[H]
 \centering
@@ -1510,7 +1528,7 @@ Grandchildren & Competitive Spirit (15\%) & Youth Energy (10\%) \\
 \end{tabular}
 \end{table}
 
-Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder.
+\noindent{Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder.}
 
 \subsection{Creator Economy: Luna's Empire}
 
@@ -1518,7 +1536,7 @@ Luna leverages the protocol to differentiate her 850K subscriber OnlyFans empire
 
 ~
 
-Morning workout routine:
+\noindent{Morning workout routine:}
 
 \begin{table}[H]
 \centering
@@ -1537,9 +1555,11 @@ Camera Ready trait & 12\% & Applied \\
 \end{tabular}
 \end{table}
 
-Every activity generates both tokens and content. Post-workout biometrics create Foundation tokens while providing transparency her audience craves. Meal prep earns tokens while teaching nutrition. Even rest days generate Healing tokens through documented recovery practices.
+\noindent{Every activity generates both tokens and content. Post-workout biometrics create Foundation tokens while providing transparency her audience craves. Meal prep earns tokens while teaching nutrition. Even rest days generate Healing tokens through documented recovery practices.}
 
-Her proof monetization strategy:
+~
+
+\noindent{Her proof monetization strategy:}
 
 \begin{table}[H]
 \centering
@@ -1555,10 +1575,9 @@ Genetic trait revelation & \$1,000 & One-time \\
 \end{tabular}
 \end{table}
 
-With 17,000 proof subscribers paying \$200/month average, Luna generates \$3.4M monthly from verification alone. The protocol's 12\% marketplace fees seem minimal compared to the trust premium her verification commands.
+\noindent{With 17,000 proof subscribers paying \$200/month average, Luna generates \$3.4M monthly from verification alone. The protocol's 12\% marketplace fees seem minimal compared to the trust premium her verification commands.}
 
 % Appendix Plain Language Summary
-\clearpage
 \section{Plain Language Summary}
 
 Traditional money persists indefinitely. A dollar earned decades ago maintains its value without effort. This permanence creates economies where wealth concentrates among those who already possess it, while those who need resources most must continuously labor for finite rewards. The Autophage Protocol introduces a fundamental alternative through money that decays.
@@ -1576,9 +1595,6 @@ The protocol implements biological scaling laws throughout. Network effects foll
 Users adapt their economic metabolism through genetic traits, using Foundation tokens to evolve permanent earning multipliers. Wellness vaults enable targeted saving by reducing decay rates for locked tokens. Progressive decay acceleration prevents extreme accumulation. Empirical governance requires all changes to demonstrate measurable health improvements through on-chain experiments.
 
 The result transforms economics from a system of accumulation to one of circulation. Wealth flows or disappears. Health activities generate immediate value. Privacy and transparency coexist through mathematics. The Autophage Protocol experiment poses a fundamental question: can an economy modeled on living systems create more equitable and sustainable outcomes than one modeled on geological permanence?
-
-% Note from the Author
-\clearpage
 
 % Appendix Math Explanation
 \section{Understanding the Math for Everyone}
@@ -1663,7 +1679,6 @@ For clarity:
 
 No mathematical symbol in this paper is used for gatekeeping. The explicit notation is necessary for precision and trust. Each equation can be seen as a technical contract between the protocol and its users. If anything is unclear, these tables provide a reference for decoding the symbols, and every formula can be read aloud, checked in simulation, or translated into code. In short, the math is here so anyone can follow the logic, test the claims, and keep the system honest.
 
-\clearpage
 \section{Note from the Author}
 
 Biomimetics, if it means anything, is enforcement rather than metaphor.
@@ -1674,7 +1689,7 @@ The status quo rewards stasis and calls it success. In health and in money, what
 
 --
 
-The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed and the simulations run thousands of times, but the true test lies in whether individuals and communities will choose renewal, flow, and life over accumulation, comfort, and stasis.
+\noindent{The Autophage Protocol and Proof of Temporal Persistence remain an experiment in economic design, one I hope to implement when time and resources allow. The mathematics have been carefully developed and the simulations run thousands of times, but the true test lies in whether individuals and communities will choose renewal, flow, and life over accumulation, comfort, and stasis.}
 
 With this paper, the theoretical framework is complete; only practical implementation awaits. My hope is that, in creating value which must move to exist, we might discover economics that prioritize continual renewal of value, mirroring living systems and benefiting all instead of the few.
 
@@ -1762,12 +1777,10 @@ If you want Foundation, you must do the work.
 % AI Attestation
 \section{AI Attestation}
 \begin{center}
-\fbox{\small\texttt{EDITED}}
+\fbox{\small\texttt{AI-ASSISTED}}
 \end{center}
 
-\noindent Verification URL: \url{https://attest.ink/verify/?id=2025-07-16-kbnz8z}
-
-The editing in this work was assisted using Claude 4 Opus and ChatGPT 4.1-5. What began as an experiment to explore the boundaries of AI-edited research evolved into a fully-realized work. These tools served a role similar to LaTeX for typesetting or computational systems for verification, enabling more rigorous expression and validation of ideas. All core concepts, insights, and creative decisions are original human work.\footnote{For detailed AI tool attribution and transparency, see \url{https://attest.ink/verify/?id=2025-07-16-kbnz8z}.}
+This paper was assisted by Claude 4 Opus and ChatGPT 4.1-5. These tools served a role similar to LaTeX for typesetting or computational systems for verification, enabling more rigorous expression and validation of ideas. All core concepts, insights, and creative decisions are original human work.\footnote{For detailed AI tool attribution and transparency, see \href{https://attest.ink/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI1LTA3LTE2LWh0cmgxZCIsImNvbnRlbnRfbmFtZSI6IlRoZSBBdXRvcGhhZ2UgUHJvdG9jb2w6IE1ldGFib2xpYyBFY29ub21pY3MgZm9yIERlY2VudHJhbGl6ZWQgSGVhbHRoIiwiZG9jdW1lbnRfdHlwZSI6ImxhdGV4IiwibW9kZWwiOiJDbGF1ZGUgNCBPcHVzIGFuZCBDaGF0R1BUIDQuMS01Iiwicm9sZSI6ImVkaXRlZCIsInRpbWVzdGFtcCI6IjIwMjUtMDctMTZUMDc6NTI6NTkuMDg3WiIsInBsYXRmb3JtIjoiYXR0ZXN0LmluayIsImJhZGdlX3N0eWxlIjoibGF0ZXgiLCJjb250ZW50X2hhc2giOiJzaGEyNTY6YjkyNWQ2NWE5MGEwZjhhOWJiMGZmZjRmMWNkMzVjYzkzYTM4ODMzOGI2YWMzZTk1Y2I1ZDkxNTdjOGVkY2ZlOSIsImF1dGhvciI6IkF1c3RpbiBIYXJzaGJlcmdlciIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiZXRoZXJldW0iLCJ2YWx1ZSI6IjB4NWNmNjVlYjkwZTYxZTVkZjQ3NTE4NmMwMDVhMGIwYjU4Mzc5MzJjNTQ1MWVlOTE3ODBhMmQ0ZDU4YmJkMTQ3MzUzYzVlMDdjZDEyMTczNzYxODA2OGM1YzU0MWIyOTFmNmU4Y2UwMjM5NWM2NWNhMmE5NzdlYzE4Y2IwMWNiOTAxYyIsInNpZ25lciI6IjB4NzlhNzJhMDJiOWIxOTNjNDUyMGYyMmYyY2QyZDYzYTM1NGRmZTRkMyIsIm1lc3NhZ2UiOiJ7XCJjb250ZW50X25hbWVcIjpcIlRoZSBBdXRvcGhhZ2UgUHJvdG9jb2w6IE1ldGFib2xpYyBFY29ub21pY3MgZm9yIERlY2VudHJhbGl6ZWQgSGVhbHRoXCIsXCJtb2RlbFwiOlwiQ2xhdWRlIDQgT3B1cyBhbmQgQ2hhdEdQVCA0LjEtNVwiLFwidGltZXN0YW1wXCI6XCIyMDI1LTA3LTE2VDA3OjUyOjU5LjA4N1pcIixcImNvbnRlbnRfaGFzaFwiOlwic2hhMjU2OmI5MjVkNjVhOTBhMGY4YTliYjBmZmY0ZjFjZDM1Y2M5M2EzODgzMzhiNmFjM2U5NWNiNWQ5MTU3YzhlZGNmZTlcIn0ifX0=}{the attest.ink verification URL}.}
 
 % Appendix Version History
 \section{Version History}
