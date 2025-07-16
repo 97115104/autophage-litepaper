@@ -79,7 +79,9 @@ Money does not die.
 
 This fundamental property of traditional economics creates systemic inequality and health incentive failures. A dollar earned decades ago maintains its nominal value indefinitely. Bitcoin \cite{nakamoto2008bitcoin} stored in 2009 remains unchanged today. This permanence rewards accumulation over activity, creating economies where wealth concentrates among those who already possess it while those who need resources most must continuously labor for finite rewards.
 
-The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name Autophage, meaning ``self-eating,'' mirrors the essential dynamic in that value must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. The protocol implements four interconnected novelties. First, it creates multiple token species with decay rates precisely calibrated to match the temporal persistence of their underlying health activities. Exercise tokens decay rapidly like cardiovascular fitness, while preventive care tokens persist longer like vaccine immunity. Second, it achieves cryptographic privacy separation through zero-knowledge proofs, enabling health verification without surveillance. Third, it derives token value from measurable metabolic energy expenditure rather than speculative markets. Fourth, it implements empirical governance where all protocol changes must demonstrate statistically significant health improvements through on-chain experiments.
+The Autophage Protocol challenges this foundational assumption by creating tokens that decay exponentially without continuous health activity. The name Autophage, meaning ``self-eating,'' mirrors the essential dynamic in that value must consume itself to persist, preventing indefinite accumulation while rewarding ongoing engagement. The protocol implements four interconnected novelties. First, it creates multiple token species with decay rates precisely calibrated to match the temporal persistence of their underlying health activities. Exercise tokens decay rapidly like cardiovascular fitness, while preventive care tokens persist longer like vaccine immunity. Second, it achieves cryptographic privacy separation through zero-knowledge proofs, enabling health verification without surveillance. Third, it derives token value from measurable metabolic energy expenditure rather than speculative markets.
+
+Fourth, it implements empirical governance where all protocol changes must demonstrate statistically significant health improvements through on-chain experiments.
 
 These mechanisms work together to create an economy that mimics biological systems. Analogous to how organisms require continuous energy input to maintain homeostasis, protocol participants must engage in verified health activities to maintain token balances.
 
@@ -92,6 +94,7 @@ In the early 20th century, Silvio Gesell proposed ``stamped scrip'' to force cur
 Cryptocurrency inherited some of this thinking. Freicoin, launched in 2013, introduced decay by subtracting a fixed demurrage fee from every balance at regular intervals \cite{freicoin2013project}. While technically functional, Freicoin's approach was blunt, with no connection to user behavior or economic context. As a result, activity and participation dwindled, and the protocol failed to build lasting network effects or meaningfully incentivize healthy engagement.
 
 Other ``health coins'' have focused on rewards for activity, using move-to-earn or similar models. Most are marketplace tokens, structured around accumulation. STEP'N \cite{stepn2022whitepaper} pays users for walking, but value is driven by speculative tokenomics, not by any durable health metric. The project saw rapid growth but struggled to maintain sustainable rewards. Sweatcoin uses a similar approach. Users earn points for steps and spend them in a marketplace, but the system lacks decay mechanics, biological calibration, and any link to real health persistence.
+
 \clearpage
 
 The Autophage Protocol diverges on three counts. First, it ties decay rates directly to the half-life of underlying health activities, making token persistence a function of biological process instead of arbitrary policy. Second, it separates identity from data using zero-knowledge proofs, so participation does not require surveillance. Third, it requires every protocol change to demonstrate measurable health improvement on-chain before implementation. Where earlier systems enforced circulation by decree, Autophage encodes it at the metabolic and behavioral level.
@@ -1076,6 +1079,37 @@ Reward & Stake returned + 100 USDC bonus \\
 \end{tabular}
 \end{table}
 
+\subsection{Gas Optimization Strategies}
+
+Efficient implementation enables scalability:
+
+~
+
+1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair.\footnote{
+Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/gas-optimization}.
+}
+
+2. \textbf{Batch Processing}: Aggregate multiple proofs with batch sizes up to 100 proofs, achieving 85\% gas reduction compared to individual transactions through Merkle tree root submission for verification.
+
+3. \textbf{State Channels}: Off-chain accumulation with daily settlement frequency, reducing on-chain transactions by 95\% through Lightning-style payment channels for micropayments.
+
+\noindent{\textbf{Example 10.2:} Gas cost comparison:}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+\textbf{Verification Method} & \textbf{Calculation} & \textbf{Monthly Gas} \\
+\midrule
+Individual daily & 65,000 gas × 30 & 1,950,000 gas \\
+Batched weekly & 120,000 gas × 4 & 480,000 gas \\
+\midrule
+\textbf{Savings} & \multicolumn{2}{c}{75\% reduction in gas costs} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
 % Section 10: Implementation Architecture
 \section{Implementation Architecture}
 
@@ -1093,8 +1127,6 @@ The protocol consists of four primary contracts with specific responsibilities \
        return balance[user][species] * decayFactor / (PRECISION ** timeSince);
    }
    \end{verbatim}
-
-\clearpage
 
 2. \textbf{ReservoirContract}: Dual-chamber treasury management
    \begin{verbatim}
@@ -1127,37 +1159,6 @@ The protocol consists of four primary contracts with specific responsibilities \
    }
    \end{verbatim}
 
-\subsection{Gas Optimization Strategies}
-
-Efficient implementation enables scalability:
-
-~
-
-1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair.\footnote{
-Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/gas-optimization}.
-}
-
-2. \textbf{Batch Processing}: Aggregate multiple proofs with batch sizes up to 100 proofs, achieving 85\% gas reduction compared to individual transactions through Merkle tree root submission for verification.
-
-3. \textbf{State Channels}: Off-chain accumulation with daily settlement frequency, reducing on-chain transactions by 95\% through Lightning-style payment channels for micropayments.
-
-\clearpage
-\noindent{\textbf{Example 10.2:} Gas cost comparison:}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{lcc}
-\toprule
-\textbf{Verification Method} & \textbf{Calculation} & \textbf{Monthly Gas} \\
-\midrule
-Individual daily & 65,000 gas × 30 & 1,950,000 gas \\
-Batched weekly & 120,000 gas × 4 & 480,000 gas \\
-\midrule
-\textbf{Savings} & \multicolumn{2}{c}{75\% reduction in gas costs} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \section{Limitations and Future Work}
 
 \subsection{Technical Limitations}
@@ -1166,22 +1167,11 @@ Several constraints affect current implementation. Most notably, proof-generatio
 
 Additionally, cross-chain fragmentation introduces complexity, as each blockchain environment demands a separate deployment and maintenance cycle, hindering seamless interoperability across ecosystems. Regulatory uncertainty further complicates matters; health token classification and compliance requirements vary by jurisdiction, making global rollout an ongoing challenge.
 
-Finally, beyond technical and legal constraints, behavioral inertia is perhaps the most stubborn evidenced by prior experiments with demurrage currencies consistently revealing user resistance to the very idea of ``disappearing money'' \cite{gesell1958natural,freicoin2013project}. As a result, there is a clear need for careful behavioral design and user education in any system based on token decay.
+Beyond technical and legal constraints, behavioral inertia is perhaps the most stubborn evidenced by prior experiments with demurrage currencies consistently revealing user resistance to the very idea of ``disappearing money'' \cite{gesell1958natural,freicoin2013project}. As a result, there is a clear need for careful behavioral design and user education in any system based on token decay.
 
-\subsection{Future Research Directions}
+~
 
-Metabolic economics depends on improvements in speed, privacy, and interoperability. Current proof systems as indicated in Technical Limitations, create significant usability barriers; if proof generation takes a minute or more on typical devices, user participation will decline. 
-
-Research should prioritize mobile-optimized zkSNARKs, faster STARKs, and new methods for aggregating proofs to reduce these bottlenecks.
-
-Cross-chain interoperability is not solved. Without effective bridges and state proofs, metabolic assets will remain siloed and lose composability. Unified liquidity across chains requires both technical and economic solutions that are more sophisticated than token wrappers.
-
-Behavioral economics is central. The actual decay rates, reward curves, and incentive multipliers should be determined by empirical data from live deployments. Arbitrary choices will create usability problems and suppress activity; optimization must be experimental, not just theoretical.
-
-Metabolic incentives must adapt to individual health conditions. Static decay rates and uniform tokenomics cannot create equity. Personalization, achieved without undermining privacy, is essential if the protocol is to avoid reproducing the failures of legacy health systems.
-
-\clearpage
-\textbf{Example 11.2:} Chronic condition adaptation:
+\textbf{Example 11.1:} Chronic condition adaptation:
 
 \begin{table}[H]
 \centering
@@ -1207,8 +1197,6 @@ The mathematical framework suggests several promising properties. First, wealth 
 The theoretical model indicates the protocol could achieve break-even at approximately 17,000 users with 91.7\% contribution margins. The dual-chamber Reservoir design should maintain healthcare settlement guarantees even under extreme stress scenarios. The empirical governance system would enable continuous optimization based on statistically significant health improvements.
 
 Perhaps most significantly, the protocol exists as a complete alternative to permanent-value economics. Where Bitcoin \cite{nakamoto2008bitcoin} provides digital gold and Ethereum \cite{buterin2014ethereum} enables programmable contracts, the Autophage Protocol introduces digital metabolism. These three primitives, geological permanence, computational flexibility, and biological persistence, together could form a complete foundation for human-centric digital economies.
-
-\clearpage
 
 \section{Works Consulted}
 \bibliographystyle{plain}
@@ -1441,8 +1429,6 @@ Months to goal & 3.5 \\
 
 Marcus discovered the protocol on day 387 of sobriety. While physical fitness remained challenging, his daily recovery meetings became an economic foundation.
 
-\clearpage
-
 \noindent{Each meeting generates 40 Healing tokens, with milestones providing substantial bonuses:}
 
 \begin{table}[H]
@@ -1485,56 +1471,9 @@ Healing Focus & Healing token bonus & 20\% & 10,000 Foundation \\
 
 \noindent{The economic visibility of recovery has transformed his self-perception. ``My sobriety has measurable value,'' he tells newcomers. ``Every day clean creates wealth for myself and data that helps others.''}
 
-\subsection{Family Wellness: The Prior Household}
-
-The Prior family exemplifies intergenerational protocol participation. When grandmother Prior was diagnosed with type 2 diabetes, three generations united around her care. The protocol's age-adjusted multipliers ensure her modest activities generate substantial value:
-
-\begin{table}[H]
-\centering
-\caption{Prior Family Daily Token Generation}
-\begin{tabular}{llcc}
-\toprule
-\textbf{Family Member} & \textbf{Activity} & \textbf{Tokens} & \textbf{Type} \\
-\midrule
-Grandma Prior (78) & 15-minute morning walks & 40 & Rhythm \\
-& Medication compliance & 50 & Foundation \\
-& Blood glucose monitoring & 20 & Foundation \\
-\midrule
-Son (52) & Bicycle commute & 35 & Rhythm \\
-& Weekend family walks & 50+ & Rhythm \\
-\midrule
-Daughter (48) & Yoga practice & 25 & Healing \\
-& Meal prep for family & 15 & Foundation \\
-\midrule
-Grandchildren & Various sports & 30-60 & Rhythm \\
-(16, 19, 22) & Competition for contribution & Variable & Mixed \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\noindent{The family pools tokens in a shared wellness vault targeting Grandma Prior's continuous glucose monitor (\$400 monthly with insurance). Sunday family walks have become economic events, seven participants generating 350 total tokens with 30\% group bonuses.}
-
-\begin{table}[H]
-\centering
-\caption{Prior Family Genetic Traits}
-\begin{tabular}{lll}
-\toprule
-\textbf{Member} & \textbf{Trait 1} & \textbf{Trait 2} \\
-\midrule
-Grandma & Medication Adherence (15\%) & Elder Vitality (12\%) \\
-Parents & Family Coordinator (10\%) & Caregiver Dedication (12\%) \\
-Grandchildren & Competitive Spirit (15\%) & Youth Energy (10\%) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\noindent{Monthly token generation covers 85\% of medical costs, with the family supplementing the remainder.}
-
 \subsection{Creator Economy: Luna's Empire}
 
 Luna leverages the protocol to differentiate her 850K subscriber OnlyFans empire. Unlike competitors relying on photo editing and claims, she provides cryptographically verified fitness achievements. Her daily routine becomes multi-stream content:
-
-~
 
 \noindent{Morning workout routine:}
 
@@ -1555,7 +1494,9 @@ Camera Ready trait & 12\% & Applied \\
 \end{tabular}
 \end{table}
 
-\noindent{Every activity generates both tokens and content. Post-workout biometrics create Foundation tokens while providing transparency her audience craves. Meal prep earns tokens while teaching nutrition. Even rest days generate Healing tokens through documented recovery practices.}
+\noindent{Every activity generates both tokens and content.}
+
+\noindent{Post-workout biometrics create Foundation tokens while providing transparency her audience craves. Meal prep earns tokens while teaching nutrition. Even rest days generate Healing tokens through documented recovery practices.}
 
 ~
 
@@ -1589,6 +1530,8 @@ Every token must be earned through verified health activity. Running generates R
 Decayed tokens flow to The Reservoir, a dual-chamber treasury at the protocol's heart. One chamber collects expired tokens and redistributes them as rewards for new activities. The other maintains stablecoin reserves to settle real healthcare expenses. This architecture ensures that individual decay creates collective wealth, funding community health infrastructure through the natural expiration of unused value.
 
 Privacy remains absolute through cryptographic separation. The system verifies that you exercised without revealing when, where, or how. Users control their disclosure level, from complete anonymity to selective revelation of patterns that command premium prices in health data markets. Researchers purchase aggregated proofs to study behavior patterns. Insurers adjust premiums based on verified activities. Individuals monetize their consistency without sacrificing privacy.
+
+\clearpage
 
 The protocol implements biological scaling laws throughout. Network effects follow Kleiber's Law, increasing efficiency as the ecosystem grows. Bottlenecks trigger automatic rebalancing through Liebig's Law. Small communities receive enhanced support through Allee Effect multipliers. Every mechanism derives from observed biological systems rather than economic theory.
 
@@ -1624,7 +1567,7 @@ $^{(u)}$ & Superscript shows the user $u$ & $V^{(u)}$ is value for user $u$ \\
 
 \subsection*{Why These Symbols? A Brief History and Rationale}
 
-Many of the mathematical symbols used here have a long history, appearing in physics, biology, and economics::
+Many of the mathematical symbols used here have a long history, appearing in physics, biology, and economics:
 
 \begin{table}[H]
 \centering
@@ -1672,7 +1615,6 @@ For clarity:
   \item “Superscript” (or “to the power”) means the small number or letter above the main symbol.
   \item $\sum_{i=1}^n x_i$ is read “the sum from i equals one to n of x sub i.”
   \item Greek letters are read by name: “delta,” “lambda,” “gamma,” “rho.”
-  \item $|x|$ is read “the absolute value of x.”
 \end{itemize}
 
 \vspace{0.5em}
@@ -1775,12 +1717,7 @@ Each token is a distinct receipt for a unique kind of effort and persistence.
 If you want Foundation, you must do the work.
 
 % AI Attestation
-\section{AI Attestation}
-\begin{center}
-\fbox{\small\texttt{AI-ASSISTED}}
-\end{center}
-
-This paper was assisted by Claude 4 Opus and ChatGPT 4.1-5. These tools served a role similar to LaTeX for typesetting or computational systems for verification, enabling more rigorous expression and validation of ideas. All core concepts, insights, and creative decisions are original human work.\footnote{For detailed AI tool attribution and transparency, see \href{https://attest.ink/verify/?data=eyJ2ZXJzaW9uIjoiMi4wIiwiaWQiOiIyMDI1LTA3LTE2LWh0cmgxZCIsImNvbnRlbnRfbmFtZSI6IlRoZSBBdXRvcGhhZ2UgUHJvdG9jb2w6IE1ldGFib2xpYyBFY29ub21pY3MgZm9yIERlY2VudHJhbGl6ZWQgSGVhbHRoIiwiZG9jdW1lbnRfdHlwZSI6ImxhdGV4IiwibW9kZWwiOiJDbGF1ZGUgNCBPcHVzIGFuZCBDaGF0R1BUIDQuMS01Iiwicm9sZSI6ImVkaXRlZCIsInRpbWVzdGFtcCI6IjIwMjUtMDctMTZUMDc6NTI6NTkuMDg3WiIsInBsYXRmb3JtIjoiYXR0ZXN0LmluayIsImJhZGdlX3N0eWxlIjoibGF0ZXgiLCJjb250ZW50X2hhc2giOiJzaGEyNTY6YjkyNWQ2NWE5MGEwZjhhOWJiMGZmZjRmMWNkMzVjYzkzYTM4ODMzOGI2YWMzZTk1Y2I1ZDkxNTdjOGVkY2ZlOSIsImF1dGhvciI6IkF1c3RpbiBIYXJzaGJlcmdlciIsInNpZ25hdHVyZSI6eyJ0eXBlIjoiZXRoZXJldW0iLCJ2YWx1ZSI6IjB4NWNmNjVlYjkwZTYxZTVkZjQ3NTE4NmMwMDVhMGIwYjU4Mzc5MzJjNTQ1MWVlOTE3ODBhMmQ0ZDU4YmJkMTQ3MzUzYzVlMDdjZDEyMTczNzYxODA2OGM1YzU0MWIyOTFmNmU4Y2UwMjM5NWM2NWNhMmE5NzdlYzE4Y2IwMWNiOTAxYyIsInNpZ25lciI6IjB4NzlhNzJhMDJiOWIxOTNjNDUyMGYyMmYyY2QyZDYzYTM1NGRmZTRkMyIsIm1lc3NhZ2UiOiJ7XCJjb250ZW50X25hbWVcIjpcIlRoZSBBdXRvcGhhZ2UgUHJvdG9jb2w6IE1ldGFib2xpYyBFY29ub21pY3MgZm9yIERlY2VudHJhbGl6ZWQgSGVhbHRoXCIsXCJtb2RlbFwiOlwiQ2xhdWRlIDQgT3B1cyBhbmQgQ2hhdEdQVCA0LjEtNVwiLFwidGltZXN0YW1wXCI6XCIyMDI1LTA3LTE2VDA3OjUyOjU5LjA4N1pcIixcImNvbnRlbnRfaGFzaFwiOlwic2hhMjU2OmI5MjVkNjVhOTBhMGY4YTliYjBmZmY0ZjFjZDM1Y2M5M2EzODgzMzhiNmFjM2U5NWNiNWQ5MTU3YzhlZGNmZTlcIn0ifX0=}{the attest.ink verification URL}.}
+\input{ai-attestation}
 
 % Appendix Version History
 \section{Version History}
