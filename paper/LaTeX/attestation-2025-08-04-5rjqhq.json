@@ -1,0 +1,19 @@
+{
+  "version": "2.0",
+  "id": "2025-08-04-5rjqhq",
+  "content_name": "The Autophage Protocol: Metabolic Economics for Decentralized Health",
+  "document_type": "latex",
+  "model": "Claude 4 Opus and ChatGPT 4.1-5",
+  "role": "assisted",
+  "timestamp": "2025-08-04T23:12:02.470Z",
+  "platform": "attest.ink",
+  "badge_style": "latex",
+  "content_hash": "sha256:70b6c5bb487ad065091b16a35bb3327dbd24c5b45f69d4873b3fe0feabec9a74",
+  "author": "Austin Harshberger",
+  "signature": {
+    "type": "ethereum",
+    "value": "0xa84c8363e68a4279629b56e718d5a4cc4a76c3f9984bc5c14c3e5e66d6867f7543d2128e86b226f2465b8477379a41e2abd8b3dd814945fc7fc758883b1e04371c",
+    "signer": "0x79a72a02b9b193c4520f22f2cd2d63a354dfe4d3",
+    "message": "{\"content_name\":\"The Autophage Protocol: Metabolic Economics for Decentralized Health\",\"model\":\"Claude 4 Opus and ChatGPT 4.1-5\",\"timestamp\":\"2025-08-04T23:12:02.470Z\",\"content_hash\":\"sha256:70b6c5bb487ad065091b16a35bb3327dbd24c5b45f69d4873b3fe0feabec9a74\"}"
+  }
+}
