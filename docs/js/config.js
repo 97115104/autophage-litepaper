@@ -7,7 +7,7 @@ const CONFIG = {
         main: [
             { label: 'Home', href: '' },
             { label: 'About', href: 'about' },
-            { label: 'Litepaper', href: 'paper/litepaper.pdf', external: true, production: 'https://github.com/statusdothealth/litepaper/blob/main/paper/litepaper.pdf' }
+            { label: 'Litepaper', href: 'paper/litepaper.pdf', external: true, production: 'https://github.com/97115104//litepaper/blob/main/paper/litepaper.pdf' }
         ],
         tools: {
             label: 'Tools',
@@ -29,9 +29,9 @@ const CONFIG = {
         }
     },
     siteName: 'Autophage Protocol',
-    orgName: '0x42 Research',
+    orgName: 'Health Protocol Labs',
     orgLink: 'about#research',
-    copyright: '0x42 Research',
+    copyright: 'Health Protocol Labs',
     // This should be updated with each deployment/release
     deploymentDate: 'December 2024'
 };

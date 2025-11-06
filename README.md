@@ -66,7 +66,7 @@ The [`docs/`](docs/) directory contains a comprehensive interactive website with
 Visit the live interactive website at: **[https://autophage.xyz](https://autophage.xyz)**
 
 ### Local Development
-1. Clone the repository: `git clone https://github.com/statusdothealth/litepaper.git`
+1. Clone the repository: `git clone https://github.com/97115104//litepaper.git`
 2. Navigate to docs: `cd litepaper/docs`
 3. Serve locally: 
    - Python: `python -m http.server 8000`
@@ -109,19 +109,19 @@ The documentation is organized for different audiences:
 **Research & Analysis:**
 - 📈 [Gini Coefficient Simulation Script](https://autophage.xyz/gini-simulation) | [Local](extras/gini-simulation.py)
 - 🔬 [Extended Mathematical Proofs](docs/extended-math.html)
-- 📝 [Patent Application](https://0x42r.io/patents/1) - System and Method for Privacy-Preserving Health Incentives
+- 📝 [Patent Application](https://healthprotocollabs.space/patents/1) - System and Method for Privacy-Preserving Health Incentives
 
 **Development:**
-- 💻 [GitHub Repository](https://github.com/statusdothealth/litepaper)
+- 💻 [GitHub Repository](https://github.com/97115104//litepaper)
 - 🛠 [CLI Simulation Tools](cli/)
 - ⚙️ [Technical Specifications](docs/features.html)
 
 ## About the Research
 
-**Organization**: 0x42 Research  
-**Website**: [0x42r.io](https://0x42r.io)  
+**Organization**: Health Protocol Labs  
+**Website**: [health protocol labs](https://healthprotocollabs.space)  
 **Protocol Website**: [autophage.xyz](https://autophage.xyz)  
-**Email**: info@0x42r.io  
+**Email**: info@97115104.com  
 **Author**: Austin Harshberger
 
 The Autophage Protocol represents a fundamental reimagining of economic systems, applying biological principles to create sustainable, health-focused value networks. The research combines cryptographic privacy preservation, mathematical modeling of biological systems, and empirical governance mechanisms to create an economy that rewards activity over accumulation.
@@ -131,7 +131,7 @@ The Autophage Protocol represents a fundamental reimagining of economic systems,
 This is an active research project welcoming collaboration:
 
 - 🐛 **Issues**: Open GitHub issues for bugs, suggestions, or questions
-- 📧 **Research**: Email info@0x42r.io for academic collaboration
+- 📧 **Research**: Email info@97115104.com for academic collaboration
 - 💡 **Ideas**: Join discussions about protocol improvements and implementations
 - 🔬 **Simulations**: Contribute analysis tools and mathematical models
 
@@ -143,7 +143,7 @@ This is an active research project welcoming collaboration:
   title = {The Autophage Protocol: Metabolic Economics Through Value Decay},
   year = {2025},
   howpublished = {\url{https://autophage.xyz}},
-  note = {0x42 Research}
+  note = {Health Protocol Labs}
 }
 ```
 
@@ -151,6 +151,6 @@ This is an active research project welcoming collaboration:
 
 This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
 
-© 2025 0x42 Research. The Autophage Protocol litepaper and associated materials are released under Apache 2.0, providing a balance of openness and flexibility for both academic and commercial use.
+© 2025 Health Protocol Labs. The Autophage Protocol litepaper and associated materials are released under Apache 2.0, providing a balance of openness and flexibility for both academic and commercial use.
 
 The Autophage Protocol is currently in the research and development phase. Implementation details and specifications may evolve as the protocol matures toward production deployment.
