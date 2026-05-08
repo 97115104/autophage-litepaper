@@ -147,7 +147,7 @@ const Components = {
         return `
         <footer style="margin-top: 4em; padding-top: 2em; border-top: 0.4pt solid var(--rule-color); text-align: left; font-size: 10pt; color: var(--caption-color);">
             <p>© <span id="copyright-year">${new Date().getFullYear()}</span> ${CONFIG.copyright}. All rights reserved.
-          <a href="https://attest.ink" 
+          <a href="https://attest.97115104.com" 
              target="_blank" 
              rel="noopener" 
              title="Built with AI assistance"

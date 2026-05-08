@@ -837,7 +837,7 @@ Group Fitness (3) & 0.08 & 0.20 & 0.064       & 6,250 \\
 
 \subsection{Wealth Distribution Dynamics}
 
-Monte Carlo simulations\footnote{All results and source code available at \url{https://autophage.xyz/gini-simulation}.} across 10,000 users for 365 days show that the protocol actively converges to broad equality. 
+Monte Carlo simulations\footnote{All results and source code available at \url{https://97115104.github.io/autophage-litepaper/simulations}.} across 10,000 users for 365 days show that the protocol actively converges to broad equality. 
 
 In baseline (honest) conditions, the Gini coefficient falls from 0.11 (day 30) to 0.08 by day 365 maintaining that after a year, the \emph{typical user} is almost as well-off as their peers, and the bottom 50\% holds meaningful wealth (see table). For context, the same simulation run with Bitcoin-style rules produces Gini values above 0.88, and ``fiat'' simulations stabilize around 0.56.
 
@@ -1004,7 +1004,7 @@ Projected timeline & Month 8--10 \\
 \end{table}
 
 \noindent{This table summarizes the core unit economics of the protocol, showing that a monthly fixed cost of \$30,000 and a variable cost of \$0.15 per user are offset by \$1.85 in monthly revenue per user, resulting in a break-even point at 17,647 users.
-\footnote{All economic analysis and results are available at \url{https://autophage.xyz/economic-simulations}. Fixed costs are set at \$30,000 for demonstration only. Actual costs will vary depending on whether cloud or physical infrastructure is used, among other factors.}}
+\footnote{All economic analysis and results are available at \url{https://97115104.github.io/autophage-litepaper/economic-simulations}. Fixed costs are set at \$30,000 for demonstration only. Actual costs will vary depending on whether cloud or physical infrastructure is used, among other factors.}}
 
 
 
@@ -1084,7 +1084,7 @@ Efficient implementation enables scalability:
 ~
 
 1. \textbf{Lazy Decay}: Calculate only on interaction. This optimization saves approximately 17,000 gas per unused day through storage optimization using a single timestamp per user-species pair.\footnote{
-Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://autophage.xyz/gas-optimization}.
+Empirical gas measurements were conducted using Ethereum mainnet test contracts for both naive decay and optimized “lazy decay” storage logic. The 17,000 gas savings is calculated as the difference in gas usage between recalculating and updating all balances on each block versus the optimized approach, which applies decay only on interaction. See full benchmarking code and methodology at \url{https://97115104.github.io/autophage-litepaper/gas-optimization}.
 }
 
 2. \textbf{Batch Processing}: Aggregate multiple proofs with batch sizes up to 100 proofs, achieving 85\% gas reduction compared to individual transactions through Merkle tree root submission for verification.
@@ -1113,7 +1113,7 @@ Batched weekly & 120,000 gas × 4 & 480,000 gas \\
 
 \subsection{Core Smart Contracts}
 
-The protocol consists of four primary contracts with specific responsibilities \footnote{Each of the prospective smart contracts is viewable at \url{https://autophage.xyz/smart-contracts}. These contracts are experimental and so are intended solely for demonstration purposes.}:
+The protocol consists of four primary contracts with specific responsibilities \footnote{Each of the prospective smart contracts is viewable at \url{https://97115104.github.io/autophage-litepaper/smart-contracts}. These contracts are experimental and so are intended solely for demonstration purposes.}:
 
 ~
 
