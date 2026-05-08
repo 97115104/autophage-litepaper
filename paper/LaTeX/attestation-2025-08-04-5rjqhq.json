@@ -1,10 +1,24 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "id": "2026-05-08-d73c89",
-  "content_name": "The Autophage Protocol: Metabolic Economics for Decentralized Health",
-  "type": "collab",
+  "content_name": "main.tex",
   "model": "Claude 4 Opus and ChatGPT 4.1-5",
+  "role": "collaborated",
+  "authorship_type": "collab",
+  "timestamp": "2026-05-08T22:52:05.309Z",
   "author": "Austin Harshberger",
-  "hash": "sha256:ecaf55ea246492780c7942b069cef6d6c031c77d332a3c60bd9c20538fcbf632",
-  "time": "2026-05-08T22:52:05.309Z"
+  "document_type": "tex",
+  "platform": "Various",
+  "prompt_type": "multi-prompt",
+  "content_hash": "sha256:ecaf55ea246492780c7942b069cef6d6c031c77d332a3c60bd9c20538fcbf632",
+  "signature": {
+    "type": "hmac-sha256",
+    "algorithm": "HMAC-SHA256",
+    "value": "c9ec8616b56564b43e30cc2673e3e5063ff4d1622c6108196006c07d02af853e",
+    "data_to_sign": "{\"content_hash\":\"sha256:ecaf55ea246492780c7942b069cef6d6c031c77d332a3c60bd9c20538fcbf632\",\"model\":\"Claude 4 Opus and ChatGPT 4.1-5\",\"timestamp\":\"2026-05-08T22:52:05.309Z\",\"authorship_type\":\"collab\",\"role\":\"collaborated\"}"
+  },
+  "signer": {
+    "name": "Austin Harshberger",
+    "id": "austinharshberger"
+  }
 }
