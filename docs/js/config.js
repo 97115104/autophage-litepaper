@@ -2,12 +2,23 @@
 const CONFIG = {
     // Detect if we're on GitHub Pages or local
     isProduction: window.location.hostname.includes('github.io') || window.location.hostname.includes('statusdothealth'),
+    productionBaseUrl: 'https://97115104.github.io/autophage-litepaper',
+    links: {
+        litepaper: {
+            href: 'paper/litepaper.pdf',
+            production: 'https://97115104.github.io/autophage-litepaper/paper/litepaper.pdf'
+        },
+        smartContracts: {
+            href: 'smart-contracts',
+            production: 'https://97115104.github.io/autophage-litepaper/smart-contracts'
+        }
+    },
     
     nav: {
         main: [
             { label: 'Home', href: '' },
             { label: 'About', href: 'about' },
-            { label: 'Litepaper', href: 'paper/litepaper.pdf', external: true, production: 'https://github.com/97115104//litepaper/blob/main/paper/litepaper.pdf' }
+            { label: 'Litepaper', href: 'paper/litepaper.pdf', external: true, production: 'https://97115104.github.io/autophage-litepaper/paper/litepaper.pdf' }
         ],
         tools: {
             label: 'Tools',
@@ -29,9 +40,9 @@ const CONFIG = {
         }
     },
     siteName: 'Autophage Protocol',
-    orgName: 'Health Protocol Labs',
+    orgName: 'Happy Stack Calculus',
     orgLink: 'about#research',
-    copyright: 'Health Protocol Labs',
+    copyright: 'Happy Stack Calculus',
     // This should be updated with each deployment/release
     deploymentDate: 'December 2024'
 };

@@ -63,7 +63,7 @@ The [`docs/`](docs/) directory contains a comprehensive interactive website with
 ## Viewing the Documentation
 
 ### Online (Recommended)
-Visit the live interactive website at: **[https://autophage.xyz](https://autophage.xyz)**
+Visit the live interactive website at: **[https://97115104.github.io/autophage-litepaper/](https://97115104.github.io/autophage-litepaper/)**
 
 ### Local Development
 1. Clone the repository: `git clone https://github.com/97115104//litepaper.git`
@@ -102,14 +102,14 @@ The documentation is organized for different audiences:
 
 **Protocol Resources:**
 - 📄 [Complete Litepaper PDF](paper/litepaper.pdf)
-- 🌐 [Interactive Website](https://autophage.xyz)
-- 🧮 [Mathematical Appendix](https://autophage.xyz/math)
+- 🌐 [Interactive Website](https://97115104.github.io/autophage-litepaper/)
+- 🧮 [Mathematical Appendix](https://97115104.github.io/autophage-litepaper/math)
 - 📊 [Live Simulations](docs/simulations.html)
 
 **Research & Analysis:**
 - 📈 [Gini Coefficient Simulation Script](https://97115104.github.io/autophage-litepaper/simulations) | [Local](extras/gini-simulation.py)
 - 🔬 [Extended Mathematical Proofs](docs/extended-math.html)
-- 📝 [Patent Application](https://healthprotocollabs.space/patents/1) - System and Method for Privacy-Preserving Health Incentives
+- 📝 [Patent Application](https://hsc.97115104.com/patents/1) - System and Method for Privacy-Preserving Health Incentives
 
 **Development:**
 - 💻 [GitHub Repository](https://github.com/97115104//litepaper)
@@ -118,9 +118,9 @@ The documentation is organized for different audiences:
 
 ## About the Research
 
-**Organization**: Health Protocol Labs  
-**Website**: [health protocol labs](https://healthprotocollabs.space)  
-**Protocol Website**: [autophage.xyz](https://autophage.xyz)  
+**Organization**: Happy Stack Calculus  
+**Website**: [Happy Stack Calculus](hsc.97115104.com)  
+**Protocol Website**: [https://97115104.github.io/autophage-litepaper/](https://97115104.github.io/autophage-litepaper/)  
 **Email**: info@97115104.com  
 **Author**: Austin Harshberger
 
@@ -142,8 +142,8 @@ This is an active research project welcoming collaboration:
   author = {Harshberger, Austin},
   title = {The Autophage Protocol: Metabolic Economics Through Value Decay},
   year = {2025},
-  howpublished = {\url{https://autophage.xyz}},
-  note = {Health Protocol Labs}
+  howpublished = {\url{https://97115104.github.io/autophage-litepaper/}},
+  note = {Happy Stack Calculus}
 }
 ```
 
@@ -151,6 +151,6 @@ This is an active research project welcoming collaboration:
 
 This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
 
-© 2025 Health Protocol Labs. The Autophage Protocol litepaper and associated materials are released under Apache 2.0, providing a balance of openness and flexibility for both academic and commercial use.
+© 2025 Happy Stack Calculus. The Autophage Protocol litepaper and associated materials are released under Apache 2.0, providing a balance of openness and flexibility for both academic and commercial use.
 
 The Autophage Protocol is currently in the research and development phase. Implementation details and specifications may evolve as the protocol matures toward production deployment.

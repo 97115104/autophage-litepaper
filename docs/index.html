@@ -111,17 +111,17 @@
 
         // Open litepaper with proper URL
         function openLitepaper() {
-            const url = CONFIG.isProduction && CONFIG.nav.main[2].production 
-                ? CONFIG.nav.main[2].production 
-                : 'paper/litepaper.pdf';
+            const url = CONFIG.isProduction
+                ? CONFIG.links.litepaper.production
+                : CONFIG.links.litepaper.href;
             window.open(url, '_blank');
         }
         
         // Update litepaper link
         document.addEventListener('DOMContentLoaded', () => {
             const litePaperLink = document.getElementById('litepaper-link');
-            if (litePaperLink && CONFIG.isProduction && CONFIG.nav.main[2].production) {
-                litePaperLink.href = CONFIG.nav.main[2].production;
+            if (litePaperLink && CONFIG.isProduction) {
+                litePaperLink.href = CONFIG.links.litepaper.production;
             }
         });
         
@@ -157,7 +157,9 @@
             
             // 10% chance for smart contracts interactive demo
             if (Math.random() < 0.10) {
-                window.open('https://contracts.autophage.xyz/', '_blank');
+                window.location.href = CONFIG.isProduction
+                    ? CONFIG.links.smartContracts.production
+                    : CONFIG.links.smartContracts.href;
                 return;
             }
             
