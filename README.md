@@ -109,7 +109,7 @@ The documentation is organized for different audiences:
 **Research & Analysis:**
 - 📈 [Gini Coefficient Simulation Script](https://97115104.github.io/autophage-litepaper/simulations) | [Local](extras/gini-simulation.py)
 - 🔬 [Extended Mathematical Proofs](docs/extended-math.html)
-- 📝 [Patent Application](https://hsc.97115104.com/patents/1) - System and Method for Privacy-Preserving Health Incentives
+- 📝 [Patent Application](http://hsc.97115104.com/patents/1) - System and Method for Privacy-Preserving Health Incentives
 
 **Development:**
 - 💻 [GitHub Repository](https://github.com/97115104//litepaper)
@@ -119,7 +119,7 @@ The documentation is organized for different audiences:
 ## About the Research
 
 **Organization**: Happy Stack Calculus  
-**Website**: [Happy Stack Calculus](hsc.97115104.com)  
+**Website**: [Happy Stack Calculus](http://hsc.97115104.com/)  
 **Protocol Website**: [https://97115104.github.io/autophage-litepaper/](https://97115104.github.io/autophage-litepaper/)  
 **Email**: info@97115104.com  
 **Author**: Austin Harshberger
